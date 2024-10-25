@@ -39,7 +39,8 @@
             lblSignupPass = new Label();
             lblSignupEmail = new Label();
             tbxSignupPass = new TextBox();
-            lblSignupWelcome = new Label();
+            lblSignupAppName = new Label();
+            lblSginupWelcome = new Label();
             gbxLogin.SuspendLayout();
             SuspendLayout();
             // 
@@ -68,6 +69,7 @@
             // gbxLogin
             // 
             gbxLogin.Anchor = AnchorStyles.Top;
+            gbxLogin.BackColor = Color.FromArgb(236, 240, 241);
             gbxLogin.Controls.Add(lblLoginSignupRedirect);
             gbxLogin.Controls.Add(lklblLoginSignupRedirect);
             gbxLogin.Controls.Add(btnSignupSubmit);
@@ -78,7 +80,7 @@
             gbxLogin.Controls.Add(lblSignupPass);
             gbxLogin.Controls.Add(lblSignupEmail);
             gbxLogin.Controls.Add(tbxSignupPass);
-            gbxLogin.Location = new Point(208, 108);
+            gbxLogin.Location = new Point(355, 77);
             gbxLogin.Name = "gbxLogin";
             gbxLogin.Size = new Size(400, 297);
             gbxLogin.TabIndex = 11;
@@ -86,14 +88,20 @@
             // 
             // btnSignupSubmit
             // 
-            btnSignupSubmit.Anchor = AnchorStyles.Top;
+            btnSignupSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnSignupSubmit.BackColor = Color.FromArgb(44, 62, 80);
+            btnSignupSubmit.CausesValidation = false;
+            btnSignupSubmit.Font = new Font("Bahnschrift Condensed", 12F);
+            btnSignupSubmit.ForeColor = Color.White;
             btnSignupSubmit.Location = new Point(169, 213);
             btnSignupSubmit.Name = "btnSignupSubmit";
             btnSignupSubmit.Size = new Size(75, 37);
             btnSignupSubmit.TabIndex = 16;
             btnSignupSubmit.Text = "Buat Akun";
-            btnSignupSubmit.UseVisualStyleBackColor = true;
+            btnSignupSubmit.UseVisualStyleBackColor = false;
             btnSignupSubmit.Click += btnSignupSubmit_Click;
+            btnSignupSubmit.MouseEnter += btnSignupSubmit_MouseEnter;
+            btnSignupSubmit.MouseLeave += btnSignupSubmit_MouseLeave;
             // 
             // tbxSignupNama
             // 
@@ -127,9 +135,10 @@
             // 
             lblLoginSubheading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginSubheading.AutoSize = true;
-            lblLoginSubheading.Location = new Point(59, 19);
+            lblLoginSubheading.Font = new Font("Bahnschrift Condensed", 14.25F);
+            lblLoginSubheading.Location = new Point(18, 19);
             lblLoginSubheading.Name = "lblLoginSubheading";
-            lblLoginSubheading.Size = new Size(294, 15);
+            lblLoginSubheading.Size = new Size(362, 23);
             lblLoginSubheading.TabIndex = 4;
             lblLoginSubheading.Text = "Silahkan lengkapi data dibawah untuk membuat akun!";
             // 
@@ -162,30 +171,44 @@
             tbxSignupPass.TabIndex = 2;
             tbxSignupPass.TextChanged += tbxSignupPass_TextChanged;
             // 
-            // lblSignupWelcome
+            // lblSignupAppName
             // 
-            lblSignupWelcome.Anchor = AnchorStyles.Top;
-            lblSignupWelcome.AutoSize = true;
-            lblSignupWelcome.Font = new Font("Gill Sans MT", 32.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblSignupWelcome.Location = new Point(152, 31);
-            lblSignupWelcome.Name = "lblSignupWelcome";
-            lblSignupWelcome.Size = new Size(506, 60);
-            lblSignupWelcome.TabIndex = 10;
-            lblSignupWelcome.Text = "Welcome To HeyBrew!";
+            lblSignupAppName.Anchor = AnchorStyles.Top;
+            lblSignupAppName.BackColor = Color.Transparent;
+            lblSignupAppName.Font = new Font("Bahnschrift Condensed", 42F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblSignupAppName.ForeColor = Color.White;
+            lblSignupAppName.Location = new Point(32, 210);
+            lblSignupAppName.Name = "lblSignupAppName";
+            lblSignupAppName.Size = new Size(286, 72);
+            lblSignupAppName.TabIndex = 13;
+            lblSignupAppName.Text = "BarberMate!";
+            // 
+            // lblSginupWelcome
+            // 
+            lblSginupWelcome.Anchor = AnchorStyles.Top;
+            lblSginupWelcome.BackColor = Color.Transparent;
+            lblSginupWelcome.Font = new Font("Bahnschrift Light Condensed", 32.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblSginupWelcome.ForeColor = Color.White;
+            lblSginupWelcome.Location = new Point(32, 155);
+            lblSginupWelcome.Name = "lblSginupWelcome";
+            lblSginupWelcome.Size = new Size(286, 61);
+            lblSginupWelcome.TabIndex = 12;
+            lblSginupWelcome.Text = "Selamat datang di";
             // 
             // FormSignup
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(44, 62, 80);
             ClientSize = new Size(800, 450);
+            Controls.Add(lblSignupAppName);
+            Controls.Add(lblSginupWelcome);
             Controls.Add(gbxLogin);
-            Controls.Add(lblSignupWelcome);
             Name = "FormSignup";
             Text = "FormSignup";
             gbxLogin.ResumeLayout(false);
             gbxLogin.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -198,9 +221,10 @@
         private Label lblSignupPass;
         private Label lblSignupEmail;
         private TextBox tbxSignupPass;
-        private Label lblSignupWelcome;
         private TextBox tbxSignupNama;
         private Label lblSignupNama;
         private Button btnSignupSubmit;
+        private Label lblSignupAppName;
+        private Label lblSginupWelcome;
     }
 }

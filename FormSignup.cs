@@ -94,7 +94,25 @@ namespace CobaWinForm
             {
                 MessageBox.Show($"Terjadi Kesalahan : {ex.Message}");
             }
-        
+
+        }
+
+        private void btnSignupSubmit_MouseEnter(object sender, EventArgs e)
+        {
+            if (btnSignupSubmit.Enabled == true)
+            {
+                btnSignupSubmit.BackColor = Color.FromArgb(243, 156, 18);
+                btnSignupSubmit.ForeColor = Color.FromArgb(44, 62, 80);
+            }
+        }
+
+        private void btnSignupSubmit_MouseLeave(object sender, EventArgs e)
+        {
+            if (btnSignupSubmit.Enabled == true)
+            {
+                btnSignupSubmit.BackColor = Color.FromArgb(44, 62, 80);
+                btnSignupSubmit.ForeColor = Color.White;
+            }
         }
     }
 }
