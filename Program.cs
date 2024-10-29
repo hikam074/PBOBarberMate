@@ -1,4 +1,4 @@
-namespace CobaWinForm
+namespace PBOBarberMate
 {
     internal static class Program
     {

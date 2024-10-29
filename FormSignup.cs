@@ -1,20 +1,16 @@
 ﻿using Npgsql;
 using System;
 using System.Windows.Forms;
-using CobaWinForm.Classes;
+using PBOBarberMate.Classes;
 
-namespace CobaWinForm
+namespace PBOBarberMate
 {
     public partial class FormSignup : Form
     {
-        private AkunService akunService;
-
+        DBService dBService = new DBService("Host=localhost;Port=5432;Username=postgres;Password=dammahom51;Database=HeyBrew");
         public FormSignup()
         {
             InitializeComponent();
-            string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=dammahom51;Database=HeyBrew";
-            DBService dBService = new DBService(connectionString);
-            akunService = new AkunService(dBService);
 
             if (tbxSignupEmail.Text == "" || tbxSignupNama.Text == "" || tbxSignupPass.Text == "")
             {
@@ -75,7 +71,7 @@ namespace CobaWinForm
                 Akun akun = new Akun(tbxSignupEmail.Text, tbxSignupNama.Text, tbxSignupPass.Text);
 
                 // menyimpan akun baru ke db
-                bool berhasilDibuat = akunService.signupAkun(akun);
+                bool berhasilDibuat = akun.signupAkun(dBService);
 
                 if (berhasilDibuat)
                 {

@@ -1,8 +1,8 @@
 ﻿using System;
-
+using PBOBarberMate.Classes;
 using Npgsql;
 
-namespace CobaWinForm.Classes
+namespace PBOBarberMate.Classes
 {
     public class DBService
     {
@@ -33,27 +33,6 @@ namespace CobaWinForm.Classes
                     int userCount = Convert.ToInt32(command.ExecuteScalar());
                     // return true bila user ditemukan
                     return userCount > 0;
-                }
-            }
-        }
-        // method membuat akun baru ke db
-        public bool buatAkun(Akun akun)
-        {
-            using (NpgsqlConnection connection = getConnectToDB())
-            {
-                //connection.Open();
-                string insertQuery = "INSERT INTO akun (email, nama, password) VALUES (@email, @nama, @password)";
-                using (NpgsqlCommand insertCommand = new NpgsqlCommand(insertQuery, connection))
-                {
-                    insertCommand.Parameters.AddWithValue("email", akun.email);
-                    insertCommand.Parameters.AddWithValue("nama", akun.nama);
-                    insertCommand.Parameters.AddWithValue("password", akun.getPassword());
-
-                    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
-                    int rowsAffected = insertCommand.ExecuteNonQuery();
-                    // return true bila berhasil
-                    return rowsAffected > 0;
-
                 }
             }
         }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
 using Npgsql;
-using CobaWinForm.Classes;
+using PBOBarberMate.Classes;
 
-namespace CobaWinForm
+namespace PBOBarberMate
 {
     public partial class FormHomepage : Form
     {

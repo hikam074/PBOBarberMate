@@ -1,21 +1,16 @@
 using System;
 using Npgsql;
-using CobaWinForm.Classes;
+using PBOBarberMate.Classes;
 using System.Drawing.Text;
 
-namespace CobaWinForm
+namespace PBOBarberMate
 {
     public partial class FormLogin : Form
     {
-        // deklar akunService agar bisa digunakan tidak hanya di FormLogin()
-        private AkunService akunService;
-
+        DBService dBService = new DBService("Host=localhost;Port=5432;Username=postgres;Password=dammahom51;Database=HeyBrew");
         public FormLogin()
         {
             InitializeComponent();
-            string connectionString = "Host=localhost;Port=5432;Username=postgres;Password=dammahom51;Database=HeyBrew";
-            DBService dBService = new DBService(connectionString);
-            akunService = new AkunService(dBService);
 
             if (tbxLoginEmail.Text == "" || tbxLoginPass.Text == "")
             {
@@ -53,7 +48,7 @@ namespace CobaWinForm
             try
             {
                 Akun akun = new Akun(tbxLoginEmail.Text, tbxLoginPass.Text);
-                if (akunService.loginAkun(akun, out string nama))
+                if (akun.loginAkun(dBService))
                 {
                     // berhasil login
                     FormHomepage formHomepage = new FormHomepage();
