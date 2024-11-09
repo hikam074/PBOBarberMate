@@ -48,7 +48,8 @@
             // 
             lblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lblLoginSignupRedirect.AutoSize = true;
-            lblLoginSignupRedirect.Location = new Point(134, 262);
+            lblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
+            lblLoginSignupRedirect.Location = new Point(135, 265);
             lblLoginSignupRedirect.Name = "lblLoginSignupRedirect";
             lblLoginSignupRedirect.Size = new Size(110, 15);
             lblLoginSignupRedirect.TabIndex = 13;
@@ -58,7 +59,7 @@
             // 
             lklblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lklblLoginSignupRedirect.AutoSize = true;
-            lklblLoginSignupRedirect.Location = new Point(241, 262);
+            lklblLoginSignupRedirect.Location = new Point(241, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
             lklblLoginSignupRedirect.Size = new Size(37, 15);
             lklblLoginSignupRedirect.TabIndex = 12;
@@ -80,9 +81,9 @@
             gbxLogin.Controls.Add(lblSignupPass);
             gbxLogin.Controls.Add(lblSignupEmail);
             gbxLogin.Controls.Add(tbxSignupPass);
-            gbxLogin.Location = new Point(355, 77);
+            gbxLogin.Location = new Point(360, 75);
             gbxLogin.Name = "gbxLogin";
-            gbxLogin.Size = new Size(400, 297);
+            gbxLogin.Size = new Size(400, 300);
             gbxLogin.TabIndex = 11;
             gbxLogin.TabStop = false;
             // 
@@ -93,9 +94,9 @@
             btnSignupSubmit.CausesValidation = false;
             btnSignupSubmit.Font = new Font("Bahnschrift Condensed", 12F);
             btnSignupSubmit.ForeColor = Color.White;
-            btnSignupSubmit.Location = new Point(169, 213);
+            btnSignupSubmit.Location = new Point(165, 215);
             btnSignupSubmit.Name = "btnSignupSubmit";
-            btnSignupSubmit.Size = new Size(75, 37);
+            btnSignupSubmit.Size = new Size(80, 40);
             btnSignupSubmit.TabIndex = 16;
             btnSignupSubmit.Text = "Buat Akun";
             btnSignupSubmit.UseVisualStyleBackColor = false;
@@ -177,7 +178,7 @@
             lblSignupAppName.BackColor = Color.Transparent;
             lblSignupAppName.Font = new Font("Bahnschrift Condensed", 42F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSignupAppName.ForeColor = Color.White;
-            lblSignupAppName.Location = new Point(32, 210);
+            lblSignupAppName.Location = new Point(30, 210);
             lblSignupAppName.Name = "lblSignupAppName";
             lblSignupAppName.Size = new Size(286, 72);
             lblSignupAppName.TabIndex = 13;
@@ -189,7 +190,7 @@
             lblSginupWelcome.BackColor = Color.Transparent;
             lblSginupWelcome.Font = new Font("Bahnschrift Light Condensed", 32.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSginupWelcome.ForeColor = Color.White;
-            lblSginupWelcome.Location = new Point(32, 155);
+            lblSginupWelcome.Location = new Point(30, 155);
             lblSginupWelcome.Name = "lblSginupWelcome";
             lblSginupWelcome.Size = new Size(286, 61);
             lblSginupWelcome.TabIndex = 12;
@@ -205,7 +206,8 @@
             Controls.Add(lblSginupWelcome);
             Controls.Add(gbxLogin);
             Name = "FormSignup";
-            Text = "FormSignup";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "BarberMate : Register";
             gbxLogin.ResumeLayout(false);
             gbxLogin.PerformLayout();
             ResumeLayout(false);
