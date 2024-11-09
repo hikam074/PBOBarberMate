@@ -76,6 +76,7 @@
             // 
             lblLoginHeadingEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginHeadingEmail.AutoSize = true;
+            lblLoginHeadingEmail.BackColor = Color.Transparent;
             lblLoginHeadingEmail.Location = new Point(18, 84);
             lblLoginHeadingEmail.Name = "lblLoginHeadingEmail";
             lblLoginHeadingEmail.Size = new Size(36, 15);
@@ -85,6 +86,7 @@
             // lblLoginSubheading
             // 
             lblLoginSubheading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblLoginSubheading.BackColor = Color.Transparent;
             lblLoginSubheading.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblLoginSubheading.Location = new Point(18, 34);
             lblLoginSubheading.Name = "lblLoginSubheading";
@@ -97,6 +99,7 @@
             // 
             lblLoginHeadingPass.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginHeadingPass.AutoSize = true;
+            lblLoginHeadingPass.BackColor = Color.Transparent;
             lblLoginHeadingPass.Location = new Point(18, 150);
             lblLoginHeadingPass.Name = "lblLoginHeadingPass";
             lblLoginHeadingPass.Size = new Size(57, 15);
@@ -125,6 +128,7 @@
             // 
             lblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lblLoginSignupRedirect.AutoSize = true;
+            lblLoginSignupRedirect.BackColor = Color.Transparent;
             lblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
             lblLoginSignupRedirect.Location = new Point(59, 265);
             lblLoginSignupRedirect.Name = "lblLoginSignupRedirect";
@@ -152,6 +156,7 @@
             // 
             lklblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lklblLoginSignupRedirect.AutoSize = true;
+            lklblLoginSignupRedirect.BackColor = Color.Transparent;
             lklblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
             lklblLoginSignupRedirect.Location = new Point(253, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";

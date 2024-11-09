@@ -48,6 +48,7 @@
             // 
             lblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lblLoginSignupRedirect.AutoSize = true;
+            lblLoginSignupRedirect.BackColor = Color.Transparent;
             lblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
             lblLoginSignupRedirect.Location = new Point(135, 265);
             lblLoginSignupRedirect.Name = "lblLoginSignupRedirect";
@@ -59,6 +60,7 @@
             // 
             lklblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lklblLoginSignupRedirect.AutoSize = true;
+            lklblLoginSignupRedirect.BackColor = Color.Transparent;
             lklblLoginSignupRedirect.Location = new Point(241, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
             lklblLoginSignupRedirect.Size = new Size(37, 15);
@@ -117,6 +119,7 @@
             // 
             lblSignupNama.Anchor = AnchorStyles.Top;
             lblSignupNama.AutoSize = true;
+            lblSignupNama.BackColor = Color.Transparent;
             lblSignupNama.Location = new Point(18, 108);
             lblSignupNama.Name = "lblSignupNama";
             lblSignupNama.Size = new Size(39, 15);
@@ -136,6 +139,7 @@
             // 
             lblLoginSubheading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginSubheading.AutoSize = true;
+            lblLoginSubheading.BackColor = Color.Transparent;
             lblLoginSubheading.Font = new Font("Bahnschrift Condensed", 14.25F);
             lblLoginSubheading.Location = new Point(18, 19);
             lblLoginSubheading.Name = "lblLoginSubheading";
@@ -147,6 +151,7 @@
             // 
             lblSignupPass.Anchor = AnchorStyles.Top;
             lblSignupPass.AutoSize = true;
+            lblSignupPass.BackColor = Color.Transparent;
             lblSignupPass.Location = new Point(18, 156);
             lblSignupPass.Name = "lblSignupPass";
             lblSignupPass.Size = new Size(57, 15);
@@ -157,6 +162,7 @@
             // 
             lblSignupEmail.Anchor = AnchorStyles.Top;
             lblSignupEmail.AutoSize = true;
+            lblSignupEmail.BackColor = Color.Transparent;
             lblSignupEmail.Location = new Point(18, 58);
             lblSignupEmail.Name = "lblSignupEmail";
             lblSignupEmail.Size = new Size(36, 15);
