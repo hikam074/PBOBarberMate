@@ -15,6 +15,9 @@ namespace PBOBarberMate
         public FormLogin()
         {
             InitializeComponent();
+            // membuat password yang diketikkan disensor
+            tbxLoginPass.PasswordChar= '*';
+
             // nonaktifkan btnLoginSubmit bila yang diisi belum lengkap
             if (tbxLoginEmail.Text == "" || tbxLoginPass.Text == "")
             {
@@ -41,6 +44,7 @@ namespace PBOBarberMate
         }
         private void tbxLoginPass_TextChanged(object sender, EventArgs e)
         {
+
             // nonaktifkan btnLoginSubmit bila yang diisi belum lengkap
             if (tbxLoginEmail.Text == "" || tbxLoginPass.Text == "")
             {
@@ -85,13 +89,28 @@ namespace PBOBarberMate
                             M_Karyawan karyawan = new M_Karyawan(tbxLoginEmail.Text, tbxLoginPass.Text);
                             // melakukan login
                             AkunContext.login(karyawan);
-                            // mengarahkan ke FormHomepageAdmin
+                            // mengarahkan ke FormHomepageKaryawan
                             FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
                             // menyimpan data login di form selanjutnya
                             formHomepageKaryawan.akun = karyawan;
                             formHomepageKaryawan.lblWelcome.Text = $"{karyawan.nama}";
 
                             formHomepageKaryawan.Show();
+                            this.Hide();
+                        }
+                        else if (CekAkun.cekRole(akun) == 3)
+                        {
+                            // customer
+                            M_Customer customer = new M_Customer(tbxLoginEmail.Text, tbxLoginPass.Text);
+                            // melakukan login
+                            AkunContext.login(customer);
+                            // mengarahkan ke FormHomepageCustomer
+                            FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+                            // menyimpan data login di form selanjutnya
+                            formHomepageCustomer.akun = customer;
+                            formHomepageCustomer.lblWelcome.Text = $"{customer.nama}";
+
+                            formHomepageCustomer.Show();
                             this.Hide();
                         }
                         else

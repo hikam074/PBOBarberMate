@@ -88,7 +88,7 @@ namespace PBOBarberMate.App.Core
                 throw new Exception(e.Message);
             }
             // WARNING : untuk SELECT koneksi harus ditutup secara manual pada kode yang menggunakannya, tidak disini
-            // namun bilamenggunakan using maka tidak perlu menutup koneksi karena using akan menutup koneksi secara otomatis
+            // namun bila menggunakan using maka tidak perlu menutup koneksi karena using akan menutup koneksi secara otomatis
         }
     }
 }
