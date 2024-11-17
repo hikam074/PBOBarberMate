@@ -153,7 +153,7 @@ namespace PBOBarberMate.View
 
                 int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
                 LayananContext.DeleteLayanan(layananId);
-                LoadDataLayanan();
+                LoadDataLayanan(); //layanan
             }
         }
     }
