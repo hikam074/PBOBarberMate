@@ -130,11 +130,11 @@
             lblLoginSignupRedirect.AutoSize = true;
             lblLoginSignupRedirect.BackColor = Color.Transparent;
             lblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
-            lblLoginSignupRedirect.Location = new Point(59, 265);
+            lblLoginSignupRedirect.Location = new Point(38, 265);
             lblLoginSignupRedirect.Name = "lblLoginSignupRedirect";
-            lblLoginSignupRedirect.Size = new Size(197, 15);
+            lblLoginSignupRedirect.Size = new Size(236, 15);
             lblLoginSignupRedirect.TabIndex = 9;
-            lblLoginSignupRedirect.Text = "Bukan admin && belum punya akun?";
+            lblLoginSignupRedirect.Text = "Anda Pengunjung && belum memiliki akun?";
             // 
             // btnLoginSubmit
             // 
@@ -158,7 +158,7 @@
             lklblLoginSignupRedirect.AutoSize = true;
             lklblLoginSignupRedirect.BackColor = Color.Transparent;
             lklblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
-            lklblLoginSignupRedirect.Location = new Point(253, 265);
+            lklblLoginSignupRedirect.Location = new Point(274, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
             lklblLoginSignupRedirect.Size = new Size(93, 15);
             lklblLoginSignupRedirect.TabIndex = 8;
