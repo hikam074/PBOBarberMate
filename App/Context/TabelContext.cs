@@ -14,14 +14,14 @@ namespace PBOBarberMate.App.Context
 {
     public class TabelContext : DBService
     {
-        public static DataTable getReservasiMingguIni(M_Customer akun)
+        public static DataTable getReservasiMingguIni()
         {
             try
             {
                 string query = "SELECT r.tanggal AS Tanggal, r.waktu AS Waktu,l.nama_layanan AS Pelayanan FROM reservasi r JOIN akun a ON (r.id_akun = a.id_akun) JOIN layanan l ON (r.id_layanan = l.id_layanan) WHERE a.email = @email AND r.tanggal > CURRENT_DATE AND (r.tanggal > CURRENT_DATE OR (r.tanggal = CURRENT_DATE AND r.waktu > CURRENT_TIME)) ORDER BY r.tanggal DESC, r.waktu ASC LIMIT 3";
                 var parameters = new NpgsqlParameter[]
                 {
-                    new NpgsqlParameter("@email", akun.email),
+                    new NpgsqlParameter("@email", UserSession.email),
                     new NpgsqlParameter("@date",DateTime.Now)
                     {
                         DbType = System.Data.DbType.Date

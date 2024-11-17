@@ -21,12 +21,12 @@ namespace PBOBarberMate.App.Model
         public M_Customer(string email, string password) : base(email, password)
         {
             // assign role otomatis
-            this.role = role;
+            this.role = AkunRole.Customer;
         }
         public M_Customer(string email, string nama, string password) : base(email, nama, password)
         {
             // assign role otomatis
-            this.role = role;
+            this.role = AkunRole.Customer;
         }
     }
 }

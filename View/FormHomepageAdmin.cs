@@ -11,8 +11,6 @@ namespace PBOBarberMate.View
 {
     public partial class FormHomepageAdmin : Form
     {
-        // atribut menampung akun
-        public M_Admin akun;
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
@@ -20,6 +18,7 @@ namespace PBOBarberMate.View
         public FormHomepageAdmin()
         {
             InitializeComponent();
+            lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageAdmin_Click);
         }
@@ -62,9 +61,9 @@ namespace PBOBarberMate.View
                 // memunculkan profil
                 gbxShowProfile.Visible = true;
                 // memunculkan isi profil
-                lblProfilRole.Text = akun.role.ToString();
-                lblProfilNama.Text = lblWelcome.Text;
-                lblProfilEmail.Text = akun.email;
+                lblProfilRole.Text = UserSession.role.ToString();
+                lblProfilNama.Text = UserSession.nama;
+                lblProfilEmail.Text = UserSession.email;
                 // mengubah warna btnProfil
                 btnProfil.BackColor = Color.White;
                 btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
@@ -100,8 +99,10 @@ namespace PBOBarberMate.View
         {
             // kembali ke FormLogin
             FormLogin formLogin = new FormLogin();
-            formLogin.Show();
+            // logout dari session
+            AkunContext.logout();
 
+            formLogin.Show();
             this.Hide();
         }
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
@@ -132,8 +133,8 @@ namespace PBOBarberMate.View
         private void btnLayanan_Click(object sender, EventArgs e)
         {
             FormLayanan formLayanan = new FormLayanan();
-            this.Hide();
             formLayanan.Show();
+            this.Hide();
         }
     }
 }

@@ -17,6 +17,9 @@ namespace PBOBarberMate
             InitializeComponent();
             // membuat password yang diketikkan disensor
             tbxLoginPass.PasswordChar= '*';
+            
+            // memastikan logout dari session
+            AkunContext.logout();
 
             // nonaktifkan btnLoginSubmit bila yang diisi belum lengkap
             if (tbxLoginEmail.Text == "" || tbxLoginPass.Text == "")
@@ -77,9 +80,7 @@ namespace PBOBarberMate
                             AkunContext.login(admin);
                             // mengarahkan ke FormHomepageAdmin
                             FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-                            // menyimpan data login di form selanjutnya
-                            formHomepageAdmin.akun = admin;
-                            formHomepageAdmin.lblWelcome.Text = $"{admin.nama}";
+
                             formHomepageAdmin.Show();
                             this.Hide();
                         }
@@ -91,9 +92,6 @@ namespace PBOBarberMate
                             AkunContext.login(karyawan);
                             // mengarahkan ke FormHomepageKaryawan
                             FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
-                            // menyimpan data login di form selanjutnya
-                            formHomepageKaryawan.akun = karyawan;
-                            formHomepageKaryawan.lblWelcome.Text = $"{karyawan.nama}";
 
                             formHomepageKaryawan.Show();
                             this.Hide();
@@ -106,9 +104,6 @@ namespace PBOBarberMate
                             AkunContext.login(customer);
                             // mengarahkan ke FormHomepageCustomer
                             FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                            // menyimpan data login di form selanjutnya
-                            formHomepageCustomer.akun = customer;
-                            formHomepageCustomer.lblWelcome.Text = $"{customer.nama}";
 
                             formHomepageCustomer.Show();
                             this.Hide();

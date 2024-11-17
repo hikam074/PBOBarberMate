@@ -31,6 +31,10 @@ namespace PBOBarberMate.App.Context
                     reader.Read();
                     // mengambil .nama akun dari hasil SELECT
                     akun.nama = reader.GetString(0);
+                    // menyimpan data login ke session
+                    UserSession.email = akun.email;
+                    UserSession.nama = akun.nama;
+                    UserSession.role = (AkunRole)CekAkun.cekRole(akun);
                 }
                 else
                 {
@@ -73,6 +77,12 @@ namespace PBOBarberMate.App.Context
                 }
                 
             }
+        }
+        public static void logout()
+        {
+            UserSession.email = null;
+            UserSession.nama = null;
+            UserSession.role = null;
         }
     }
 }

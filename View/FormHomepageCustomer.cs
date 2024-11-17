@@ -1,4 +1,5 @@
 ﻿using PBOBarberMate.App.Context;
+using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -14,8 +15,6 @@ namespace PBOBarberMate.View
 {
     public partial class FormHomepageCustomer : Form
     {
-        // atribut menampung akun
-        public M_Customer akun;
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
@@ -23,6 +22,7 @@ namespace PBOBarberMate.View
         public FormHomepageCustomer()
         {
             InitializeComponent();
+            lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageCustomer_Click);
         }
@@ -65,9 +65,9 @@ namespace PBOBarberMate.View
                 // memunculkan profil
                 gbxShowProfile.Visible = true;
                 // memunculkan isi profil
-                lblProfilRole.Text = akun.role.ToString();
-                lblProfilNama.Text = lblWelcome.Text;
-                lblProfilEmail.Text = akun.email;
+                lblProfilRole.Text = UserSession.role.ToString();
+                lblProfilNama.Text = UserSession.nama;
+                lblProfilEmail.Text = UserSession.email;
                 // mengubah warna btnProfil
                 btnProfil.BackColor = Color.White;
                 btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
@@ -87,14 +87,26 @@ namespace PBOBarberMate.View
         }
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
-
+            // beralih ke FormUbahProfil
+            FormUbahProfil formUbahProfil = new FormUbahProfil();
+            // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
+            formUbahProfil.ShowDialog();
+            // menyembunyikan gbxShowProfile
+            gbxShowProfile.Visible = false;
+            // mengembalikan warna btnProfil ke default
+            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
+            btnProfil.ForeColor = Color.White;
+            // mengaktifkan kembali animasi hovers
+            hoversActivated = true;
         }
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             // kembali ke FormLogin
             FormLogin formLogin = new FormLogin();
-            formLogin.Show();
+            // logout dari session
+            AkunContext.logout();
 
+            formLogin.Show();
             this.Hide();
         }
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
@@ -126,7 +138,7 @@ namespace PBOBarberMate.View
         {
             try
             {
-                DataTable src = TabelContext.getReservasiMingguIni(akun);
+                DataTable src = TabelContext.getReservasiMingguIni();
                 dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
                 {

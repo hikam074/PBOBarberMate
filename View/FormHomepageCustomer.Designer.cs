@@ -362,6 +362,7 @@
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
             Name = "FormHomepageCustomer";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";
             Load += FormHomepageCustomer_Load;
             Click += FormHomepageCustomer_Click;
