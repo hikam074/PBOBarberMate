@@ -21,7 +21,7 @@ namespace PBOBarberMate.App.Model
         public M_Karyawan(string email, string password) : base(email, password)
         {
             // assign role otomatis
-            this.role = role;
+            this.role = AkunRole.Karyawan;
         }
     }
 }
