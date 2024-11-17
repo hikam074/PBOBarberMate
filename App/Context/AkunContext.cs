@@ -57,7 +57,7 @@ namespace PBOBarberMate.App.Context
                     new NpgsqlParameter("email", akun.email),
                     new NpgsqlParameter("nama", akun.nama),
                     new NpgsqlParameter("password", akun.getPassword()),
-                    new NpgsqlParameter("id_role", (int)AkunRole.Karyawan)
+                    new NpgsqlParameter("id_role", (int)AkunRole.Customer)
                 };
                 try
                 {

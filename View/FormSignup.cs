@@ -76,7 +76,7 @@ namespace PBOBarberMate
             try
             {
                 // membuat class akun untuk digunakan pada pembuatan akun
-                M_Akun akun = new M_Akun(tbxSignupEmail.Text, tbxSignupNama.Text, tbxSignupPass.Text);
+                M_Customer akun = new M_Customer(tbxSignupEmail.Text, tbxSignupNama.Text, tbxSignupPass.Text);
                 // menyimpan akun baru ke db
                 bool berhasilDibuat = AkunContext.signup(akun);
                 // ketika akun baru berhasil dibuat
