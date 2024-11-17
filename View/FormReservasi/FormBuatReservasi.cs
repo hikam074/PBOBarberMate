@@ -16,5 +16,13 @@ namespace PBOBarberMate.View
         {
             InitializeComponent();
         }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+
+            formHomepageCustomer.Show();
+            this.Hide();
+        }
     }
 }

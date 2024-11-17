@@ -28,18 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
+            btnKembali = new Button();
             SuspendLayout();
+            // 
+            // btnKembali
+            // 
+            btnKembali.Location = new Point(12, 12);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(75, 39);
+            btnKembali.TabIndex = 1;
+            btnKembali.Text = "Kembali";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
             // FormBuatReservasi
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnKembali);
             Name = "FormBuatReservasi";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormBuatReservasi";
             ResumeLayout(false);
         }
 
         #endregion
+
+        private Button btnKembali;
     }
 }
