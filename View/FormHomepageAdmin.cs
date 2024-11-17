@@ -132,8 +132,9 @@ namespace PBOBarberMate.View
         private void btnLayanan_Click(object sender, EventArgs e)
         {
             FormLayanan formLayanan = new FormLayanan();
-            this.Hide();
+            formLayanan.akun = this.akun; // Pass akun data
             formLayanan.Show();
+            this.Hide();
         }
     }
 }

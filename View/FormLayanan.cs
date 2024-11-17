@@ -15,6 +15,7 @@ namespace PBOBarberMate.View
 {
     public partial class FormLayanan : Form
     {
+        public M_Admin akun;
         public FormLayanan()
         {
             InitializeComponent();
@@ -98,6 +99,7 @@ namespace PBOBarberMate.View
         private void btnKembali_Click(object sender, EventArgs e)
         {
             FormHomepageAdmin admin = new FormHomepageAdmin();
+            admin.akun = this.akun; // Pass akun data back
             this.Hide();
             admin.Show();
         }
