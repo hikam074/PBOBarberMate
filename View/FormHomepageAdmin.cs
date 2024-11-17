@@ -128,5 +128,12 @@ namespace PBOBarberMate.View
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            FormLayanan formLayanan = new FormLayanan();
+            this.Hide();
+            formLayanan.Show();
+        }
     }
 }
