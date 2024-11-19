@@ -163,5 +163,12 @@ namespace PBOBarberMate.View
                 MessageBox.Show($"Terjadi kesalahan : {ex}");
             }
         }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
+            formBuatReservasi.Show();
+            this.Hide();
+        }
     }
 }
