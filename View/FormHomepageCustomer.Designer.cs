@@ -201,6 +201,7 @@
             btnReservasi.Text = "Reservasi Sekarang!";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnReservasi.UseVisualStyleBackColor = false;
+            btnReservasi.Click += btnReservasi_Click;
             // 
             // btnLayanan
             // 
