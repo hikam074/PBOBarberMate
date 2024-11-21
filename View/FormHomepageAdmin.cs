@@ -85,9 +85,6 @@ namespace PBOBarberMate.View
         {
             // beralih ke FormUbahProfil
             FormUbahProfil formUbahProfil = new FormUbahProfil();
-            formUbahProfil.admin = akun;
-            formUbahProfil.lblProfilNama.Text = akun.nama;
-            formUbahProfil.lblProfilEmail.Text = akun.email;
             // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
             formUbahProfil.ShowDialog();
             // menyembunyikan gbxShowProfile
