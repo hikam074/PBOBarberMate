@@ -78,6 +78,93 @@ namespace PBOBarberMate.App.Context
                 
             }
         }
+    public static bool ubahProfil(M_Akun akun, string data_baru, string ubahyangmana)
+{
+    //string updateQuery = "UPDATE akun SET nama='@nama_baru' WHERE email='@email'";
+    //var parameters = new NpgsqlParameter[]
+    //{
+    //        new NpgsqlParameter("nama_baru", data_baru),
+    //        new NpgsqlParameter("email", akun.email),
+    //};
+    //try
+    //{
+    //    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+    //    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+    //    // return true bila berhasil
+    //    return rowsAffected > 0;
+    //}
+    //catch (Exception ex)
+    //{
+    //    MessageBox.Show($"Terjadi kesalahan : {ex}");
+    //    return false;
+    //}
+
+    if (ubahyangmana == "ubahNama")
+    {
+
+        string updateQuery = "UPDATE akun SET nama_akun=@nama_baru WHERE email=@email";
+        var parameters = new NpgsqlParameter[]
+        {
+            new NpgsqlParameter("nama_baru", data_baru),
+            new NpgsqlParameter("email", akun.email),
+        };
+        try
+        {
+            // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+            int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+            // return true bila berhasil
+
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Terjadi kesalahan : {ex}");
+            return false;
+        }
+    }
+    if (ubahyangmana == "ubahEmail")
+    {
+        string updateQuery = "UPDATE akun SET email=@email_baru WHERE email=@email";
+        var parameters = new NpgsqlParameter[]
+        {
+            new NpgsqlParameter("email_baru", data_baru),
+            new NpgsqlParameter("email", akun.email),
+        };
+        try
+        {
+            // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+            int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+            // return true bila berhasil
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Terjadi kesalahan : {ex}");
+            return false;
+        }
+    }
+    else 
+    {
+        string updateQuery = "UPDATE akun SET password=@password_baru WHERE email=@email";
+        var parameters = new NpgsqlParameter[]
+        {
+            new NpgsqlParameter("password_baru", data_baru),
+            new NpgsqlParameter("email", akun.email),
+        };
+        try
+        {
+            // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+            int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+            // return true bila berhasil
+            return rowsAffected > 0;
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Terjadi kesalahan : {ex}");
+            return false;
+        }
+    }
+}
         public static void logout()
         {
             UserSession.email = null;
