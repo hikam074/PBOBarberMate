@@ -1,28 +1,32 @@
-﻿using System;
-using System.Windows.Forms;
-using Npgsql;
-
-using PBOBarberMate.App.Context;
+﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
-using PBOBarberMate.View;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace PBOBarberMate.View
 {
-    public partial class FormHomepageAdmin : Form
+    public partial class FormHomepageCustomer : Form
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
 
-        public FormHomepageAdmin()
+        public FormHomepageCustomer()
         {
             InitializeComponent();
             lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
-            this.Click += new EventHandler(FormHomepageAdmin_Click);
+            this.Click += new EventHandler(FormHomepageCustomer_Click);
         }
-        private void FormHomepageAdmin_Click(object sender, EventArgs e)
+        private void FormHomepageCustomer_Click(object sender, EventArgs e)
         {
             Point cursorPosition = this.PointToClient(Cursor.Position);
             // ketika klik event tidak berada di gbxShowProfile
@@ -130,10 +134,40 @@ namespace PBOBarberMate.View
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
         }
 
-        private void btnLayanan_Click(object sender, EventArgs e)
+        private void FormHomepageCustomer_Load(object sender, EventArgs e)
         {
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
+            try
+            {
+                DataTable src = TabelContext.getReservasiMingguIni();
+                dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
+                {
+                    column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
+                }
+                dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
+
+                dgvJadwalMingguIni.AllowUserToAddRows = false;
+                dgvJadwalMingguIni.AllowUserToResizeColumns = false;
+                dgvJadwalMingguIni.AllowUserToResizeRows = false;
+                dgvJadwalMingguIni.RowHeadersVisible = false;
+                dgvJadwalMingguIni.ClearSelection();
+                dgvJadwalMingguIni.SelectionChanged += (s, e) =>
+                {
+                    dgvJadwalMingguIni.ClearSelection();
+                };
+
+                dgvJadwalMingguIni.DataSource = src;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan : {ex}");
+            }
+        }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
+            formBuatReservasi.Show();
             this.Hide();
         }
     }

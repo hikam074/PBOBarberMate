@@ -14,7 +14,6 @@ namespace PBOBarberMate.App.Context
     public class AkunContext : DBService
     {
         // METHOD untuk login
-        public M_Admin akun;
         public static void login(M_Akun akun)
         {
             string query = "SELECT nama_akun FROM akun WHERE email = @email AND password = @password";
@@ -32,6 +31,11 @@ namespace PBOBarberMate.App.Context
                     reader.Read();
                     // mengambil .nama akun dari hasil SELECT
                     akun.nama = reader.GetString(0);
+                    // menyimpan data login ke session
+                    UserSession.email = akun.email;
+                    UserSession.nama = akun.nama;
+                    UserSession.idSession = CekAkun.cekId(akun.email);
+                    UserSession.role = (AkunRole)CekAkun.cekRole(akun);
                 }
                 else
                 {
@@ -58,7 +62,7 @@ namespace PBOBarberMate.App.Context
                     new NpgsqlParameter("email", akun.email),
                     new NpgsqlParameter("nama", akun.nama),
                     new NpgsqlParameter("password", akun.getPassword()),
-                    new NpgsqlParameter("id_role", (int)AkunRole.Karyawan)
+                    new NpgsqlParameter("id_role", (int)AkunRole.Customer)
                 };
                 try
                 {
@@ -75,6 +79,13 @@ namespace PBOBarberMate.App.Context
                 
             }
         }
+        public static void logout()
+        {
+            UserSession.email = null;
+            UserSession.nama = null;
+            UserSession.role = null;
+        }
+
         public static bool ubahProfil(M_Akun akun, string data_baru, string ubahyangmana)
         {
             //string updateQuery = "UPDATE akun SET nama='@nama_baru' WHERE email='@email'";
@@ -98,7 +109,6 @@ namespace PBOBarberMate.App.Context
 
             if (ubahyangmana == "ubahNama")
             {
-
                 string updateQuery = "UPDATE akun SET nama_akun=@nama_baru WHERE email=@email";
                 var parameters = new NpgsqlParameter[]
                 {
@@ -109,17 +119,18 @@ namespace PBOBarberMate.App.Context
                 {
                     // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
                     int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
-                    // return true bila berhasil
 
+                    UserSession.nama = data_baru;
+                    // return true bila berhasil
                     return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
                     return false;
                 }
             }
-            if (ubahyangmana == "ubahEmail")
+            else if (ubahyangmana == "ubahEmail")
             {
                 string updateQuery = "UPDATE akun SET email=@email_baru WHERE email=@email";
                 var parameters = new NpgsqlParameter[]
@@ -131,16 +142,18 @@ namespace PBOBarberMate.App.Context
                 {
                     // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
                     int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+
+                    UserSession.email = data_baru;
                     // return true bila berhasil
                     return rowsAffected > 0;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
                     return false;
                 }
             }
-            else 
+            else
             {
                 string updateQuery = "UPDATE akun SET password=@password_baru WHERE email=@email";
                 var parameters = new NpgsqlParameter[]
@@ -157,7 +170,7 @@ namespace PBOBarberMate.App.Context
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
                     return false;
                 }
             }
