@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace PBOBarberMate.App.Model
         public M_Admin(string email, string password) : base(email, password)
         {
             // assign role otomatis
-            this.role = role;
+            this.role = AkunRole.Admin;
         }
         //public void manageInventaris(Inventaris)
     }
