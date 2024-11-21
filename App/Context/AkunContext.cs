@@ -34,6 +34,7 @@ namespace PBOBarberMate.App.Context
                     // menyimpan data login ke session
                     UserSession.email = akun.email;
                     UserSession.nama = akun.nama;
+                    UserSession.idSession = CekAkun.cekId(akun.email);
                     UserSession.role = (AkunRole)CekAkun.cekRole(akun);
                 }
                 else
