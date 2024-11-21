@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Npgsql;
 
 using PBOBarberMate;
@@ -15,7 +15,7 @@ namespace PBOBarberMate.App.Core
         private static readonly string dbHost = "localhost";
         private static readonly string dbDatabase = "PBO_BarberMate";
         private static readonly string dbUsername = "postgres";
-        private static readonly string dbPassword = "Admin";
+        private static readonly string dbPassword = "dammahom51";
         private static readonly string dbPort = "5432";
         // ATRIBUT Npgsql
         private static NpgsqlConnection connection;
@@ -88,7 +88,7 @@ namespace PBOBarberMate.App.Core
                 throw new Exception(e.Message);
             }
             // WARNING : untuk SELECT koneksi harus ditutup secara manual pada kode yang menggunakannya, tidak disini
-            // namun bilamenggunakan using maka tidak perlu menutup koneksi karena using akan menutup koneksi secara otomatis
+            // namun bila menggunakan using maka tidak perlu menutup koneksi karena using akan menutup koneksi secara otomatis
         }
     }
 }
