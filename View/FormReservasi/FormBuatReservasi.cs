@@ -91,7 +91,13 @@ namespace PBOBarberMate.View
             if (lanjut == DialogResult.Yes)
             {
                 M_Reservasi reservasi = new M_Reservasi(idLayananDipilih, DateOnly.FromDateTime(dtpTanggal.Value), TimeOnly.Parse(cbxWaktu.SelectedItem.ToString()));
-                ReservasiContext.addreservasi(reservasi);
+                bool berhasilReservasi = ReservasiContext.addreservasi(reservasi);
+                if (berhasilReservasi == true)
+                {
+                    FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+                    formHomepageCustomer.Show();
+                    this.Hide();
+                }
             }
         }
 

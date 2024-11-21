@@ -149,7 +149,7 @@ namespace PBOBarberMate.App.Context
             }
         }
 
-        public static void addreservasi(M_Reservasi reservasi)
+        public static bool addreservasi(M_Reservasi reservasi)
         {
             try
             {
@@ -158,6 +158,7 @@ namespace PBOBarberMate.App.Context
                 if (karyawanTersedia.Count == 0)
                 {
                     MessageBox.Show("Mohon Maaf tidak ada barber yang tersedia di waktu yang anda pilih! Silahkan pilih waktu dan/atau tanggal lain");
+                    return false;
                 }
                 else
                 {
@@ -174,7 +175,6 @@ namespace PBOBarberMate.App.Context
                         getNomorMeja(karyawanDipilih)
                         );
                     string query = "INSERT INTO reservasi(tanggal, waktu, id_akun, id_layanan, id_status_reservasi, id_karyawan) VALUES (@tanggal, @waktu, @id_akun, @id_layanan, @id_status_reservasi, @id_karyawan)";
-                    MessageBox.Show($"buatreservasi id meja = {buatReservasi.nomor_meja}");
                     NpgsqlParameter[] parameters = new NpgsqlParameter[]
                     {
                         new NpgsqlParameter("@tanggal", buatReservasi.tanggal_direservasi),
@@ -188,16 +188,19 @@ namespace PBOBarberMate.App.Context
                     if (rowsAffected > 0)
                     {
                         MessageBox.Show("Reservasi Berhasil dilakukan!");
+                        return true;
                     }
                     else
                     {
                         MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
+                        return false;
                     }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Terjadi Kesalahan [.App.Context.ReservasiContext]: {ex}");
+                return false;
             }
         }
     }

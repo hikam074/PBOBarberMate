@@ -46,7 +46,7 @@ namespace PBOBarberMate.App.Model
         }
         public M_Akun(string email)
         {
-
+            this.email = email;
         } 
 
 
