@@ -16,8 +16,8 @@ namespace PBOBarberMate
         {
             InitializeComponent();
             // membuat password yang diketikkan disensor
-            tbxLoginPass.PasswordChar= '*';
-            
+            tbxLoginPass.PasswordChar = '*';
+
             // memastikan logout dari session
             AkunContext.logout();
 
@@ -66,7 +66,7 @@ namespace PBOBarberMate
                 // membuat class akun untuk digunakan pada pengecekan
                 M_Akun akun = new M_Akun(tbxLoginEmail.Text, tbxLoginPass.Text);
                 // apakah akun yang hendak dibuat itu sudah ada di DB
-                if (CekAkun.cekAkunAda(akun) !=null)
+                if (CekAkun.cekAkunAda(akun) != null)
                 {
                     // apakah data yang dimasukkan cocok dengan data di DB
                     if (CekAkun.cekLogin(akun) == true)

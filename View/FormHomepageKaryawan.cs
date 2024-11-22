@@ -22,6 +22,7 @@ namespace PBOBarberMate.View
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageKaryawan_Click);
         }
+
         private void FormHomepageKaryawan_Click(object sender, EventArgs e)
         {
             Point cursorPosition = this.PointToClient(Cursor.Position);
@@ -37,6 +38,14 @@ namespace PBOBarberMate.View
                 hoversActivated = true;
             }
         }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
+        }
+
         private void btnProfil_MouseEnter(object sender, EventArgs e)
         {
             // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
@@ -45,6 +54,7 @@ namespace PBOBarberMate.View
             btnProfil.BackColor = Color.FromArgb(243, 156, 18);
             btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
         private void btnProfil_MouseLeave(object sender, EventArgs e)
         {
             // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
@@ -53,6 +63,7 @@ namespace PBOBarberMate.View
             btnProfil.BackColor = Color.FromArgb(44, 62, 80);
             btnProfil.ForeColor = Color.White;
         }
+
         private void btnProfil_Click(object sender, EventArgs e)
         {
             // memunculkan profil
@@ -67,12 +78,13 @@ namespace PBOBarberMate.View
             // membuat hover dinonaktifkan
             hoversActivated = false;
         }
+
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             // beralih ke FormUbahProfil
             FormUbahProfil formUbahProfil = new FormUbahProfil();
-            // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
-            formUbahProfil.ShowDialog();
+            formUbahProfil.Show();
+            this.Hide();
             // menyembunyikan gbxShowProfile
             gbxShowProfile.Visible = false;
             // mengembalikan warna btnProfil ke default
@@ -81,6 +93,7 @@ namespace PBOBarberMate.View
             // mengaktifkan kembali animasi hovers
             hoversActivated = true;
         }
+
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             // kembali ke FormLogin
@@ -91,6 +104,7 @@ namespace PBOBarberMate.View
             formLogin.Show();
             this.Hide();
         }
+
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
         {
             // mengubah warna ketika kursor berada di btnUbahProfil
@@ -117,13 +131,6 @@ namespace PBOBarberMate.View
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnRiwayat_Click(object sender, EventArgs e)
-        {
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
-            this.Hide();
         }
     }
 }

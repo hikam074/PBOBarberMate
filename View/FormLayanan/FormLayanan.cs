@@ -113,12 +113,9 @@ namespace PBOBarberMate.View
         private void btnTambah_Click(object sender, EventArgs e)
         {
             FormTambahLayanan formTambahLayanan = new FormTambahLayanan();
-            this.Hide();
-            if (formTambahLayanan.ShowDialog() == DialogResult.OK)
-            {
-                LoadDataLayanan();
-            }
-            formTambahLayanan.Show();
+            LoadDataLayanan();
+            formTambahLayanan.ShowDialog();
+            LoadDataLayanan();
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
@@ -137,7 +134,7 @@ namespace PBOBarberMate.View
             }
             if (UserSession.role == AkunRole.Customer)
             {
-                FormHomepageKaryawan Customer = new FormHomepageKaryawan();
+                FormHomepageCustomer Customer = new FormHomepageCustomer();
                 this.Hide();
                 Customer.Show();
             }
@@ -169,8 +166,6 @@ namespace PBOBarberMate.View
                             nama_layanan = row["nama_layanan"].ToString(),
                             harga = Convert.ToInt32(row["harga"])
                         };
-
-                        this.Hide();
                         FormTambahLayanan formTambahLayanan = new FormTambahLayanan();
                         formTambahLayanan.PopulateForm(layanan);
                         if (formTambahLayanan.ShowDialog() == DialogResult.OK)

@@ -17,13 +17,16 @@
     <Compile Update="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormProfil\FormUbahProfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\FormReservasi\FormBuatReservasi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormSignup.cs">
+    <Compile Update="View\FormReservasi\FormLihatReservasi.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormUbahProfil.cs">
+    <Compile Update="View\FormSignup.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

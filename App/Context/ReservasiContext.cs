@@ -162,7 +162,7 @@ namespace PBOBarberMate.App.Context
                 }
                 else
                 {
-                    
+
                     Random random = new Random();
 
                     int karyawanDipilih = karyawanTersedia[random.Next(karyawanTersedia.Count)];

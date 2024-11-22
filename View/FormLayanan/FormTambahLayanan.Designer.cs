@@ -41,18 +41,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(405, 32);
+            label1.Location = new Point(284, 19);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(401, 48);
+            label1.Size = new Size(266, 32);
             label1.TabIndex = 0;
             label1.Text = "TAMBAHKAN LAYANAN";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(884, 353);
-            btnCancel.Margin = new Padding(4, 5, 4, 5);
+            btnCancel.Location = new Point(619, 212);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(107, 38);
+            btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 23;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -60,10 +60,9 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(1000, 353);
-            btnAdd.Margin = new Padding(4, 5, 4, 5);
+            btnAdd.Location = new Point(700, 212);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(107, 38);
+            btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 22;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -71,48 +70,44 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(285, 227);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
+            textBox2.Location = new Point(200, 136);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(708, 31);
+            textBox2.Size = new Size(497, 23);
             textBox2.TabIndex = 18;
             textBox2.TextChanged += textBox2_TextChanged;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(285, 137);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
+            textBox1.Location = new Point(200, 82);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(708, 31);
+            textBox1.Size = new Size(497, 23);
             textBox1.TabIndex = 17;
             textBox1.TextChanged += textBox1_TextChanged;
             // 
             // lblHarga
             // 
             lblHarga.AutoSize = true;
-            lblHarga.Location = new Point(142, 232);
-            lblHarga.Margin = new Padding(4, 0, 4, 0);
+            lblHarga.Location = new Point(99, 139);
             lblHarga.Name = "lblHarga";
-            lblHarga.Size = new Size(60, 25);
+            lblHarga.Size = new Size(39, 15);
             lblHarga.TabIndex = 13;
             lblHarga.Text = "Harga";
             // 
             // lblNamaLayanan
             // 
             lblNamaLayanan.AutoSize = true;
-            lblNamaLayanan.Location = new Point(142, 142);
-            lblNamaLayanan.Margin = new Padding(4, 0, 4, 0);
+            lblNamaLayanan.Location = new Point(99, 85);
             lblNamaLayanan.Name = "lblNamaLayanan";
-            lblNamaLayanan.Size = new Size(124, 25);
+            lblNamaLayanan.Size = new Size(83, 15);
             lblNamaLayanan.TabIndex = 12;
             lblNamaLayanan.Text = "Nama layanan";
             // 
             // FormTambahLayanan
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1237, 445);
+            ClientSize = new Size(866, 267);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(textBox2);
@@ -120,7 +115,9 @@
             Controls.Add(lblHarga);
             Controls.Add(lblNamaLayanan);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormTambahLayanan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormTambahLayanan";
             Load += FormTambahLayanan_Load;
             ResumeLayout(false);

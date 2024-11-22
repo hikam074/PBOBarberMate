@@ -62,7 +62,7 @@
             btnKembali.TabIndex = 1;
             btnKembali.Text = "Kembali";
             btnKembali.UseVisualStyleBackColor = false;
-            btnKembali.Click += this.btnKembali_Click;
+            btnKembali.Click += btnKembali_Click;
             // 
             // lblLayanan
             // 
@@ -103,6 +103,7 @@
             cbxWaktu.Name = "cbxWaktu";
             cbxWaktu.Size = new Size(200, 26);
             cbxWaktu.TabIndex = 5;
+            cbxWaktu.SelectedIndexChanged += cbxWaktu_SelectedIndexChanged;
             // 
             // lblTanggal
             // 
@@ -137,6 +138,7 @@
             btnSubmit.TabIndex = 8;
             btnSubmit.Text = "Buat Reservasi";
             btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // gbxPlanReservasi
             // 
