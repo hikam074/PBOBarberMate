@@ -11,8 +11,6 @@ namespace PBOBarberMate.View
 {
     public partial class FormHomepageKaryawan : Form
     {
-        // atribut menampung akun
-        public M_Karyawan akun;
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
@@ -20,6 +18,7 @@ namespace PBOBarberMate.View
         public FormHomepageKaryawan()
         {
             InitializeComponent();
+            lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageKaryawan_Click);
         }
@@ -59,9 +58,9 @@ namespace PBOBarberMate.View
             // memunculkan profil
             gbxShowProfile.Visible = true;
             // memunculkan isi profil
-            lblProfilRole.Text = akun.role.ToString();
-            lblProfilNama.Text = lblWelcome.Text;
-            lblProfilEmail.Text = akun.email;
+            lblProfilRole.Text = UserSession.role.ToString();
+            lblProfilNama.Text = UserSession.nama;
+            lblProfilEmail.Text = UserSession.email;
             // mengubah warna btnProfil
             btnProfil.BackColor = Color.White;
             btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
@@ -72,8 +71,8 @@ namespace PBOBarberMate.View
         {
             // beralih ke FormUbahProfil
             FormUbahProfil formUbahProfil = new FormUbahProfil();
-            formUbahProfil.Show();
-            this.Hide();
+            // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
+            formUbahProfil.ShowDialog();
             // menyembunyikan gbxShowProfile
             gbxShowProfile.Visible = false;
             // mengembalikan warna btnProfil ke default
@@ -86,8 +85,10 @@ namespace PBOBarberMate.View
         {
             // kembali ke FormLogin
             FormLogin formLogin = new FormLogin();
-            formLogin.Show();
+            // logout dari session
+            AkunContext.logout();
 
+            formLogin.Show();
             this.Hide();
         }
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
