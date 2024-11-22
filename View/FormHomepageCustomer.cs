@@ -170,5 +170,12 @@ namespace PBOBarberMate.View
             formBuatReservasi.Show();
             this.Hide();
         }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
+        }
     }
 }

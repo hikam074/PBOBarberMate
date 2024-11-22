@@ -80,7 +80,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Ivory;
+            BackColor = Color.White;
             ClientSize = new Size(1246, 661);
             Controls.Add(btnKembali);
             Controls.Add(btnTambah);
