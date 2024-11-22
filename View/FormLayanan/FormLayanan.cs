@@ -1,5 +1,6 @@
 ﻿using Npgsql;
 using PBOBarberMate.App.Context;
+using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,36 @@ namespace PBOBarberMate.View
         public FormLayanan()
         {
             InitializeComponent();
+            EnableBtn();
             this.Load += FormLayanan_Load;
         }
         private void FormLayanan_Load(object sender, EventArgs e)
         {
             LoadDataLayanan();
         }
+
+        private void EnableBtn()
+        {
+            if (UserSession.role == AkunRole.Admin)
+            {
+                btnTambah.Visible = true; // Tombol Tambah ditampilkan untuk Admin
+            }
+            else
+            {
+                btnTambah.Visible = false; // Tombol Tambah disembunyikan untuk role lain
+            }
+
+            // Periksa kolom sebelum mengatur visibilitas
+            if (dataGridView1.Columns.Contains("Update"))
+            {
+                dataGridView1.Columns["Update"].Visible = UserSession.role == AkunRole.Admin;
+            }
+            if (dataGridView1.Columns.Contains("Delete"))
+            {
+                dataGridView1.Columns["Delete"].Visible = UserSession.role == AkunRole.Admin;
+            }
+        }
+
 
         private void LoadDataLayanan()
         {
@@ -77,6 +102,7 @@ namespace PBOBarberMate.View
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(deleteButtonColumn);
+                EnableBtn();
             }
             catch (Exception ex)
             {
@@ -97,9 +123,24 @@ namespace PBOBarberMate.View
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            FormHomepageAdmin admin = new FormHomepageAdmin();
-            this.Hide();
-            admin.Show();
+            if (UserSession.role == AkunRole.Admin)
+            {
+                FormHomepageAdmin admin = new FormHomepageAdmin();
+                this.Hide();
+                admin.Show();
+            }
+            if (UserSession.role == AkunRole.Karyawan)
+            {
+                FormHomepageKaryawan Karyawan = new FormHomepageKaryawan();
+                this.Hide();
+                Karyawan.Show();
+            }
+            if (UserSession.role == AkunRole.Customer)
+            {
+                FormHomepageKaryawan Customer = new FormHomepageKaryawan();
+                this.Hide();
+                Customer.Show();
+            }
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
