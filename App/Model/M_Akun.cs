@@ -44,6 +44,10 @@ namespace PBOBarberMate.App.Model
             this.password = password;
             hashPassword();
         }
+        public M_Akun(string email)
+        {
+            this.email = email;
+        } 
 
 
         // METHOD enkripsi password menggunakan SHA-256

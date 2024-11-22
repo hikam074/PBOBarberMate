@@ -34,6 +34,7 @@ namespace PBOBarberMate.App.Context
                     // menyimpan data login ke session
                     UserSession.email = akun.email;
                     UserSession.nama = akun.nama;
+                    UserSession.idSession = CekAkun.cekId(akun.email);
                     UserSession.role = (AkunRole)CekAkun.cekRole(akun);
                 }
                 else
@@ -83,6 +84,96 @@ namespace PBOBarberMate.App.Context
             UserSession.email = null;
             UserSession.nama = null;
             UserSession.role = null;
+        }
+
+        public static bool ubahProfil(M_Akun akun, string data_baru, string ubahyangmana)
+        {
+            //string updateQuery = "UPDATE akun SET nama='@nama_baru' WHERE email='@email'";
+            //var parameters = new NpgsqlParameter[]
+            //{
+            //        new NpgsqlParameter("nama_baru", data_baru),
+            //        new NpgsqlParameter("email", akun.email),
+            //};
+            //try
+            //{
+            //    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+            //    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+            //    // return true bila berhasil
+            //    return rowsAffected > 0;
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Terjadi kesalahan : {ex}");
+            //    return false;
+            //}
+
+            if (ubahyangmana == "ubahNama")
+            {
+                string updateQuery = "UPDATE akun SET nama_akun=@nama_baru WHERE email=@email";
+                var parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("nama_baru", data_baru),
+                    new NpgsqlParameter("email", akun.email),
+                };
+                try
+                {
+                    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+                    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+
+                    UserSession.nama = data_baru;
+                    // return true bila berhasil
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    return false;
+                }
+            }
+            else if (ubahyangmana == "ubahEmail")
+            {
+                string updateQuery = "UPDATE akun SET email=@email_baru WHERE email=@email";
+                var parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("email_baru", data_baru),
+                    new NpgsqlParameter("email", akun.email),
+                };
+                try
+                {
+                    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+                    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+
+                    UserSession.email = data_baru;
+                    // return true bila berhasil
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    return false;
+                }
+            }
+            else
+            {
+                string updateQuery = "UPDATE akun SET password=@password_baru WHERE email=@email";
+                var parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("password_baru", data_baru),
+                    new NpgsqlParameter("email", akun.email),
+                };
+                try
+                {
+                    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
+                    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
+                    // return true bila berhasil
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    return false;
+                }
+            }
         }
     }
 }
