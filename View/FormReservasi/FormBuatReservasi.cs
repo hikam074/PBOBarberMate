@@ -148,13 +148,5 @@ namespace PBOBarberMate.View
                 btnSubmit.Enabled = true;
             }
         }
-
-        private void btnKembali_Click(object sender, EventArgs e)
-        {
-            FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-
-            formHomepageCustomer.Show();
-            this.Hide();
-        }
     }
 }
