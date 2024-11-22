@@ -62,7 +62,7 @@
             btnKembali.TabIndex = 1;
             btnKembali.Text = "Kembali";
             btnKembali.UseVisualStyleBackColor = false;
-            btnKembali.Click += btnKembali_Click;
+            btnKembali.Click += this.btnKembali_Click;
             // 
             // lblLayanan
             // 
