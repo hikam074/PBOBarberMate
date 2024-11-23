@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace PBOBarberMate.View.FormInventaris
 {
-    public partial class FormInventaris2 : Form
+    public partial class FormInventaris : Form
     {
-        public FormInventaris2()
+        public FormInventaris()
         {
             InitializeComponent();
             EnableBtn();

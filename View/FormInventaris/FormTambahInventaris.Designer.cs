@@ -39,10 +39,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(869, 380);
-            btnCancel.Margin = new Padding(4, 5, 4, 5);
+            btnCancel.Location = new Point(608, 228);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(107, 38);
+            btnCancel.Size = new Size(75, 23);
             btnCancel.TabIndex = 30;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -50,10 +49,9 @@
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(985, 380);
-            btnAdd.Margin = new Padding(4, 5, 4, 5);
+            btnAdd.Location = new Point(690, 228);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(107, 38);
+            btnAdd.Size = new Size(75, 23);
             btnAdd.TabIndex = 29;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -61,37 +59,33 @@
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(271, 254);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
+            textBox2.Location = new Point(190, 152);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(708, 31);
+            textBox2.Size = new Size(497, 23);
             textBox2.TabIndex = 28;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(271, 164);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
+            textBox1.Location = new Point(190, 98);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(708, 31);
+            textBox1.Size = new Size(497, 23);
             textBox1.TabIndex = 27;
             // 
             // lblHarga
             // 
             lblHarga.AutoSize = true;
-            lblHarga.Location = new Point(126, 259);
-            lblHarga.Margin = new Padding(4, 0, 4, 0);
+            lblHarga.Location = new Point(88, 155);
             lblHarga.Name = "lblHarga";
-            lblHarga.Size = new Size(127, 25);
+            lblHarga.Size = new Size(85, 15);
             lblHarga.TabIndex = 26;
-            lblHarga.Text = "Jumlah Branag";
+            lblHarga.Text = "Jumlah Barang";
             // 
             // lblNamaLayanan
             // 
             lblNamaLayanan.AutoSize = true;
-            lblNamaLayanan.Location = new Point(126, 169);
-            lblNamaLayanan.Margin = new Padding(4, 0, 4, 0);
+            lblNamaLayanan.Location = new Point(88, 101);
             lblNamaLayanan.Name = "lblNamaLayanan";
-            lblNamaLayanan.Size = new Size(119, 25);
+            lblNamaLayanan.Size = new Size(79, 15);
             lblNamaLayanan.TabIndex = 25;
             lblNamaLayanan.Text = "Nama Barang";
             // 
@@ -99,17 +93,18 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(391, 59);
+            label1.Location = new Point(274, 35);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(385, 48);
+            label1.Size = new Size(255, 32);
             label1.TabIndex = 24;
             label1.Text = "TAMBAHKAN BARANG";
             // 
             // FormTambahInventaris
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1219, 476);
+            ClientSize = new Size(853, 286);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(textBox2);
@@ -117,6 +112,7 @@
             Controls.Add(lblHarga);
             Controls.Add(lblNamaLayanan);
             Controls.Add(label1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormTambahInventaris";
             Text = "FormTambahInventaris";
             Load += FormTambahInventaris_Load;

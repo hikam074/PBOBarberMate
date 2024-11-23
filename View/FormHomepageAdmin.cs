@@ -139,7 +139,7 @@ namespace PBOBarberMate.View
 
         private void btnInventaris_Click(object sender, EventArgs e)
         {
-            FormInventaris2 formInventaris = new FormInventaris2();
+            FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
             formInventaris.Show();
             this.Hide();
         }

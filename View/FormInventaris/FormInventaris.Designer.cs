@@ -1,6 +1,6 @@
 ﻿namespace PBOBarberMate.View.FormInventaris
 {
-    partial class FormInventaris2
+    partial class FormInventaris
     {
         /// <summary>
         /// Required designer variable.

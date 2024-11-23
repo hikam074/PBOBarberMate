@@ -11,7 +11,7 @@
     <Compile Update="View\FormHomepageKaryawan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormInventaris\FormInventaris2.cs">
+    <Compile Update="View\FormInventaris\FormInventaris.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FormInventaris\FormTambahInventaris.cs">
