@@ -83,7 +83,7 @@
             lblHarga.Name = "lblHarga";
             lblHarga.Size = new Size(127, 25);
             lblHarga.TabIndex = 26;
-            lblHarga.Text = "Jumlah Branag";
+            lblHarga.Text = "Jumlah Barang";
             // 
             // lblNamaLayanan
             // 
