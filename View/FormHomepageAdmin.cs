@@ -6,7 +6,7 @@ using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
-
+using PBOBarberMate.View.FormInventaris;
 namespace PBOBarberMate.View
 {
     public partial class FormHomepageAdmin : Form
@@ -134,6 +134,13 @@ namespace PBOBarberMate.View
         {
             FormLayanan formLayanan = new FormLayanan();
             formLayanan.Show();
+            this.Hide();
+        }
+
+        private void btnInventaris_Click(object sender, EventArgs e)
+        {
+            FormInventaris2 formInventaris = new FormInventaris2();
+            formInventaris.Show();
             this.Hide();
         }
     }
