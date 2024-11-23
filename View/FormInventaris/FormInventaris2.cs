@@ -57,7 +57,7 @@ namespace PBOBarberMate.View.FormInventaris
                 DataTable InventarisData = InventarisContext.All();
                 if (InventarisData == null)
                 {
-                    MessageBox.Show("Error: Gagal mengambil data Layanan");
+                    MessageBox.Show("Error: Gagal mengambil data Inventaris");
                     return;
                 }
 

@@ -22,14 +22,14 @@ namespace PBOBarberMate.App.Context
                 // Panggil queryExecutor untuk mendapatkan NpgsqlDataReader
                 using (NpgsqlDataReader reader = queryExecutor(query, null))
                 {
-                    DataTable dataLayanan = new DataTable();
-                    dataLayanan.Load(reader); // Memuat data dari DataReader ke DataTable
-                    return dataLayanan;
+                    DataTable dataInventaris = new DataTable();
+                    dataInventaris.Load(reader); // Memuat data dari DataReader ke DataTable
+                    return dataInventaris;
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error in LayananContext.All(): {ex.Message}", ex);
+                throw new Exception($"Error in InventarisContext.All(): {ex.Message}", ex);
             }
         }
         public static NpgsqlDataReader getInventarisByID(int id)
