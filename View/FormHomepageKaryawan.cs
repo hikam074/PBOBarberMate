@@ -6,6 +6,7 @@ using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
+using PBOBarberMate.View.FormInventaris;
 
 namespace PBOBarberMate.View
 {
@@ -131,6 +132,13 @@ namespace PBOBarberMate.View
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
+        }
+
+        private void btnInventaris_Click(object sender, EventArgs e)
+        {
+            FormInventaris2 formInventaris = new FormInventaris2();
+            formInventaris.Show();
+            this.Hide();
         }
     }
 }

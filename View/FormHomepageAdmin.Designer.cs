@@ -181,6 +181,7 @@
             btnInventaris.Text = "Kelola\r\nStok barang";
             btnInventaris.TextAlign = ContentAlignment.BottomCenter;
             btnInventaris.UseVisualStyleBackColor = false;
+            btnInventaris.Click += btnInventaris_Click;
             // 
             // pictbxKunjungan
             // 
