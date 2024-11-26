@@ -143,5 +143,12 @@ namespace PBOBarberMate.View
             formInventaris.Show();
             this.Hide();
         }
+
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            FormShift.FormShift formShift = new FormShift.FormShift();
+            formShift.Show();
+            this.Hide();
+        }
     }
 }

@@ -148,5 +148,10 @@ namespace PBOBarberMate.View
                 btnSubmit.Enabled = true;
             }
         }
+
+        private void FormBuatReservasi_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
