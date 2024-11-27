@@ -1,6 +1,7 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormReservasi;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,6 +23,7 @@ namespace PBOBarberMate.View
         public FormHomepageCustomer()
         {
             InitializeComponent();
+            // mengubah ucapan nama sesuai nama logged
             lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageCustomer_Click);
@@ -47,14 +49,17 @@ namespace PBOBarberMate.View
         {
             try
             {
+                // mengambil data dari db
                 DataTable src = TabelContext.getReservasiMingguIni();
+                // membuat size kolom menjadi rata danmemenuhi tabel
                 dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // membuat tabel responsif berdasarkan isi data
                 foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
                 {
                     column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
                 }
+                // behaviour table
                 dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
-
                 dgvJadwalMingguIni.AllowUserToAddRows = false;
                 dgvJadwalMingguIni.AllowUserToResizeColumns = false;
                 dgvJadwalMingguIni.AllowUserToResizeRows = false;
@@ -64,24 +69,27 @@ namespace PBOBarberMate.View
                 {
                     dgvJadwalMingguIni.ClearSelection();
                 };
-
+                // mengambil data dari variabel
                 dgvJadwalMingguIni.DataSource = src;
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Terjadi kesalahan : {ex}");
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
             }
         }
 
         private void btnReservasi_Click(object sender, EventArgs e)
         {
+            // beralih ke FormBuatReservasi
             FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
+            formBuatReservasi.modeEdit = false;
             formBuatReservasi.Show();
             this.Hide();
         }
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
+            // beralih ke FormLayanan
             FormLayanan formLayanan = new FormLayanan();
             formLayanan.Show();
             this.Hide();
@@ -186,6 +194,22 @@ namespace PBOBarberMate.View
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
+        }
+
+        private void btnLihatReservasi_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormLihatReservasi
+            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
+            formLihatReservasi.Show();
+            this.Hide();
+        }
+
+        private void lklbMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            // beralih ke FormLihatReservasi
+            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
+            formLihatReservasi.Show();
+            this.Hide();
         }
     }
 }

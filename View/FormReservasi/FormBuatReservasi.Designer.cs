@@ -1,4 +1,4 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.FormReservasi
 {
     partial class FormBuatReservasi
     {
@@ -263,7 +263,6 @@
             // 
             // lblHeading
             // 
-            lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHeading.ForeColor = Color.FromArgb(44, 62, 80);
             lblHeading.Location = new Point(263, 23);
@@ -290,7 +289,6 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
