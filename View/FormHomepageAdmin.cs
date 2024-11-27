@@ -7,6 +7,7 @@ using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
+using PBOBarberMate.View.FormReservasi;
 namespace PBOBarberMate.View
 {
     public partial class FormHomepageAdmin : Form
@@ -18,10 +19,12 @@ namespace PBOBarberMate.View
         public FormHomepageAdmin()
         {
             InitializeComponent();
+            // mengubah ucapan nama sesuai nama logged
             lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageAdmin_Click);
         }
+
         private void FormHomepageAdmin_Click(object sender, EventArgs e)
         {
             Point cursorPosition = this.PointToClient(Cursor.Position);
@@ -37,22 +40,7 @@ namespace PBOBarberMate.View
                 hoversActivated = true;
             }
         }
-        private void btnProfil_MouseEnter(object sender, EventArgs e)
-        {
-            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
-            if (hoversActivated == false) { return; }
-            // mengubah warna ketika kursor berada di btnProfil
-            btnProfil.BackColor = Color.FromArgb(243, 156, 18);
-            btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-        private void btnProfil_MouseLeave(object sender, EventArgs e)
-        {
-            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
-            if (hoversActivated == false) { return; }
-            // mengubah warna ketika kursor keluar dari area btnProfil
-            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            btnProfil.ForeColor = Color.White;
-        }
+
         private void btnProfil_Click(object sender, EventArgs e)
         {
             // kalau box profil belum muncul
@@ -81,6 +69,7 @@ namespace PBOBarberMate.View
                 hoversActivated = true;
             }
         }
+
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             // beralih ke FormUbahProfil
@@ -95,6 +84,31 @@ namespace PBOBarberMate.View
             // mengaktifkan kembali animasi hovers
             hoversActivated = true;
         }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormLayanan
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
+        }
+
+        private void btnInventaris_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormInventaris
+            FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
+            formInventaris.Show();
+            this.Hide();
+        }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormLihatReservasi
+            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
+            formLihatReservasi.Show();
+            this.Hide();
+        }
+
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             // kembali ke FormLogin
@@ -104,6 +118,24 @@ namespace PBOBarberMate.View
 
             formLogin.Show();
             this.Hide();
+        }
+
+        private void btnProfil_MouseEnter(object sender, EventArgs e)
+        {
+            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
+            if (hoversActivated == false) { return; }
+            // mengubah warna ketika kursor berada di btnProfil
+            btnProfil.BackColor = Color.FromArgb(243, 156, 18);
+            btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
+        }
+
+        private void btnProfil_MouseLeave(object sender, EventArgs e)
+        {
+            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
+            if (hoversActivated == false) { return; }
+            // mengubah warna ketika kursor keluar dari area btnProfil
+            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
+            btnProfil.ForeColor = Color.White;
         }
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
         {
@@ -128,20 +160,6 @@ namespace PBOBarberMate.View
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnLayanan_Click(object sender, EventArgs e)
-        {
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
-            this.Hide();
-        }
-
-        private void btnInventaris_Click(object sender, EventArgs e)
-        {
-            FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
-            formInventaris.Show();
-            this.Hide();
         }
     }
 }

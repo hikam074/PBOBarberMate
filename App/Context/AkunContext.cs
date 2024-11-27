@@ -39,7 +39,7 @@ namespace PBOBarberMate.App.Context
                 }
                 else
                 {
-                    MessageBox.Show("Ada Kesalahan![PBOBarberMate.App.Model.M_Admin.cs]");
+                    MessageBox.Show("Ada Kesalahan! [PBOBarberMate.App.Context.AkunContext.login]");
                 }
             }
         }
@@ -73,7 +73,7 @@ namespace PBOBarberMate.App.Context
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.AkunContext.signup] : {ex}");
                     return false;
                 }
                 
@@ -81,32 +81,14 @@ namespace PBOBarberMate.App.Context
         }
         public static void logout()
         {
+            // menghapus semua data logged
             UserSession.email = null;
             UserSession.nama = null;
             UserSession.role = null;
         }
 
         public static bool ubahProfil(M_Akun akun, string data_baru, string ubahyangmana)
-        {
-            //string updateQuery = "UPDATE akun SET nama='@nama_baru' WHERE email='@email'";
-            //var parameters = new NpgsqlParameter[]
-            //{
-            //        new NpgsqlParameter("nama_baru", data_baru),
-            //        new NpgsqlParameter("email", akun.email),
-            //};
-            //try
-            //{
-            //    // memasukkan data ke DB sekaligus mendapatkan return apakah berhasil atau tidak
-            //    int rowsAffected = DBService.commandExecutor(updateQuery, parameters);
-            //    // return true bila berhasil
-            //    return rowsAffected > 0;
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Terjadi kesalahan : {ex}");
-            //    return false;
-            //}
-
+        { 
             if (ubahyangmana == "ubahNama")
             {
                 string updateQuery = "UPDATE akun SET nama_akun=@nama_baru WHERE email=@email";
@@ -126,7 +108,7 @@ namespace PBOBarberMate.App.Context
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.AkunContext.ubahProfil] : {ex}");
                     return false;
                 }
             }
@@ -149,7 +131,7 @@ namespace PBOBarberMate.App.Context
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.AkunContext.ubahProfil] : {ex}");
                     return false;
                 }
             }
@@ -170,7 +152,7 @@ namespace PBOBarberMate.App.Context
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Terjadi kesalahan [.App.Context.AkunContext] : {ex}");
+                    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.AkunContext.ubahProfil] : {ex}");
                     return false;
                 }
             }
