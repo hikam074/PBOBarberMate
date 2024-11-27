@@ -1,11 +1,12 @@
-﻿using System;
+using System;
 using System.Windows.Forms;
 using Npgsql;
-
+using PBOBarberMate.View.FormKelolaKaryawan;
 using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
+using PBOBarberMate.View.FormInventaris;
 
 namespace PBOBarberMate.View
 {
@@ -85,8 +86,8 @@ namespace PBOBarberMate.View
         {
             // beralih ke FormUbahProfil
             FormUbahProfil formUbahProfil = new FormUbahProfil();
-            // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
-            formUbahProfil.ShowDialog();
+            formUbahProfil.Show();
+            this.Hide();
             // menyembunyikan gbxShowProfile
             gbxShowProfile.Visible = false;
             // mengembalikan warna btnProfil ke default
@@ -136,5 +137,20 @@ namespace PBOBarberMate.View
             formLayanan.Show();
             this.Hide();
         }
+
+        private void btnInventaris_Click(object sender, EventArgs e)
+        {
+            FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
+            formInventaris.Show();
+            this.Hide();
+        }
+
+        private void btnKaryawan_Click(object sender, EventArgs e)
+        {
+            FormKelolaKaryawan form = new FormKelolaKaryawan();
+            form.Show();
+        }
+
+        
     }
 }
