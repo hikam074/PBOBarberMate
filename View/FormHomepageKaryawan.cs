@@ -8,6 +8,7 @@ using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
 
+
 namespace PBOBarberMate.View
 {
     public partial class FormHomepageKaryawan : Form
@@ -42,6 +43,7 @@ namespace PBOBarberMate.View
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
+            // beralih ke FormLayanan
             FormLayanan formLayanan = new FormLayanan();
             formLayanan.Show();
             this.Hide();
@@ -136,6 +138,7 @@ namespace PBOBarberMate.View
 
         private void btnInventaris_Click(object sender, EventArgs e)
         {
+            // beralih ke Form Inventaris
             FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
             formInventaris.Show();
             this.Hide();
