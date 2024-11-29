@@ -149,8 +149,13 @@ namespace PBOBarberMate.View
         {
             FormKelolaKaryawan.FormKelolaKaryawan form = new FormKelolaKaryawan.FormKelolaKaryawan();								
             form.Show();								
-        }								
-								
-        								
+        }
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            FormShift.FormShift formShift = new FormShift.FormShift();
+            formShift.Show();
+            this.Hide();
+        }
+
     }								
 }								
