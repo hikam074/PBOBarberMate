@@ -1,4 +1,4 @@
-namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View
 {
     partial class FormUbahProfil
     {

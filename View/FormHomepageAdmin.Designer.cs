@@ -328,7 +328,6 @@
             btnReservasi.Text = "Kelola\r\nReservasi";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnReservasi.UseVisualStyleBackColor = false;
-            btnReservasi.Click += btnReservasi_Click;
             // 
             // btnLayanan
             // 
@@ -456,6 +455,7 @@
             Controls.Add(btnProfil);
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormHomepageAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";
