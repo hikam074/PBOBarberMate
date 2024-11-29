@@ -41,9 +41,7 @@ namespace PBOBarberMate.View
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            FormLayanan formLayanan = new FormLayanan();
-            this.Hide();
-            formLayanan.Show();
+            this.Close();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

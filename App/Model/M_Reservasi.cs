@@ -22,5 +22,23 @@ namespace PBOBarberMate.App.Model
         public DateTime tanggal_melakuan_reservasi;
         public reservasiStatus status_reservasi;
         public int nomor_meja;
+
+        // overloading constructor untuk verifikasi reservasi
+        public M_Reservasi(int id_layanan, DateOnly tanggal_direservasi, TimeOnly waktu_direservasi)
+        {
+            this.id_layanan = id_layanan;
+            this.tanggal_direservasi = tanggal_direservasi;
+            this.waktu_direservasi = waktu_direservasi;
+        }
+        // overloading constructor untuk membuat reservasi
+        public M_Reservasi(int id_layanan, int id_karyawan, DateOnly tanggal_direservasi, TimeOnly waktu_direservasi, int nomor_meja)
+        {
+            this.id_layanan = id_layanan;
+            this.id_karyawan = id_karyawan;
+            this.tanggal_direservasi = tanggal_direservasi;
+            this.waktu_direservasi = waktu_direservasi;
+            this.nomor_meja = nomor_meja;
+            this.status_reservasi = reservasiStatus.dijadwalkan;
+        }
     }
 }

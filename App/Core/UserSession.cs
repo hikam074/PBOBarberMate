@@ -12,6 +12,7 @@ namespace PBOBarberMate.App.Core
     {
         public static string email;
         public static string nama;
+        public static int idSession;
         public static AkunRole? role { get; set; }
     }
 }

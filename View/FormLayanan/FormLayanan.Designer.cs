@@ -39,10 +39,11 @@
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(36, 94);
+            dataGridView1.Location = new Point(25, 56);
+            dataGridView1.Margin = new Padding(2, 2, 2, 2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridView1.Size = new Size(1173, 501);
+            dataGridView1.Size = new Size(821, 301);
             dataGridView1.TabIndex = 0;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
@@ -50,17 +51,19 @@
             // 
             lblLayanan.AutoSize = true;
             lblLayanan.Font = new Font("Sitka Banner", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLayanan.Location = new Point(516, 9);
+            lblLayanan.Location = new Point(361, 5);
+            lblLayanan.Margin = new Padding(2, 0, 2, 0);
             lblLayanan.Name = "lblLayanan";
-            lblLayanan.Size = new Size(217, 58);
+            lblLayanan.Size = new Size(149, 39);
             lblLayanan.TabIndex = 1;
             lblLayanan.Text = "List Layanan";
             // 
             // btnTambah
             // 
-            btnTambah.Location = new Point(1097, 615);
+            btnTambah.Location = new Point(768, 369);
+            btnTambah.Margin = new Padding(2, 2, 2, 2);
             btnTambah.Name = "btnTambah";
-            btnTambah.Size = new Size(112, 34);
+            btnTambah.Size = new Size(78, 20);
             btnTambah.TabIndex = 2;
             btnTambah.Text = "TAMBAH";
             btnTambah.UseVisualStyleBackColor = true;
@@ -68,9 +71,10 @@
             // 
             // btnKembali
             // 
-            btnKembali.Location = new Point(36, 615);
+            btnKembali.Location = new Point(25, 369);
+            btnKembali.Margin = new Padding(2, 2, 2, 2);
             btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(112, 34);
+            btnKembali.Size = new Size(78, 20);
             btnKembali.TabIndex = 3;
             btnKembali.Text = "KEMBALI";
             btnKembali.UseVisualStyleBackColor = true;
@@ -78,15 +82,17 @@
             // 
             // FormLayanan
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.Ivory;
-            ClientSize = new Size(1246, 661);
+            BackColor = Color.White;
+            ClientSize = new Size(872, 397);
             Controls.Add(btnKembali);
             Controls.Add(btnTambah);
             Controls.Add(lblLayanan);
             Controls.Add(dataGridView1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormLayanan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormLayanan";
             Load += FormLayanan_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

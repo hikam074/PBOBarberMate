@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,6 +44,10 @@ namespace PBOBarberMate.App.Model
             this.password = password;
             hashPassword();
         }
+        public M_Akun(string email)
+        {
+            this.email = email;
+        } 
 
 
         // METHOD enkripsi password menggunakan SHA-256

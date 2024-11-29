@@ -1,6 +1,7 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormReservasi;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,10 +23,12 @@ namespace PBOBarberMate.View
         public FormHomepageCustomer()
         {
             InitializeComponent();
+            // mengubah ucapan nama sesuai nama logged
             lblWelcome.Text = UserSession.nama;
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageCustomer_Click);
         }
+
         private void FormHomepageCustomer_Click(object sender, EventArgs e)
         {
             Point cursorPosition = this.PointToClient(Cursor.Position);
@@ -41,6 +44,57 @@ namespace PBOBarberMate.View
                 hoversActivated = true;
             }
         }
+
+        private void FormHomepageCustomer_Load(object sender, EventArgs e)
+        {
+            try
+            {
+                // mengambil data dari db
+                DataTable src = TabelContext.getReservasiMingguIni();
+                // membuat size kolom menjadi rata danmemenuhi tabel
+                dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // membuat tabel responsif berdasarkan isi data
+                foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
+                {
+                    column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
+                }
+                // behaviour table
+                dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
+                dgvJadwalMingguIni.AllowUserToAddRows = false;
+                dgvJadwalMingguIni.AllowUserToResizeColumns = false;
+                dgvJadwalMingguIni.AllowUserToResizeRows = false;
+                dgvJadwalMingguIni.RowHeadersVisible = false;
+                dgvJadwalMingguIni.ClearSelection();
+                dgvJadwalMingguIni.SelectionChanged += (s, e) =>
+                {
+                    dgvJadwalMingguIni.ClearSelection();
+                };
+                // mengambil data dari variabel
+                dgvJadwalMingguIni.DataSource = src;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
+            }
+        }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormBuatReservasi
+            FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
+            formBuatReservasi.modeEdit = false;
+            formBuatReservasi.Show();
+            this.Hide();
+        }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            // beralih ke FormLayanan
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
+        }
+
         private void btnProfil_MouseEnter(object sender, EventArgs e)
         {
             // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
@@ -49,6 +103,7 @@ namespace PBOBarberMate.View
             btnProfil.BackColor = Color.FromArgb(243, 156, 18);
             btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
         private void btnProfil_MouseLeave(object sender, EventArgs e)
         {
             // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
@@ -57,6 +112,7 @@ namespace PBOBarberMate.View
             btnProfil.BackColor = Color.FromArgb(44, 62, 80);
             btnProfil.ForeColor = Color.White;
         }
+
         private void btnProfil_Click(object sender, EventArgs e)
         {
             // kalau box profil belum muncul
@@ -85,12 +141,13 @@ namespace PBOBarberMate.View
                 hoversActivated = true;
             }
         }
+
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             // beralih ke FormUbahProfil
             FormUbahProfil formUbahProfil = new FormUbahProfil();
-            // ShowDialog digunakan bila form sebelumnya tidak bisa dilakukan interaksi hingga form baru ini ditutup
-            formUbahProfil.ShowDialog();
+            formUbahProfil.Show();
+            this.Hide();
             // menyembunyikan gbxShowProfile
             gbxShowProfile.Visible = false;
             // mengembalikan warna btnProfil ke default
@@ -99,6 +156,7 @@ namespace PBOBarberMate.View
             // mengaktifkan kembali animasi hovers
             hoversActivated = true;
         }
+
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             // kembali ke FormLogin
@@ -109,24 +167,28 @@ namespace PBOBarberMate.View
             formLogin.Show();
             this.Hide();
         }
+
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
         {
             // mengubah warna ketika kursor berada di btnUbahProfil
             btnUbahProfil.BackColor = Color.FromArgb(243, 156, 18);
             btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
         private void btnUbahProfil_MouseLeave(object sender, EventArgs e)
         {
             // mengubah warna ketika kursor keluar dari area btnUbahProfil
             btnUbahProfil.BackColor = SystemColors.Control;
             btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
         private void btnHomepageLogout_MouseEnter(object sender, EventArgs e)
         {
             // mengubah warna ketika kursor berada di btnHomepageLogout
             btnHomepageLogout.BackColor = Color.FromArgb(243, 156, 18);
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
         private void btnHomepageLogout_MouseLeave(object sender, EventArgs e)
         {
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
@@ -134,40 +196,19 @@ namespace PBOBarberMate.View
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
         }
 
-        private void FormHomepageCustomer_Load(object sender, EventArgs e)
+        private void btnLihatReservasi_Click(object sender, EventArgs e)
         {
-            try
-            {
-                DataTable src = TabelContext.getReservasiMingguIni();
-                dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
-                {
-                    column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
-                }
-                dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
-
-                dgvJadwalMingguIni.AllowUserToAddRows = false;
-                dgvJadwalMingguIni.AllowUserToResizeColumns = false;
-                dgvJadwalMingguIni.AllowUserToResizeRows = false;
-                dgvJadwalMingguIni.RowHeadersVisible = false;
-                dgvJadwalMingguIni.ClearSelection();
-                dgvJadwalMingguIni.SelectionChanged += (s, e) =>
-                {
-                    dgvJadwalMingguIni.ClearSelection();
-                };
-
-                dgvJadwalMingguIni.DataSource = src;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Terjadi kesalahan : {ex}");
-            }
+            // beralih ke FormLihatReservasi
+            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
+            formLihatReservasi.Show();
+            this.Hide();
         }
 
-        private void btnReservasi_Click(object sender, EventArgs e)
+        private void lklbMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
-            formBuatReservasi.Show();
+            // beralih ke FormLihatReservasi
+            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
+            formLihatReservasi.Show();
             this.Hide();
         }
     }

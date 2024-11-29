@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -83,6 +83,30 @@ namespace PBOBarberMate.App.Core
                     // mendapatkan informasi role
                     int idRole = reader.GetInt32(0);
                     return idRole;
+                }
+                else
+                {
+                    return -1;
+                }
+            }
+        }
+        public static int cekId(string akun)
+        {
+            string query = "SELECT id_akun FROM akun WHERE email = @email";
+            var parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@email", akun)
+            };
+            // megeksesusi query
+            using (var reader = DBService.queryExecutor(query, parameters))
+            {
+                // ketika id ditemukan
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    // mendapatkan informasi role
+                    int id = reader.GetInt32(0);
+                    return id;
                 }
                 else
                 {

@@ -12,21 +12,21 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PBOBarberMate.View
+namespace PBOBarberMate.View.FormInventaris
 {
-    public partial class FormLayanan : Form
+    public partial class FormInventaris : Form
     {
-        public FormLayanan()
+        public FormInventaris()
         {
             InitializeComponent();
             EnableBtn();
-            this.Load += FormLayanan_Load;
-        }
-        private void FormLayanan_Load(object sender, EventArgs e)
-        {
-            LoadDataLayanan();
+            this.Load += FormInventaris_Load;
         }
 
+        private void FormInventaris_Load(object sender, EventArgs e)
+        {
+            LoadDataInventaris();
+        }
         private void EnableBtn()
         {
             if (UserSession.role == AkunRole.Admin)
@@ -48,18 +48,16 @@ namespace PBOBarberMate.View
                 dataGridView1.Columns["Delete"].Visible = UserSession.role == AkunRole.Admin;
             }
         }
-
-
-        private void LoadDataLayanan()
+        private void LoadDataInventaris()
         {
             try
             {
                 dataGridView1.AllowUserToAddRows = false;
 
-                DataTable LayananData = LayananContext.All();
-                if (LayananData == null)
+                DataTable InventarisData = InventarisContext.All();
+                if (InventarisData == null)
                 {
-                    MessageBox.Show("Error: Gagal mengambil data Layanan");
+                    MessageBox.Show("Error: Gagal mengambil data Inventaris");
                     return;
                 }
 
@@ -70,14 +68,14 @@ namespace PBOBarberMate.View
                 nomorColumn.Name = "nomor";
                 dataGridView1.Columns.Add(nomorColumn);
 
-                dataGridView1.DataSource = LayananData;
+                dataGridView1.DataSource = InventarisData;
 
-                if (dataGridView1.Columns["id_layanan"] != null)
-                    dataGridView1.Columns["id_layanan"].Visible = false;
-                if (dataGridView1.Columns["nama_layanan"] != null)
-                    dataGridView1.Columns["nama_layanan"].HeaderText = "Nama Layanan";
-                if (dataGridView1.Columns["harga"] != null)
-                    dataGridView1.Columns["harga"].HeaderText = "Harga";
+                if (dataGridView1.Columns["id_barang"] != null)
+                    dataGridView1.Columns["id_barang"].Visible = false;
+                if (dataGridView1.Columns["nama_barang"] != null)
+                    dataGridView1.Columns["nama_barang"].HeaderText = "Nama Branag";
+                if (dataGridView1.Columns["jumlah_barang"] != null)
+                    dataGridView1.Columns["jumlah_barang"].HeaderText = "Jumlah Barang";
 
                 for (int i = 0; i < dataGridView1.Rows.Count; i++)
                 {
@@ -106,16 +104,16 @@ namespace PBOBarberMate.View
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error dalam Load Data Layanan: {ex.Message}\n{ex.StackTrace}");
+                MessageBox.Show($"Error dalam Load Data Inventaris: {ex.Message}\n{ex.StackTrace}");
             }
         }
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            FormTambahLayanan formTambahLayanan = new FormTambahLayanan();
-            LoadDataLayanan();
-            formTambahLayanan.ShowDialog();
-            LoadDataLayanan();
+            FormTambahInventaris formTambahinventaris = new FormTambahInventaris();
+            LoadDataInventaris();
+            formTambahinventaris.ShowDialog();
+            LoadDataInventaris();
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
@@ -140,7 +138,7 @@ namespace PBOBarberMate.View
             }
         }
 
-        private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex < 0) return;
 
@@ -148,29 +146,29 @@ namespace PBOBarberMate.View
             {
                 try
                 {
-                    if (dataGridView1.Rows[e.RowIndex].Cells["id_layanan"] == null ||
-                    dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value == DBNull.Value) return;
+                    if (dataGridView1.Rows[e.RowIndex].Cells["id_barang"] == null ||
+                    dataGridView1.Rows[e.RowIndex].Cells["id_barang"].Value == DBNull.Value) return;
 
-                    int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
+                    int inventarisId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_barang"].Value);
 
-                    NpgsqlDataReader LayananData = LayananContext.getLayananByID(layananId);
-                    DataTable layananTable = new DataTable();
-                    layananTable.Load(LayananData);
+                    NpgsqlDataReader InventarisData = InventarisContext.getInventarisByID(inventarisId);
+                    DataTable inventarisTable = new DataTable();
+                    inventarisTable.Load(InventarisData);
 
-                    if (layananTable.Rows.Count > 0)
+                    if (inventarisTable.Rows.Count > 0)
                     {
-                        DataRow row = layananTable.Rows[0];
-                        M_Layanan layanan = new M_Layanan
+                        DataRow row = inventarisTable.Rows[0];
+                        M_Inventaris inventaris = new M_Inventaris
                         {
-                            id_layanan = (int)row["id_layanan"],
-                            nama_layanan = row["nama_layanan"].ToString(),
-                            harga = Convert.ToInt32(row["harga"])
+                            id_barang = (int)row["id_barang"],
+                            nama_barang = row["nama_barang"].ToString(),
+                            jumlah_barang = Convert.ToInt32(row["jumlah_barang"])
                         };
-                        FormTambahLayanan formTambahLayanan = new FormTambahLayanan();
-                        formTambahLayanan.PopulateForm(layanan);
-                        if (formTambahLayanan.ShowDialog() == DialogResult.OK)
+                        FormTambahInventaris formTambahinventaris = new FormTambahInventaris();
+                        formTambahinventaris.PopulateForm(inventaris);
+                        if (formTambahinventaris.ShowDialog() == DialogResult.OK)
                         {
-                            LoadDataLayanan();
+                            LoadDataInventaris();
                         }
                         this.Show();
                     }
@@ -182,12 +180,12 @@ namespace PBOBarberMate.View
             }
             else if (e.ColumnIndex == dataGridView1.Columns["Delete"].Index)
             {
-                if (dataGridView1.Rows[e.RowIndex].Cells["id_layanan"] == null ||
-                dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value == DBNull.Value) return;
+                if (dataGridView1.Rows[e.RowIndex].Cells["id_barang"] == null ||
+                dataGridView1.Rows[e.RowIndex].Cells["id_barang"].Value == DBNull.Value) return;
 
-                int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
-                LayananContext.DeleteLayanan(layananId);
-                LoadDataLayanan(); //layanan
+                int inventarisId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_barang"].Value);
+                InventarisContext.DeleteInventaris(inventarisId);
+                LoadDataInventaris();
             }
         }
     }

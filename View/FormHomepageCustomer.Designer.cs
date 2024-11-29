@@ -45,7 +45,7 @@
             btnUlasan = new Button();
             pictbxReservasiSekarang = new PictureBox();
             pictbxRiwayat = new PictureBox();
-            btnRiwayat = new Button();
+            btnLihatReservasi = new Button();
             lblWelcome = new Label();
             dgvJadwalMingguIni = new DataGridView();
             lblJadwalMingguIni = new Label();
@@ -218,6 +218,7 @@
             btnLayanan.Text = "Lihat\r\nLayanan";
             btnLayanan.TextAlign = ContentAlignment.BottomCenter;
             btnLayanan.UseVisualStyleBackColor = false;
+            btnLayanan.Click += btnLayanan_Click;
             // 
             // gbxMenu
             // 
@@ -227,7 +228,7 @@
             gbxMenu.Controls.Add(btnUlasan);
             gbxMenu.Controls.Add(pictbxReservasiSekarang);
             gbxMenu.Controls.Add(pictbxRiwayat);
-            gbxMenu.Controls.Add(btnRiwayat);
+            gbxMenu.Controls.Add(btnLihatReservasi);
             gbxMenu.Controls.Add(pictbxLayanan);
             gbxMenu.Controls.Add(btnReservasi);
             gbxMenu.Controls.Add(btnLayanan);
@@ -286,22 +287,23 @@
             pictbxRiwayat.TabIndex = 9;
             pictbxRiwayat.TabStop = false;
             // 
-            // btnRiwayat
+            // btnLihatReservasi
             // 
-            btnRiwayat.Anchor = AnchorStyles.Top;
-            btnRiwayat.BackColor = Color.White;
-            btnRiwayat.BackgroundImageLayout = ImageLayout.Zoom;
-            btnRiwayat.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnRiwayat.ForeColor = Color.FromArgb(44, 62, 80);
-            btnRiwayat.ImageAlign = ContentAlignment.TopCenter;
-            btnRiwayat.Location = new Point(300, 15);
-            btnRiwayat.Name = "btnRiwayat";
-            btnRiwayat.Padding = new Padding(9);
-            btnRiwayat.Size = new Size(140, 125);
-            btnRiwayat.TabIndex = 8;
-            btnRiwayat.Text = "Riwayat Kunjungan";
-            btnRiwayat.TextAlign = ContentAlignment.BottomCenter;
-            btnRiwayat.UseVisualStyleBackColor = false;
+            btnLihatReservasi.Anchor = AnchorStyles.Top;
+            btnLihatReservasi.BackColor = Color.White;
+            btnLihatReservasi.BackgroundImageLayout = ImageLayout.Zoom;
+            btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLihatReservasi.ForeColor = Color.FromArgb(44, 62, 80);
+            btnLihatReservasi.ImageAlign = ContentAlignment.TopCenter;
+            btnLihatReservasi.Location = new Point(300, 15);
+            btnLihatReservasi.Name = "btnLihatReservasi";
+            btnLihatReservasi.Padding = new Padding(9);
+            btnLihatReservasi.Size = new Size(140, 125);
+            btnLihatReservasi.TabIndex = 8;
+            btnLihatReservasi.Text = "Reservasi Anda";
+            btnLihatReservasi.TextAlign = ContentAlignment.BottomCenter;
+            btnLihatReservasi.UseVisualStyleBackColor = false;
+            btnLihatReservasi.Click += btnLihatReservasi_Click;
             // 
             // lblWelcome
             // 
@@ -347,6 +349,7 @@
             lklbMore.TabIndex = 14;
             lklbMore.TabStop = true;
             lklbMore.Text = "Lihat lebih banyak...";
+            lklbMore.LinkClicked += lklbMore_LinkClicked;
             // 
             // FormHomepageCustomer
             // 
@@ -394,7 +397,7 @@
         private GroupBox gbxMenu;
         public Label lblWelcome;
         private PictureBox pictbxRiwayat;
-        private Button btnRiwayat;
+        private Button btnLihatReservasi;
         private PictureBox pictbxReservasiSekarang;
         private DataGridView dgvJadwalMingguIni;
         private Label lblJadwalMingguIni;

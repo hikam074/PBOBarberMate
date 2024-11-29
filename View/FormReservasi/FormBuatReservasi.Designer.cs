@@ -1,4 +1,4 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.FormReservasi
 {
     partial class FormBuatReservasi
     {
@@ -103,6 +103,7 @@
             cbxWaktu.Name = "cbxWaktu";
             cbxWaktu.Size = new Size(200, 26);
             cbxWaktu.TabIndex = 5;
+            cbxWaktu.SelectedIndexChanged += cbxWaktu_SelectedIndexChanged;
             // 
             // lblTanggal
             // 
@@ -137,6 +138,7 @@
             btnSubmit.TabIndex = 8;
             btnSubmit.Text = "Buat Reservasi";
             btnSubmit.UseVisualStyleBackColor = false;
+            btnSubmit.Click += btnSubmit_Click;
             // 
             // gbxPlanReservasi
             // 

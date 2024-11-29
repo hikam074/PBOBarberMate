@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.FormInventaris
 {
-    partial class FormTambahLayanan
+    partial class FormTambahInventaris
     {
         /// <summary>
         /// Required designer variable.
@@ -28,91 +28,83 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             btnCancel = new Button();
             btnAdd = new Button();
             textBox2 = new TextBox();
             textBox1 = new TextBox();
             lblHarga = new Label();
             lblNamaLayanan = new Label();
+            label1 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(406, 32);
-            label1.Name = "label1";
-            label1.Size = new Size(401, 48);
-            label1.TabIndex = 0;
-            label1.Text = "TAMBAHKAN LAYANAN";
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(884, 353);
-            btnCancel.Margin = new Padding(4, 5, 4, 5);
+            btnCancel.Location = new Point(608, 228);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(107, 38);
-            btnCancel.TabIndex = 23;
+            btnCancel.Size = new Size(75, 23);
+            btnCancel.TabIndex = 30;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(1000, 353);
-            btnAdd.Margin = new Padding(4, 5, 4, 5);
+            btnAdd.Location = new Point(690, 228);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(107, 38);
-            btnAdd.TabIndex = 22;
+            btnAdd.Size = new Size(75, 23);
+            btnAdd.TabIndex = 29;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            btnAdd.Click += btnAdd_Click_1;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(286, 227);
-            textBox2.Margin = new Padding(4, 5, 4, 5);
+            textBox2.Location = new Point(190, 152);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(708, 31);
-            textBox2.TabIndex = 18;
-            textBox2.TextChanged += textBox2_TextChanged;
+            textBox2.Size = new Size(497, 23);
+            textBox2.TabIndex = 28;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(286, 137);
-            textBox1.Margin = new Padding(4, 5, 4, 5);
+            textBox1.Location = new Point(190, 98);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(708, 31);
-            textBox1.TabIndex = 17;
-            textBox1.TextChanged += textBox1_TextChanged;
+            textBox1.Size = new Size(497, 23);
+            textBox1.TabIndex = 27;
             // 
             // lblHarga
             // 
             lblHarga.AutoSize = true;
-            lblHarga.Location = new Point(141, 232);
-            lblHarga.Margin = new Padding(4, 0, 4, 0);
+            lblHarga.Location = new Point(88, 155);
             lblHarga.Name = "lblHarga";
-            lblHarga.Size = new Size(60, 25);
-            lblHarga.TabIndex = 13;
-            lblHarga.Text = "Harga";
+            lblHarga.Size = new Size(85, 15);
+            lblHarga.TabIndex = 26;
+            lblHarga.Text = "Jumlah Barang";
             // 
             // lblNamaLayanan
             // 
             lblNamaLayanan.AutoSize = true;
-            lblNamaLayanan.Location = new Point(141, 142);
-            lblNamaLayanan.Margin = new Padding(4, 0, 4, 0);
+            lblNamaLayanan.Location = new Point(88, 101);
             lblNamaLayanan.Name = "lblNamaLayanan";
-            lblNamaLayanan.Size = new Size(124, 25);
-            lblNamaLayanan.TabIndex = 12;
-            lblNamaLayanan.Text = "Nama layanan";
+            lblNamaLayanan.Size = new Size(79, 15);
+            lblNamaLayanan.TabIndex = 25;
+            lblNamaLayanan.Text = "Nama Barang";
             // 
-            // FormTambahLayanan
+            // label1
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            label1.AutoSize = true;
+            label1.Font = new Font("Yu Gothic UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(274, 35);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(255, 32);
+            label1.TabIndex = 24;
+            label1.Text = "TAMBAHKAN BARANG";
+            // 
+            // FormTambahInventaris
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(1237, 445);
+            ClientSize = new Size(853, 286);
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(textBox2);
@@ -120,22 +112,22 @@
             Controls.Add(lblHarga);
             Controls.Add(lblNamaLayanan);
             Controls.Add(label1);
-            Name = "FormTambahLayanan";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormTambahLayanan";
-            Load += FormTambahLayanan_Load;
+            Margin = new Padding(2, 2, 2, 2);
+            Name = "FormTambahInventaris";
+            Text = "FormTambahInventaris";
+            Load += FormTambahInventaris_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
         private Button btnCancel;
         private Button btnAdd;
         private TextBox textBox2;
         private TextBox textBox1;
         private Label lblHarga;
         private Label lblNamaLayanan;
+        private Label label1;
     }
 }
