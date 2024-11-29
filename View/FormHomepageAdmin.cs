@@ -146,8 +146,8 @@ namespace PBOBarberMate.View
         }								
 								
         private void btnKaryawan_Click(object sender, EventArgs e)								
-        {								
-            FormKelolaKaryawan form = new FormKelolaKaryawan();								
+        {
+            FormKelolaKaryawan.FormKelolaKaryawan form = new FormKelolaKaryawan.FormKelolaKaryawan();								
             form.Show();								
         }								
 								

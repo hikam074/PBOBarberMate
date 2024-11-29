@@ -328,7 +328,6 @@
             btnReservasi.Text = "Kelola\r\nReservasi";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnReservasi.UseVisualStyleBackColor = false;
-            btnReservasi.Click += btnReservasi_Click;
             // 
             // btnLayanan
             // 
