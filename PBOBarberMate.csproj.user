@@ -26,6 +26,12 @@
     <Compile Update="View\FormLogin.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPembayaran\FormLihatPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\FormProfil\FormUbahProfil.cs">
       <SubType>Form</SubType>
     </Compile>
