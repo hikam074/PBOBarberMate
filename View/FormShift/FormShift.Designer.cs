@@ -39,49 +39,55 @@
             // 
             lblJadwalShift.AutoSize = true;
             lblJadwalShift.Font = new Font("Bahnschrift SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblJadwalShift.Location = new Point(347, 28);
+            lblJadwalShift.Location = new Point(304, 21);
             lblJadwalShift.Name = "lblJadwalShift";
-            lblJadwalShift.Size = new Size(181, 36);
+            lblJadwalShift.Size = new Size(146, 29);
             lblJadwalShift.TabIndex = 0;
             lblJadwalShift.Text = "Jadwal Shift";
             // 
             // dgvJadwalShift
             // 
             dgvJadwalShift.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJadwalShift.Location = new Point(53, 82);
+            dgvJadwalShift.Location = new Point(46, 62);
+            dgvJadwalShift.Margin = new Padding(3, 2, 3, 2);
             dgvJadwalShift.Name = "dgvJadwalShift";
             dgvJadwalShift.RowHeadersWidth = 51;
-            dgvJadwalShift.Size = new Size(777, 351);
+            dgvJadwalShift.Size = new Size(680, 263);
             dgvJadwalShift.TabIndex = 1;
             dgvJadwalShift.CellContentClick += dgvJadwalShift_CellContentClick;
             // 
             // btnAddJadwal
             // 
-            btnAddJadwal.Location = new Point(736, 451);
+            btnAddJadwal.Location = new Point(644, 338);
+            btnAddJadwal.Margin = new Padding(3, 2, 3, 2);
             btnAddJadwal.Name = "btnAddJadwal";
-            btnAddJadwal.Size = new Size(94, 29);
+            btnAddJadwal.Size = new Size(82, 22);
             btnAddJadwal.TabIndex = 2;
             btnAddJadwal.Text = "Tambah";
             btnAddJadwal.UseVisualStyleBackColor = true;
+            btnAddJadwal.Click += btnAddJadwal_Click;
             // 
             // btnKembali
             // 
-            btnKembali.Location = new Point(53, 451);
+            btnKembali.Location = new Point(46, 338);
+            btnKembali.Margin = new Padding(3, 2, 3, 2);
             btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(94, 29);
+            btnKembali.Size = new Size(82, 22);
             btnKembali.TabIndex = 3;
             btnKembali.Text = "Kembali";
             btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
             // FormShift
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(908, 507);
+            ClientSize = new Size(794, 380);
             Controls.Add(btnKembali);
             Controls.Add(btnAddJadwal);
             Controls.Add(dgvJadwalShift);
             Controls.Add(lblJadwalShift);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormShift";
             Text = "FormShift";
             Load += FormShift_Load;

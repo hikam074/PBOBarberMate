@@ -33,83 +33,89 @@
             label2 = new Label();
             textBox1 = new TextBox();
             textBox2 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            btnKembali = new Button();
+            btnTambahkan = new Button();
             SuspendLayout();
             // 
             // lblAddJadwal
             // 
             lblAddJadwal.AutoSize = true;
             lblAddJadwal.Font = new Font("Bahnschrift SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAddJadwal.Location = new Point(327, 33);
+            lblAddJadwal.Location = new Point(286, 25);
             lblAddJadwal.Name = "lblAddJadwal";
-            lblAddJadwal.Size = new Size(293, 36);
+            lblAddJadwal.Size = new Size(236, 29);
             lblAddJadwal.TabIndex = 0;
             lblAddJadwal.Text = "Tambah Jadwal Shift";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(99, 155);
+            label1.Location = new Point(87, 116);
             label1.Name = "label1";
-            label1.Size = new Size(50, 20);
+            label1.Size = new Size(38, 15);
             label1.TabIndex = 1;
             label1.Text = "label1";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(99, 278);
+            label2.Location = new Point(87, 208);
             label2.Name = "label2";
-            label2.Size = new Size(50, 20);
+            label2.Size = new Size(38, 15);
             label2.TabIndex = 2;
             label2.Text = "label2";
-            label2.Click += label2_Click;
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(382, 148);
+            textBox1.Location = new Point(334, 111);
+            textBox1.Margin = new Padding(3, 2, 3, 2);
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
+            textBox1.Size = new Size(110, 23);
             textBox1.TabIndex = 3;
             // 
             // textBox2
             // 
-            textBox2.Location = new Point(382, 271);
+            textBox2.Location = new Point(334, 203);
+            textBox2.Margin = new Padding(3, 2, 3, 2);
             textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
+            textBox2.Size = new Size(110, 23);
             textBox2.TabIndex = 4;
             // 
-            // button1
+            // btnKembali
             // 
-            button1.Location = new Point(634, 405);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            btnKembali.Location = new Point(555, 304);
+            btnKembali.Margin = new Padding(3, 2, 3, 2);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(82, 22);
+            btnKembali.TabIndex = 5;
+            btnKembali.Text = "Kembali";
+            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
-            // button2
+            // btnTambahkan
             // 
-            button2.Location = new Point(756, 405);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 6;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            btnTambahkan.Location = new Point(662, 304);
+            btnTambahkan.Margin = new Padding(3, 2, 3, 2);
+            btnTambahkan.Name = "btnTambahkan";
+            btnTambahkan.Size = new Size(82, 22);
+            btnTambahkan.TabIndex = 6;
+            btnTambahkan.Text = "Tambahkan";
+            btnTambahkan.UseVisualStyleBackColor = true;
+            btnTambahkan.Click += btnTambahkan_Click;
             // 
             // FormTambahJadwal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(960, 518);
-            Controls.Add(button2);
-            Controls.Add(button1);
+            ClientSize = new Size(840, 388);
+            Controls.Add(btnTambahkan);
+            Controls.Add(btnKembali);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
             Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(lblAddJadwal);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormTambahJadwal";
             Text = "FormTambahJadwal";
             ResumeLayout(false);
@@ -125,5 +131,7 @@
         private TextBox textBox2;
         private Button button1;
         private Button button2;
+        private Button btnKembali;
+        private Button btnTambahkan;
     }
 }

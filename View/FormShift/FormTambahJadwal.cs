@@ -17,7 +17,14 @@ namespace PBOBarberMate.View.FormShift
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormShift formShift = new FormShift();
+            formShift.Show();
+            this.Hide();
+        }
+
+        private void btnTambahkan_Click(object sender, EventArgs e)
         {
 
         }

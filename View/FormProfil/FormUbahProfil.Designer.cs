@@ -66,7 +66,7 @@
             lblProfilEmail.Name = "lblProfilEmail";
             lblProfilEmail.Size = new Size(158, 23);
             lblProfilEmail.TabIndex = 5;
-            lblProfilEmail.Text = "isi_email";
+            lblProfilEmail.Text = "Email";
             // 
             // lblProfilNama
             // 
