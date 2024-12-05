@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -294,6 +294,8 @@ namespace PBOBarberMate.App.Context
                 return -1;
             }
         }
+        //public bool addreservasi(M_Akun akun)
+        //{
 
         public static int batalkanReservasi(int id)
         {

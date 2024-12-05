@@ -146,6 +146,7 @@
             btnShift.Text = "Kelola\r\nShift";
             btnShift.TextAlign = ContentAlignment.BottomCenter;
             btnShift.UseVisualStyleBackColor = false;
+            btnShift.Click += btnShift_Click;
             // 
             // pictbxInventaris
             // 
@@ -328,7 +329,6 @@
             btnReservasi.Text = "Kelola\r\nReservasi";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnReservasi.UseVisualStyleBackColor = false;
-            btnReservasi.Click += btnReservasi_Click;
             // 
             // btnLayanan
             // 
@@ -456,6 +456,7 @@
             Controls.Add(btnProfil);
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormHomepageAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";

@@ -1,4 +1,4 @@
-using PBOBarberMate.App.Context;
+﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using System;
