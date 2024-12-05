@@ -16,5 +16,13 @@ namespace PBOBarberMate.View.FormPembayaran
         {
             InitializeComponent();
         }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            // kembali ke homepage
+            FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            formHomepageAdmin.Show();
+            this.Hide();
+        }
     }
 }

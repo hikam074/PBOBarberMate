@@ -9,6 +9,7 @@ using PBOBarberMate.View.FormInventaris;
 using PBOBarberMate.View.FormReservasi;
 using PBOBarberMate.View.FormShift;
 using PBOBarberMate.View.FormKelolaKaryawan;
+using PBOBarberMate.View.FormPembayaran;
 
 namespace PBOBarberMate.View								
 {
@@ -169,22 +170,10 @@ namespace PBOBarberMate.View
 
         private void btnPembayaran_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void btnKaryawan_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnCustomer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnKunjungan_Click(object sender, EventArgs e)
-        {
-
+            // beralih ke FormAddPembayaran
+            FormAddPembayaran formAddPembayaran = new FormAddPembayaran();
+            formAddPembayaran.Show();
+            this.Hide();
         }
     }
 }								
