@@ -1,6 +1,7 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormUlasan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -186,6 +187,13 @@ namespace PBOBarberMate.View
             // mengubah warna ketika kursor keluar dari area btnHomepageLogout
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
+        }
+
+        private void btnUlasan_Click(object sender, EventArgs e)
+        {
+            FormUlasan2 formUlasan2 = new FormUlasan2();
+            formUlasan2.Show();
+            this.Hide();
         }
     }
 }

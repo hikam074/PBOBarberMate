@@ -38,5 +38,8 @@
     <Compile Update="View\FormSignup.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormUlasan\FormUlasan2.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 </Project>
