@@ -161,5 +161,12 @@ namespace PBOBarberMate.View
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
         }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            FormKelolaCustomer.FormKelolaCustomer formKelolaCustomer = new FormKelolaCustomer.FormKelolaCustomer ();
+            formKelolaCustomer.Show();
+            this.Hide();
+        }
     }
 }
