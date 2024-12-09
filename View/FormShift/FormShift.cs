@@ -40,5 +40,19 @@ namespace PBOBarberMate.View.FormShift
         {
 
         }
+
+        private void btnAddJadwal_Click(object sender, EventArgs e)
+        {
+            FormTambahJadwal formTambahJadwal = new FormTambahJadwal();
+            formTambahJadwal.Show();
+            this.Hide();
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            this.Hide();
+            formHomepageAdmin.Show();
+        }
     }
 }

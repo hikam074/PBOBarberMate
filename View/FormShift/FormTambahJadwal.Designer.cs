@@ -29,89 +29,105 @@
         private void InitializeComponent()
         {
             lblAddJadwal = new Label();
-            label1 = new Label();
-            label2 = new Label();
-            textBox1 = new TextBox();
-            textBox2 = new TextBox();
-            button1 = new Button();
-            button2 = new Button();
+            lblNamaAkun = new Label();
+            lblHari = new Label();
+            btnBatal = new Button();
+            btnTambah = new Button();
+            comboBoxAkun = new ComboBox();
+            comboBoxHari = new ComboBox();
             SuspendLayout();
             // 
             // lblAddJadwal
             // 
             lblAddJadwal.AutoSize = true;
             lblAddJadwal.Font = new Font("Bahnschrift SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblAddJadwal.Location = new Point(327, 33);
+            lblAddJadwal.ForeColor = Color.White;
+            lblAddJadwal.Location = new Point(320, 58);
             lblAddJadwal.Name = "lblAddJadwal";
             lblAddJadwal.Size = new Size(293, 36);
             lblAddJadwal.TabIndex = 0;
             lblAddJadwal.Text = "Tambah Jadwal Shift";
+            lblAddJadwal.Click += lblAddJadwal_Click;
             // 
-            // label1
+            // lblNamaAkun
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(99, 155);
-            label1.Name = "label1";
-            label1.Size = new Size(50, 20);
-            label1.TabIndex = 1;
-            label1.Text = "label1";
+            lblNamaAkun.AutoSize = true;
+            lblNamaAkun.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblNamaAkun.ForeColor = Color.White;
+            lblNamaAkun.Location = new Point(181, 160);
+            lblNamaAkun.Name = "lblNamaAkun";
+            lblNamaAkun.Size = new Size(114, 24);
+            lblNamaAkun.TabIndex = 1;
+            lblNamaAkun.Text = "Nama Akun";
+            lblNamaAkun.Click += label1_Click;
             // 
-            // label2
+            // lblHari
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(99, 278);
-            label2.Name = "label2";
-            label2.Size = new Size(50, 20);
-            label2.TabIndex = 2;
-            label2.Text = "label2";
-            label2.Click += label2_Click;
+            lblHari.AutoSize = true;
+            lblHari.Font = new Font("Bahnschrift", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHari.ForeColor = Color.White;
+            lblHari.Location = new Point(181, 279);
+            lblHari.Name = "lblHari";
+            lblHari.Size = new Size(56, 28);
+            lblHari.TabIndex = 2;
+            lblHari.Text = "Hari";
+            lblHari.Click += label2_Click;
             // 
-            // textBox1
+            // btnBatal
             // 
-            textBox1.Location = new Point(382, 148);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(125, 27);
-            textBox1.TabIndex = 3;
+            btnBatal.Location = new Point(606, 406);
+            btnBatal.Name = "btnBatal";
+            btnBatal.Size = new Size(94, 29);
+            btnBatal.TabIndex = 5;
+            btnBatal.Text = "Batal";
+            btnBatal.UseVisualStyleBackColor = true;
+            btnBatal.Click += btnBatal_Click;
             // 
-            // textBox2
+            // btnTambah
             // 
-            textBox2.Location = new Point(382, 271);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(125, 27);
-            textBox2.TabIndex = 4;
+            btnTambah.Location = new Point(765, 406);
+            btnTambah.Name = "btnTambah";
+            btnTambah.Size = new Size(94, 29);
+            btnTambah.TabIndex = 6;
+            btnTambah.Text = "Tambah";
+            btnTambah.UseVisualStyleBackColor = true;
+            btnTambah.Click += btnTambah_Click;
             // 
-            // button1
+            // comboBoxAkun
             // 
-            button1.Location = new Point(634, 405);
-            button1.Name = "button1";
-            button1.Size = new Size(94, 29);
-            button1.TabIndex = 5;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
+            comboBoxAkun.FormattingEnabled = true;
+            comboBoxAkun.Location = new Point(432, 160);
+            comboBoxAkun.Name = "comboBoxAkun";
+            comboBoxAkun.Size = new Size(268, 28);
+            comboBoxAkun.TabIndex = 8;
+            comboBoxAkun.SelectedIndexChanged += comboBoxAkun_SelectedIndexChanged;
             // 
-            // button2
+            // comboBoxHari
             // 
-            button2.Location = new Point(756, 405);
-            button2.Name = "button2";
-            button2.Size = new Size(94, 29);
-            button2.TabIndex = 6;
-            button2.Text = "button2";
-            button2.UseVisualStyleBackColor = true;
+            comboBoxHari.FormattingEnabled = true;
+            comboBoxHari.Location = new Point(432, 279);
+            comboBoxHari.Name = "comboBoxHari";
+            comboBoxHari.Size = new Size(268, 28);
+            comboBoxHari.TabIndex = 9;
+            comboBoxHari.SelectedIndexChanged += comboBoxHari_SelectedIndexChanged;
             // 
             // FormTambahJadwal
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(44, 62, 80);
             ClientSize = new Size(960, 518);
-            Controls.Add(button2);
-            Controls.Add(button1);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(label2);
-            Controls.Add(label1);
+            Controls.Add(comboBoxHari);
+            Controls.Add(comboBoxAkun);
             Controls.Add(lblAddJadwal);
+            Controls.Add(btnTambah);
+            Controls.Add(btnBatal);
+            Controls.Add(lblHari);
+            Controls.Add(lblNamaAkun);
+            ForeColor = SystemColors.ActiveCaptionText;
             Name = "FormTambahJadwal";
             Text = "FormTambahJadwal";
+            Load += FormTambahJadwal_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -119,11 +135,11 @@
         #endregion
 
         private Label lblAddJadwal;
-        private Label label1;
-        private Label label2;
-        private TextBox textBox1;
-        private TextBox textBox2;
-        private Button button1;
-        private Button button2;
+        private Label lblNamaAkun;
+        private Label lblHari;
+        private Button btnBatal;
+        private Button btnTambah;
+        private ComboBox comboBoxAkun;
+        private ComboBox comboBoxHari;
     }
 }

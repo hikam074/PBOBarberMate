@@ -63,6 +63,7 @@
             btnAddJadwal.TabIndex = 2;
             btnAddJadwal.Text = "Tambah";
             btnAddJadwal.UseVisualStyleBackColor = true;
+            btnAddJadwal.Click += btnAddJadwal_Click;
             // 
             // btnKembali
             // 
@@ -72,6 +73,7 @@
             btnKembali.TabIndex = 3;
             btnKembali.Text = "Kembali";
             btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
             // FormShift
             // 

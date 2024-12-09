@@ -17,6 +17,9 @@
     <Compile Update="View\FormInventaris\FormTambahInventaris.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormKelolaKaryawan\FormKelolaKaryawan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\FormLayanan\FormLayanan.cs">
       <SubType>Form</SubType>
     </Compile>
