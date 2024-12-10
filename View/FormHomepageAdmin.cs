@@ -157,7 +157,7 @@ namespace PBOBarberMate.View
             this.Hide();
         }
 
-<<<<<<< HEAD
+
         private void FormHomepageAdmin_Load(object sender, EventArgs e)
         {
 
@@ -168,8 +168,7 @@ namespace PBOBarberMate.View
 
         }
     }
-}
-=======
-    }								
+
 }								
->>>>>>> fc7fa3b45498cffd124954150cec5e9a69a6e73b
+								
+

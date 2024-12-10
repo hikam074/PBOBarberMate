@@ -47,6 +47,30 @@ namespace PBOBarberMate.View.FormShift
         {
             LoadAkunList();
             LoadHariList();
+
+            if (IsEditMode && ShiftId > 0)
+            {
+                DataTable dataTable = ShiftContext.GetShiftByID(ShiftId);
+
+                if (dataTable.Rows.Count > 0)
+                {
+                    // Konversi DataRow pertama ke objek M_Shift
+                    DataRow row = dataTable.Rows[0];
+                    M_Shift shift = new M_Shift
+                    {
+                        id_shift = Convert.ToInt32(row["id_shift"]),
+                        id_akun = Convert.ToInt32(row["id_akun"]),
+                        id_hari = Convert.ToInt32(row["id_hari"])
+                    };
+
+                    PopulateForm(shift);
+                }
+                else
+                {
+                    MessageBox.Show("Data jadwal tidak ditemukan.");
+                    this.Close(); // Tutup form jika data tidak ditemukan
+                }
+            }
         }
 
         private void btnBatal_Click(object sender, EventArgs e)
@@ -64,43 +88,44 @@ namespace PBOBarberMate.View.FormShift
                 return;
             }
 
-            // Buat objek jadwal baru
-            M_Shift shift = new M_Shift();
-
-            shift.id_akun = Convert.ToInt32(comboBoxAkun.SelectedValue);
-            shift.id_hari = Convert.ToInt32(comboBoxHari.SelectedValue);
-
-            // Mode edit atau tambah
-            if (IsEditMode)
+            try
             {
-                shift.id_shift = ShiftId;
-                ShiftContext.UpdateShift(shift);
-                MessageBox.Show("Jadwal berhasil diperbarui.");
+                // Buat objek jadwal baru
+                M_Shift shift = new M_Shift();
+                {
+                    shift.id_akun = Convert.ToInt32(comboBoxAkun.SelectedValue);
+                    shift.id_hari = Convert.ToInt32(comboBoxHari.SelectedValue);
+                };
+
+                // Mode edit atau tambah
+                if (IsEditMode)
+                {
+                    shift.id_shift = ShiftId;
+                    ShiftContext.UpdateShift(shift);
+                    MessageBox.Show("Jadwal berhasil diperbarui.");
+                }
+                else
+                {
+                    ShiftContext.AddShift(shift);
+                    MessageBox.Show("Jadwal berhasil ditambahkan.");
+                }
+
+                // Bersihkan input dan tutup form
+                this.DialogResult = DialogResult.OK;
+                this.Hide();
             }
-            else
+
+            catch (Exception ex)
             {
-                ShiftContext.AddShift(shift);
-                MessageBox.Show("Jadwal berhasil ditambahkan.");
+                MessageBox.Show($"Error saat menyimpan data: {ex.Message}");
             }
-
-            // Bersihkan input dan tutup form
-            this.DialogResult = DialogResult.OK;
-            this.Hide();
-        }
-
-        public void PopulateForm(M_Shift shift)
-        {
-            comboBoxAkun.SelectedValue = shift.id_akun;
-            comboBoxHari.SelectedValue = shift.id_hari;
-            IsEditMode = true;
-            ShiftId = shift.id_shift;
-            UpdateButtonText();
+            
         }
 
         private void UpdateButtonText()
         {
             // Ubah teks tombol berdasarkan mode (Tambah/Edit)
-            btnTambah.Text = IsEditMode ? "Update" : "Add";
+            btnTambah.Text = IsEditMode ? "Ubah" : "Tambah";
         }
 
         private void LoadAkunList()
@@ -110,11 +135,20 @@ namespace PBOBarberMate.View.FormShift
                 // Ambil data akun dari ShiftContext
                 DataTable akunList = ShiftContext.GetAkunList();
 
-                // Isi comboBoxAkun dengan data akun
-                comboBoxAkun.DataSource = akunList;
-                comboBoxAkun.DisplayMember = "nama_akun"; // Tampilkan nama akun
-                comboBoxAkun.ValueMember = "id_akun"; // Gunakan id_akun sebagai nilai yang dipilih
+                if (akunList.Rows.Count > 0)
+                {
+                    // Isi comboBoxAkun dengan data akun
+                    comboBoxAkun.DataSource = akunList;
+                    comboBoxAkun.DisplayMember = "nama_akun"; // Tampilkan nama akun
+                    comboBoxAkun.ValueMember = "id_akun"; // Gunakan id_akun sebagai nilai yang dipilih
+                }
+
+                else
+                {
+                    MessageBox.Show("Data akun tidak ditemukan.");
+                }                  
             }
+
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading Akun list: {ex.Message}");
@@ -128,15 +162,43 @@ namespace PBOBarberMate.View.FormShift
                 // Ambil data hari dari ShiftContext
                 DataTable hariList = ShiftContext.GetHariList();
 
-                // Isi comboBoxHari dengan data hari
-                comboBoxHari.DataSource = hariList;
-                comboBoxHari.DisplayMember = "nama_hari"; // Tampilkan nama hari
-                comboBoxHari.ValueMember = "id_hari"; // Gunakan id_hari sebagai nilai yang dipilih
+                if (hariList.Rows.Count > 0)
+                {
+                    // Isi comboBoxHari dengan data hari
+                    comboBoxHari.DataSource = hariList;
+                    comboBoxHari.DisplayMember = "nama_hari"; // Tampilkan nama hari
+                    comboBoxHari.ValueMember = "id_hari"; // Gunakan id_hari sebagai nilai yang dipilih
+                }
+                 
+                else
+                {
+                    MessageBox.Show("Data hari tidak ditemukan.");
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Error loading Hari list: {ex.Message}");
             }
+        }
+
+        public void PopulateForm(M_Shift shift)
+        {
+            if (shift != null)
+            {
+                comboBoxAkun.SelectedValue = shift.id_akun;
+                comboBoxHari.SelectedValue = shift.id_hari;
+                IsEditMode = true;
+                ShiftId = shift.id_shift;
+                UpdateButtonText();
+            }
+
+            else
+            {
+                MessageBox.Show("Data tidak valid untuk di-edit.");
+                this.Close();
+            }
+
         }
 
         private bool ValidateInput()

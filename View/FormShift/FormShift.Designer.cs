@@ -39,6 +39,7 @@
             // 
             lblJadwalShift.AutoSize = true;
             lblJadwalShift.Font = new Font("Bahnschrift SemiBold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblJadwalShift.ForeColor = Color.White;
             lblJadwalShift.Location = new Point(347, 28);
             lblJadwalShift.Name = "lblJadwalShift";
             lblJadwalShift.Size = new Size(181, 36);
@@ -79,6 +80,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(44, 62, 80);
             ClientSize = new Size(908, 507);
             Controls.Add(btnKembali);
             Controls.Add(btnAddJadwal);

@@ -15,7 +15,7 @@ namespace PBOBarberMate.App.Context
         public static DataTable All()
         {
             string query = $@"
-                SELECT sk.id_shift, a.nama_akun, dh.nama_hari
+                SELECT sk.id_shift, sk.id_akun, a.nama_akun, sk.id_hari, dh.nama_hari
                 FROM {table} sk
                 JOIN akun a ON sk.id_akun = a.id_akun
                 JOIN detail_hari dh ON sk.id_hari = dh.id_hari
@@ -78,7 +78,7 @@ namespace PBOBarberMate.App.Context
         public static DataTable GetShiftByID(int id)
         {
             string query = $@"
-                SELECT sk.id_shift, a.nama_akun, dh.nama_hari
+                SELECT sk.id_shift, sk.id_akun, a.nama_akun, sk.id_hari, dh.nama_hari
                 FROM {table} sk
                 JOIN akun a ON sk.id_akun = a.id_akun
                 JOIN detail_hari dh ON sk.id_hari = dh.id_hari
