@@ -39,6 +39,8 @@
             lblTanggal = new Label();
             lblHeading = new Label();
             gbxkonfirmasiPembayaran = new GroupBox();
+            lblConfirmHarga = new Label();
+            lblConfirmHeadHarga = new Label();
             btnSubmit = new Button();
             lblConfirmWaktu = new Label();
             lblConfirmHeadWaktu = new Label();
@@ -50,8 +52,6 @@
             lblConfirmHeadTanggal = new Label();
             lblConfirmHeadLayanan = new Label();
             lblConfirmHeadNama = new Label();
-            lblConfirmHeadHarga = new Label();
-            lblConfirmHarga = new Label();
             gbxCariReservasi.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvPilihReservasi).BeginInit();
             gbxkonfirmasiPembayaran.SuspendLayout();
@@ -196,6 +196,26 @@
             gbxkonfirmasiPembayaran.TabStop = false;
             gbxkonfirmasiPembayaran.Text = "Konfirmasi Pembayaran";
             // 
+            // lblConfirmHarga
+            // 
+            lblConfirmHarga.AutoSize = true;
+            lblConfirmHarga.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblConfirmHarga.Location = new Point(181, 221);
+            lblConfirmHarga.Name = "lblConfirmHarga";
+            lblConfirmHarga.Size = new Size(31, 23);
+            lblConfirmHarga.TabIndex = 21;
+            lblConfirmHarga.Text = "---";
+            // 
+            // lblConfirmHeadHarga
+            // 
+            lblConfirmHeadHarga.AutoSize = true;
+            lblConfirmHeadHarga.ForeColor = SystemColors.ControlDarkDark;
+            lblConfirmHeadHarga.Location = new Point(181, 203);
+            lblConfirmHeadHarga.Name = "lblConfirmHeadHarga";
+            lblConfirmHeadHarga.Size = new Size(37, 18);
+            lblConfirmHeadHarga.TabIndex = 20;
+            lblConfirmHeadHarga.Text = "Harga";
+            // 
             // btnSubmit
             // 
             btnSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -308,26 +328,6 @@
             lblConfirmHeadNama.Size = new Size(90, 18);
             lblConfirmHeadNama.TabIndex = 9;
             lblConfirmHeadNama.Text = "Nama pelanggan";
-            // 
-            // lblConfirmHeadHarga
-            // 
-            lblConfirmHeadHarga.AutoSize = true;
-            lblConfirmHeadHarga.ForeColor = SystemColors.ControlDarkDark;
-            lblConfirmHeadHarga.Location = new Point(181, 203);
-            lblConfirmHeadHarga.Name = "lblConfirmHeadHarga";
-            lblConfirmHeadHarga.Size = new Size(37, 18);
-            lblConfirmHeadHarga.TabIndex = 20;
-            lblConfirmHeadHarga.Text = "Harga";
-            // 
-            // lblConfirmHarga
-            // 
-            lblConfirmHarga.AutoSize = true;
-            lblConfirmHarga.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblConfirmHarga.Location = new Point(181, 221);
-            lblConfirmHarga.Name = "lblConfirmHarga";
-            lblConfirmHarga.Size = new Size(31, 23);
-            lblConfirmHarga.TabIndex = 21;
-            lblConfirmHarga.Text = "---";
             // 
             // FormAddPembayaran
             // 

@@ -38,20 +38,6 @@ namespace PBOBarberMate.View.FormPembayaran
             }
         }
 
-        //public void LoadDataReservasi()
-        //{
-        //    try
-        //    {
-        //        //DataTable daftarReservasi = PembayaranContext.getDataReservasiByNama(DateOnly.FromDateTime(dtpTanggal.Value), );
-
-        //        //dgvPilihReservasi.DataSource = daftarReservasi;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormPembayaran.FormAddPembayaran.LoadDataReservasi] : {ex}");
-        //    }
-        //}
-
         private void btnKembali_Click(object sender, EventArgs e)
         {
             // kembali ke homepage
@@ -122,8 +108,19 @@ namespace PBOBarberMate.View.FormPembayaran
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            M_Pembayaran pembayaran = new M_Pembayaran(id_reservasi, Convert.ToInt32(lblConfirmHarga.Text), cbxMetodePembayaran.SelectedIndex);
-            MessageBox.Show("yeay");
+            M_Pembayaran pembayaran = new M_Pembayaran(id_reservasi, Convert.ToInt32(lblConfirmHarga.Text), (int)(metodePembayaran)Enum.Parse(typeof(metodePembayaran), cbxMetodePembayaran.SelectedItem.ToString()));
+            bool berhasil_bayar = PembayaranContext.addPembayaran(pembayaran);
+            if (berhasil_bayar == true )
+            {
+                MessageBox.Show("Pembayaran berhasil ditambahkan!");
+                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+                formHomepageAdmin.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Data gagal ditambahkan!");
+            }
         }
     }
 }

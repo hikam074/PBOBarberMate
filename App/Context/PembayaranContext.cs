@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Core;
 using System.Data;
+using PBOBarberMate.View.FormPembayaran;
 
 
 namespace PBOBarberMate.App.Context
@@ -16,27 +17,31 @@ namespace PBOBarberMate.App.Context
     {
         public static DataTable getDataReservasiByNama(DateOnly tanggal, string akunFull)
         {
+            // membuat realtime search method sederhana
             StringBuilder sb = new StringBuilder();
+            // dengan menambahkan '%' di tiap char
             foreach (char c in akunFull)
             {
                 sb.Append('%');
                 sb.Append(c);
             }
-          
+            // menyatukan kembali char yang telah ditambah '%'
             string akun = sb.ToString() + '%';
             // Membuat DataTable
             DataTable tabelReservasi = new DataTable();
+            // menambahkan kolom
             tabelReservasi.Columns.Add("ID Reservasi", typeof(int));
             tabelReservasi.Columns.Add("Nama",typeof(string));
             tabelReservasi.Columns.Add("Waktu", typeof(string));
             tabelReservasi.Columns.Add("Layanan", typeof(string));
             tabelReservasi.Columns.Add("Harga", typeof(int));
 
-            string query = "SELECT r.id_reservasi, a.nama_akun, r.waktu, l.nama_layanan, l.harga FROM reservasi r JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN akun a ON (r.id_akun = a.id_akun) WHERE a.nama_akun ILIKE @id AND r.tanggal = @tanggal";
+            string query = "SELECT r.id_reservasi, a.nama_akun, r.waktu, l.nama_layanan, l.harga FROM reservasi r JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN akun a ON (r.id_akun = a.id_akun) WHERE (a.nama_akun ILIKE @nama) AND (r.tanggal = @tanggal) AND r.id_status_reservasi = @id_status";
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
-                new NpgsqlParameter("@id", akun),
-                new NpgsqlParameter("@tanggal", tanggal)
+                new NpgsqlParameter("@nama", akun),
+                new NpgsqlParameter("@tanggal", tanggal),
+                new NpgsqlParameter("@id_status", (int)reservasiStatus.dijadwalkan)
             };
             try
             {
@@ -66,7 +71,38 @@ namespace PBOBarberMate.App.Context
             catch (Exception ex)
             {
                 MessageBox.Show($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getDataLayananByIdNama]: {ex}");
-                return null;
+                return tabelReservasi;
+            }
+        }
+        public static bool addPembayaran(M_Pembayaran pembayaran)
+        {
+            try
+            {
+                string query = "INSERT INTO pembayaran (id_reservasi, harga, id_metode_pembayaran) VALUES (@id_reservasi, @harga, @id_metode_pembayaran)";
+                NpgsqlParameter[] parameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@id_reservasi", pembayaran.idReservasi),
+                    new NpgsqlParameter("@harga", pembayaran.harga),
+                    new NpgsqlParameter("@id_metode_pembayaran", (int)pembayaran.metodePembayaran)
+                };
+
+                int rowsInserted = commandExecutor(query, parameters);
+
+                string updateQuery = "UPDATE reservasi SET id_status_reservasi = @status WHERE id_reservasi = @id";
+                NpgsqlParameter[] updateParameters = new NpgsqlParameter[]
+                {
+                    new NpgsqlParameter("@status", (int)reservasiStatus.selesai),
+                    new NpgsqlParameter("id", pembayaran.idReservasi)
+                };
+
+                int rowsAffected = commandExecutor(updateQuery, updateParameters);
+
+                return rowsInserted == rowsAffected;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.PembayaranContext.addPembayaran] : {ex}");
+                return false;
             }
         }
     }
