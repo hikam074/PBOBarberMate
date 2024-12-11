@@ -263,6 +263,7 @@
             btnUlasan.Text = "Beri\r\nPenilaian";
             btnUlasan.TextAlign = ContentAlignment.BottomCenter;
             btnUlasan.UseVisualStyleBackColor = false;
+            btnUlasan.Click += btnUlasan_Click;
             // 
             // pictbxReservasiSekarang
             // 

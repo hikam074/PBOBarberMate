@@ -105,5 +105,29 @@ namespace PBOBarberMate.App.Context
                 return false;
             }
         }
+
+        public static DataTable getDataPembayaran(int idAkun)
+        {
+            string query = "SELECT r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) WHERE r.id_akun = @id";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@id", idAkun)
+            };
+            try
+            {
+                // mendapatkan semua pembayaran dari db
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
+                {
+                    DataTable dataPembayaran = new DataTable();
+                    dataPembayaran.Load(reader);
+                    return dataPembayaran;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"{ex}");
+                return null;
+            }
+        }
     }
 }
