@@ -18,10 +18,13 @@ namespace PBOBarberMate.App.Context
         public static DataTable GetJadwalShiftKaryawan(int idAkun)
         {
             string query = $@"
-                SELECT sk.id_shift, dh.nama_hari AS Hari
+                SELECT sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
                 FROM shift_karyawan sk
                 JOIN detail_hari dh ON sk.id_hari = dh.id_hari
-                WHERE sk.id_akun = @id_akun"; ;
+                LEFT JOIN presensi p ON sk.id_shift = p.id_shift AND p.id_akun = @id_akun
+                WHERE sk.id_akun = @id_akun";
+
+            Console.WriteLine(query);
 
             NpgsqlParameter[] parameters =
             {

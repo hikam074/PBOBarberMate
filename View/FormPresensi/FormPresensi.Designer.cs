@@ -30,30 +30,44 @@
         {
             lblPresensi = new Label();
             dgvPresensi = new DataGridView();
+            btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPresensi).BeginInit();
             SuspendLayout();
             // 
             // lblPresensi
             // 
             lblPresensi.AutoSize = true;
+            lblPresensi.BackColor = Color.FromArgb(44, 62, 80);
             lblPresensi.Font = new Font("Bahnschrift SemiBold", 20F, FontStyle.Bold);
             lblPresensi.ForeColor = Color.White;
-            lblPresensi.Location = new Point(244, 43);
+            lblPresensi.Location = new Point(295, 46);
             lblPresensi.Name = "lblPresensi";
-            lblPresensi.Size = new Size(307, 41);
+            lblPresensi.Size = new Size(205, 41);
             lblPresensi.TabIndex = 0;
-            lblPresensi.Text = "Presensi Sekarang";
+            lblPresensi.Text = "Jadwal Shift";
             lblPresensi.Click += lblPresensi_Click;
             // 
             // dgvPresensi
             // 
             dgvPresensi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPresensi.Location = new Point(104, 101);
+            dgvPresensi.Location = new Point(186, 112);
             dgvPresensi.Name = "dgvPresensi";
             dgvPresensi.RowHeadersWidth = 51;
-            dgvPresensi.Size = new Size(591, 261);
+            dgvPresensi.Size = new Size(428, 195);
             dgvPresensi.TabIndex = 1;
             dgvPresensi.CellContentClick += dgvPresensi_CellContentClick;
+            // 
+            // btnKembali
+            // 
+            btnKembali.BackColor = Color.White;
+            btnKembali.ForeColor = Color.Black;
+            btnKembali.Location = new Point(174, 348);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(94, 29);
+            btnKembali.TabIndex = 2;
+            btnKembali.Text = "Kembali";
+            btnKembali.UseVisualStyleBackColor = false;
+            btnKembali.Click += btnKembali_Click;
             // 
             // FormPresensi
             // 
@@ -61,9 +75,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
             ClientSize = new Size(800, 450);
+            Controls.Add(btnKembali);
             Controls.Add(dgvPresensi);
             Controls.Add(lblPresensi);
-            ForeColor = Color.FromArgb(44, 62, 80);
+            ForeColor = Color.White;
             Name = "FormPresensi";
             Text = "FormPresensi";
             Load += FormPresensi_Load;
@@ -76,5 +91,6 @@
 
         private Label lblPresensi;
         private DataGridView dgvPresensi;
+        private Button btnKembali;
     }
 }

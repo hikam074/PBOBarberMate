@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace PBOBarberMate.View.FormPresensi
 {
@@ -39,17 +40,34 @@ namespace PBOBarberMate.View.FormPresensi
             try
             {
                 DataTable jadwalShift = PresensiContext.GetJadwalShiftKaryawan(idAkun);
-                if (jadwalShift.Columns["Button"] == null)
+                if (jadwalShift.Columns.Contains("waktu_presensi") && jadwalShift.Columns["waktu_presensi"].ReadOnly)
                 {
-                    jadwalShift.Columns.Add("Button", typeof(string));
+                    jadwalShift.Columns["waktu_presensi"].ReadOnly = false;
                 }
 
-                foreach (DataRow row in jadwalShift.Rows)
+
+                for (int i = 0; i < jadwalShift.Rows.Count; i++)
                 {
-                    row["Button"] = "Presensi";
+                    DataRow row = jadwalShift.Rows[i];
+                    object waktuPresensi = row["waktu_presensi"];
+
+                    // Jika waktu_presensi bernilai DBNull, biarkan kosong
+                    if (waktuPresensi == DBNull.Value)
+                    {
+                        row["waktu_presensi"] = DBNull.Value; // Tetap kosong
+
+                    }
                 }
+
 
                 dgvPresensi.DataSource = jadwalShift;
+
+                if (dgvPresensi.Columns.Contains("id_shift"))
+                {
+                    dgvPresensi.Columns["id_shift"].Visible = false;
+                }
+
+                dgvPresensi.DefaultCellStyle.ForeColor = Color.Black; // Warna teks
 
                 // Menambahkan kolom Button
                 if (!dgvPresensi.Columns.Contains("Button"))
@@ -57,8 +75,8 @@ namespace PBOBarberMate.View.FormPresensi
                     DataGridViewButtonColumn buttonColumn = new DataGridViewButtonColumn
                     {
                         Name = "Button",
-                        HeaderText = "Aksi",
-                        Text = "Presensi",
+                        HeaderText = "Presensi",
+                        Text = "Presensi Sekarang",
                         UseColumnTextForButtonValue = true
                     };
                     dgvPresensi.Columns.Add(buttonColumn);
@@ -77,11 +95,19 @@ namespace PBOBarberMate.View.FormPresensi
                 // Ambil data dari baris yang diklik
                 int idShift = Convert.ToInt32(dgvPresensi.Rows[e.RowIndex].Cells["id_shift"].Value);
                 string hari = dgvPresensi.Rows[e.RowIndex].Cells["Hari"].Value.ToString();
+                object waktuPresensi = dgvPresensi.Rows[e.RowIndex].Cells["waktu_presensi"].Value;
 
                 // Cek apakah presensi sudah dilakukan
-                if (PresensiContext.IsPresensiExist(idAkun, idShift))
+                if (waktuPresensi != null && waktuPresensi != DBNull.Value)
                 {
-                    MessageBox.Show($"Anda sudah melakukan presensi untuk shift hari {hari}.", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Anda sudah melakukan presensi untuk shift ini.", "Presensi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string hariSekarang = DateTime.Now.ToString("dddd", new CultureInfo("id-ID")); // Bahasa Indonesia
+                if (!hari.Equals(hariSekarang, StringComparison.OrdinalIgnoreCase))
+                {
+                    MessageBox.Show($"Presensi hanya dapat dilakukan pada hari {hari}.", "Presensi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
@@ -112,6 +138,16 @@ namespace PBOBarberMate.View.FormPresensi
         private void lblPresensi_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            // Buka FormHomepageKaryawan
+            FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
+            formHomepageKaryawan.Show();
+
+            // Tutup form saat ini (FormPresensi)
+            this.Close();
         }
     }
 }
