@@ -155,13 +155,6 @@ namespace PBOBarberMate.View.FormShift
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-            this.Hide();
-            formHomepageAdmin.Show();
-        }
-
-        private void btnKembali_Click(object sender, EventArgs e)
-        {
             // menampilkan form homepage admin bila logged sebagai admin
             if (UserSession.role == AkunRole.Admin)
             {
@@ -183,13 +176,6 @@ namespace PBOBarberMate.View.FormShift
                 formHomepageCustomer.Show();
                 this.Hide();
             }
-        }
-
-        private void btnAddJadwal_Click(object sender, EventArgs e)
-        {
-            FormTambahJadwal formTambahJadwal = new FormTambahJadwal();
-            formTambahJadwal.Show();
-            this.Hide();
         }
     }
 }

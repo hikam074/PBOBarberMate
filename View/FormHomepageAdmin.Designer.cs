@@ -131,7 +131,6 @@
             pictbxShift.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxShift.TabIndex = 13;
             pictbxShift.TabStop = false;
-            pictbxShift.Click += pictbxShift_Click;
             // 
             // btnShift
             // 
@@ -463,7 +462,6 @@
             Name = "FormHomepageAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";
-            Load += FormHomepageAdmin_Load;
             Click += FormHomepageAdmin_Click;
             gbxMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();
