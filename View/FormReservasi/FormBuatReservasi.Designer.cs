@@ -1,4 +1,4 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.FormReservasi
 {
     partial class FormBuatReservasi
     {
@@ -37,7 +37,7 @@
             lblWaktu = new Label();
             btnSubmit = new Button();
             gbxPlanReservasi = new GroupBox();
-            groupBox2 = new GroupBox();
+            gbxKonfirmasiPemesanan = new GroupBox();
             lblConfirmWaktu = new Label();
             lblConfirmTanggal = new Label();
             lblConfirmLayanan = new Label();
@@ -48,7 +48,7 @@
             lblConfirmHeadNama = new Label();
             lblHeading = new Label();
             gbxPlanReservasi.SuspendLayout();
-            groupBox2.SuspendLayout();
+            gbxKonfirmasiPemesanan.SuspendLayout();
             SuspendLayout();
             // 
             // btnKembali
@@ -157,25 +157,25 @@
             gbxPlanReservasi.TabStop = false;
             gbxPlanReservasi.Text = "Silahkan isi dibawah ini!";
             // 
-            // groupBox2
+            // gbxKonfirmasiPemesanan
             // 
-            groupBox2.Anchor = AnchorStyles.Top;
-            groupBox2.Controls.Add(lblConfirmWaktu);
-            groupBox2.Controls.Add(lblConfirmTanggal);
-            groupBox2.Controls.Add(lblConfirmLayanan);
-            groupBox2.Controls.Add(lblConfirmNama);
-            groupBox2.Controls.Add(lblConfirmHeadWaktu);
-            groupBox2.Controls.Add(lblConfirmHeadTanggal);
-            groupBox2.Controls.Add(lblConfirmHeadLayanan);
-            groupBox2.Controls.Add(lblConfirmHeadNama);
-            groupBox2.Controls.Add(btnSubmit);
-            groupBox2.Font = new Font("Bahnschrift Condensed", 11.25F);
-            groupBox2.Location = new Point(435, 100);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(300, 315);
-            groupBox2.TabIndex = 10;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Konfirmasi Pemesanan";
+            gbxKonfirmasiPemesanan.Anchor = AnchorStyles.Top;
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmWaktu);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmTanggal);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmLayanan);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmNama);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadWaktu);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadTanggal);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadLayanan);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadNama);
+            gbxKonfirmasiPemesanan.Controls.Add(btnSubmit);
+            gbxKonfirmasiPemesanan.Font = new Font("Bahnschrift Condensed", 11.25F);
+            gbxKonfirmasiPemesanan.Location = new Point(435, 100);
+            gbxKonfirmasiPemesanan.Name = "gbxKonfirmasiPemesanan";
+            gbxKonfirmasiPemesanan.Size = new Size(300, 315);
+            gbxKonfirmasiPemesanan.TabIndex = 10;
+            gbxKonfirmasiPemesanan.TabStop = false;
+            gbxKonfirmasiPemesanan.Text = "Konfirmasi Pemesanan";
             // 
             // lblConfirmWaktu
             // 
@@ -279,16 +279,17 @@
             BackColor = Color.White;
             ClientSize = new Size(800, 450);
             Controls.Add(lblHeading);
-            Controls.Add(groupBox2);
+            Controls.Add(gbxKonfirmasiPemesanan);
             Controls.Add(gbxPlanReservasi);
             Controls.Add(btnKembali);
             Name = "FormBuatReservasi";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormBuatReservasi";
+            Load += FormBuatReservasi_Load;
             gbxPlanReservasi.ResumeLayout(false);
             gbxPlanReservasi.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            gbxKonfirmasiPemesanan.ResumeLayout(false);
+            gbxKonfirmasiPemesanan.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -303,7 +304,7 @@
         private Label lblWaktu;
         private Button btnSubmit;
         private GroupBox gbxPlanReservasi;
-        private GroupBox groupBox2;
+        private GroupBox gbxKonfirmasiPemesanan;
         public Label lblHeading;
         private Label lblConfirmHeadWaktu;
         private Label lblConfirmHeadTanggal;
