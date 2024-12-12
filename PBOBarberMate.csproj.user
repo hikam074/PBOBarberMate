@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Compile Update="View\FormHomepageAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormHomepageCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormHomepageKaryawan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormInventaris\FormInventaris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormInventaris\FormTambahInventaris.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormKelolaKaryawan\FormKelolaKaryawan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormLayanan\FormLayanan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormLayanan\FormTambahLayanan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPresensi\FormPresensi.cs">
+    <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPembayaran\FormLihatPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormProfil\FormUbahProfil.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormReservasi\FormBuatReservasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormReservasi\FormLihatReservasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormShift\FormShift.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormShift\FormTambahJadwal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormSignup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+</Project>
