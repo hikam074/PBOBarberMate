@@ -7,6 +7,7 @@ using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
+using PBOBarberMate.View.FormPresensi;
 
 
 namespace PBOBarberMate.View
@@ -142,6 +143,29 @@ namespace PBOBarberMate.View
             FormInventaris.FormInventaris formInventaris = new FormInventaris.FormInventaris();
             formInventaris.Show();
             this.Hide();
+        }
+
+        private void btnPresensi_Click(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            int idAkun = UserSession.idSession;
+            FormPresensi.FormPresensi formPresensi = new FormPresensi.FormPresensi(idAkun);
+            formPresensi.Show();
+            this.Hide();
+        }
+
+        private void FormHomepageKaryawan_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictbxReservasiSekarang_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

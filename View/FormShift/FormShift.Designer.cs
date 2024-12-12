@@ -82,7 +82,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(794, 380);
+            BackColor = Color.FromArgb(44, 62, 80);
+            ClientSize = new Size(908, 507);
             Controls.Add(btnKembali);
             Controls.Add(btnAddJadwal);
             Controls.Add(dgvJadwalShift);

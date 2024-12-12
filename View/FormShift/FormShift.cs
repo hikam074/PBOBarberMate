@@ -24,11 +24,9 @@ namespace PBOBarberMate.View.FormShift
         {
             try
             {
-                DataTable dataShift = ShiftContext.All();
+                LoadData();
 
-                dgvJadwalShift.DataSource = dataShift;
-
-                dgvJadwalShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                SetupDataGridView();
             }
 
             catch (Exception ex)
@@ -38,9 +36,128 @@ namespace PBOBarberMate.View.FormShift
 
         }
 
+        private void LoadData()
+        {
+            try
+            {
+                DataTable dataShift = ShiftContext.All(); // Ambil data shift dari database
+                dgvJadwalShift.DataSource = dataShift;    // Tampilkan data pada DataGridView
+                dgvJadwalShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                if (dgvJadwalShift.Columns["nama_akun"] != null)
+                    dgvJadwalShift.Columns["nama_akun"].HeaderText = "Nama Karyawan";
+
+                if (dgvJadwalShift.Columns["nama_hari"] != null)
+                    dgvJadwalShift.Columns["nama_hari"].HeaderText = "Hari";
+
+                if (dgvJadwalShift.Columns["id_akun"] != null)
+                    dgvJadwalShift.Columns["id_akun"].Visible = false;
+
+                if (dgvJadwalShift.Columns["id_hari"] != null)
+                    dgvJadwalShift.Columns["id_hari"].Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error refreshing data: {ex.Message}");
+            }
+        }
+
         private void dgvJadwalShift_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            dgvJadwalShift.CellClick += dgvJadwalShift_CellClick;
+        }
 
+        private void SetupDataGridView()
+        {
+            if (dgvJadwalShift.Columns["Ubah"] == null)
+            {
+                // Tambahkan kolom tombol "Edit"
+                DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
+                editButtonColumn.Name = "Ubah";
+                editButtonColumn.HeaderText = "Ubah";
+                editButtonColumn.Text = "Ubah";
+                editButtonColumn.UseColumnTextForButtonValue = true;
+                dgvJadwalShift.Columns.Add(editButtonColumn);
+            }
+
+            if (dgvJadwalShift.Columns["Hapus"] == null)
+            {
+                // Tambahkan kolom tombol "Delete"
+                DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
+                deleteButtonColumn.Name = "Hapus";
+                deleteButtonColumn.HeaderText = "Hapus";
+                deleteButtonColumn.Text = "Hapus";
+                deleteButtonColumn.UseColumnTextForButtonValue = true;
+                dgvJadwalShift.Columns.Add(deleteButtonColumn);
+            }
+        }
+
+        private void dgvJadwalShift_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Pastikan baris dan kolom valid
+            if (e.RowIndex >= 0)
+            {
+                string columnName = dgvJadwalShift.Columns[e.ColumnIndex].Name;
+
+                // Jika tombol "Edit" diklik
+                if (columnName == "Ubah")
+                {
+                    int idShift = Convert.ToInt32(dgvJadwalShift.Rows[e.RowIndex].Cells["id_shift"].Value);
+
+                    // Buka form edit dengan ID shift
+                    FormTambahJadwal formUpdate = new FormTambahJadwal
+                    {
+                        IsEditMode = true,
+                        ShiftId = idShift
+                    };
+                    formUpdate.ShowDialog();
+
+                    // Refresh data setelah update
+                    LoadData();
+                }
+
+                // Jika tombol "Delete" diklik
+                else if (columnName == "Hapus")
+                {
+                    int idShift = Convert.ToInt32(dgvJadwalShift.Rows[e.RowIndex].Cells["id_shift"].Value);
+
+                    // Konfirmasi penghapusan
+                    DialogResult result = MessageBox.Show(
+                        "Apakah Anda yakin ingin menghapus shift ini?",
+                        "Konfirmasi Hapus",
+                        MessageBoxButtons.YesNo,
+                        MessageBoxIcon.Question
+                    );
+
+                    if (result == DialogResult.Yes)
+                    {
+                        try
+                        {
+                            ShiftContext.DeleteShift(idShift);
+                            MessageBox.Show("Shift berhasil dihapus.");
+                            LoadData(); // Refresh data setelah delete
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show($"Error: {ex.Message}");
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnAddJadwal_Click(object sender, EventArgs e)
+        {
+            FormTambahJadwal formTambahJadwal = new FormTambahJadwal();
+            formTambahJadwal.Show();
+            this.Hide();
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            this.Hide();
+            formHomepageAdmin.Show();
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
