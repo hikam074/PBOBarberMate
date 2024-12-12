@@ -106,6 +106,26 @@ namespace PBOBarberMate.App.Context
             }
         }
 
+        //public static void addHistoriPembayaran(M_HistoriPembayaran pembayaran)
+        //{
+        //    try
+        //    {
+        //        string query = "INSERT INTO histori_pembayaran (id_reservasi, harga, id_metode_pembayaran) VALUES (@id_reservasi, @harga, @id_metode_pembayaran)";
+        //        NpgsqlParameter[] parameters = new NpgsqlParameter[]
+        //        {
+        //            new NpgsqlParameter("@id_reservasi", pembayaran.idReservasi),
+        //            new NpgsqlParameter("@harga", pembayaran.harga),
+        //            new NpgsqlParameter("@id_metode_pembayaran", (int)pembayaran.metodePembayaran)
+        //        };
+                
+        //        int rowsInserted = commandExecutor(query, parameters);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.PembayaranContext.addHistoriPembayaran] : {ex}");
+        //    }
+        //}
+
         public static DataTable getDataPembayaran(int idAkun)
         {
             string query = "SELECT r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) WHERE r.id_akun = @id";

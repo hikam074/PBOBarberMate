@@ -51,11 +51,11 @@
             // 
             lblTitle.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTitle.Location = new Point(184, 27);
+            lblTitle.Location = new Point(159, 27);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(485, 58);
             lblTitle.TabIndex = 11;
-            lblTitle.Text = "Layanan Dilakukan";
+            lblTitle.Text = "Riwayat Kunjungan";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dgvDataPembayaran
@@ -76,6 +76,7 @@
             Controls.Add(lblTitle);
             Controls.Add(dgvDataPembayaran);
             Name = "FormLihatPembayaranUntukUlasan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormLihatPembayaran";
             ((System.ComponentModel.ISupportInitialize)dgvDataPembayaran).EndInit();
             ResumeLayout(false);
