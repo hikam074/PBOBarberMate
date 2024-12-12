@@ -2,6 +2,7 @@
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormReservasi;
+using PBOBarberMate.View.FormPembayaran;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -209,6 +210,13 @@ namespace PBOBarberMate.View
             // beralih ke FormLihatReservasi
             FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
             formLihatReservasi.Show();
+            this.Hide();
+        }
+
+        private void btnUlasan_Click(object sender, EventArgs e)
+        {
+            FormLihatPembayaranUntukUlasan formLihatPembayaranUntukUlasan = new FormLihatPembayaranUntukUlasan();
+            formLihatPembayaranUntukUlasan.Show();
             this.Hide();
         }
     }

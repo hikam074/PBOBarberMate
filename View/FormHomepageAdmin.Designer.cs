@@ -131,7 +131,6 @@
             pictbxShift.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxShift.TabIndex = 13;
             pictbxShift.TabStop = false;
-            pictbxShift.Click += pictbxShift_Click;
             // 
             // btnShift
             // 
@@ -268,7 +267,6 @@
             btnCustomer.Text = "Kelola\r\nCustomer";
             btnCustomer.TextAlign = ContentAlignment.BottomCenter;
             btnCustomer.UseVisualStyleBackColor = false;
-            btnCustomer.Click += btnCustomer_Click;
             // 
             // btnKaryawan
             // 
@@ -284,7 +282,6 @@
             btnKaryawan.Text = "Kelola\r\nKaryawan";
             btnKaryawan.TextAlign = ContentAlignment.BottomCenter;
             btnKaryawan.UseVisualStyleBackColor = false;
-            btnKaryawan.Click += btnKaryawan_Click_1;
             // 
             // btnKunjungan
             // 
@@ -300,7 +297,6 @@
             btnKunjungan.Text = "Riwayat\r\nKunjungan";
             btnKunjungan.TextAlign = ContentAlignment.BottomCenter;
             btnKunjungan.UseVisualStyleBackColor = false;
-            btnKunjungan.Click += btnKunjungan_Click;
             // 
             // btnPembayaran
             // 
@@ -466,7 +462,6 @@
             Name = "FormHomepageAdmin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";
-            Load += FormHomepageAdmin_Load;
             Click += FormHomepageAdmin_Click;
             gbxMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();

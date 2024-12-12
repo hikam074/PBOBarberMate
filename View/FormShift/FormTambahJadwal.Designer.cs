@@ -71,7 +71,6 @@
             lblHari.Size = new Size(56, 28);
             lblHari.TabIndex = 2;
             lblHari.Text = "Hari";
-            lblHari.Click += label2_Click;
             // 
             // btnBatal
             // 

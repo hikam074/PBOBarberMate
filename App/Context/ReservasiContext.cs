@@ -215,12 +215,10 @@ namespace PBOBarberMate.App.Context
                     // bilaberhasil menambahkan data
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Reservasi Berhasil dilakukan!");
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
                         return false;
                     }
                 }

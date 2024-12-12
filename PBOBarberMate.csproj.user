@@ -30,6 +30,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FormPresensi\FormPresensi.cs">
+		<SubType>Form</SubType>
+	</Compile>
     <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">
       <SubType>Form</SubType>
     </Compile>
