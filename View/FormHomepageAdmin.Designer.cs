@@ -141,7 +141,7 @@
             btnShift.ForeColor = Color.FromArgb(44, 62, 80);
             btnShift.Location = new Point(449, 17);
             btnShift.Name = "btnShift";
-            btnShift.Padding = new Padding(9, 9, 9, 9);
+            btnShift.Padding = new Padding(9);
             btnShift.Size = new Size(140, 125);
             btnShift.TabIndex = 12;
             btnShift.Text = "Kelola\r\nShift";
@@ -169,7 +169,7 @@
             btnInventaris.ForeColor = Color.FromArgb(44, 62, 80);
             btnInventaris.Location = new Point(449, 148);
             btnInventaris.Name = "btnInventaris";
-            btnInventaris.Padding = new Padding(9, 9, 9, 9);
+            btnInventaris.Padding = new Padding(9);
             btnInventaris.Size = new Size(140, 125);
             btnInventaris.TabIndex = 10;
             btnInventaris.Text = "Kelola\r\nStok barang";
@@ -262,12 +262,13 @@
             btnCustomer.ForeColor = Color.FromArgb(44, 62, 80);
             btnCustomer.Location = new Point(157, 148);
             btnCustomer.Name = "btnCustomer";
-            btnCustomer.Padding = new Padding(9, 9, 9, 9);
+            btnCustomer.Padding = new Padding(9);
             btnCustomer.Size = new Size(140, 125);
             btnCustomer.TabIndex = 5;
             btnCustomer.Text = "Kelola\r\nCustomer";
             btnCustomer.TextAlign = ContentAlignment.BottomCenter;
             btnCustomer.UseVisualStyleBackColor = false;
+            btnCustomer.Click += btnCustomer_Click;
             // 
             // btnKaryawan
             // 
@@ -277,12 +278,13 @@
             btnKaryawan.ForeColor = Color.FromArgb(44, 62, 80);
             btnKaryawan.Location = new Point(11, 148);
             btnKaryawan.Name = "btnKaryawan";
-            btnKaryawan.Padding = new Padding(9, 9, 9, 9);
+            btnKaryawan.Padding = new Padding(9);
             btnKaryawan.Size = new Size(140, 125);
             btnKaryawan.TabIndex = 4;
             btnKaryawan.Text = "Kelola\r\nKaryawan";
             btnKaryawan.TextAlign = ContentAlignment.BottomCenter;
             btnKaryawan.UseVisualStyleBackColor = false;
+            btnKaryawan.Click += btnKaryawan_Click_1;
             // 
             // btnKunjungan
             // 
@@ -292,12 +294,13 @@
             btnKunjungan.ForeColor = Color.FromArgb(44, 62, 80);
             btnKunjungan.Location = new Point(303, 148);
             btnKunjungan.Name = "btnKunjungan";
-            btnKunjungan.Padding = new Padding(9, 9, 9, 9);
+            btnKunjungan.Padding = new Padding(9);
             btnKunjungan.Size = new Size(140, 125);
             btnKunjungan.TabIndex = 3;
             btnKunjungan.Text = "Riwayat\r\nKunjungan";
             btnKunjungan.TextAlign = ContentAlignment.BottomCenter;
             btnKunjungan.UseVisualStyleBackColor = false;
+            btnKunjungan.Click += btnKunjungan_Click;
             // 
             // btnPembayaran
             // 
@@ -313,6 +316,7 @@
             btnPembayaran.Text = "Pembayaran\r\n      \r\n";
             btnPembayaran.TextAlign = ContentAlignment.BottomCenter;
             btnPembayaran.UseVisualStyleBackColor = false;
+            btnPembayaran.Click += btnPembayaran_Click;
             // 
             // btnReservasi
             // 
@@ -324,12 +328,13 @@
             btnReservasi.ImageAlign = ContentAlignment.TopCenter;
             btnReservasi.Location = new Point(157, 17);
             btnReservasi.Name = "btnReservasi";
-            btnReservasi.Padding = new Padding(9, 9, 9, 9);
+            btnReservasi.Padding = new Padding(9);
             btnReservasi.Size = new Size(140, 125);
             btnReservasi.TabIndex = 1;
             btnReservasi.Text = "Kelola\r\nReservasi";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnReservasi.UseVisualStyleBackColor = false;
+            btnReservasi.Click += btnReservasi_Click;
             // 
             // btnLayanan
             // 
@@ -340,7 +345,7 @@
             btnLayanan.ImageAlign = ContentAlignment.TopCenter;
             btnLayanan.Location = new Point(11, 17);
             btnLayanan.Name = "btnLayanan";
-            btnLayanan.Padding = new Padding(9, 9, 9, 9);
+            btnLayanan.Padding = new Padding(9);
             btnLayanan.Size = new Size(140, 125);
             btnLayanan.TabIndex = 0;
             btnLayanan.Text = "Kelola\r\nLayanan";

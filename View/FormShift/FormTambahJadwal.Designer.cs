@@ -44,7 +44,7 @@
             lblAddJadwal.ForeColor = Color.White;
             lblAddJadwal.Location = new Point(320, 58);
             lblAddJadwal.Name = "lblAddJadwal";
-            lblAddJadwal.Size = new Size(293, 36);
+            lblAddJadwal.Size = new Size(236, 29);
             lblAddJadwal.TabIndex = 0;
             lblAddJadwal.Text = "Tambah Jadwal Shift";
             lblAddJadwal.Click += lblAddJadwal_Click;
@@ -113,7 +113,7 @@
             // 
             // FormTambahJadwal
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
             ClientSize = new Size(960, 518);
