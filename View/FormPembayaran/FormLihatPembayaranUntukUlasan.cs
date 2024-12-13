@@ -30,9 +30,17 @@ namespace PBOBarberMate.View.FormPembayaran
         {
             try
             {
-                DataTable dataPembayaran = PembayaranContext.getDataPembayaran(UserSession.idSession);
-                dgvDataPembayaran.DataSource = dataPembayaran;
-
+                if (UserSession.role == AkunRole.Customer)
+                {
+                    DataTable dataPembayaran = PembayaranContext.getDataPembayaran(UserSession.idSession);
+                    dgvDataPembayaran.DataSource = dataPembayaran;
+                }
+                else
+                {
+                    DataTable dataPembayaran = PembayaranContext.getDataPembayaran();
+                    dgvDataPembayaran.DataSource = dataPembayaran;
+                }
+                
                 // membuat object tombol ulas
                 if (!dgvDataPembayaran.Columns.Contains("Ulas"))
                 {
@@ -63,10 +71,16 @@ namespace PBOBarberMate.View.FormPembayaran
                 SetHeaderText(dgvDataPembayaran, "harga", "Harga");
                 SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
                 SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
+                SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
+                SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
 
-                if (dgvDataPembayaran.Columns.Contains("id_akun"))
+                if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
                 {
                     dgvDataPembayaran.Columns["id_akun"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
+                {
+                    dgvDataPembayaran.Columns["nama_akun"].Visible = false;
                 }
                 if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
                 {
@@ -75,6 +89,10 @@ namespace PBOBarberMate.View.FormPembayaran
                 if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
                 {
                     dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role == AkunRole.Admin)
+                {
+                    dgvDataPembayaran.Columns["Ulas"].Visible = false;
                 }
 
             }

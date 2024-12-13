@@ -298,6 +298,7 @@
             btnKunjungan.Text = "Riwayat\r\nKunjungan";
             btnKunjungan.TextAlign = ContentAlignment.BottomCenter;
             btnKunjungan.UseVisualStyleBackColor = false;
+            btnKunjungan.Click += btnKunjungan_Click;
             // 
             // btnPembayaran
             // 
