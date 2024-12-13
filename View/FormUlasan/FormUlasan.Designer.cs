@@ -59,7 +59,6 @@
             // 
             // bintang1
             // 
-            bintang1.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang1.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang1.Location = new Point(12, 24);
             bintang1.Margin = new Padding(2);

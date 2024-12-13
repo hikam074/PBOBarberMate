@@ -12,6 +12,7 @@ using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormReservasi;
+using PBOBarberMate.View.FormUlasan;
 
 
 namespace PBOBarberMate.View.FormPembayaran
@@ -30,9 +31,17 @@ namespace PBOBarberMate.View.FormPembayaran
         {
             try
             {
-                DataTable dataPembayaran = PembayaranContext.getDataPembayaran(UserSession.idSession);
-                dgvDataPembayaran.DataSource = dataPembayaran;
-
+                if (UserSession.role == AkunRole.Customer)
+                {
+                    DataTable dataPembayaran = PembayaranContext.getDataPembayaran(UserSession.idSession);
+                    dgvDataPembayaran.DataSource = dataPembayaran;
+                }
+                else
+                {
+                    DataTable dataPembayaran = PembayaranContext.getDataPembayaran();
+                    dgvDataPembayaran.DataSource = dataPembayaran;
+                }
+                
                 // membuat object tombol ulas
                 if (!dgvDataPembayaran.Columns.Contains("Ulas"))
                 {
@@ -63,10 +72,16 @@ namespace PBOBarberMate.View.FormPembayaran
                 SetHeaderText(dgvDataPembayaran, "harga", "Harga");
                 SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
                 SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
+                SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
+                SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
 
-                if (dgvDataPembayaran.Columns.Contains("id_akun"))
+                if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
                 {
                     dgvDataPembayaran.Columns["id_akun"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
+                {
+                    dgvDataPembayaran.Columns["nama_akun"].Visible = false;
                 }
                 if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
                 {
@@ -75,6 +90,10 @@ namespace PBOBarberMate.View.FormPembayaran
                 if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
                 {
                     dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role == AkunRole.Admin)
+                {
+                    dgvDataPembayaran.Columns["Ulas"].Visible = false;
                 }
 
             }
@@ -112,10 +131,27 @@ namespace PBOBarberMate.View.FormPembayaran
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            // kembali ke homepage
-            FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-            formHomepageCustomer.Show();
-            this.Hide();
+            // menampilkan form homepage admin bila logged sebagai admin
+            if (UserSession.role == AkunRole.Admin)
+            {
+                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+                formHomepageAdmin.Show();
+                this.Hide();
+            }
+            // menampilkan form homepage karyawan bila logged sebagai karyawan
+            else if (UserSession.role == AkunRole.Karyawan)
+            {
+                FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
+                formHomepageKaryawan.Show();
+                this.Hide();
+            }
+            // menampilkan form homepage customer bila logged sebagai customer
+            else if (UserSession.role == AkunRole.Customer)
+            {
+                FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+                formHomepageCustomer.Show();
+                this.Hide();
+            }
         }
     }
 }

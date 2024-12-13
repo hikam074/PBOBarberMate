@@ -66,7 +66,6 @@
             // 
             // lblTitle
             // 
-            lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(44, 62, 80);
             lblTitle.Location = new Point(230, 30);
@@ -104,7 +103,6 @@
             Load += FormLihatReservasi_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDataReservasi).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
