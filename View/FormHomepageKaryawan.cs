@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Drawing;
 using Npgsql;
 
 using PBOBarberMate.App.Context;
@@ -21,9 +22,34 @@ namespace PBOBarberMate.View
         public FormHomepageKaryawan()
         {
             InitializeComponent();
-            lblWelcome.Text = UserSession.nama;
+            // loading data-data latest di form homepage karyawan
+            loadFormKaryawan();
             // menangkap tiap klik event di form
             this.Click += new EventHandler(FormHomepageKaryawan_Click);
+        }
+
+
+        public void loadFormKaryawan()
+        {
+            lblWelcome.Text = UserSession.nama;
+            lblStatusShiftToday.Text = ShiftContext.getShiftByIDToday(UserSession.idSession);
+
+            string waktuPresensi = PresensiContext.isPresensiTodayExist(UserSession.idSession);
+            if (waktuPresensi == null)
+            {
+                waktuPresensi = "-";
+                btnLakukanPresensi.Enabled = true;
+            }
+            else
+            {
+                //btnLakukanPresensi.Enabled = false;
+            }
+            lblStatusPresensiToday.Text = waktuPresensi;
+        }
+
+        private void FormHomepageKaryawan_Load(object sender, EventArgs e)
+        {
+            loadFormKaryawan();
         }
 
         private void FormHomepageKaryawan_Click(object sender, EventArgs e)
@@ -145,11 +171,6 @@ namespace PBOBarberMate.View
             this.Hide();
         }
 
-        private void btnPresensi_Click(object sender, EventArgs e)
-        {
-           
-        }
-
         private void btnReservasi_Click(object sender, EventArgs e)
         {
             int idAkun = UserSession.idSession;
@@ -158,14 +179,40 @@ namespace PBOBarberMate.View
             this.Hide();
         }
 
-        private void FormHomepageKaryawan_Load(object sender, EventArgs e)
+        private void btnLakukanPresensi_Click(object sender, EventArgs e)
         {
 
-        }
+            // apabila presensi sudah ada
+            if (PresensiContext.isPresensiTodayExist(UserSession.idSession) != null)
+            {
+                // maka kembali
+                MessageBox.Show($"Data presensi SUDAH ada!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                loadFormKaryawan();
+                return;
+            }
 
-        private void pictbxReservasiSekarang_Click(object sender, EventArgs e)
-        {
+            // Sedangkan kalau belum maka tambahkan presensi
+            try
+            {
+                M_Presensi presensi = new M_Presensi
+                {
+                    id_akun = UserSession.idSession,
+                    id_shift = PresensiContext.getJadwalShiftTodayThisID(UserSession.idSession),
+                    waktu_presensi = DateTime.Now
+                };
+                
+                PresensiContext.AddPresensi(presensi);
 
+                MessageBox.Show($"Presensi BERHASIL ditambahkan!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"GAGAL melakukan presensi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                loadFormKaryawan();
+            }
         }
     }
 }

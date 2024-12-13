@@ -103,6 +103,37 @@ namespace PBOBarberMate.App.Context
             }
         }
 
+        public static string getShiftByIDToday(int id)
+        {
+            string query = "SELECT * FROM shift_karyawan WHERE id_akun = @id AND id_hari = EXTRACT(DOW FROM CURRENT_DATE)";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id", id)
+            };
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
+                {
+                    DataTable dataShift = new DataTable();
+                    dataShift.Load(reader);
+                    if (dataShift  == null)
+                    {
+                        return "Tidak Ada";
+                    }
+                    else
+                    {
+                        return "Ada";
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi Kesalahan [PBOBarberMate.App.Context.ShiftContext.getShiftByIDToday(): {ex}");
+                return "[Error]";
+            }
+        }
+
         // Menambahkan data shift_karyawan baru
         public static void AddShift(M_Shift shiftBaru)
         {

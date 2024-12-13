@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dgvDataReservasi = new DataGridView();
             lblTitle = new Label();
             btnKembali = new Button();
@@ -36,18 +38,38 @@
             // 
             // dgvDataReservasi
             // 
+            dgvDataReservasi.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift Condensed", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new Padding(1);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDataReservasi.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvDataReservasi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDataReservasi.Location = new Point(40, 104);
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(1);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvDataReservasi.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvDataReservasi.Location = new Point(95, 120);
             dgvDataReservasi.Name = "dgvDataReservasi";
-            dgvDataReservasi.Size = new Size(720, 310);
+            dgvDataReservasi.Size = new Size(749, 310);
             dgvDataReservasi.TabIndex = 1;
             dgvDataReservasi.CellContentClick += dgvDataReservasi_CellContentClick;
             // 
             // lblTitle
             // 
+            lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTitle.Location = new Point(170, 15);
+            lblTitle.Location = new Point(230, 30);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(485, 58);
             lblTitle.TabIndex = 8;
@@ -56,10 +78,10 @@
             // 
             // btnKembali
             // 
-            btnKembali.BackColor = SystemColors.Control;
+            btnKembali.BackColor = Color.White;
             btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
-            btnKembali.Location = new Point(12, 12);
+            btnKembali.Location = new Point(15, 15);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(75, 39);
             btnKembali.TabIndex = 9;
@@ -71,7 +93,8 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(944, 501);
             Controls.Add(btnKembali);
             Controls.Add(lblTitle);
             Controls.Add(dgvDataReservasi);
@@ -81,6 +104,7 @@
             Load += FormLihatReservasi_Load;
             ((System.ComponentModel.ISupportInitialize)dgvDataReservasi).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHomepageCustomer));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             lblProfilEmail = new Label();
             lblProfilRole = new Label();
             lblProfilNama = new Label();
@@ -109,7 +111,7 @@
             gbxShowProfile.Controls.Add(lblProfilNama);
             gbxShowProfile.Controls.Add(btnHomepageLogout);
             gbxShowProfile.ForeColor = Color.FromArgb(44, 62, 80);
-            gbxShowProfile.Location = new Point(879, 83);
+            gbxShowProfile.Location = new Point(755, 65);
             gbxShowProfile.Margin = new Padding(0);
             gbxShowProfile.Name = "gbxShowProfile";
             gbxShowProfile.Padding = new Padding(4, 5, 4, 5);
@@ -156,9 +158,8 @@
             // 
             lblHomepageGreet.AutoSize = true;
             lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHomepageGreet.ForeColor = Color.FromArgb(44, 62, 80);
-            lblHomepageGreet.Location = new Point(36, 33);
-            lblHomepageGreet.Margin = new Padding(4, 0, 4, 0);
+            lblHomepageGreet.ForeColor = Color.Black;
+            lblHomepageGreet.Location = new Point(30, 31);
             lblHomepageGreet.Name = "lblHomepageGreet";
             lblHomepageGreet.Size = new Size(50, 35);
             lblHomepageGreet.TabIndex = 10;
@@ -170,8 +171,7 @@
             btnProfil.BackColor = Color.FromArgb(44, 62, 80);
             btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
             btnProfil.ForeColor = Color.White;
-            btnProfil.Location = new Point(1043, 17);
-            btnProfil.Margin = new Padding(4, 5, 4, 5);
+            btnProfil.Location = new Point(870, 25);
             btnProfil.Name = "btnProfil";
             btnProfil.Size = new Size(79, 60);
             btnProfil.TabIndex = 9;
@@ -243,8 +243,7 @@
             gbxMenu.Controls.Add(pictbxLayanan);
             gbxMenu.Controls.Add(btnReservasi);
             gbxMenu.Controls.Add(btnLayanan);
-            gbxMenu.Location = new Point(157, 200);
-            gbxMenu.Margin = new Padding(4, 5, 4, 5);
+            gbxMenu.Location = new Point(182, 145);
             gbxMenu.Name = "gbxMenu";
             gbxMenu.Padding = new Padding(4, 5, 4, 5);
             gbxMenu.Size = new Size(850, 245);
@@ -267,7 +266,7 @@
             // 
             btnUlasan.Anchor = AnchorStyles.Top;
             btnUlasan.BackColor = Color.White;
-            btnUlasan.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnUlasan.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUlasan.ForeColor = Color.FromArgb(44, 62, 80);
             btnUlasan.Location = new Point(637, 25);
             btnUlasan.Margin = new Padding(4, 5, 4, 5);
@@ -275,7 +274,7 @@
             btnUlasan.Padding = new Padding(13, 15, 13, 15);
             btnUlasan.Size = new Size(200, 208);
             btnUlasan.TabIndex = 11;
-            btnUlasan.Text = "Beri\r\nPenilaian";
+            btnUlasan.Text = "Kunjungan Anda\r\n&& Beri Penilaian";
             btnUlasan.TextAlign = ContentAlignment.BottomCenter;
             btnUlasan.UseVisualStyleBackColor = false;
             btnUlasan.Click += btnUlasan_Click;
@@ -310,7 +309,7 @@
             btnLihatReservasi.Anchor = AnchorStyles.Top;
             btnLihatReservasi.BackColor = Color.White;
             btnLihatReservasi.BackgroundImageLayout = ImageLayout.Zoom;
-            btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLihatReservasi.ForeColor = Color.FromArgb(44, 62, 80);
             btnLihatReservasi.ImageAlign = ContentAlignment.TopCenter;
             btnLihatReservasi.Location = new Point(300, 15);
@@ -318,7 +317,7 @@
             btnLihatReservasi.Padding = new Padding(9);
             btnLihatReservasi.Size = new Size(140, 125);
             btnLihatReservasi.TabIndex = 8;
-            btnLihatReservasi.Text = "Reservasi Anda";
+            btnLihatReservasi.Text = "Jadwal\r\nReservasi Anda";
             btnLihatReservasi.TextAlign = ContentAlignment.BottomCenter;
             btnLihatReservasi.UseVisualStyleBackColor = false;
             btnLihatReservasi.Click += btnLihatReservasi_Click;
@@ -327,9 +326,8 @@
             // 
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
-            lblWelcome.Location = new Point(26, 67);
-            lblWelcome.Margin = new Padding(4, 0, 4, 0);
+            lblWelcome.ForeColor = Color.Black;
+            lblWelcome.Location = new Point(23, 51);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(269, 87);
             lblWelcome.TabIndex = 7;
@@ -339,13 +337,29 @@
             // 
             dgvJadwalMingguIni.Anchor = AnchorStyles.Top;
             dgvJadwalMingguIni.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(44, 62, 80);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift Condensed", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Padding = new Padding(1);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvJadwalMingguIni.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvJadwalMingguIni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift Condensed", 11.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new Padding(1);
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvJadwalMingguIni.DefaultCellStyle = dataGridViewCellStyle2;
             dgvJadwalMingguIni.GridColor = Color.FromArgb(44, 62, 80);
-            dgvJadwalMingguIni.Location = new Point(160, 533);
-            dgvJadwalMingguIni.Margin = new Padding(4, 5, 4, 5);
+            dgvJadwalMingguIni.Location = new Point(184, 330);
             dgvJadwalMingguIni.Name = "dgvJadwalMingguIni";
-            dgvJadwalMingguIni.RowHeadersWidth = 62;
-            dgvJadwalMingguIni.Size = new Size(850, 162);
+            dgvJadwalMingguIni.Size = new Size(595, 103);
             dgvJadwalMingguIni.TabIndex = 12;
             // 
             // lblJadwalMingguIni
@@ -354,8 +368,7 @@
             lblJadwalMingguIni.AutoSize = true;
             lblJadwalMingguIni.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblJadwalMingguIni.ForeColor = Color.FromArgb(44, 62, 80);
-            lblJadwalMingguIni.Location = new Point(160, 490);
-            lblJadwalMingguIni.Margin = new Padding(4, 0, 4, 0);
+            lblJadwalMingguIni.Location = new Point(184, 300);
             lblJadwalMingguIni.Name = "lblJadwalMingguIni";
             lblJadwalMingguIni.Size = new Size(261, 35);
             lblJadwalMingguIni.TabIndex = 13;
@@ -365,8 +378,7 @@
             // 
             lklbMore.Anchor = AnchorStyles.Top;
             lklbMore.AutoSize = true;
-            lklbMore.Location = new Point(850, 700);
-            lklbMore.Margin = new Padding(4, 0, 4, 0);
+            lklbMore.Location = new Point(667, 436);
             lklbMore.Name = "lklbMore";
             lklbMore.Size = new Size(166, 25);
             lklbMore.TabIndex = 14;
@@ -379,7 +391,7 @@
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1143, 750);
+            ClientSize = new Size(944, 501);
             Controls.Add(lklbMore);
             Controls.Add(lblJadwalMingguIni);
             Controls.Add(dgvJadwalMingguIni);
