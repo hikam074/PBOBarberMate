@@ -219,8 +219,8 @@ namespace PBOBarberMate.View
         }
         private void btnUlasan_Click(object sender, EventArgs e)
         {
-            FormUlasan2 formUlasan2 = new FormUlasan2();
-            formUlasan2.Show();
+            FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
+            formTambahUlasan.Show();
             this.Hide();
         }
     }
