@@ -81,6 +81,19 @@ namespace PBOBarberMate.View.FormPresensi
                     };
                     dgvPresensi.Columns.Add(buttonColumn);
                 }
+                dgvPresensi.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // membuat size kolom menjadi rata danmemenuhi tabel
+
+                // membuat tabel responsif berdasarkan isi data
+                foreach (DataGridViewColumn column in dgvPresensi.Columns)
+                {
+                    column.Width = dgvPresensi.Width / dgvPresensi.Columns.Count;
+                }
+                dgvPresensi.AllowUserToAddRows = false;
+                dgvPresensi.AllowUserToResizeColumns = false;
+                dgvPresensi.AllowUserToResizeRows = false;
+                dgvPresensi.RowHeadersVisible = false;
+                dgvPresensi.ClearSelection();
             }
             catch (Exception ex)
             {

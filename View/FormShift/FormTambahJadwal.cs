@@ -119,7 +119,10 @@ namespace PBOBarberMate.View.FormShift
 
                 // Bersihkan input dan tutup form
                 this.DialogResult = DialogResult.OK;
+
+                FormShift formShift = new FormShift();
                 this.Hide();
+                formShift.Show();
             }
 
             catch (Exception ex)

@@ -139,8 +139,12 @@ namespace PBOBarberMate.View.FormReservasi
                 dgvDataReservasi.Columns["tanggal"].Width = 68;
                 dgvDataReservasi.Columns["waktu"].Width = 52;
                 dgvDataReservasi.Columns["harga"].Width = 68;
+                if (dgvDataReservasi.Columns.Contains("nama_status_reservasi"))
+                {
+                    dgvDataReservasi.Columns["nama_status_reservasi"].Width = 84;
+                }
                 dgvDataReservasi.Columns["Update"].Width = 48;
-                dgvDataReservasi.Columns["Delete"].Width = 48;
+                dgvDataReservasi.Columns["Delete"].Width = 72;
                 // behaviour table
                 dgvDataReservasi.AllowUserToAddRows = false;
                 dgvDataReservasi.RowHeadersVisible = false;
