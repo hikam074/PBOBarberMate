@@ -74,5 +74,31 @@ namespace PBOBarberMate.App.Context
             };
             commandExecutor(query, parameters);
         }
+        public static string getNamaAkun(int id_pembayaran)
+        {
+            string query = "SELECT a.nama_akun " +
+                           "FROM akun a " +
+                           "JOIN reservasi r ON r.id_akun = a.id_akun " +
+                           "JOIN pembayaran p ON p.id_reservasi = r.id_reservasi " +
+                           "JOIN ulasan u ON u.id_pembayaran = p.id_pembayaran ";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_pembayaran", id_pembayaran)  // Menggunakan id_pembayaran
+            };
+
+            // Menjalankan query dan membaca hasilnya
+            using (NpgsqlDataReader reader = queryExecutor(query, parameters))
+            {
+                if (reader.Read())  // Mengecek jika ada data yang dikembalikan
+                {
+                    return reader["nama_akun"].ToString();  // Mengembalikan nama akun
+                }
+                else
+                {
+                    return "Nama Akun Tidak Ditemukan";  // Jika tidak ditemukan
+                }
+            }
+        }
     }
 }
