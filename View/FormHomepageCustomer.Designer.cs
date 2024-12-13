@@ -67,9 +67,10 @@
             lblProfilEmail.BackColor = Color.Transparent;
             lblProfilEmail.Font = new Font("Bahnschrift Light Condensed", 9F);
             lblProfilEmail.ForeColor = Color.White;
-            lblProfilEmail.Location = new Point(6, 80);
+            lblProfilEmail.Location = new Point(9, 133);
+            lblProfilEmail.Margin = new Padding(4, 0, 4, 0);
             lblProfilEmail.Name = "lblProfilEmail";
-            lblProfilEmail.Size = new Size(158, 23);
+            lblProfilEmail.Size = new Size(226, 38);
             lblProfilEmail.TabIndex = 3;
             lblProfilEmail.Text = "isi_email";
             lblProfilEmail.TextAlign = ContentAlignment.TopRight;
@@ -79,9 +80,10 @@
             lblProfilRole.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblProfilRole.Font = new Font("Bahnschrift SemiLight Condensed", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblProfilRole.ForeColor = Color.White;
-            lblProfilRole.Location = new Point(6, 15);
+            lblProfilRole.Location = new Point(9, 25);
+            lblProfilRole.Margin = new Padding(4, 0, 4, 0);
             lblProfilRole.Name = "lblProfilRole";
-            lblProfilRole.Size = new Size(158, 21);
+            lblProfilRole.Size = new Size(226, 35);
             lblProfilRole.TabIndex = 2;
             lblProfilRole.Text = "nama_role";
             lblProfilRole.TextAlign = ContentAlignment.TopRight;
@@ -91,9 +93,10 @@
             lblProfilNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblProfilNama.Font = new Font("Bahnschrift Condensed", 11.25F);
             lblProfilNama.ForeColor = Color.White;
-            lblProfilNama.Location = new Point(6, 35);
+            lblProfilNama.Location = new Point(9, 58);
+            lblProfilNama.Margin = new Padding(4, 0, 4, 0);
             lblProfilNama.Name = "lblProfilNama";
-            lblProfilNama.Size = new Size(158, 42);
+            lblProfilNama.Size = new Size(226, 70);
             lblProfilNama.TabIndex = 0;
             lblProfilNama.Text = "Nama_Pengguna";
             lblProfilNama.TextAlign = ContentAlignment.TopRight;
@@ -111,7 +114,8 @@
             gbxShowProfile.Location = new Point(755, 65);
             gbxShowProfile.Margin = new Padding(0);
             gbxShowProfile.Name = "gbxShowProfile";
-            gbxShowProfile.Size = new Size(170, 144);
+            gbxShowProfile.Padding = new Padding(4, 5, 4, 5);
+            gbxShowProfile.Size = new Size(243, 240);
             gbxShowProfile.TabIndex = 11;
             gbxShowProfile.TabStop = false;
             gbxShowProfile.Visible = false;
@@ -122,9 +126,10 @@
             btnUbahProfil.BackColor = SystemColors.Control;
             btnUbahProfil.Font = new Font("Bahnschrift Light Condensed", 9F);
             btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
-            btnUbahProfil.Location = new Point(75, 108);
+            btnUbahProfil.Location = new Point(107, 180);
+            btnUbahProfil.Margin = new Padding(4, 5, 4, 5);
             btnUbahProfil.Name = "btnUbahProfil";
-            btnUbahProfil.Size = new Size(39, 30);
+            btnUbahProfil.Size = new Size(56, 50);
             btnUbahProfil.TabIndex = 1;
             btnUbahProfil.Text = "Ubah";
             btnUbahProfil.UseVisualStyleBackColor = false;
@@ -138,9 +143,10 @@
             btnHomepageLogout.BackColor = SystemColors.Control;
             btnHomepageLogout.Font = new Font("Bahnschrift Light Condensed", 9F);
             btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
-            btnHomepageLogout.Location = new Point(120, 108);
+            btnHomepageLogout.Location = new Point(171, 180);
+            btnHomepageLogout.Margin = new Padding(4, 5, 4, 5);
             btnHomepageLogout.Name = "btnHomepageLogout";
-            btnHomepageLogout.Size = new Size(43, 30);
+            btnHomepageLogout.Size = new Size(61, 50);
             btnHomepageLogout.TabIndex = 1;
             btnHomepageLogout.Text = "Logout";
             btnHomepageLogout.UseVisualStyleBackColor = false;
@@ -155,7 +161,7 @@
             lblHomepageGreet.ForeColor = Color.Black;
             lblHomepageGreet.Location = new Point(30, 31);
             lblHomepageGreet.Name = "lblHomepageGreet";
-            lblHomepageGreet.Size = new Size(33, 23);
+            lblHomepageGreet.Size = new Size(50, 35);
             lblHomepageGreet.TabIndex = 10;
             lblHomepageGreet.Text = "Hai,";
             // 
@@ -167,7 +173,7 @@
             btnProfil.ForeColor = Color.White;
             btnProfil.Location = new Point(870, 25);
             btnProfil.Name = "btnProfil";
-            btnProfil.Size = new Size(55, 36);
+            btnProfil.Size = new Size(79, 60);
             btnProfil.TabIndex = 9;
             btnProfil.Text = "Profil";
             btnProfil.UseVisualStyleBackColor = false;
@@ -180,9 +186,10 @@
             pictbxLayanan.Anchor = AnchorStyles.Top;
             pictbxLayanan.BackColor = Color.Transparent;
             pictbxLayanan.Image = (Image)resources.GetObject("pictbxLayanan.Image");
-            pictbxLayanan.Location = new Point(174, 29);
+            pictbxLayanan.Location = new Point(249, 48);
+            pictbxLayanan.Margin = new Padding(4, 5, 4, 5);
             pictbxLayanan.Name = "pictbxLayanan";
-            pictbxLayanan.Size = new Size(102, 43);
+            pictbxLayanan.Size = new Size(146, 72);
             pictbxLayanan.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxLayanan.TabIndex = 7;
             pictbxLayanan.TabStop = false;
@@ -195,10 +202,11 @@
             btnReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnReservasi.ForeColor = Color.FromArgb(44, 62, 80);
             btnReservasi.ImageAlign = ContentAlignment.TopCenter;
-            btnReservasi.Location = new Point(8, 15);
+            btnReservasi.Location = new Point(11, 25);
+            btnReservasi.Margin = new Padding(4, 5, 4, 5);
             btnReservasi.Name = "btnReservasi";
-            btnReservasi.Padding = new Padding(9);
-            btnReservasi.Size = new Size(140, 125);
+            btnReservasi.Padding = new Padding(13, 15, 13, 15);
+            btnReservasi.Size = new Size(200, 208);
             btnReservasi.TabIndex = 1;
             btnReservasi.Text = "Reservasi Sekarang!";
             btnReservasi.TextAlign = ContentAlignment.BottomCenter;
@@ -212,10 +220,11 @@
             btnLayanan.Font = new Font("Bahnschrift Condensed", 15.75F);
             btnLayanan.ForeColor = Color.FromArgb(44, 62, 80);
             btnLayanan.ImageAlign = ContentAlignment.TopCenter;
-            btnLayanan.Location = new Point(154, 15);
+            btnLayanan.Location = new Point(220, 25);
+            btnLayanan.Margin = new Padding(4, 5, 4, 5);
             btnLayanan.Name = "btnLayanan";
-            btnLayanan.Padding = new Padding(9);
-            btnLayanan.Size = new Size(140, 125);
+            btnLayanan.Padding = new Padding(13, 15, 13, 15);
+            btnLayanan.Size = new Size(200, 208);
             btnLayanan.TabIndex = 0;
             btnLayanan.Text = "Lihat\r\nLayanan";
             btnLayanan.TextAlign = ContentAlignment.BottomCenter;
@@ -236,7 +245,8 @@
             gbxMenu.Controls.Add(btnLayanan);
             gbxMenu.Location = new Point(182, 145);
             gbxMenu.Name = "gbxMenu";
-            gbxMenu.Size = new Size(595, 147);
+            gbxMenu.Padding = new Padding(4, 5, 4, 5);
+            gbxMenu.Size = new Size(850, 245);
             gbxMenu.TabIndex = 8;
             gbxMenu.TabStop = false;
             // 
@@ -244,9 +254,10 @@
             // 
             pictbxUlasan.Anchor = AnchorStyles.Top;
             pictbxUlasan.Image = (Image)resources.GetObject("pictbxUlasan.Image");
-            pictbxUlasan.Location = new Point(466, 29);
+            pictbxUlasan.Location = new Point(666, 48);
+            pictbxUlasan.Margin = new Padding(4, 5, 4, 5);
             pictbxUlasan.Name = "pictbxUlasan";
-            pictbxUlasan.Size = new Size(100, 43);
+            pictbxUlasan.Size = new Size(143, 72);
             pictbxUlasan.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxUlasan.TabIndex = 12;
             pictbxUlasan.TabStop = false;
@@ -257,10 +268,11 @@
             btnUlasan.BackColor = Color.White;
             btnUlasan.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnUlasan.ForeColor = Color.FromArgb(44, 62, 80);
-            btnUlasan.Location = new Point(446, 15);
+            btnUlasan.Location = new Point(637, 25);
+            btnUlasan.Margin = new Padding(4, 5, 4, 5);
             btnUlasan.Name = "btnUlasan";
-            btnUlasan.Padding = new Padding(9);
-            btnUlasan.Size = new Size(140, 125);
+            btnUlasan.Padding = new Padding(13, 15, 13, 15);
+            btnUlasan.Size = new Size(200, 208);
             btnUlasan.TabIndex = 11;
             btnUlasan.Text = "Kunjungan Anda\r\n&& Beri Penilaian";
             btnUlasan.TextAlign = ContentAlignment.BottomCenter;
@@ -271,9 +283,10 @@
             // 
             pictbxReservasiSekarang.Anchor = AnchorStyles.Top;
             pictbxReservasiSekarang.Image = (Image)resources.GetObject("pictbxReservasiSekarang.Image");
-            pictbxReservasiSekarang.Location = new Point(28, 29);
+            pictbxReservasiSekarang.Location = new Point(40, 48);
+            pictbxReservasiSekarang.Margin = new Padding(4, 5, 4, 5);
             pictbxReservasiSekarang.Name = "pictbxReservasiSekarang";
-            pictbxReservasiSekarang.Size = new Size(100, 43);
+            pictbxReservasiSekarang.Size = new Size(143, 72);
             pictbxReservasiSekarang.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxReservasiSekarang.TabIndex = 10;
             pictbxReservasiSekarang.TabStop = false;
@@ -283,9 +296,10 @@
             pictbxRiwayat.Anchor = AnchorStyles.Top;
             pictbxRiwayat.BackColor = Color.Transparent;
             pictbxRiwayat.Image = (Image)resources.GetObject("pictbxRiwayat.Image");
-            pictbxRiwayat.Location = new Point(320, 29);
+            pictbxRiwayat.Location = new Point(457, 48);
+            pictbxRiwayat.Margin = new Padding(4, 5, 4, 5);
             pictbxRiwayat.Name = "pictbxRiwayat";
-            pictbxRiwayat.Size = new Size(102, 43);
+            pictbxRiwayat.Size = new Size(146, 72);
             pictbxRiwayat.SizeMode = PictureBoxSizeMode.CenterImage;
             pictbxRiwayat.TabIndex = 9;
             pictbxRiwayat.TabStop = false;
@@ -315,7 +329,7 @@
             lblWelcome.ForeColor = Color.Black;
             lblWelcome.Location = new Point(23, 51);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(181, 58);
+            lblWelcome.Size = new Size(269, 87);
             lblWelcome.TabIndex = 7;
             lblWelcome.Text = "Pengguna";
             // 
@@ -356,7 +370,7 @@
             lblJadwalMingguIni.ForeColor = Color.FromArgb(44, 62, 80);
             lblJadwalMingguIni.Location = new Point(184, 300);
             lblJadwalMingguIni.Name = "lblJadwalMingguIni";
-            lblJadwalMingguIni.Size = new Size(173, 23);
+            lblJadwalMingguIni.Size = new Size(261, 35);
             lblJadwalMingguIni.TabIndex = 13;
             lblJadwalMingguIni.Text = "Reservasi terdekat anda :";
             // 
@@ -366,7 +380,7 @@
             lklbMore.AutoSize = true;
             lklbMore.Location = new Point(667, 436);
             lklbMore.Name = "lklbMore";
-            lklbMore.Size = new Size(112, 15);
+            lklbMore.Size = new Size(166, 25);
             lklbMore.TabIndex = 14;
             lklbMore.TabStop = true;
             lklbMore.Text = "Lihat lebih banyak...";
@@ -374,7 +388,7 @@
             // 
             // FormHomepageCustomer
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(944, 501);
@@ -386,6 +400,7 @@
             Controls.Add(btnProfil);
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "FormHomepageCustomer";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Dashboard";
