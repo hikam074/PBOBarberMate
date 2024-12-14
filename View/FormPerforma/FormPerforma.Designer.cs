@@ -48,7 +48,7 @@
             ClientSize = new Size(952, 523);
             Controls.Add(btkembali);
             Name = "FormPerforma";
-            Text = "Form1";
+            Text = "BarberMate";
             Load += FormPerforma_Load;
             ResumeLayout(false);
         }

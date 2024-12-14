@@ -30,7 +30,7 @@ namespace PBOBarberMate.View.FormPerforma
         {
             try
             {
-                DataTable PerformaData = PerformaContext.getUlasanByID();
+                //DataTable PerformaData = PerformaContext.getUlasanByID();
                 //if (PerformaData == null)
                 //{
                 //    MessageBox.Show("Error: Gagal mengambil data performa");
