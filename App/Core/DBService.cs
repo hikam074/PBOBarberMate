@@ -25,7 +25,7 @@ namespace PBOBarberMate.App.Core
         // METHOD buka koneksi ke DB
         public static void openConnection()
         {
-            connection = new NpgsqlConnection($"Host={dbHost};Port={dbPort};Username={dbUsername};Password={dbPassword};Database={dbDatabase};Pooling=true;Max Pool Size=300;Timeout=30");
+            connection = new NpgsqlConnection($"Host={dbHost};Port={dbPort};Username={dbUsername};Password={dbPassword};Database={dbDatabase}");
             connection.Open();
             command = new NpgsqlCommand();
             command.Connection = connection;

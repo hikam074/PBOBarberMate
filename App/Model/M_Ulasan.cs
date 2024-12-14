@@ -13,7 +13,7 @@ namespace PBOBarberMate.App.Model
         public int id_pembayaran { get; set; }
         public int rating { get; set; }
         public string isi_ulasan { get; set; }
-        public DateTime durasi_ulasan { get; set; }
+        public DateTime tanggal_memberi_ulasan { get; set; }
 
     }
 }

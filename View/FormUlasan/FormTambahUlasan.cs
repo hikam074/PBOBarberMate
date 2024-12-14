@@ -15,7 +15,10 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormTambahUlasan : Form
     {
-        public int id_pembayaran;
+        public int id_pembayaran {  get; set; }
+        public int id_layanan { get; set; }
+        public int id_ulasan { get; set; }
+        public bool IseditMode { get; set; }
         public FormTambahUlasan()
         {
             InitializeComponent();
@@ -139,61 +142,60 @@ namespace PBOBarberMate.View.FormUlasan
                 return;
             }
 
-            M_Ulasan ulasan = new M_Ulasan { isi_ulasan = textBox1.Text, id_pembayaran = id_pembayaran };
-            if (bintang1.Visible = true)
+
+            M_Ulasan ulasan = new M_Ulasan 
+            {
+                isi_ulasan = textBox1.Text, 
+                id_pembayaran = id_pembayaran, 
+            };
+            if (bintang1.Visible)
             {
                 ulasan.rating = 1;
             }
-            else if (bintang2.Visible = true)
+            if (bintang2.Visible)
             {
                 ulasan.rating = 2;
             }
-            else if (bintang3.Visible = true)
+            if (bintang3.Visible)
             {
                 ulasan.rating = 3;
             }
-            else if (bintang4.Visible = true)
+            if (bintang4.Visible)
             {
                 ulasan.rating = 4;
             }
-            else if (bintang5.Visible = true)
+            if (bintang5.Visible)
             {
                 ulasan.rating = 5;
             }
 
-            UlasanContext.AddUlasan(ulasan);
-            MessageBox.Show("Ulasan Berhasil Ditambah");
-            ClearFields();
-            this.DialogResult = DialogResult.OK;
-            this.Hide();
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
-        }
+            MessageBox.Show($"Isi Ulasan: {ulasan.isi_ulasan}, Rating: {ulasan.rating}, ID Ulasan: {id_ulasan}");
 
-        //public void PopulateForm(M_Ulasan ulasan)
-        //{
-        //    if (!bintang1.Visible)
-        //    {
-        //        ulasan.rating = 1;
-        //    }
-        //    else if (!bintang2.Visible)
-        //    {
-        //        ulasan.rating = 2;
-        //    }
-        //    else if (!bintang3.Visible)
-        //    {
-        //        ulasan.rating = 3;
-        //    }
-        //    else if (!bintang4.Visible)
-        //    {
-        //        ulasan.rating = 4;
-        //    }
-        //    else if (!bintang5.Visible)
-        //    {
-        //        ulasan.rating = 5;
-        //    }
-        //    textBox1.Text = ulasan.isi_ulasan;
-        //}
+
+            if (IseditMode == true)
+            {
+                ulasan.id_ulasan = id_ulasan;
+                UlasanContext.UpdateUlasan(ulasan);
+                MessageBox.Show("Ulasan Berhasil Diperbarui");
+                FormLayanan formLayanan = new FormLayanan();
+                formLayanan.Show();
+                this.Hide();
+            }
+            else
+            {
+                //layanan.id_layanan = LayananId;
+                UlasanContext.AddUlasan(ulasan);
+                MessageBox.Show("Ulasan Berhasil Ditambah");
+                this.DialogResult = DialogResult.OK;
+                this.Hide();
+                FormLayanan formLayanan = new FormLayanan();
+                formLayanan.Show();
+                this.Hide();
+            }
+
+            ClearFields();
+
+        }
 
         private bool ValidateInput()
         {
@@ -202,6 +204,21 @@ namespace PBOBarberMate.View.FormUlasan
                 return false;
             }
             return true;
+        }
+        public void PopulateForm(M_Ulasan ulasan)
+        {
+            // Isi ulasan ke textbox
+            textBox1.Text = ulasan.isi_ulasan;
+
+            // Tampilkan bintang sesuai rating ulasan
+            bintang1.Visible = ulasan.rating >= 1;
+            bintang2.Visible = ulasan.rating >= 2;
+            bintang3.Visible = ulasan.rating >= 3;
+            bintang4.Visible = ulasan.rating >= 4;
+            bintang5.Visible = ulasan.rating >= 5;
+
+            // Pastikan id_pembayaran terkait diatur
+            id_pembayaran = ulasan.id_pembayaran;
         }
 
         private void ClearFields()
@@ -216,7 +233,19 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void FormTambahUlasan_Load(object sender, EventArgs e)
         {
-
+            if (IseditMode)
+            {
+                button1.Text = "Perbarui Komentar"; // Ubah teks tombol menjadi "Perbarui Komentar"
+                M_Ulasan ulasan = UlasanContext.getUlasanByID(id_ulasan); // Ambil data ulasan berdasarkan ID
+                if (ulasan != null)
+                {
+                    PopulateForm(ulasan); // Isi form dengan data ulasan
+                }
+            }
+            else
+            {
+                button1.Text = "Tambahkan Komentar"; // Teks tombol untuk mode tambah
+            }
         }
     }
 }

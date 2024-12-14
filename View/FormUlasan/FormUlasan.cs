@@ -15,16 +15,15 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormUlasan : Form
     {
-        public int id_pembayaran;
-        public int id_layanan;
-        public int id_akun;
+        public int id_pembayaran { get; set; }
+        public int id_layanan { get; set; }
+        public int id_akun { get; set; }
         public FormUlasan()
         {
-            InitializeComponent();
-            DisplayUlasan();
+            InitializeComponent();;
         }
 
-        private void DisplayUlasan()
+        public void DisplayUlasan()
         {
             // Ambil data ulasan dari database
             DataTable ulasanData = UlasanContext.All(id_layanan);
@@ -49,11 +48,13 @@ namespace PBOBarberMate.View.FormUlasan
                 };
 
                 // Mendapatkan informasi ulasan
-                int idPembayaran = Convert.ToInt32(row["id_pembayaran"]);  // Mengambil id_pembayaran dari ulasan
+                int idPembayaran = Convert.ToInt32(row["id_pembayaran"]);
+                int idUlasan = Convert.ToInt32(row["id_ulasan"]);  // Mengambil id_pembayaran dari ulasan
                 string namaAkun = row["nama_akun"].ToString(); ;  // Memanggil fungsi getNamaAkun untuk mendapatkan nama akun
                 string isiUlasan = row["isi_ulasan"].ToString();
                 int rating = Convert.ToInt32(row["rating"]);
                 DateTime tanggal = Convert.ToDateTime(row["tanggal_memberi_ulasan"]);
+                int idAkunPembuatUlasan = Convert.ToInt32(row["id_akun"]);
 
                 // Label untuk nama akun
                 Label labelNamaAkun = new Label
@@ -109,17 +110,6 @@ namespace PBOBarberMate.View.FormUlasan
 
                 DisplayRatingStars(ratingPanel, rating);
 
-                int? idAkunPembuatUlasan = UlasanContext.getIDAkunSesuaiUlasan(UserSession.idSession);
-
-                if (idAkunPembuatUlasan.HasValue)
-                {
-                    Console.WriteLine($"ID Akun: {idAkunPembuatUlasan.Value}");
-                }
-                else
-                {
-                    Console.WriteLine("ID Akun Tidak Ditemukan");
-                }
-
                 // Tombol untuk Update dan Delete (hanya jika ulasan berumur kurang dari 30 hari)
                 if (idAkunPembuatUlasan == UserSession.idSession)
                 {
@@ -137,7 +127,7 @@ namespace PBOBarberMate.View.FormUlasan
                         ulasanPanel.Controls.Add(BtnUpdate);
                         BtnUpdate.Click += (sender, e) =>
                         {
-                            FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
+                            FormTambahUlasan formTambahUlasan = new FormTambahUlasan { IseditMode = true, id_ulasan = idUlasan };
                             formTambahUlasan.ShowDialog();
                             this.Hide();
                         };
@@ -152,9 +142,33 @@ namespace PBOBarberMate.View.FormUlasan
                             FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
                         };
                         ulasanPanel.Controls.Add(BtnDelete);
-                        BtnDelete.Click += (sender, e) => UlasanContext.DeleteUlasan(Convert.ToInt32(row["id_ulasan"]));
-                        panelUlasanContainer.Controls.Remove(ulasanPanel);
-                        DisplayUlasan();
+                        BtnDelete.Click += (sender, e) =>
+                        {
+                            int idUlasan = Convert.ToInt32(row["id_ulasan"]); // Ambil ID ulasan
+                            var confirmResult = MessageBox.Show("Apakah Anda yakin ingin menghapus ulasan ini?",
+                                                                "Konfirmasi Hapus",
+                                                                MessageBoxButtons.YesNo,
+                                                                MessageBoxIcon.Question);
+
+                            if (confirmResult == DialogResult.Yes)
+                            {
+                                try
+                                {
+                                    UlasanContext.DeleteUlasan(idUlasan); // Panggil fungsi untuk menghapus ulasan
+                                    MessageBox.Show("Ulasan berhasil dihapus!", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    panelUlasanContainer.Controls.Clear();
+                                    DisplayUlasan(); // Refresh halaman dengan memanggil ulang DisplayUlasan
+                                }
+                                catch (Exception ex)
+                                {
+                                    MessageBox.Show($"Terjadi kesalahan saat menghapus ulasan: {ex.Message}",
+                                                    "Kesalahan",
+                                                    MessageBoxButtons.OK,
+                                                    MessageBoxIcon.Error);
+                                }
+                            }
+                        };
                     }
                 }
                 

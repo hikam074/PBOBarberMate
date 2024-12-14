@@ -115,7 +115,7 @@
         #endregion
 
         private Label lblLayanan;
-        private Panel panelUlasanContainer;
+        public Panel panelUlasanContainer;
         private Button button1;
         private PictureBox bintang1;
         private Button btnKembali;
