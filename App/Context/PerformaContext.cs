@@ -19,19 +19,20 @@ namespace PBOBarberMate.App.Context
                 select u.rating
                 from {table} u
                 join pembayaran p on u.id_pembayaran = p.id_pembayaran
-                left join reservasi r on p.id_reservasi = r.id_reservasi and id_karyawan = @id_shift";
+                left join reservasi r on p.id_reservasi = r.id_reservasi and r.id_karyawan = @id_karyawan
+                where u.tanggal_memberi_ulasan >= NOW() - INTERVAL '30 days'";
 
             NpgsqlParameter[] parameters =
             {
-                new NpgsqlParameter("@id_shift", id)
+                new NpgsqlParameter("@id_karyawan", id)
             };
             try
             {
                 using (NpgsqlDataReader reader = queryExecutor(query, parameters))
                 {
-                    DataTable dataShift = new DataTable();
-                    dataShift.Load(reader);
-                    return dataShift;
+                    DataTable dataPerforma = new DataTable();
+                    dataPerforma.Load(reader);
+                    return dataPerforma;
                 }
             }
             catch (Exception ex)
