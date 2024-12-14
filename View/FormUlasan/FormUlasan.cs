@@ -1,4 +1,5 @@
 ﻿using PBOBarberMate.App.Context;
+using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,19 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormUlasan : Form
     {
-        int id_pembayaran = 4;
+        public int id_pembayaran;
+        public int id_layanan;
+        public int id_akun;
         public FormUlasan()
         {
             InitializeComponent();
+            DisplayUlasan();
         }
 
         private void DisplayUlasan()
         {
             // Ambil data ulasan dari database
-            DataTable ulasanData = UlasanContext.All();
+            DataTable ulasanData = UlasanContext.All(id_layanan);
 
             // Bersihkan panel container setiap kali menampilkan ulang
             panelUlasanContainer.Controls.Clear();
@@ -46,7 +50,7 @@ namespace PBOBarberMate.View.FormUlasan
 
                 // Mendapatkan informasi ulasan
                 int idPembayaran = Convert.ToInt32(row["id_pembayaran"]);  // Mengambil id_pembayaran dari ulasan
-                string namaAkun = UlasanContext.getNamaAkun(idPembayaran);  // Memanggil fungsi getNamaAkun untuk mendapatkan nama akun
+                string namaAkun = row["nama_akun"].ToString(); ;  // Memanggil fungsi getNamaAkun untuk mendapatkan nama akun
                 string isiUlasan = row["isi_ulasan"].ToString();
                 int rating = Convert.ToInt32(row["rating"]);
                 DateTime tanggal = Convert.ToDateTime(row["tanggal_memberi_ulasan"]);
@@ -93,6 +97,7 @@ namespace PBOBarberMate.View.FormUlasan
                 ulasanPanel.Controls.Add(labelIsiUlasan);
                 ulasanPanel.Controls.Add(labelTanggal);
 
+
                 int panelHeight = labelNamaAkun.Height +
                           ratingPanel.Height +
                           labelIsiUlasan.PreferredHeight +
@@ -104,40 +109,55 @@ namespace PBOBarberMate.View.FormUlasan
 
                 DisplayRatingStars(ratingPanel, rating);
 
-                // Tombol untuk Update dan Delete (hanya jika ulasan berumur kurang dari 30 hari)
-                if ((DateTime.Now - tanggal).TotalDays < 30)
+                int? idAkunPembuatUlasan = UlasanContext.getIDAkunSesuaiUlasan(UserSession.idSession);
+
+                if (idAkunPembuatUlasan.HasValue)
                 {
-                    Button btnUpdate = new Button
-                    {
-                        Text = "Update",
-                        Location = new Point(923, 82),
-                        Width = 112,
-                        Height = 34
-                    };
-                    btnUpdate.Click += (sender, e) =>
-                    {
-                        M_Ulasan ulasanBaru = new M_Ulasan
-                        {
-                            id_ulasan = Convert.ToInt32(row["id_ulasan"]),
-                            rating = Convert.ToInt32(row["rating"]),
-                            isi_ulasan = row["isi_ulasan"].ToString()
-                        };
-                        UlasanContext.UpdateUlasan(ulasanBaru);
-                    };
-
-                    Button btnDelete = new Button
-                    {
-                        Text = "Delete",
-                        Location = new Point(800, 82),
-                        Width = 112,
-                        Height = 34
-                    };
-                    btnDelete.Click += (sender, e) => UlasanContext.DeleteUlasan(Convert.ToInt32(row["id_ulasan"]));
-
-                    // Menambahkan tombol ke dalam panel
-                    ulasanPanel.Controls.Add(btnUpdate);
-                    ulasanPanel.Controls.Add(btnDelete);
+                    Console.WriteLine($"ID Akun: {idAkunPembuatUlasan.Value}");
                 }
+                else
+                {
+                    Console.WriteLine("ID Akun Tidak Ditemukan");
+                }
+
+                // Tombol untuk Update dan Delete (hanya jika ulasan berumur kurang dari 30 hari)
+                if (idAkunPembuatUlasan == UserSession.idSession)
+                {
+                    if ((DateTime.Now - tanggal).TotalDays < 30)
+                    {
+                        Button BtnUpdate = new Button
+                        {
+                            Text = "Update",  // Text yang akan ditampilkan pada tombol
+                            Width = 80,      // Lebar tombol
+                            Height = 25,      // Tinggi tombol
+                            Location = new Point(637, 5), // Lokasi tombol di dalam form/panel
+                            BackColor = Color.White,  // Warna latar belakang tombol
+                            FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
+                        };
+                        ulasanPanel.Controls.Add(BtnUpdate);
+                        BtnUpdate.Click += (sender, e) =>
+                        {
+                            FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
+                            formTambahUlasan.ShowDialog();
+                            this.Hide();
+                        };
+
+                        Button BtnDelete = new Button
+                        {
+                            Text = "Delete",  // Text yang akan ditampilkan pada tombol
+                            Width = 80,      // Lebar tombol
+                            Height = 25,      // Tinggi tombol
+                            Location = new Point(550, 5), // Lokasi tombol di dalam form/panel
+                            BackColor = Color.White,  // Warna latar belakang tombol
+                            FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
+                        };
+                        ulasanPanel.Controls.Add(BtnDelete);
+                        BtnDelete.Click += (sender, e) => UlasanContext.DeleteUlasan(Convert.ToInt32(row["id_ulasan"]));
+                        panelUlasanContainer.Controls.Remove(ulasanPanel);
+                        DisplayUlasan();
+                    }
+                }
+                
                 ulasanPanel.Location = new Point(10, totalHeight);
                 panelUlasanContainer.Controls.Add(ulasanPanel);
 
@@ -176,6 +196,13 @@ namespace PBOBarberMate.View.FormUlasan
         private void FormUlasan_Load(object sender, EventArgs e)
         {
             DisplayUlasan();
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
         }
     }
 }

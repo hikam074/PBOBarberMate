@@ -2,6 +2,7 @@
 using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormUlasan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -16,6 +17,7 @@ namespace PBOBarberMate.View
 {
     public partial class FormLayanan : Form
     {
+        public int id_akun;
         public FormLayanan()
         {
             InitializeComponent();
@@ -102,6 +104,15 @@ namespace PBOBarberMate.View
                     UseColumnTextForButtonValue = true
                 };
                 dataGridView1.Columns.Add(deleteButtonColumn);
+
+                DataGridViewButtonColumn LihatUlasanColumn = new DataGridViewButtonColumn
+                {
+                    Name = "Lihat Ulasan",
+                    HeaderText = "Lihat Ulasan",
+                    Text = "Lihat Ulasan",
+                    UseColumnTextForButtonValue = true
+                };
+                dataGridView1.Columns.Add(LihatUlasanColumn);
                 EnableBtn();
             }
             catch (Exception ex)
@@ -188,6 +199,20 @@ namespace PBOBarberMate.View
                 int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
                 LayananContext.DeleteLayanan(layananId);
                 LoadDataLayanan(); //layanan
+            }
+
+            else if (e.ColumnIndex == dataGridView1.Columns["Lihat Ulasan"].Index)
+            {
+                if (dataGridView1.Rows[e.RowIndex].Cells["id_layanan"] == null ||
+                dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value == DBNull.Value) return;
+
+                int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
+
+                FormUlasan.FormUlasan formUlasan = new FormUlasan.FormUlasan();
+                formUlasan.id_layanan = layananId;
+                formUlasan.id_akun = id_akun;
+                formUlasan.Show();
+                this.Hide();
             }
         }
     }

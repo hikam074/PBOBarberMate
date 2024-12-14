@@ -15,6 +15,7 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormTambahUlasan : Form
     {
+        public int id_pembayaran;
         public FormTambahUlasan()
         {
             InitializeComponent();
@@ -138,7 +139,7 @@ namespace PBOBarberMate.View.FormUlasan
                 return;
             }
 
-            M_Ulasan ulasan = new M_Ulasan { isi_ulasan = textBox1.Text };
+            M_Ulasan ulasan = new M_Ulasan { isi_ulasan = textBox1.Text, id_pembayaran = id_pembayaran };
             if (bintang1.Visible = true)
             {
                 ulasan.rating = 1;
@@ -163,10 +164,10 @@ namespace PBOBarberMate.View.FormUlasan
             UlasanContext.AddUlasan(ulasan);
             MessageBox.Show("Ulasan Berhasil Ditambah");
             ClearFields();
-            //this.DialogResult = DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
             this.Hide();
-            FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
-            formTambahUlasan.Show();
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
         }
 
         //public void PopulateForm(M_Ulasan ulasan)

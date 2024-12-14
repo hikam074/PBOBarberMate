@@ -12,6 +12,7 @@ using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormReservasi;
+using PBOBarberMate.View.FormUlasan;
 
 
 namespace PBOBarberMate.View.FormPembayaran
@@ -96,9 +97,9 @@ namespace PBOBarberMate.View.FormPembayaran
                     // mengambil id pembayaran
                     int pembayaranID = Convert.ToInt32(dgvDataPembayaran.Rows[e.RowIndex].Cells["id_pembayaran"].Value);
                     // menampilkan popup form tujuan
-                    //FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
-                    //formTambahUlasan.id_pembayaran = pembayaranID;
-                    //formTambahUlasan.Show();
+                    FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
+                    formTambahUlasan.id_pembayaran = pembayaranID;
+                    formTambahUlasan.Show();
                     // load data setelah edit
                     LoadDataPembayaran();
                 }

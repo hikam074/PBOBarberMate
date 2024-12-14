@@ -20,7 +20,7 @@ namespace PBOBarberMate.View
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
-
+        public int id_akun;
 
         public FormHomepageCustomer()
         {
@@ -93,6 +93,7 @@ namespace PBOBarberMate.View
         {
             // beralih ke FormLayanan
             FormLayanan formLayanan = new FormLayanan();
+            formLayanan.id_akun = id_akun;
             formLayanan.Show();
             this.Hide();
         }
@@ -215,8 +216,8 @@ namespace PBOBarberMate.View
         }
         private void btnUlasan_Click(object sender, EventArgs e)
         {
-            FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
-            formTambahUlasan.Show();
+            FormLihatPembayaranUntukUlasan formLihatPembayaranUntukUlasan = new FormLihatPembayaranUntukUlasan();
+            formLihatPembayaranUntukUlasan.Show();
             this.Hide();
         }
     }

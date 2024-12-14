@@ -14,13 +14,23 @@ namespace PBOBarberMate.App.Context
     {
         private static string table = "ulasan";
 
-        public static DataTable All()
+        public static DataTable All(int id)
         {
-            string query = $"SELECT * FROM {table}";
+            string query = $"SELECT u.id_ulasan, u.id_pembayaran, u.rating, u.isi_ulasan, u.tanggal_memberi_ulasan, a.nama_akun " +
+                           $"FROM {table} u " +
+                           "JOIN pembayaran p ON p.id_pembayaran = u.id_pembayaran " +
+                           "JOIN reservasi r ON r.id_reservasi = p.id_reservasi " +
+                           "JOIN layanan l on l.id_layanan = r.id_layanan " +
+                           "JOIN akun a ON r.id_akun = a.id_akun " +
+                           "WHERE l.id_layanan = @id_layanan";
+            NpgsqlParameter[] parameters =
+{
+                new NpgsqlParameter("@id_layanan", id)
+            };
             try
             {
                 // Panggil queryExecutor untuk mendapatkan NpgsqlDataReader
-                using (NpgsqlDataReader reader = queryExecutor(query, null))
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters)) // Pass 'parameters' here
                 {
                     DataTable dataUlasan = new DataTable();
                     dataUlasan.Load(reader); // Memuat data dari DataReader ke DataTable
@@ -31,26 +41,21 @@ namespace PBOBarberMate.App.Context
             {
                 throw new Exception($"Error in UlasanContext.All(): {ex.Message}", ex);
             }
-        }
-        public static NpgsqlDataReader getUlasanByID(int id)
-        {
-            string query = $"SELECT * FROM {table} where id_ulasan = @id_ulasan";
-            NpgsqlParameter[] parameters =
+            finally
             {
-                new NpgsqlParameter("@id_ulasan", id)
-            };
-            NpgsqlDataReader dataUlasan = queryExecutor(query, parameters);
-            return dataUlasan;
+                closeConnection();
+            }
         }
+
         public static void AddUlasan(M_Ulasan UlasanBaru)
         {
-            string query = $"INSERT INTO {table} (id_pembayaran, rating, isi_ulasan) VALUES (@id_pembayaran, @rating, @isi_ulasan)";
+            string query = $"INSERT INTO {table} (id_pembayaran, rating, isi_ulasan, tanggal_memberi_ulasan) VALUES (@id_pembayaran, @rating, @isi_ulasan, @tanggal_memberi_ulasan";
             NpgsqlParameter[] parameters =
             {
                 new NpgsqlParameter("@id_pembayaran", Convert.ToInt32(UlasanBaru.id_pembayaran)), // Tanda kurung ini diperbaiki
                 new NpgsqlParameter("@rating", Convert.ToInt32(UlasanBaru.rating)),             // Menutup tanda kurung
-                new NpgsqlParameter("@isi_ulasan", UlasanBaru.isi_ulasan)                       // Urutan juga disesuaikan
-
+                new NpgsqlParameter("@isi_ulasan", UlasanBaru.isi_ulasan),                       // Urutan juga disesuaikan
+                new NpgsqlParameter("@tanggal_memberi_ulasan", DateTime.Now)
             };
             commandExecutor(query, parameters);
         }
@@ -74,17 +79,18 @@ namespace PBOBarberMate.App.Context
             };
             commandExecutor(query, parameters);
         }
-        public static string getNamaAkun(int id_pembayaran)
+        public static int? getIDAkunSesuaiUlasan(int id_akun)
         {
-            string query = "SELECT a.nama_akun " +
+            string query = "SELECT a.id_akun " +
                            "FROM akun a " +
                            "JOIN reservasi r ON r.id_akun = a.id_akun " +
                            "JOIN pembayaran p ON p.id_reservasi = r.id_reservasi " +
-                           "JOIN ulasan u ON u.id_pembayaran = p.id_pembayaran ";
+                           "JOIN ulasan u ON u.id_pembayaran = p.id_pembayaran " +
+                           "WHERE r.id_akun = @id_akun";
 
             NpgsqlParameter[] parameters =
             {
-                new NpgsqlParameter("@id_pembayaran", id_pembayaran)  // Menggunakan id_pembayaran
+                new NpgsqlParameter("@id_akun", id_akun)  // Menggunakan id_pembayaran
             };
 
             // Menjalankan query dan membaca hasilnya
@@ -92,13 +98,45 @@ namespace PBOBarberMate.App.Context
             {
                 if (reader.Read())  // Mengecek jika ada data yang dikembalikan
                 {
-                    return reader["nama_akun"].ToString();  // Mengembalikan nama akun
+                    return Convert.ToInt32(reader["id_akun"]);  // Mengembalikan nama akun
                 }
                 else
                 {
-                    return "Nama Akun Tidak Ditemukan";  // Jika tidak ditemukan
+                    return null;  // Jika tidak ditemukan
                 }
             }
         }
+        //public static DataTable getUlasanByLayananid(int id)
+        //{
+        //    string query = $"SELECT u.id_ulasan, u.id_pembayaran, u.rating, u.isi_ulasan, u.tanggal_memberi_ulasan, a.nama_akun " +
+        //                   $"FROM {table} u " +
+        //                   "JOIN pembayaran p ON p.id_pembayaran = u.id_pembayaran " +
+        //                   "JOIN reservasi r ON r.id_reservasi = p.id_reservasi " +
+        //                   "JOIN layanan l on l.id_layanan = r.id_layanan " +
+        //                   "JOIN akun a ON r.id_akun = a.id_akun " +
+        //                   "WHERE l.id_layanan = @id_layanan";
+
+        //    NpgsqlParameter[] parameters =
+        //    {
+        //        new NpgsqlParameter("@id_layanan", id)
+        //    };
+
+        //    DataTable dataUlasan = new DataTable();
+
+        //    try
+        //    {
+        //        // Use queryExecutor to execute the SELECT query and load the data into the DataTable
+        //        using (var reader = DBService.queryExecutor(query, parameters))
+        //        {
+        //            dataUlasan.Load(reader); // Load data from the DataReader into the DataTable
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show($"Error method getUlasanByLayananid: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        //    }
+
+        //    return dataUlasan;
+        //}
     }
 }

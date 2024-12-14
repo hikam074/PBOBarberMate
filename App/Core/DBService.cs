@@ -25,7 +25,7 @@ namespace PBOBarberMate.App.Core
         // METHOD buka koneksi ke DB
         public static void openConnection()
         {
-            connection = new NpgsqlConnection($"Host={dbHost};Port={dbPort};Username={dbUsername};Password={dbPassword};Database={dbDatabase}");
+            connection = new NpgsqlConnection($"Host={dbHost};Port={dbPort};Username={dbUsername};Password={dbPassword};Database={dbDatabase};Pooling=true;Max Pool Size=300;Timeout=30");
             connection.Open();
             command = new NpgsqlCommand();
             command.Connection = connection;
@@ -87,6 +87,7 @@ namespace PBOBarberMate.App.Core
             {
                 throw new Exception(e.Message);
             }
+
             // WARNING : untuk SELECT koneksi harus ditutup secara manual pada kode yang menggunakannya, tidak disini
             // namun bila menggunakan using maka tidak perlu menutup koneksi karena using akan menutup koneksi secara otomatis
         }
