@@ -344,6 +344,7 @@
             btnPerforma.Text = "Performa\r\n\r\n";
             btnPerforma.TextAlign = ContentAlignment.BottomCenter;
             btnPerforma.UseVisualStyleBackColor = false;
+            btnPerforma.Click += btnPerforma_Click;
             // 
             // FormHomepageKaryawan
             // 

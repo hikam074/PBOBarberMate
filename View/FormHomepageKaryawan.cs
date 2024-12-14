@@ -143,5 +143,12 @@ namespace PBOBarberMate.View
             formInventaris.Show();
             this.Hide();
         }
+
+        private void btnPerforma_Click(object sender, EventArgs e)
+        {
+            FormPerforma.FormPerforma formPerforma = new FormPerforma.FormPerforma();
+            formPerforma.Show();
+            this.Hide();
+        }
     }
 }
