@@ -31,6 +31,10 @@ namespace PBOBarberMate.App.Context
             {
                 throw new Exception($"Error in InventarisContext.All(): {ex.Message}", ex);
             }
+            finally
+            {
+                closeConnection();
+            }
         }
         public static NpgsqlDataReader getInventarisByID(int id)
         {

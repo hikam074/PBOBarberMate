@@ -1,4 +1,5 @@
 ﻿using PBOBarberMate.App.Context;
+using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,18 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormUlasan : Form
     {
-        int id_pembayaran = 4;
+        public int id_pembayaran { get; set; }
+        public int id_layanan { get; set; }
+        public int id_akun { get; set; }
         public FormUlasan()
         {
-            InitializeComponent();
+            InitializeComponent();;
         }
 
-        private void DisplayUlasan()
+        public void DisplayUlasan()
         {
             // Ambil data ulasan dari database
-            DataTable ulasanData = UlasanContext.All();
+            DataTable ulasanData = UlasanContext.All(id_layanan);
 
             // Bersihkan panel container setiap kali menampilkan ulang
             panelUlasanContainer.Controls.Clear();
@@ -45,11 +48,13 @@ namespace PBOBarberMate.View.FormUlasan
                 };
 
                 // Mendapatkan informasi ulasan
-                int idPembayaran = Convert.ToInt32(row["id_pembayaran"]);  // Mengambil id_pembayaran dari ulasan
-                string namaAkun = UlasanContext.getNamaAkun(idPembayaran);  // Memanggil fungsi getNamaAkun untuk mendapatkan nama akun
+                int idPembayaran = Convert.ToInt32(row["id_pembayaran"]);
+                int idUlasan = Convert.ToInt32(row["id_ulasan"]);  // Mengambil id_pembayaran dari ulasan
+                string namaAkun = row["nama_akun"].ToString(); ;  // Memanggil fungsi getNamaAkun untuk mendapatkan nama akun
                 string isiUlasan = row["isi_ulasan"].ToString();
                 int rating = Convert.ToInt32(row["rating"]);
                 DateTime tanggal = Convert.ToDateTime(row["tanggal_memberi_ulasan"]);
+                int idAkunPembuatUlasan = Convert.ToInt32(row["id_akun"]);
 
                 // Label untuk nama akun
                 Label labelNamaAkun = new Label
@@ -93,6 +98,7 @@ namespace PBOBarberMate.View.FormUlasan
                 ulasanPanel.Controls.Add(labelIsiUlasan);
                 ulasanPanel.Controls.Add(labelTanggal);
 
+
                 int panelHeight = labelNamaAkun.Height +
                           ratingPanel.Height +
                           labelIsiUlasan.PreferredHeight +
@@ -105,39 +111,67 @@ namespace PBOBarberMate.View.FormUlasan
                 DisplayRatingStars(ratingPanel, rating);
 
                 // Tombol untuk Update dan Delete (hanya jika ulasan berumur kurang dari 30 hari)
-                if ((DateTime.Now - tanggal).TotalDays < 30)
+                if (idAkunPembuatUlasan == UserSession.idSession)
                 {
-                    Button btnUpdate = new Button
+                    if ((DateTime.Now - tanggal).TotalDays < 30)
                     {
-                        Text = "Update",
-                        Location = new Point(923, 82),
-                        Width = 112,
-                        Height = 34
-                    };
-                    btnUpdate.Click += (sender, e) =>
-                    {
-                        M_Ulasan ulasanBaru = new M_Ulasan
+                        Button BtnUpdate = new Button
                         {
-                            id_ulasan = Convert.ToInt32(row["id_ulasan"]),
-                            rating = Convert.ToInt32(row["rating"]),
-                            isi_ulasan = row["isi_ulasan"].ToString()
+                            Text = "Update",  // Text yang akan ditampilkan pada tombol
+                            Width = 80,      // Lebar tombol
+                            Height = 25,      // Tinggi tombol
+                            Location = new Point(637, 5), // Lokasi tombol di dalam form/panel
+                            BackColor = Color.White,  // Warna latar belakang tombol
+                            FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
                         };
-                        UlasanContext.UpdateUlasan(ulasanBaru);
-                    };
+                        ulasanPanel.Controls.Add(BtnUpdate);
+                        BtnUpdate.Click += (sender, e) =>
+                        {
+                            FormTambahUlasan formTambahUlasan = new FormTambahUlasan { IseditMode = true, id_ulasan = idUlasan };
+                            formTambahUlasan.ShowDialog();
+                            this.Hide();
+                        };
 
-                    Button btnDelete = new Button
-                    {
-                        Text = "Delete",
-                        Location = new Point(800, 82),
-                        Width = 112,
-                        Height = 34
-                    };
-                    btnDelete.Click += (sender, e) => UlasanContext.DeleteUlasan(Convert.ToInt32(row["id_ulasan"]));
+                        //Button BtnDelete = new Button
+                        //{
+                        //    Text = "Delete",  // Text yang akan ditampilkan pada tombol
+                        //    Width = 80,      // Lebar tombol
+                        //    Height = 25,      // Tinggi tombol
+                        //    Location = new Point(550, 5), // Lokasi tombol di dalam form/panel
+                        //    BackColor = Color.White,  // Warna latar belakang tombol
+                        //    FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
+                        //};
+                        //ulasanPanel.Controls.Add(BtnDelete);
+                        //BtnDelete.Click += (sender, e) =>
+                        //{
+                        //    int idUlasan = Convert.ToInt32(row["id_ulasan"]); // Ambil ID ulasan
+                        //    var confirmResult = MessageBox.Show("Apakah Anda yakin ingin menghapus ulasan ini?",
+                        //                                        "Konfirmasi Hapus",
+                        //                                        MessageBoxButtons.YesNo,
+                        //                                        MessageBoxIcon.Question);
 
-                    // Menambahkan tombol ke dalam panel
-                    ulasanPanel.Controls.Add(btnUpdate);
-                    ulasanPanel.Controls.Add(btnDelete);
+                        //    if (confirmResult == DialogResult.Yes)
+                        //    {
+                        //        try
+                        //        {
+                        //            UlasanContext.DeleteUlasan(idUlasan); // Panggil fungsi untuk menghapus ulasan
+                        //            MessageBox.Show("Ulasan berhasil dihapus!", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        //            panelUlasanContainer.Controls.Clear();
+                        //            DisplayUlasan(); // Refresh halaman dengan memanggil ulang DisplayUlasan
+                        //        }
+                        //        catch (Exception ex)
+                        //        {
+                        //            MessageBox.Show($"Terjadi kesalahan saat menghapus ulasan: {ex.Message}",
+                        //                            "Kesalahan",
+                        //                            MessageBoxButtons.OK,
+                        //                            MessageBoxIcon.Error);
+                        //        }
+                        //    }
+                        //};
+                    }
                 }
+                
                 ulasanPanel.Location = new Point(10, totalHeight);
                 panelUlasanContainer.Controls.Add(ulasanPanel);
 
@@ -176,6 +210,13 @@ namespace PBOBarberMate.View.FormUlasan
         private void FormUlasan_Load(object sender, EventArgs e)
         {
             DisplayUlasan();
+        }
+
+        private void btnKembali_Click(object sender, EventArgs e)
+        {
+            FormLayanan formLayanan = new FormLayanan();
+            formLayanan.Show();
+            this.Hide();
         }
     }
 }

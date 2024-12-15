@@ -32,6 +32,7 @@
             panelUlasanContainer = new Panel();
             bintang1 = new PictureBox();
             button1 = new Button();
+            btnKembali = new Button();
             panelUlasanContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)bintang1).BeginInit();
             SuspendLayout();
@@ -79,14 +80,30 @@
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // btnKembali
+            // 
+            btnKembali.BackColor = SystemColors.Control;
+            btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
+            btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
+            btnKembali.Location = new Point(56, 35);
+            btnKembali.Name = "btnKembali";
+            btnKembali.Size = new Size(75, 39);
+            btnKembali.TabIndex = 13;
+            btnKembali.Text = "Kembali";
+            btnKembali.UseVisualStyleBackColor = false;
+            btnKembali.Click += btnKembali_Click;
+            // 
             // FormUlasan
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             ClientSize = new Size(874, 450);
+            Controls.Add(btnKembali);
             Controls.Add(panelUlasanContainer);
             Controls.Add(lblLayanan);
             Name = "FormUlasan";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "FormUlasan";
             Load += FormUlasan_Load;
             panelUlasanContainer.ResumeLayout(false);
@@ -98,8 +115,9 @@
         #endregion
 
         private Label lblLayanan;
-        private Panel panelUlasanContainer;
+        public Panel panelUlasanContainer;
         private Button button1;
         private PictureBox bintang1;
+        private Button btnKembali;
     }
 }
