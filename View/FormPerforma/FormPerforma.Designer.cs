@@ -30,11 +30,13 @@
         {
             btkembali = new Button();
             label1 = new Label();
+            dataGridView1 = new DataGridView();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
             // btkembali
             // 
-            btkembali.Location = new Point(28, 464);
+            btkembali.Location = new Point(62, 477);
             btkembali.Name = "btkembali";
             btkembali.Size = new Size(112, 34);
             btkembali.TabIndex = 0;
@@ -53,16 +55,33 @@
             label1.Text = "Performa Anda";
             label1.Click += label1_Click;
             // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.BackgroundColor = SystemColors.ButtonFace;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.GridColor = SystemColors.Info;
+            dataGridView1.Location = new Point(62, 170);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.Size = new Size(822, 274);
+            dataGridView1.TabIndex = 2;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
             // FormPerforma
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(952, 523);
+            Controls.Add(dataGridView1);
             Controls.Add(label1);
             Controls.Add(btkembali);
             Name = "FormPerforma";
             Text = "BarberMate";
             Load += FormPerforma_Load;
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -71,5 +90,6 @@
 
         private Button btkembali;
         private Label label1;
+        private DataGridView dataGridView1;
     }
 }

@@ -39,7 +39,7 @@ namespace PBOBarberMate.View.FormPerforma
                     return;
                 }
 
-                double averageRating = PerformaData.Rows[0]["averageRating"] != DBNull.Value 
+                double averageRating = PerformaData.Rows[0]["averageRating"] != DBNull.Value
                     ? Convert.ToDouble(PerformaData.Rows[0]["averageRating"]) : 0;
 
                 Label avgratinglabel = new Label();
@@ -47,6 +47,34 @@ namespace PBOBarberMate.View.FormPerforma
                 avgratinglabel.Location = new Point(53, 110);
                 avgratinglabel.AutoSize = true;
                 this.Controls.Add(avgratinglabel);
+
+                dataGridView1.AllowUserToAddRows = false;
+                DataTable UlasanData = PerformaContext.All();
+                if (UlasanData == null)
+                {
+                    MessageBox.Show("Error: Gagal mengambil ulasan customer");
+                    return;
+                }
+                dataGridView1.Columns.Clear();
+
+                DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                nomorColumn.HeaderText = "No";
+                nomorColumn.Name = "nomor";
+                dataGridView1.Columns.Add(nomorColumn);
+
+                dataGridView1.DataSource = UlasanData;
+                if (dataGridView1.Columns["ulasan"] != null)
+                    dataGridView1.Columns["ulasan"].HeaderText = "Ulasan";
+                if (dataGridView1.Columns["tanggal"] != null)
+                    dataGridView1.Columns["tanggal"].HeaderText = "Detail Waktu";
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    dataGridView1.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                }
+
+                dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridView1.AutoResizeColumns();
             }
             catch (Exception ex)
             {
@@ -60,10 +88,15 @@ namespace PBOBarberMate.View.FormPerforma
             this.Hide();
             Karyawan.Show();
         }
-        
+
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0) return;
         }
     }
 }

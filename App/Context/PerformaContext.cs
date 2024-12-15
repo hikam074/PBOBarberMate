@@ -13,7 +13,28 @@ namespace PBOBarberMate.App.Context
     {
         private static string table = "ulasan";
 
-        
+        public static DataTable All()
+        {
+            string query = $@"
+                            select u.isi_ulasan as ulasan, u.tanggal_memberi_ulasan as tanggal
+                            from {table} u
+                            join pembayaran p on u.id_pembayaran = p.id_pembayaran
+                            left join reservasi r on p.id_reservasi = r.id_reservasi
+                            where r.id_karyawan = @id_karyawan";
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query, null))
+                {
+                    DataTable dataUlasan = new DataTable();
+                    dataUlasan.Load(reader); // Memuat data dari DataReader ke DataTable
+                    return dataUlasan;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in Performa.Context.All(): {ex.Message}", ex);
+            }
+        }
         // query rata rata rating 
         public static DataTable getUlasanByID(int id)
         {
@@ -23,7 +44,6 @@ namespace PBOBarberMate.App.Context
                             join pembayaran p on u.id_pembayaran = p.id_pembayaran
                             left join reservasi r on p.id_reservasi = r.id_reservasi
                             where r.id_karyawan = @id_karyawan";
-
 
 
             try
@@ -37,7 +57,7 @@ namespace PBOBarberMate.App.Context
             }
             catch (Exception ex)
             {
-                throw new Exception($"Error in Customer.Context.All(): {ex.Message}", ex);
+                throw new Exception($"Error in Customer.Context.getUlasanByID(): {ex.Message}", ex);
             }
         }
     }
