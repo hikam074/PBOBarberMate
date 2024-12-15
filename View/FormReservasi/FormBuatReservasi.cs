@@ -166,7 +166,7 @@ namespace PBOBarberMate.View.FormReservasi
                     }
                     else
                     {
-                        MessageBox.Show("Error! Tidak dapat menambahkan reservasi");
+                        MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
                     }
                 }
                 // bila sedang di mode edit
@@ -239,6 +239,11 @@ namespace PBOBarberMate.View.FormReservasi
             {
                 btnSubmit.Enabled = true;
             }
+        }
+
+        private void FormBuatReservasi_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

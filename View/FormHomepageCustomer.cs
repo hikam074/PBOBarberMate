@@ -2,6 +2,8 @@
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormReservasi;
+using PBOBarberMate.View.FormPembayaran;
+using PBOBarberMate.View.FormUlasan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,7 +20,7 @@ namespace PBOBarberMate.View
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
-
+        public int id_akun;
 
         public FormHomepageCustomer()
         {
@@ -51,7 +53,7 @@ namespace PBOBarberMate.View
             {
                 // mengambil data dari db
                 DataTable src = TabelContext.getReservasiMingguIni();
-                // membuat size kolom menjadi rata danmemenuhi tabel
+                // membuat size kolom menjadi rata dan memenuhi tabel
                 dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 // membuat tabel responsif berdasarkan isi data
                 foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
@@ -71,6 +73,10 @@ namespace PBOBarberMate.View
                 };
                 // mengambil data dari variabel
                 dgvJadwalMingguIni.DataSource = src;
+
+                dgvJadwalMingguIni.Columns["tanggal"].HeaderText = "Tanggal";
+                dgvJadwalMingguIni.Columns["waktu"].HeaderText = "Waktu";
+                dgvJadwalMingguIni.Columns["pelayanan"].HeaderText = "Pelayanan";
             }
             catch (Exception ex)
             {
@@ -91,6 +97,7 @@ namespace PBOBarberMate.View
         {
             // beralih ke FormLayanan
             FormLayanan formLayanan = new FormLayanan();
+            formLayanan.id_akun = id_akun;
             formLayanan.Show();
             this.Hide();
         }
@@ -209,6 +216,12 @@ namespace PBOBarberMate.View
             // beralih ke FormLihatReservasi
             FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
             formLihatReservasi.Show();
+            this.Hide();
+        }
+        private void btnUlasan_Click(object sender, EventArgs e)
+        {
+            FormLihatPembayaranUntukUlasan form = new FormLihatPembayaranUntukUlasan();
+            form.Show();
             this.Hide();
         }
     }
