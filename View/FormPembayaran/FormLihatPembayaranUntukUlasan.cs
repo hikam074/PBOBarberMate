@@ -35,18 +35,7 @@ namespace PBOBarberMate.View.FormPembayaran
                 dgvDataPembayaran.DataSource = dataPembayaran;
 
                 // membuat object tombol ulas
-                if (!dgvDataPembayaran.Columns.Contains("Ulas"))
-                {
-                    DataGridViewButtonColumn UlasanBtnColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "Ulas",
-                        HeaderText = "Aksi",
-                        Text = "Beri nilai",
-                        UseColumnTextForButtonValue = true
-                    };
-                    // menambahkan objek ke kolom dan row
-                    dgvDataPembayaran.Columns.Add(UlasanBtnColumn);
-                }
+
                 // behaviour table
                 dgvDataPembayaran.AllowUserToAddRows = false;
                 dgvDataPembayaran.RowHeadersVisible = false;
@@ -78,6 +67,49 @@ namespace PBOBarberMate.View.FormPembayaran
                     dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
                 }
 
+                // Update tombol untuk setiap baris berdasarkan ulasan yang ada
+                foreach (DataGridViewRow row in dgvDataPembayaran.Rows)
+                {
+                    if (row.Cells["id_pembayaran"].Value != null)
+                    {
+                        int idPembayaran = Convert.ToInt32(row.Cells["id_pembayaran"].Value);
+
+                        // Mengecek apakah ulasan sudah ada
+                        if (UlasanContext.CheckUlasanExist(idPembayaran))
+                        {
+                            if (!dgvDataPembayaran.Columns.Contains("Ulas"))
+                            {
+                                DataGridViewButtonColumn UlasanBtnColumn = new DataGridViewButtonColumn
+                                {
+                                    Name = "Ulas",
+                                    HeaderText = "Aksi",
+                                    Text = "Sudah Dinilai",
+                                    ReadOnly = true,
+                                    UseColumnTextForButtonValue = true
+                                };
+                                // menambahkan objek ke kolom dan row
+                                dgvDataPembayaran.Columns.Add(UlasanBtnColumn);
+                            }
+                        }
+                        else
+                        {
+                            if (!dgvDataPembayaran.Columns.Contains("Ulas"))
+                            {
+                                DataGridViewButtonColumn UlasanBtnColumn = new DataGridViewButtonColumn
+                                {
+                                    Name = "Ulas",
+                                    HeaderText = "Aksi",
+                                    Text = "Beri nilai",
+                                    ReadOnly = false,
+                                    UseColumnTextForButtonValue = true
+                                };
+                                // menambahkan objek ke kolom dan row
+                                dgvDataPembayaran.Columns.Add(UlasanBtnColumn);
+                            }
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
@@ -92,6 +124,11 @@ namespace PBOBarberMate.View.FormPembayaran
             // bila yang diklik adalah tombol ulas
             if (e.ColumnIndex == dgvDataPembayaran.Columns["Ulas"].Index)
             {
+                if (dgvDataPembayaran.Rows[e.RowIndex].Cells["Ulas"].ReadOnly)
+                {
+                    //MessageBox.Show("Tombol sudah dinilai dan tidak dapat diklik.");
+                    return;
+                }
                 try
                 {
                     // mengambil id pembayaran
@@ -100,6 +137,7 @@ namespace PBOBarberMate.View.FormPembayaran
                     FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
                     formTambahUlasan.id_pembayaran = pembayaranID;
                     formTambahUlasan.Show();
+                    this.Hide();
                     // load data setelah edit
                     LoadDataPembayaran();
                 }

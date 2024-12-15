@@ -1,5 +1,6 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormPembayaran;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -43,7 +44,7 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void bintang2_Click(object sender, EventArgs e)
         {
-            if (bintang2.Visible = true)
+            if (bintang2.Visible)
             {
                 bintang1.Visible = true;
                 bintang2.Visible = true;
@@ -55,7 +56,7 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void bintang3_Click(object sender, EventArgs e)
         {
-            if (bintang3.Visible = true)
+            if (bintang3.Visible)
             {
                 bintang1.Visible = true;
                 bintang2.Visible = true;
@@ -67,7 +68,7 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void bintang4_Click(object sender, EventArgs e)
         {
-            if (bintang4.Visible = true)
+            if (bintang4.Visible)
             {
                 bintang1.Visible = true;
                 bintang2.Visible = true;
@@ -79,7 +80,7 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void bintang5_Click(object sender, EventArgs e)
         {
-            if (bintang5.Visible = true)
+            if (bintang5.Visible)
             {
                 bintang1.Visible = true;
                 bintang2.Visible = true;

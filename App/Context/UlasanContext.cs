@@ -118,5 +118,37 @@ namespace PBOBarberMate.App.Context
                 return null;
             }
         }
+        public static bool CheckUlasanExist(int id_Pembayaran)
+        {
+            string query = "SELECT COUNT(*) FROM ulasan WHERE id_pembayaran = @idPembayaran";
+            NpgsqlParameter[] parameters = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@idPembayaran", id_Pembayaran)
+            };
+
+            try
+            {
+                using (NpgsqlDataReader reader = DBService.queryExecutor(query, parameters))
+                {
+                    if (reader.Read())
+                    {
+                        int count = reader.GetInt32(0); // Ambil hasil COUNT(*)
+                        if (count > 0)
+                        {
+                            return true;
+                        }
+                    }
+                    return false; // Jika tidak ada data
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error checking ulasan existence: {ex.Message}");
+            }
+            finally
+            {
+                closeConnection(); // Tutup koneksi jika belum tertutup
+            }
+        }
     }
 }
