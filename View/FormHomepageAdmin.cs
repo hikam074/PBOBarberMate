@@ -182,6 +182,13 @@ namespace PBOBarberMate.View
             form.Show();
             this.Hide();
         }
+
+        private void btnCustomer_Click(object sender, EventArgs e)
+        {
+            FormKelolaCustomer.FormKelolaCustomer formKelolaCustomer = new FormKelolaCustomer.FormKelolaCustomer ();
+            formKelolaCustomer.Show();
+            this.Hide();
+        }
     }
 }								
 								
