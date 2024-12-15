@@ -43,8 +43,8 @@ namespace PBOBarberMate.View.FormPerforma
                     ? Convert.ToDouble(PerformaData.Rows[0]["averageRating"]) : 0;
 
                 Label avgratinglabel = new Label();
-                avgratinglabel.Text = $"Anda mendapat rating sebesar {averageRating:F2}";
-                avgratinglabel.Location = new Point(51, 141);
+                avgratinglabel.Text = $"Anda mendapat rating sebesar {averageRating:F2}, tingkatkan kinerja anda!";
+                avgratinglabel.Location = new Point(53, 110);
                 avgratinglabel.AutoSize = true;
                 this.Controls.Add(avgratinglabel);
             }
