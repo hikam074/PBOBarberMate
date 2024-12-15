@@ -15,7 +15,7 @@ namespace PBOBarberMate.App.Context
 
         
         // query rata rata rating 
-        public static NpgsqlDataReader getUlasanByID(int id)
+        public static DataTable getUlasanByID(int id)
         {
             string query = $@"
                             select avg(u.rating) as averageRating
@@ -24,12 +24,21 @@ namespace PBOBarberMate.App.Context
                             left join reservasi r on p.id_reservasi = r.id_reservasi
                             where r.id_karyawan = @id_karyawan";
 
-            NpgsqlParameter[] parameters =
+
+
+            try
             {
-                new NpgsqlParameter("@id_layanan", id)
-            };
-            NpgsqlDataReader dataLayanan = queryExecutor(query, parameters);
-            return dataLayanan;
+                using (NpgsqlDataReader reader = queryExecutor(query, null))
+                {
+                    DataTable dataperforma = new DataTable();
+                    dataperforma.Load(reader); // Memuat data dari DataReader ke DataTable
+                    return dataperforma;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in Customer.Context.All(): {ex.Message}", ex);
+            }
         }
     }
 }

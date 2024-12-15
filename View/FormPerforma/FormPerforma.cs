@@ -17,10 +17,9 @@ namespace PBOBarberMate.View.FormPerforma
     {
         private int id_karyawan;
 
-        public FormPerforma(int id_karyawan)
+        public FormPerforma()
         {
             InitializeComponent();
-            this.id_karyawan = id_karyawan;
             this.Load += FormPerforma_Load;
         }
 
@@ -33,17 +32,20 @@ namespace PBOBarberMate.View.FormPerforma
         {
             try
             {
-                DataTable PerformaData = PerformaContext.getUlasanByID();
-                if (PerformaData == null)
+                DataTable PerformaData = PerformaContext.getUlasanByID(id_karyawan);
+                if (PerformaData == null || PerformaData.Rows.Count == 0)
                 {
                     MessageBox.Show("Error: Gagal mengambil data performa");
                     return;
                 }
 
+                double averageRating = PerformaData.Rows[0]["averageRating"] != DBNull.Value 
+                    ? Convert.ToDouble(PerformaData.Rows[0]["averageRating"]) : 0;
+
                 Label avgratinglabel = new Label();
-                avgratinglabel = PerformaData
-                avgratinglabel.Text = $"Rating anda adalah : {"averageRating":F2}";
-                avgratinglabel.Location = new Point(51, 160);
+                avgratinglabel.Text = $"Anda mendapat rating sebesar {averageRating:F2}";
+                avgratinglabel.Location = new Point(51, 141);
+                avgratinglabel.AutoSize = true;
                 this.Controls.Add(avgratinglabel);
             }
             catch (Exception ex)
@@ -58,17 +60,7 @@ namespace PBOBarberMate.View.FormPerforma
             this.Hide();
             Karyawan.Show();
         }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        
         private void label1_Click(object sender, EventArgs e)
         {
 

@@ -30,8 +30,6 @@
         {
             btkembali = new Button();
             label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
             SuspendLayout();
             // 
             // btkembali
@@ -55,32 +53,11 @@
             label1.Text = "Performa Anda";
             label1.Click += label1_Click;
             // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.BackColor = SystemColors.AppWorkspace;
-            label2.Location = new Point(291, 204);
-            label2.Name = "label2";
-            label2.Size = new Size(0, 25);
-            label2.TabIndex = 2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(51, 141);
-            label3.Name = "label3";
-            label3.Size = new Size(256, 25);
-            label3.TabIndex = 3;
-            label3.Text = "Anda mendapat rating sebesar";
-            label3.Click += label3_Click;
-            // 
             // FormPerforma
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(952, 523);
-            Controls.Add(label3);
-            Controls.Add(label2);
             Controls.Add(label1);
             Controls.Add(btkembali);
             Name = "FormPerforma";
@@ -94,7 +71,5 @@
 
         private Button btkembali;
         private Label label1;
-        private Label label2;
-        private Label label3;
     }
 }
