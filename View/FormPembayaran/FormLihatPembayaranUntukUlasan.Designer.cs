@@ -39,7 +39,7 @@
             btnKembali.BackColor = SystemColors.Control;
             btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
-            btnKembali.Location = new Point(26, 24);
+            btnKembali.Location = new Point(15, 15);
             btnKembali.Name = "btnKembali";
             btnKembali.Size = new Size(75, 39);
             btnKembali.TabIndex = 12;
@@ -49,21 +49,23 @@
             // 
             // lblTitle
             // 
+            lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTitle.Location = new Point(159, 27);
+            lblTitle.Location = new Point(299, 30);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(485, 58);
+            lblTitle.Size = new Size(333, 58);
             lblTitle.TabIndex = 11;
             lblTitle.Text = "Riwayat Kunjungan";
             lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dgvDataPembayaran
             // 
+            dgvDataPembayaran.BackgroundColor = Color.White;
             dgvDataPembayaran.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDataPembayaran.Location = new Point(26, 102);
+            dgvDataPembayaran.Location = new Point(75, 125);
             dgvDataPembayaran.Name = "dgvDataPembayaran";
-            dgvDataPembayaran.Size = new Size(748, 324);
+            dgvDataPembayaran.Size = new Size(800, 324);
             dgvDataPembayaran.TabIndex = 10;
             dgvDataPembayaran.CellContentClick += dgvDataPembayaran_CellContentClick;
             // 
@@ -71,7 +73,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(944, 501);
             Controls.Add(btnKembali);
             Controls.Add(lblTitle);
             Controls.Add(dgvDataPembayaran);
@@ -80,6 +82,7 @@
             Text = "FormLihatPembayaran";
             ((System.ComponentModel.ISupportInitialize)dgvDataPembayaran).EndInit();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

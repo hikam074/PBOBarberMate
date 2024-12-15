@@ -53,7 +53,7 @@ namespace PBOBarberMate.View
             {
                 // mengambil data dari db
                 DataTable src = TabelContext.getReservasiMingguIni();
-                // membuat size kolom menjadi rata danmemenuhi tabel
+                // membuat size kolom menjadi rata dan memenuhi tabel
                 dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 // membuat tabel responsif berdasarkan isi data
                 foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
@@ -73,6 +73,10 @@ namespace PBOBarberMate.View
                 };
                 // mengambil data dari variabel
                 dgvJadwalMingguIni.DataSource = src;
+
+                dgvJadwalMingguIni.Columns["tanggal"].HeaderText = "Tanggal";
+                dgvJadwalMingguIni.Columns["waktu"].HeaderText = "Waktu";
+                dgvJadwalMingguIni.Columns["pelayanan"].HeaderText = "Pelayanan";
             }
             catch (Exception ex)
             {
@@ -216,8 +220,8 @@ namespace PBOBarberMate.View
         }
         private void btnUlasan_Click(object sender, EventArgs e)
         {
-            FormLihatPembayaranUntukUlasan formLihatPembayaranUntukUlasan = new FormLihatPembayaranUntukUlasan();
-            formLihatPembayaranUntukUlasan.Show();
+            FormLihatPembayaranUntukUlasan form = new FormLihatPembayaranUntukUlasan();
+            form.Show();
             this.Hide();
         }
     }

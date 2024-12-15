@@ -43,6 +43,20 @@ namespace PBOBarberMate.View.FormShift
                 DataTable dataShift = ShiftContext.All(); // Ambil data shift dari database
                 dgvJadwalShift.DataSource = dataShift;    // Tampilkan data pada DataGridView
                 dgvJadwalShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // membuat size kolom menjadi rata danmemenuhi tabel
+
+                // membuat tabel responsif berdasarkan isi data
+                foreach (DataGridViewColumn column in dgvJadwalShift.Columns)
+                {
+                    column.Width = dgvJadwalShift.Width / dgvJadwalShift.Columns.Count;
+                }
+                // behaviour table
+                dgvJadwalShift.ScrollBars = ScrollBars.None;
+                dgvJadwalShift.AllowUserToAddRows = false;
+                dgvJadwalShift.AllowUserToResizeColumns = false;
+                dgvJadwalShift.AllowUserToResizeRows = false;
+                dgvJadwalShift.RowHeadersVisible = false;
+                dgvJadwalShift.ClearSelection();
 
                 if (dgvJadwalShift.Columns["nama_akun"] != null)
                     dgvJadwalShift.Columns["nama_akun"].HeaderText = "Nama Karyawan";

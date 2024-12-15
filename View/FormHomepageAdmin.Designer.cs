@@ -71,8 +71,8 @@
             // 
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
-            lblWelcome.Location = new Point(18, 40);
+            lblWelcome.ForeColor = Color.Black;
+            lblWelcome.Location = new Point(23, 51);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(181, 58);
             lblWelcome.TabIndex = 0;
@@ -114,7 +114,7 @@
             gbxMenu.Controls.Add(btnPembayaran);
             gbxMenu.Controls.Add(btnReservasi);
             gbxMenu.Controls.Add(btnLayanan);
-            gbxMenu.Location = new Point(111, 130);
+            gbxMenu.Location = new Point(183, 130);
             gbxMenu.Name = "gbxMenu";
             gbxMenu.Size = new Size(600, 283);
             gbxMenu.TabIndex = 2;
@@ -282,6 +282,7 @@
             btnKaryawan.Text = "Kelola\r\nKaryawan";
             btnKaryawan.TextAlign = ContentAlignment.BottomCenter;
             btnKaryawan.UseVisualStyleBackColor = false;
+            btnKaryawan.Click += btnKaryawan_Click;
             // 
             // btnKunjungan
             // 
@@ -297,6 +298,7 @@
             btnKunjungan.Text = "Riwayat\r\nKunjungan";
             btnKunjungan.TextAlign = ContentAlignment.BottomCenter;
             btnKunjungan.UseVisualStyleBackColor = false;
+            btnKunjungan.Click += btnKunjungan_Click;
             // 
             // btnPembayaran
             // 
@@ -355,7 +357,7 @@
             btnProfil.BackColor = Color.FromArgb(44, 62, 80);
             btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
             btnProfil.ForeColor = Color.White;
-            btnProfil.Location = new Point(730, 10);
+            btnProfil.Location = new Point(870, 25);
             btnProfil.Name = "btnProfil";
             btnProfil.Size = new Size(55, 36);
             btnProfil.TabIndex = 3;
@@ -369,8 +371,8 @@
             // 
             lblHomepageGreet.AutoSize = true;
             lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHomepageGreet.ForeColor = Color.FromArgb(44, 62, 80);
-            lblHomepageGreet.Location = new Point(25, 20);
+            lblHomepageGreet.ForeColor = Color.Black;
+            lblHomepageGreet.Location = new Point(30, 31);
             lblHomepageGreet.Name = "lblHomepageGreet";
             lblHomepageGreet.Size = new Size(33, 23);
             lblHomepageGreet.TabIndex = 5;
@@ -386,7 +388,7 @@
             gbxShowProfile.Controls.Add(lblProfilNama);
             gbxShowProfile.Controls.Add(btnHomepageLogout);
             gbxShowProfile.ForeColor = Color.FromArgb(44, 62, 80);
-            gbxShowProfile.Location = new Point(615, 50);
+            gbxShowProfile.Location = new Point(755, 65);
             gbxShowProfile.Margin = new Padding(0);
             gbxShowProfile.Name = "gbxShowProfile";
             gbxShowProfile.Size = new Size(170, 144);
@@ -452,7 +454,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 449);
+            ClientSize = new Size(944, 501);
             Controls.Add(gbxShowProfile);
             Controls.Add(lblHomepageGreet);
             Controls.Add(btnProfil);

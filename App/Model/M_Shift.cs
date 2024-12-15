@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace PBOBarberMate.App.Model
 {
+
    public class M_Shift
     {
         public int id_shift { get; set; }

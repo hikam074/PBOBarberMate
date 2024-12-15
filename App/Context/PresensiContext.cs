@@ -100,5 +100,61 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.IsPresensiExist(): {ex.Message}", ex);
             }
         }
+
+        public static string isPresensiTodayExist(int idAkun)
+        {
+            string query = "SELECT TO_CHAR(waktu_presensi, 'HH24:MI:SS') AS waktu_presensi FROM presensi WHERE id_akun = @id_akun AND DATE(waktu_presensi) = CURRENT_DATE ;";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_akun", idAkun)
+            };
+
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
+                {
+                    if (reader.Read())
+                    {
+
+                        return reader["waktu_presensi"].ToString();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.PresensiContext.isPresensiodayExist] : {ex}");
+                return null;
+            }
+        }
+        public static int getJadwalShiftTodayThisID(int idAkun)
+        {
+            try
+            {
+                string query = "SELECT id_shift FROM shift_karyawan WHERE id_akun = @idAkun AND id_hari = EXTRACT(DOW FROM CURRENT_DATE)";
+
+                NpgsqlParameter[] parameters = { new NpgsqlParameter("@idAkun", idAkun) };
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
+                {
+                    if (reader.Read())
+                    {
+                        return Convert.ToInt32(reader["id_shift"]);
+                    }
+                    else
+                    {
+                        return -1;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.PresensiContext.getJadwalShiftTodayThisID] : {ex}");
+                return -1;
+            }
+        }
     }
 }

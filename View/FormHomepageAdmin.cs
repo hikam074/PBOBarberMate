@@ -175,6 +175,13 @@ namespace PBOBarberMate.View
             formAddPembayaran.Show();
             this.Hide();
         }
+
+        private void btnKunjungan_Click(object sender, EventArgs e)
+        {
+            FormLihatPembayaranUntukUlasan form = new FormLihatPembayaranUntukUlasan();
+            form.Show();
+            this.Hide();
+        }
     }
 }								
 								

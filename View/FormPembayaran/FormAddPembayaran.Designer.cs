@@ -81,7 +81,7 @@
             gbxCariReservasi.Controls.Add(lblNama);
             gbxCariReservasi.Controls.Add(lblTanggal);
             gbxCariReservasi.Font = new Font("Bahnschrift Condensed", 11.25F);
-            gbxCariReservasi.Location = new Point(70, 76);
+            gbxCariReservasi.Location = new Point(133, 105);
             gbxCariReservasi.Name = "gbxCariReservasi";
             gbxCariReservasi.Size = new Size(310, 339);
             gbxCariReservasi.TabIndex = 10;
@@ -163,10 +163,11 @@
             // 
             // lblHeading
             // 
+            lblHeading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHeading.ForeColor = Color.FromArgb(44, 62, 80);
-            lblHeading.Location = new Point(210, 9);
+            lblHeading.Location = new Point(262, 25);
             lblHeading.Name = "lblHeading";
             lblHeading.Size = new Size(417, 58);
             lblHeading.TabIndex = 12;
@@ -189,7 +190,7 @@
             gbxkonfirmasiPembayaran.Controls.Add(lblConfirmHeadLayanan);
             gbxkonfirmasiPembayaran.Controls.Add(lblConfirmHeadNama);
             gbxkonfirmasiPembayaran.Font = new Font("Bahnschrift Condensed", 11.25F);
-            gbxkonfirmasiPembayaran.Location = new Point(435, 76);
+            gbxkonfirmasiPembayaran.Location = new Point(515, 105);
             gbxkonfirmasiPembayaran.Name = "gbxkonfirmasiPembayaran";
             gbxkonfirmasiPembayaran.Size = new Size(300, 339);
             gbxkonfirmasiPembayaran.TabIndex = 13;
@@ -333,7 +334,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(944, 501);
             Controls.Add(gbxkonfirmasiPembayaran);
             Controls.Add(lblHeading);
             Controls.Add(gbxCariReservasi);
