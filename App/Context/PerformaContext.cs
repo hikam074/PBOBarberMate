@@ -15,7 +15,7 @@ namespace PBOBarberMate.App.Context
 
         
         // query rata rata rating 
-        public static double getUlasanByID(int id)
+        public static NpgsqlDataReader getUlasanByID(int id)
         {
             string query = $@"
                             select avg(u.rating) as averageRating
@@ -24,27 +24,12 @@ namespace PBOBarberMate.App.Context
                             left join reservasi r on p.id_reservasi = r.id_reservasi
                             where r.id_karyawan = @id_karyawan";
 
-            try
+            NpgsqlParameter[] parameters =
             {
-                NpgsqlParameter[] parameters =
-                {
-                    new NpgsqlParameter("@id_karyawan", id)
-                };
-                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
-                {
-                    if (reader.Read()) { return reader.IsDBNull(reader.GetOrdinal("average_rating")) ? 0 : reader.GetDouble(reader.GetOrdinal("average_rating")); }
-                    return 0;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Error in PerformaContext.getUlasanByID(): {ex.Message}", ex);
-            }
+                new NpgsqlParameter("@id_layanan", id)
+            };
+            NpgsqlDataReader dataLayanan = queryExecutor(query, parameters);
+            return dataLayanan;
         }
-
-        //internal static DataTable getUlasanByID()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
