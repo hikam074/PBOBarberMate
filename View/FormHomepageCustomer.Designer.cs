@@ -296,11 +296,10 @@
             btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLihatReservasi.ForeColor = Color.FromArgb(44, 62, 80);
             btnLihatReservasi.ImageAlign = ContentAlignment.TopCenter;
-            btnLihatReservasi.Location = new Point(210, 9);
-            btnLihatReservasi.Margin = new Padding(2, 2, 2, 2);
+            btnLihatReservasi.Location = new Point(300, 15);
             btnLihatReservasi.Name = "btnLihatReservasi";
-            btnLihatReservasi.Padding = new Padding(6, 5, 6, 5);
-            btnLihatReservasi.Size = new Size(98, 75);
+            btnLihatReservasi.Padding = new Padding(9);
+            btnLihatReservasi.Size = new Size(140, 125);
             btnLihatReservasi.TabIndex = 8;
             btnLihatReservasi.Text = "Reservasi Anda";
             btnLihatReservasi.TextAlign = ContentAlignment.BottomCenter;
@@ -324,7 +323,6 @@
             dgvJadwalMingguIni.BackgroundColor = Color.White;
             dgvJadwalMingguIni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvJadwalMingguIni.GridColor = Color.FromArgb(44, 62, 80);
-            dgvJadwalMingguIni.RowHeadersWidth = 62;
             dgvJadwalMingguIni.Location = new Point(184, 320);
             dgvJadwalMingguIni.Name = "dgvJadwalMingguIni";
             dgvJadwalMingguIni.Size = new Size(595, 97);

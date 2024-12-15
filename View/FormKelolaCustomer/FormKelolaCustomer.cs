@@ -1,6 +1,7 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

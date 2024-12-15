@@ -1,17 +1,18 @@
-using System;								
-using System.Windows.Forms;								
-using Npgsql;															
-using PBOBarberMate.App.Context;								
-using PBOBarberMate.App.Core;								
-using PBOBarberMate.App.Model;								
-using PBOBarberMate.View;								
+using System;
+using System.Windows.Forms;
+using Npgsql;
+using PBOBarberMate.App.Context;
+using PBOBarberMate.App.Core;
+using PBOBarberMate.App.Model;
+using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
 using PBOBarberMate.View.FormReservasi;
 using PBOBarberMate.View.FormShift;
 using PBOBarberMate.View.FormKelolaKaryawan;
+using PBOBarberMate.View.FormKelolaCustomer;
 using PBOBarberMate.View.FormPembayaran;
 
-namespace PBOBarberMate.View								
+namespace PBOBarberMate.View
 {
     public partial class FormHomepageAdmin : Form
     {
@@ -185,11 +186,10 @@ namespace PBOBarberMate.View
 
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            FormKelolaCustomer.FormKelolaCustomer formKelolaCustomer = new FormKelolaCustomer.FormKelolaCustomer ();
-            formKelolaCustomer.Show();
+            FormKelolaCustomer.FormKelolaCustomer form = new FormKelolaCustomer.FormKelolaCustomer();
+            form.Show();
             this.Hide();
         }
     }
-}								
-								
+}
 
