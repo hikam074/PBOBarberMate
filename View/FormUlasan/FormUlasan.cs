@@ -132,43 +132,43 @@ namespace PBOBarberMate.View.FormUlasan
                             this.Hide();
                         };
 
-                        Button BtnDelete = new Button
-                        {
-                            Text = "Delete",  // Text yang akan ditampilkan pada tombol
-                            Width = 80,      // Lebar tombol
-                            Height = 25,      // Tinggi tombol
-                            Location = new Point(550, 5), // Lokasi tombol di dalam form/panel
-                            BackColor = Color.White,  // Warna latar belakang tombol
-                            FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
-                        };
-                        ulasanPanel.Controls.Add(BtnDelete);
-                        BtnDelete.Click += (sender, e) =>
-                        {
-                            int idUlasan = Convert.ToInt32(row["id_ulasan"]); // Ambil ID ulasan
-                            var confirmResult = MessageBox.Show("Apakah Anda yakin ingin menghapus ulasan ini?",
-                                                                "Konfirmasi Hapus",
-                                                                MessageBoxButtons.YesNo,
-                                                                MessageBoxIcon.Question);
+                        //Button BtnDelete = new Button
+                        //{
+                        //    Text = "Delete",  // Text yang akan ditampilkan pada tombol
+                        //    Width = 80,      // Lebar tombol
+                        //    Height = 25,      // Tinggi tombol
+                        //    Location = new Point(550, 5), // Lokasi tombol di dalam form/panel
+                        //    BackColor = Color.White,  // Warna latar belakang tombol
+                        //    FlatStyle = FlatStyle.Flat // Menentukan jenis tombol datar
+                        //};
+                        //ulasanPanel.Controls.Add(BtnDelete);
+                        //BtnDelete.Click += (sender, e) =>
+                        //{
+                        //    int idUlasan = Convert.ToInt32(row["id_ulasan"]); // Ambil ID ulasan
+                        //    var confirmResult = MessageBox.Show("Apakah Anda yakin ingin menghapus ulasan ini?",
+                        //                                        "Konfirmasi Hapus",
+                        //                                        MessageBoxButtons.YesNo,
+                        //                                        MessageBoxIcon.Question);
 
-                            if (confirmResult == DialogResult.Yes)
-                            {
-                                try
-                                {
-                                    UlasanContext.DeleteUlasan(idUlasan); // Panggil fungsi untuk menghapus ulasan
-                                    MessageBox.Show("Ulasan berhasil dihapus!", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //    if (confirmResult == DialogResult.Yes)
+                        //    {
+                        //        try
+                        //        {
+                        //            UlasanContext.DeleteUlasan(idUlasan); // Panggil fungsi untuk menghapus ulasan
+                        //            MessageBox.Show("Ulasan berhasil dihapus!", "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                                    panelUlasanContainer.Controls.Clear();
-                                    DisplayUlasan(); // Refresh halaman dengan memanggil ulang DisplayUlasan
-                                }
-                                catch (Exception ex)
-                                {
-                                    MessageBox.Show($"Terjadi kesalahan saat menghapus ulasan: {ex.Message}",
-                                                    "Kesalahan",
-                                                    MessageBoxButtons.OK,
-                                                    MessageBoxIcon.Error);
-                                }
-                            }
-                        };
+                        //            panelUlasanContainer.Controls.Clear();
+                        //            DisplayUlasan(); // Refresh halaman dengan memanggil ulang DisplayUlasan
+                        //        }
+                        //        catch (Exception ex)
+                        //        {
+                        //            MessageBox.Show($"Terjadi kesalahan saat menghapus ulasan: {ex.Message}",
+                        //                            "Kesalahan",
+                        //                            MessageBoxButtons.OK,
+                        //                            MessageBoxIcon.Error);
+                        //        }
+                        //    }
+                        //};
                     }
                 }
                 
