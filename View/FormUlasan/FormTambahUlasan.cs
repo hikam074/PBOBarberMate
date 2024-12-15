@@ -16,7 +16,7 @@ namespace PBOBarberMate.View.FormUlasan
 {
     public partial class FormTambahUlasan : Form
     {
-        public int id_pembayaran {  get; set; }
+        public int id_pembayaran { get; set; }
         public int id_layanan { get; set; }
         public int id_ulasan { get; set; }
         public bool IseditMode { get; set; }
@@ -144,10 +144,10 @@ namespace PBOBarberMate.View.FormUlasan
             }
 
 
-            M_Ulasan ulasan = new M_Ulasan 
+            M_Ulasan ulasan = new M_Ulasan
             {
-                isi_ulasan = textBox1.Text, 
-                id_pembayaran = id_pembayaran, 
+                isi_ulasan = textBox1.Text,
+                id_pembayaran = id_pembayaran,
             };
             if (bintang1.Visible)
             {
@@ -247,6 +247,13 @@ namespace PBOBarberMate.View.FormUlasan
             {
                 button1.Text = "Tambahkan Komentar"; // Teks tombol untuk mode tambah
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormLihatPembayaranUntukUlasan formLihatPembayaranUntukUlasan = new FormLihatPembayaranUntukUlasan();
+            formLihatPembayaranUntukUlasan.Show();
+            this.Hide();
         }
     }
 }

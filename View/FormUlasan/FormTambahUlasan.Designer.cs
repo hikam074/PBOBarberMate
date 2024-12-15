@@ -58,7 +58,7 @@
             // textBox1
             // 
             textBox1.Location = new Point(113, 125);
-            textBox1.Margin = new Padding(2, 2, 2, 2);
+            textBox1.Margin = new Padding(2);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(542, 101);
@@ -80,7 +80,7 @@
             bintang1.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang1.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang1.Location = new Point(113, 80);
-            bintang1.Margin = new Padding(2, 2, 2, 2);
+            bintang1.Margin = new Padding(2);
             bintang1.Name = "bintang1";
             bintang1.Size = new Size(44, 41);
             bintang1.TabIndex = 2;
@@ -93,7 +93,7 @@
             bintang2.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang2.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang2.Location = new Point(161, 80);
-            bintang2.Margin = new Padding(2, 2, 2, 2);
+            bintang2.Margin = new Padding(2);
             bintang2.Name = "bintang2";
             bintang2.Size = new Size(45, 41);
             bintang2.TabIndex = 3;
@@ -106,7 +106,7 @@
             bintang3.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang3.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang3.Location = new Point(210, 80);
-            bintang3.Margin = new Padding(2, 2, 2, 2);
+            bintang3.Margin = new Padding(2);
             bintang3.Name = "bintang3";
             bintang3.Size = new Size(44, 41);
             bintang3.TabIndex = 4;
@@ -119,7 +119,7 @@
             bintang4.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang4.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang4.Location = new Point(257, 80);
-            bintang4.Margin = new Padding(2, 2, 2, 2);
+            bintang4.Margin = new Padding(2);
             bintang4.Name = "bintang4";
             bintang4.Size = new Size(43, 41);
             bintang4.TabIndex = 5;
@@ -132,7 +132,7 @@
             bintang5.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
             bintang5.Image = Properties.Resources.bintang_removebg_preview__1_;
             bintang5.Location = new Point(304, 80);
-            bintang5.Margin = new Padding(2, 2, 2, 2);
+            bintang5.Margin = new Padding(2);
             bintang5.Name = "bintang5";
             bintang5.Size = new Size(45, 41);
             bintang5.TabIndex = 6;
@@ -144,7 +144,7 @@
             // 
             pictureBox6.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
             pictureBox6.Location = new Point(304, 80);
-            pictureBox6.Margin = new Padding(2, 2, 2, 2);
+            pictureBox6.Margin = new Padding(2);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(45, 41);
             pictureBox6.TabIndex = 11;
@@ -155,7 +155,7 @@
             // 
             pictureBox7.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
             pictureBox7.Location = new Point(258, 80);
-            pictureBox7.Margin = new Padding(2, 2, 2, 2);
+            pictureBox7.Margin = new Padding(2);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(42, 41);
             pictureBox7.TabIndex = 10;
@@ -166,7 +166,7 @@
             // 
             pictureBox8.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
             pictureBox8.Location = new Point(210, 80);
-            pictureBox8.Margin = new Padding(2, 2, 2, 2);
+            pictureBox8.Margin = new Padding(2);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(44, 41);
             pictureBox8.TabIndex = 9;
@@ -177,7 +177,7 @@
             // 
             pictureBox9.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
             pictureBox9.Location = new Point(161, 80);
-            pictureBox9.Margin = new Padding(2, 2, 2, 2);
+            pictureBox9.Margin = new Padding(2);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(45, 41);
             pictureBox9.TabIndex = 8;
@@ -188,7 +188,7 @@
             // 
             pictureBox10.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
             pictureBox10.Location = new Point(116, 80);
-            pictureBox10.Margin = new Padding(2, 2, 2, 2);
+            pictureBox10.Margin = new Padding(2);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(41, 41);
             pictureBox10.TabIndex = 7;
@@ -198,7 +198,7 @@
             // button1
             // 
             button1.Location = new Point(635, 242);
-            button1.Margin = new Padding(2, 2, 2, 2);
+            button1.Margin = new Padding(2);
             button1.Name = "button1";
             button1.Size = new Size(153, 20);
             button1.TabIndex = 12;
@@ -209,12 +209,13 @@
             // button2
             // 
             button2.Location = new Point(8, 242);
-            button2.Margin = new Padding(2, 2, 2, 2);
+            button2.Margin = new Padding(2);
             button2.Name = "button2";
             button2.Size = new Size(71, 20);
             button2.TabIndex = 13;
             button2.Text = "Kembali";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // label2
             // 
@@ -247,7 +248,7 @@
             Controls.Add(pictureBox8);
             Controls.Add(pictureBox9);
             Controls.Add(pictureBox10);
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "FormTambahUlasan";
             Text = "FormUlasan";
             Load += FormTambahUlasan_Load;
