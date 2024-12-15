@@ -13,26 +13,27 @@ namespace PBOBarberMate.App.Context
     {
         private static string table = "ulasan";
 
-        public static DataTable getUlasanByID(int id)
+        
+        // query rata rata rating 
+        public static double getUlasanByID(int id)
         {
             string query = $@"
-                select u.rating
-                from {table} u
-                join pembayaran p on u.id_pembayaran = p.id_pembayaran
-                left join reservasi r on p.id_reservasi = r.id_reservasi and r.id_karyawan = @id_karyawan
-                where u.tanggal_memberi_ulasan >= NOW() - INTERVAL '30 days'";
+                            select avg(u.rating) as averageRating
+                            from {table} u
+                            join pembayaran p on u.id_pembayaran = p.id_pembayaran
+                            left join reservasi r on p.id_reservasi = r.id_reservasi
+                            where r.id_karyawan = @id_karyawan";
 
-            NpgsqlParameter[] parameters =
-            {
-                new NpgsqlParameter("@id_karyawan", id)
-            };
             try
             {
+                NpgsqlParameter[] parameters =
+                {
+                    new NpgsqlParameter("@id_karyawan", id)
+                };
                 using (NpgsqlDataReader reader = queryExecutor(query, parameters))
                 {
-                    DataTable dataPerforma = new DataTable();
-                    dataPerforma.Load(reader);
-                    return dataPerforma;
+                    if (reader.Read()) { return reader.IsDBNull(reader.GetOrdinal("average_rating")) ? 0 : reader.GetDouble(reader.GetOrdinal("average_rating")); }
+                    return 0;
                 }
             }
             catch (Exception ex)
@@ -40,5 +41,10 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PerformaContext.getUlasanByID(): {ex.Message}", ex);
             }
         }
+
+        //internal static DataTable getUlasanByID()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
