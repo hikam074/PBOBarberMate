@@ -135,7 +135,7 @@ namespace PBOBarberMate.App.Context
         {
             try
             {
-                string query = "SELECT id_shift FROM shift_karyawan WHERE id_akun = @idAkun AND id_hari = EXTRACT(DOW FROM CURRENT_DATE)";
+                string query = "SELECT sk.id_shift FROM shift_karyawan sk JOIN detail_hari dh ON (dh.id_hari  = sk.id_hari) WHERE sk.id_akun = @idAkun AND dh.hari_sql = EXTRACT(DOW FROM CURRENT_DATE)";
 
                 NpgsqlParameter[] parameters = { new NpgsqlParameter("@idAkun", idAkun) };
                 using (NpgsqlDataReader reader = queryExecutor(query, parameters))

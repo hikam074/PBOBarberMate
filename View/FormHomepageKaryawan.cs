@@ -200,6 +200,7 @@ namespace PBOBarberMate.View
                     id_shift = PresensiContext.getJadwalShiftTodayThisID(UserSession.idSession),
                     waktu_presensi = DateTime.Now
                 };
+                MessageBox.Show($"{presensi.id_shift}");
                 
                 PresensiContext.AddPresensi(presensi);
 

@@ -26,7 +26,7 @@ namespace PBOBarberMate.View.FormKelolaCustomer
         private void FormKelolaCustomer_Load(object sender, EventArgs e)
         {
             LoadDataCustomer();
-
+            
         }
 
         private void LoadDataCustomer()
