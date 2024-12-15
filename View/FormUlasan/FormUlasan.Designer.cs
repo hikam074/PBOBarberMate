@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormUlasan));
             lblLayanan = new Label();
             panelUlasanContainer = new Panel();
             bintang1 = new PictureBox();
@@ -60,7 +61,7 @@
             // 
             // bintang1
             // 
-            bintang1.Image = Properties.Resources.bintang_removebg_preview__1_;
+            bintang1.Image = (Image)resources.GetObject("bintang1.Image");
             bintang1.Location = new Point(12, 24);
             bintang1.Margin = new Padding(2);
             bintang1.Name = "bintang1";

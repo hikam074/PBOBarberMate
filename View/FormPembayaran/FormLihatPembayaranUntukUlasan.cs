@@ -41,50 +41,8 @@ namespace PBOBarberMate.View.FormPembayaran
                     DataTable dataPembayaran = PembayaranContext.getDataPembayaran();
                     dgvDataPembayaran.DataSource = dataPembayaran;
                 }
-                
+
                 // membuat object tombol ulas
-
-                // behaviour table
-                dgvDataPembayaran.AllowUserToAddRows = false;
-                dgvDataPembayaran.RowHeadersVisible = false;
-                dgvDataPembayaran.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                // method kustomisasi tabel
-                void SetHeaderText(DataGridView dgv, string columnName, string headerText)
-                {
-                    if (dgv.Columns[columnName] != null)
-                    {
-                        dgv.Columns[columnName].HeaderText = headerText;
-                    }
-                }
-                // menggunakan method kustomisasi
-                SetHeaderText(dgvDataPembayaran, "nama_layanan", "Layanan");
-                SetHeaderText(dgvDataPembayaran, "harga", "Harga");
-                SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
-                SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
-                SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
-                SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
-
-                if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
-                {
-                    dgvDataPembayaran.Columns["id_akun"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
-                {
-                    dgvDataPembayaran.Columns["nama_akun"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
-                {
-                    dgvDataPembayaran.Columns["id_pembayaran"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
-                {
-                    dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role == AkunRole.Admin)
-                {
-                    dgvDataPembayaran.Columns["Ulas"].Visible = false;
-                }
-
                 // Update tombol untuk setiap baris berdasarkan ulasan yang ada
                 foreach (DataGridViewRow row in dgvDataPembayaran.Rows)
                 {
@@ -126,6 +84,46 @@ namespace PBOBarberMate.View.FormPembayaran
                             }
                         }
                     }
+                    // behaviour table
+                    dgvDataPembayaran.AllowUserToAddRows = false;
+                dgvDataPembayaran.RowHeadersVisible = false;
+                dgvDataPembayaran.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // method kustomisasi tabel
+                void SetHeaderText(DataGridView dgv, string columnName, string headerText)
+                {
+                    if (dgv.Columns[columnName] != null)
+                    {
+                        dgv.Columns[columnName].HeaderText = headerText;
+                    }
+                }
+                // menggunakan method kustomisasi
+                SetHeaderText(dgvDataPembayaran, "nama_layanan", "Layanan");
+                SetHeaderText(dgvDataPembayaran, "harga", "Harga");
+                SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
+                SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
+                SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
+                SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
+
+                if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
+                {
+                    dgvDataPembayaran.Columns["id_akun"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
+                {
+                    dgvDataPembayaran.Columns["nama_akun"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
+                {
+                    dgvDataPembayaran.Columns["id_pembayaran"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
+                {
+                    dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
+                }
+                if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role != AkunRole.Customer)
+                {
+                    dgvDataPembayaran.Columns["Ulas"].Visible = false;
+                }
                 }
 
             }

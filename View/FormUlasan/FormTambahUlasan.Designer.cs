@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTambahUlasan));
             textBox1 = new TextBox();
             label1 = new Label();
             bintang1 = new PictureBox();
@@ -77,9 +78,8 @@
             // 
             // bintang1
             // 
-            //bintang1.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
-            //bintang1.Image = Properties.Resources.bintang_removebg_preview__1_;
-            bintang1.Location = new Point(113, 80);
+            bintang1.Image = (Image)resources.GetObject("bintang1.Image");
+            bintang1.Location = new Point(116, 80);
             bintang1.Margin = new Padding(2);
             bintang1.Name = "bintang1";
             bintang1.Size = new Size(44, 41);
@@ -90,8 +90,7 @@
             // 
             // bintang2
             // 
-            //bintang2.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
-            //bintang2.Image = Properties.Resources.bintang_removebg_preview__1_;
+            bintang2.Image = (Image)resources.GetObject("bintang2.Image");
             bintang2.Location = new Point(161, 80);
             bintang2.Margin = new Padding(2);
             bintang2.Name = "bintang2";
@@ -103,8 +102,7 @@
             // 
             // bintang3
             // 
-            //bintang3.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
-            //bintang3.Image = Properties.Resources.bintang_removebg_preview__1_;
+            bintang3.Image = (Image)resources.GetObject("bintang3.Image");
             bintang3.Location = new Point(210, 80);
             bintang3.Margin = new Padding(2);
             bintang3.Name = "bintang3";
@@ -116,8 +114,7 @@
             // 
             // bintang4
             // 
-            //bintang4.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
-            //bintang4.Image = Properties.Resources.bintang_removebg_preview__1_;
+            bintang4.Image = (Image)resources.GetObject("bintang4.Image");
             bintang4.Location = new Point(257, 80);
             bintang4.Margin = new Padding(2);
             bintang4.Name = "bintang4";
@@ -129,8 +126,7 @@
             // 
             // bintang5
             // 
-            //bintang5.ErrorImage = Properties.Resources.bintang_removebg_preview__1_;
-            //bintang5.Image = Properties.Resources.bintang_removebg_preview__1_;
+            bintang5.Image = (Image)resources.GetObject("bintang5.Image");
             bintang5.Location = new Point(304, 80);
             bintang5.Margin = new Padding(2);
             bintang5.Name = "bintang5";
@@ -142,7 +138,7 @@
             // 
             // pictureBox6
             // 
-            //pictureBox6.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
             pictureBox6.Location = new Point(304, 80);
             pictureBox6.Margin = new Padding(2);
             pictureBox6.Name = "pictureBox6";
@@ -153,7 +149,7 @@
             // 
             // pictureBox7
             // 
-            //pictureBox7.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
             pictureBox7.Location = new Point(258, 80);
             pictureBox7.Margin = new Padding(2);
             pictureBox7.Name = "pictureBox7";
@@ -164,7 +160,7 @@
             // 
             // pictureBox8
             // 
-            //pictureBox8.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
+            pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
             pictureBox8.Location = new Point(210, 80);
             pictureBox8.Margin = new Padding(2);
             pictureBox8.Name = "pictureBox8";
@@ -175,7 +171,7 @@
             // 
             // pictureBox9
             // 
-            //pictureBox9.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
+            pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
             pictureBox9.Location = new Point(161, 80);
             pictureBox9.Margin = new Padding(2);
             pictureBox9.Name = "pictureBox9";
@@ -186,7 +182,7 @@
             // 
             // pictureBox10
             // 
-            //pictureBox10.Image = Properties.Resources.bintang_abu_removebg_preview__1_;
+            pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
             pictureBox10.Location = new Point(116, 80);
             pictureBox10.Margin = new Padding(2);
             pictureBox10.Name = "pictureBox10";
