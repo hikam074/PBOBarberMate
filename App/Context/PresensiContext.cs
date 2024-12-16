@@ -160,13 +160,13 @@ namespace PBOBarberMate.App.Context
         {
             string query = @"
             SELECT 
-            a.id_presensi
+            p.id_presensi,
             a.nama_akun,
-            p.waktu_presensi,
+            p.waktu_presensi
             FROM 
             presensi p
             JOIN 
-            akun a ON p.id_akun = a.id_akun";
+            akun a ON (p.id_akun = a.id_akun)";
             try
             {
                 using (NpgsqlDataReader reader = queryExecutor(query))
@@ -184,7 +184,7 @@ namespace PBOBarberMate.App.Context
 
         public static DataTable getDataPresensiById(int id)
         {
-            string query = "
+            string query = @"
                 SELECT 
                     waktu_presensi
                 FROM 

@@ -87,9 +87,9 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             }
             else if (e.ColumnIndex == dataGridViewKelolaKaryawan.Columns["Delete"].Index)
             {
-                //int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id"].Value);
-                //PresensiContext.DeletePresensi(mahasiswaId);
-                //MenampilkanKehadiranKaryawan();
+                int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
+                PresensiContext.DeletePresensi(mahasiswaId);
+                MenampilkanKehadiranKaryawan();
             }
         }
     }
