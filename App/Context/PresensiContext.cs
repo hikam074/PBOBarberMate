@@ -158,7 +158,15 @@ namespace PBOBarberMate.App.Context
         }
         public static DataTable All()
         {
-            string query = $"SELECT * from presensi";
+            string query = @"
+            SELECT 
+            a.id_presensi
+            a.nama_akun,
+            p.waktu_presensi,
+            FROM 
+            presensi p
+            JOIN 
+            akun a ON p.id_akun = a.id_akun";
             try
             {
                 using (NpgsqlDataReader reader = queryExecutor(query))
@@ -176,7 +184,13 @@ namespace PBOBarberMate.App.Context
 
         public static DataTable getDataPresensiById(int id)
         {
-            string query = $"SELECT * from presensi where id_akun = @id";
+            string query = "
+                SELECT 
+                    waktu_presensi
+                FROM 
+                    presensi
+                WHERE 
+                    id_presensi = @id";
             try
             {
                 NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
@@ -195,7 +209,7 @@ namespace PBOBarberMate.App.Context
         }
         public static void DeletePresensi(int id)
         {
-            string query = $"delete from presensi where id_akun = @id";
+            string query = $"DELETE FROM presensi WHERE id_presensi = @id";
             try
             {
                 NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };

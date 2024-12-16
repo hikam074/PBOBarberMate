@@ -12,5 +12,6 @@ namespace PBOBarberMate.App.Model
         public int id_akun { get; set; }
         public int id_shift { get; set; }
         public DateTime waktu_presensi { get; set; }
+        public DataSetDateTime timestamp { get; set; }
     }
 }
