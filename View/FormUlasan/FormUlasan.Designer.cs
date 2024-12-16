@@ -56,7 +56,7 @@
             panelUlasanContainer.Controls.Add(button1);
             panelUlasanContainer.Location = new Point(56, 106);
             panelUlasanContainer.Name = "panelUlasanContainer";
-            panelUlasanContainer.Size = new Size(747, 83);
+            panelUlasanContainer.Size = new Size(827, 83);
             panelUlasanContainer.TabIndex = 3;
             // 
             // bintang1
@@ -99,7 +99,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoScroll = true;
-            ClientSize = new Size(874, 450);
+            ClientSize = new Size(944, 501);
             Controls.Add(btnKembali);
             Controls.Add(panelUlasanContainer);
             Controls.Add(lblLayanan);

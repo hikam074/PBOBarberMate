@@ -37,54 +37,66 @@
             // 
             // btnKembali
             // 
-            btnKembali.Location = new Point(12, 639);
+            btnKembali.BackColor = SystemColors.Control;
+            btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
+            btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
+            btnKembali.Location = new Point(11, 451);
+            btnKembali.Margin = new Padding(2);
             btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(111, 33);
+            btnKembali.Size = new Size(75, 39);
             btnKembali.TabIndex = 7;
             btnKembali.Text = "KEMBALI";
-            btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.UseVisualStyleBackColor = false;
             btnKembali.Click += btnKembali_Click;
             // 
             // btnTambah
             // 
-            btnTambah.Location = new Point(1074, 639);
+            btnTambah.BackColor = SystemColors.Control;
+            btnTambah.Font = new Font("Bahnschrift Condensed", 11.25F);
+            btnTambah.ForeColor = Color.FromArgb(44, 62, 80);
+            btnTambah.Location = new Point(858, 451);
+            btnTambah.Margin = new Padding(2);
             btnTambah.Name = "btnTambah";
-            btnTambah.Size = new Size(111, 33);
+            btnTambah.Size = new Size(75, 39);
             btnTambah.TabIndex = 6;
             btnTambah.Text = "TAMBAH";
-            btnTambah.UseVisualStyleBackColor = true;
+            btnTambah.UseVisualStyleBackColor = false;
             btnTambah.Click += btnTambah_Click;
             // 
             // lblInventaris
             // 
             lblInventaris.AutoSize = true;
-            lblInventaris.Font = new Font("Sitka Banner", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblInventaris.Location = new Point(475, 25);
+            lblInventaris.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold);
+            lblInventaris.Location = new Point(326, 28);
+            lblInventaris.Margin = new Padding(2, 0, 2, 0);
             lblInventaris.Name = "lblInventaris";
-            lblInventaris.Size = new Size(274, 58);
+            lblInventaris.Size = new Size(288, 58);
             lblInventaris.TabIndex = 5;
             lblInventaris.Text = "List Stok Barang";
             // 
             // dataGridView1
             // 
             dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.White;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 98);
+            dataGridView1.Location = new Point(25, 105);
+            dataGridView1.Margin = new Padding(2);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridView1.Size = new Size(1173, 502);
+            dataGridView1.Size = new Size(885, 342);
             dataGridView1.TabIndex = 4;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // FormInventaris
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1200, 695);
+            ClientSize = new Size(944, 501);
             Controls.Add(btnKembali);
             Controls.Add(btnTambah);
             Controls.Add(lblInventaris);
             Controls.Add(dataGridView1);
+            Margin = new Padding(2);
             Name = "FormInventaris";
             Text = "FormInventaris";
             Load += FormInventaris_Load;
