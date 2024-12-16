@@ -1,6 +1,6 @@
 ﻿namespace PBOBarberMate.View.FormKelolaKaryawan
 {
-    partial class FormKelolaKaryawan 
+    partial class FormKelolaKaryawan
     {
         /// <summary>
         /// Required designer variable.

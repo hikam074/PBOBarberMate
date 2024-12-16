@@ -33,16 +33,16 @@ namespace PBOBarberMate.View
         {
             lblWelcome.Text = UserSession.nama;
             lblStatusShiftToday.Text = ShiftContext.getShiftByIDToday(UserSession.idSession);
-
             string waktuPresensi = PresensiContext.isPresensiTodayExist(UserSession.idSession);
-            if (waktuPresensi == null)
+            string adashift = ShiftContext.getShiftByIDToday(UserSession.idSession);
+            if (adashift == "Ada")
             {
-                waktuPresensi = "-";
+                adashift = "-";
                 btnLakukanPresensi.Enabled = true;
             }
             else
             {
-                //btnLakukanPresensi.Enabled = false;
+                btnLakukanPresensi.Enabled = false;
             }
             lblStatusPresensiToday.Text = waktuPresensi;
         }

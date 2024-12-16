@@ -156,5 +156,56 @@ namespace PBOBarberMate.App.Context
                 return -1;
             }
         }
+        public static DataTable All()
+        {
+            string query = $"SELECT * from presensi";
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable dataLayanan = new DataTable();
+                    dataLayanan.Load(reader);
+                    return dataLayanan;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
+            }
+        }
+
+        public static DataTable getDataPresensiById(int id)
+        {
+            string query = $"SELECT * from presensi where id_akun = @id";
+            try
+            {
+                NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
+                // mendapatkan reservasi selain yang selesai dari db reservasi
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable dataLayanan = new DataTable();
+                    dataLayanan.Load(reader);
+                    return dataLayanan;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
+            }
+        }
+        public static void DeletePresensi(int id)
+        {
+            string query = $"delete from presensi where id_akun = @id";
+            try
+            {
+                NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
+                // mendapatkan reservasi selain yang selesai dari db reservasi
+                commandExecutor(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
+            }
+        }
     }
 }

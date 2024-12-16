@@ -105,7 +105,7 @@ namespace PBOBarberMate.App.Context
 
         public static string getShiftByIDToday(int id)
         {
-            string query = "SELECT * FROM shift_karyawan WHERE id_akun = @id AND id_hari = EXTRACT(DOW FROM CURRENT_DATE)";
+            string query = "SELECT sk.* FROM shift_karyawan sk JOIN detail_hari dh ON (sk.id_hari = dh.id_hari) WHERE sk.id_akun = @id AND dh.hari_sql = EXTRACT(DOW FROM CURRENT_DATE)";
 
             NpgsqlParameter[] parameters =
             {
@@ -117,7 +117,7 @@ namespace PBOBarberMate.App.Context
                 {
                     DataTable dataShift = new DataTable();
                     dataShift.Load(reader);
-                    if (dataShift  == null)
+                    if (dataShift.Rows.Count == 0)
                     {
                         return "Tidak Ada";
                     }
