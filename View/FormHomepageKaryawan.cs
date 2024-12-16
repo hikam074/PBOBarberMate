@@ -171,6 +171,13 @@ namespace PBOBarberMate.View
             this.Hide();
         }
 
+        private void btnPerforma_Click(object sender, EventArgs e)
+        {
+            FormPerforma.FormPerforma formPerforma = new FormPerforma.FormPerforma();
+            formPerforma.Show();
+            this.Hide();
+        }
+
         private void btnReservasi_Click(object sender, EventArgs e)
         {
             int idAkun = UserSession.idSession;

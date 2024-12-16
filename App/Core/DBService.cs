@@ -15,7 +15,7 @@ namespace PBOBarberMate.App.Core
         private static readonly string dbHost = "localhost";
         private static readonly string dbDatabase = "PBO_BarberMate";
         private static readonly string dbUsername = "postgres";
-        private static readonly string dbPassword = "dammahom51";
+        private static readonly string dbPassword = "n0uN545.";
         private static readonly string dbPort = "5432";
         // ATRIBUT Npgsql
         private static NpgsqlConnection connection;
