@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -15,6 +15,31 @@ namespace PBOBarberMate.App.Context
         private static string table = "presensi"; // Tabel presensi
 
         // Mengambil jadwal shift karyawan berdasarkan ID akun (hanya untuk akun_role_id = 2)
+        public static DataTable GetJadwalShiftKaryawanAll()
+        {
+            string query = $@"
+                SELECT p.id_presensi, sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
+                FROM shift_karyawan sk
+                JOIN detail_hari dh ON sk.id_hari = dh.id_hari
+                LEFT JOIN presensi p ON sk.id_shift = p.id_shift
+                WHERE p.waktu_presensi IS NOT NULL;
+                ";
+
+            Console.WriteLine(query);
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable jadwalData = new DataTable();
+                    jadwalData.Load(reader);
+                    return jadwalData;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
+            }
+        }
         public static DataTable GetJadwalShiftKaryawan(int idAkun)
         {
             string query = $@"
@@ -45,7 +70,30 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
             }
         }
+        public static DataTable GetJadwalShiftKaryawabyIdPresensi(int idPresensi)
+        {
+            string query = $@"
+                SELECT * from presensi where id_presensi = @id_presensi";
 
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_presensi", idPresensi)
+            };
+
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable jadwalData = new DataTable();
+                    jadwalData.Load(reader);
+                    return jadwalData;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
+            }
+        }
         // Menambahkan presensi baru
         public static void AddPresensi(M_Presensi presensi)
         {
@@ -69,7 +117,7 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
             }
         }
-
+        
         // Mengecek apakah karyawan sudah melakukan presensi pada shift tertentu
         public static bool IsPresensiExist(int idAkun, int idShift)
         {
@@ -156,69 +204,46 @@ namespace PBOBarberMate.App.Context
                 return -1;
             }
         }
-        public static DataTable All()
-        {
-            string query = @"
-            SELECT 
-            a.id_presensi
-            a.nama_akun,
-            p.waktu_presensi,
-            FROM 
-            presensi p
-            JOIN 
-            akun a ON p.id_akun = a.id_akun";
-            try
-            {
-                using (NpgsqlDataReader reader = queryExecutor(query))
-                {
-                    DataTable dataLayanan = new DataTable();
-                    dataLayanan.Load(reader);
-                    return dataLayanan;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
-            }
-        }
 
-        public static DataTable getDataPresensiById(int id)
+        internal static void DeletePresensi(int idpresensi)
         {
-            string query = "
-                SELECT 
-                    waktu_presensi
-                FROM 
-                    presensi
-                WHERE 
-                    id_presensi = @id";
+            string query = $@"
+                DELETE FROM {table} where id_presensi = @id_presensi";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_presensi", idpresensi),
+            };
+
             try
             {
-                NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
-                // mendapatkan reservasi selain yang selesai dari db reservasi
-                using (NpgsqlDataReader reader = queryExecutor(query))
-                {
-                    DataTable dataLayanan = new DataTable();
-                    dataLayanan.Load(reader);
-                    return dataLayanan;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
-            }
-        }
-        public static void DeletePresensi(int id)
-        {
-            string query = $"DELETE FROM presensi WHERE id_presensi = @id";
-            try
-            {
-                NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
-                // mendapatkan reservasi selain yang selesai dari db reservasi
                 commandExecutor(query, parameters);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Terjadi kesalahan [PBOBrberMate.App.Context.ReservasiContext.getReservasiExceptSelesai]: {ex}");
+                throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
+            }
+        }
+        internal static void UpdatePresensi(M_Presensi presensi)
+        {
+            string query = $@"
+                update presensi SET id_akun = @id_akun, id_shift = @id_shift, waktu_presensi = @waktu_presensi where id_presensi = @id_presensi";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_presensi", presensi.id_presensi),
+                new NpgsqlParameter("@id_akun", presensi.id_akun),
+                new NpgsqlParameter("@id_shift", presensi.id_shift),
+                new NpgsqlParameter("@waktu_presensi", presensi.waktu_presensi)
+            };
+
+            try
+            {
+                commandExecutor(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.UpdateContext(): {ex.Message}", ex);
             }
         }
     }
