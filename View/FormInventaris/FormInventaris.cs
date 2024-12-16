@@ -73,7 +73,7 @@ namespace PBOBarberMate.View.FormInventaris
                 if (dataGridView1.Columns["id_barang"] != null)
                     dataGridView1.Columns["id_barang"].Visible = false;
                 if (dataGridView1.Columns["nama_barang"] != null)
-                    dataGridView1.Columns["nama_barang"].HeaderText = "Nama Branag";
+                    dataGridView1.Columns["nama_barang"].HeaderText = "Nama Barang";
                 if (dataGridView1.Columns["jumlah_barang"] != null)
                     dataGridView1.Columns["jumlah_barang"].HeaderText = "Jumlah Barang";
 
