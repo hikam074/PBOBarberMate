@@ -37,7 +37,7 @@
             lblWaktu = new Label();
             btnSubmit = new Button();
             gbxPlanReservasi = new GroupBox();
-            groupBox2 = new GroupBox();
+            gbxKonfirmasiPemesanan = new GroupBox();
             lblConfirmWaktu = new Label();
             lblConfirmTanggal = new Label();
             lblConfirmLayanan = new Label();
@@ -48,12 +48,12 @@
             lblConfirmHeadNama = new Label();
             lblHeading = new Label();
             gbxPlanReservasi.SuspendLayout();
-            groupBox2.SuspendLayout();
+            gbxKonfirmasiPemesanan.SuspendLayout();
             SuspendLayout();
             // 
             // btnKembali
             // 
-            btnKembali.BackColor = SystemColors.Control;
+            btnKembali.BackColor = Color.White;
             btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
             btnKembali.Location = new Point(15, 15);
@@ -69,6 +69,7 @@
             lblLayanan.Anchor = AnchorStyles.Top;
             lblLayanan.AutoSize = true;
             lblLayanan.Font = new Font("Bahnschrift Condensed", 11.25F);
+            lblLayanan.ForeColor = Color.FromArgb(56, 43, 31);
             lblLayanan.Location = new Point(19, 36);
             lblLayanan.Name = "lblLayanan";
             lblLayanan.Size = new Size(50, 18);
@@ -79,6 +80,7 @@
             // 
             cbxLayanan.Anchor = AnchorStyles.Top;
             cbxLayanan.DisplayMember = "d";
+            cbxLayanan.ForeColor = Color.FromArgb(56, 43, 31);
             cbxLayanan.FormattingEnabled = true;
             cbxLayanan.Location = new Point(85, 33);
             cbxLayanan.Name = "cbxLayanan";
@@ -89,6 +91,7 @@
             // dtpTanggal
             // 
             dtpTanggal.Anchor = AnchorStyles.Top;
+            dtpTanggal.CalendarForeColor = Color.FromArgb(56, 43, 31);
             dtpTanggal.Location = new Point(85, 84);
             dtpTanggal.Name = "dtpTanggal";
             dtpTanggal.Size = new Size(200, 26);
@@ -98,6 +101,7 @@
             // cbxWaktu
             // 
             cbxWaktu.Anchor = AnchorStyles.Top;
+            cbxWaktu.ForeColor = Color.FromArgb(56, 43, 31);
             cbxWaktu.FormattingEnabled = true;
             cbxWaktu.Location = new Point(85, 136);
             cbxWaktu.Name = "cbxWaktu";
@@ -110,6 +114,7 @@
             lblTanggal.Anchor = AnchorStyles.Top;
             lblTanggal.AutoSize = true;
             lblTanggal.Font = new Font("Bahnschrift Condensed", 11.25F);
+            lblTanggal.ForeColor = Color.FromArgb(56, 43, 31);
             lblTanggal.Location = new Point(19, 90);
             lblTanggal.Name = "lblTanggal";
             lblTanggal.Size = new Size(45, 18);
@@ -121,6 +126,7 @@
             lblWaktu.Anchor = AnchorStyles.Top;
             lblWaktu.AutoSize = true;
             lblWaktu.Font = new Font("Bahnschrift Condensed", 11.25F);
+            lblWaktu.ForeColor = Color.FromArgb(56, 43, 31);
             lblWaktu.Location = new Point(19, 139);
             lblWaktu.Name = "lblWaktu";
             lblWaktu.Size = new Size(38, 18);
@@ -130,7 +136,7 @@
             // btnSubmit
             // 
             btnSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSubmit.BackColor = Color.FromArgb(44, 62, 80);
+            btnSubmit.BackColor = Color.FromArgb(80, 61, 44);
             btnSubmit.ForeColor = Color.White;
             btnSubmit.Location = new Point(219, 258);
             btnSubmit.Name = "btnSubmit";
@@ -143,6 +149,7 @@
             // gbxPlanReservasi
             // 
             gbxPlanReservasi.Anchor = AnchorStyles.Top;
+            gbxPlanReservasi.BackColor = Color.White;
             gbxPlanReservasi.Controls.Add(cbxLayanan);
             gbxPlanReservasi.Controls.Add(lblLayanan);
             gbxPlanReservasi.Controls.Add(dtpTanggal);
@@ -150,32 +157,35 @@
             gbxPlanReservasi.Controls.Add(cbxWaktu);
             gbxPlanReservasi.Controls.Add(lblTanggal);
             gbxPlanReservasi.Font = new Font("Bahnschrift Condensed", 11.25F);
-            gbxPlanReservasi.Location = new Point(70, 100);
+            gbxPlanReservasi.ForeColor = Color.FromArgb(56, 43, 31);
+            gbxPlanReservasi.Location = new Point(142, 100);
             gbxPlanReservasi.Name = "gbxPlanReservasi";
             gbxPlanReservasi.Size = new Size(310, 179);
             gbxPlanReservasi.TabIndex = 9;
             gbxPlanReservasi.TabStop = false;
             gbxPlanReservasi.Text = "Silahkan isi dibawah ini!";
             // 
-            // groupBox2
+            // gbxKonfirmasiPemesanan
             // 
-            groupBox2.Anchor = AnchorStyles.Top;
-            groupBox2.Controls.Add(lblConfirmWaktu);
-            groupBox2.Controls.Add(lblConfirmTanggal);
-            groupBox2.Controls.Add(lblConfirmLayanan);
-            groupBox2.Controls.Add(lblConfirmNama);
-            groupBox2.Controls.Add(lblConfirmHeadWaktu);
-            groupBox2.Controls.Add(lblConfirmHeadTanggal);
-            groupBox2.Controls.Add(lblConfirmHeadLayanan);
-            groupBox2.Controls.Add(lblConfirmHeadNama);
-            groupBox2.Controls.Add(btnSubmit);
-            groupBox2.Font = new Font("Bahnschrift Condensed", 11.25F);
-            groupBox2.Location = new Point(435, 100);
-            groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(300, 315);
-            groupBox2.TabIndex = 10;
-            groupBox2.TabStop = false;
-            groupBox2.Text = "Konfirmasi Pemesanan";
+            gbxKonfirmasiPemesanan.Anchor = AnchorStyles.Top;
+            gbxKonfirmasiPemesanan.BackColor = Color.White;
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmWaktu);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmTanggal);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmLayanan);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmNama);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadWaktu);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadTanggal);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadLayanan);
+            gbxKonfirmasiPemesanan.Controls.Add(lblConfirmHeadNama);
+            gbxKonfirmasiPemesanan.Controls.Add(btnSubmit);
+            gbxKonfirmasiPemesanan.Font = new Font("Bahnschrift Condensed", 11.25F);
+            gbxKonfirmasiPemesanan.ForeColor = Color.FromArgb(56, 43, 31);
+            gbxKonfirmasiPemesanan.Location = new Point(507, 100);
+            gbxKonfirmasiPemesanan.Name = "gbxKonfirmasiPemesanan";
+            gbxKonfirmasiPemesanan.Size = new Size(300, 315);
+            gbxKonfirmasiPemesanan.TabIndex = 10;
+            gbxKonfirmasiPemesanan.TabStop = false;
+            gbxKonfirmasiPemesanan.Text = "Konfirmasi Pemesanan";
             // 
             // lblConfirmWaktu
             // 
@@ -263,9 +273,11 @@
             // 
             // lblHeading
             // 
+            lblHeading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblHeading.AutoSize = true;
             lblHeading.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblHeading.ForeColor = Color.FromArgb(44, 62, 80);
-            lblHeading.Location = new Point(263, 23);
+            lblHeading.Location = new Point(330, 24);
             lblHeading.Name = "lblHeading";
             lblHeading.Size = new Size(275, 58);
             lblHeading.TabIndex = 11;
@@ -275,20 +287,22 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            BackColor = Color.WhiteSmoke;
+            ClientSize = new Size(944, 501);
             Controls.Add(lblHeading);
-            Controls.Add(groupBox2);
+            Controls.Add(gbxKonfirmasiPemesanan);
             Controls.Add(gbxPlanReservasi);
             Controls.Add(btnKembali);
             Name = "FormBuatReservasi";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "FormBuatReservasi";
+            Load += FormBuatReservasi_Load;
             gbxPlanReservasi.ResumeLayout(false);
             gbxPlanReservasi.PerformLayout();
-            groupBox2.ResumeLayout(false);
-            groupBox2.PerformLayout();
+            gbxKonfirmasiPemesanan.ResumeLayout(false);
+            gbxKonfirmasiPemesanan.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -301,7 +315,7 @@
         private Label lblWaktu;
         private Button btnSubmit;
         private GroupBox gbxPlanReservasi;
-        private GroupBox groupBox2;
+        private GroupBox gbxKonfirmasiPemesanan;
         public Label lblHeading;
         private Label lblConfirmHeadWaktu;
         private Label lblConfirmHeadTanggal;

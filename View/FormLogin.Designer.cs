@@ -48,27 +48,29 @@
             lblLoginWelcome.BackColor = Color.Transparent;
             lblLoginWelcome.Font = new Font("Bahnschrift Light Condensed", 32.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblLoginWelcome.ForeColor = Color.White;
-            lblLoginWelcome.Location = new Point(30, 155);
+            lblLoginWelcome.Location = new Point(34, 207);
             lblLoginWelcome.Name = "lblLoginWelcome";
-            lblLoginWelcome.Size = new Size(286, 61);
+            lblLoginWelcome.Size = new Size(327, 81);
             lblLoginWelcome.TabIndex = 0;
             lblLoginWelcome.Text = "Selamat datang di";
             // 
             // tbxLoginEmail
             // 
             tbxLoginEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbxLoginEmail.Location = new Point(18, 110);
+            tbxLoginEmail.Location = new Point(21, 147);
+            tbxLoginEmail.Margin = new Padding(3, 4, 3, 4);
             tbxLoginEmail.Name = "tbxLoginEmail";
-            tbxLoginEmail.Size = new Size(365, 23);
+            tbxLoginEmail.Size = new Size(417, 27);
             tbxLoginEmail.TabIndex = 1;
             tbxLoginEmail.TextChanged += tbxLoginEmail_TextChanged;
             // 
             // tbxLoginPass
             // 
             tbxLoginPass.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbxLoginPass.Location = new Point(18, 174);
+            tbxLoginPass.Location = new Point(21, 232);
+            tbxLoginPass.Margin = new Padding(3, 4, 3, 4);
             tbxLoginPass.Name = "tbxLoginPass";
-            tbxLoginPass.Size = new Size(365, 23);
+            tbxLoginPass.Size = new Size(417, 27);
             tbxLoginPass.TabIndex = 2;
             tbxLoginPass.TextChanged += tbxLoginPass_TextChanged;
             // 
@@ -77,9 +79,9 @@
             lblLoginHeadingEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginHeadingEmail.AutoSize = true;
             lblLoginHeadingEmail.BackColor = Color.Transparent;
-            lblLoginHeadingEmail.Location = new Point(18, 84);
+            lblLoginHeadingEmail.Location = new Point(21, 112);
             lblLoginHeadingEmail.Name = "lblLoginHeadingEmail";
-            lblLoginHeadingEmail.Size = new Size(36, 15);
+            lblLoginHeadingEmail.Size = new Size(46, 20);
             lblLoginHeadingEmail.TabIndex = 3;
             lblLoginHeadingEmail.Text = "Email";
             // 
@@ -88,9 +90,9 @@
             lblLoginSubheading.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginSubheading.BackColor = Color.Transparent;
             lblLoginSubheading.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblLoginSubheading.Location = new Point(18, 34);
+            lblLoginSubheading.Location = new Point(21, 45);
             lblLoginSubheading.Name = "lblLoginSubheading";
-            lblLoginSubheading.Size = new Size(365, 23);
+            lblLoginSubheading.Size = new Size(417, 31);
             lblLoginSubheading.TabIndex = 4;
             lblLoginSubheading.Text = "Gunakan email dan password untuk login";
             lblLoginSubheading.TextAlign = ContentAlignment.MiddleCenter;
@@ -100,9 +102,9 @@
             lblLoginHeadingPass.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             lblLoginHeadingPass.AutoSize = true;
             lblLoginHeadingPass.BackColor = Color.Transparent;
-            lblLoginHeadingPass.Location = new Point(18, 150);
+            lblLoginHeadingPass.Location = new Point(21, 200);
             lblLoginHeadingPass.Name = "lblLoginHeadingPass";
-            lblLoginHeadingPass.Size = new Size(57, 15);
+            lblLoginHeadingPass.Size = new Size(70, 20);
             lblLoginHeadingPass.TabIndex = 5;
             lblLoginHeadingPass.Text = "Password";
             // 
@@ -118,9 +120,11 @@
             gbxLogin.Controls.Add(lblLoginHeadingPass);
             gbxLogin.Controls.Add(lblLoginHeadingEmail);
             gbxLogin.Controls.Add(tbxLoginPass);
-            gbxLogin.Location = new Point(360, 75);
+            gbxLogin.Location = new Point(411, 100);
+            gbxLogin.Margin = new Padding(3, 4, 3, 4);
             gbxLogin.Name = "gbxLogin";
-            gbxLogin.Size = new Size(400, 300);
+            gbxLogin.Padding = new Padding(3, 4, 3, 4);
+            gbxLogin.Size = new Size(457, 400);
             gbxLogin.TabIndex = 7;
             gbxLogin.TabStop = false;
             // 
@@ -130,9 +134,9 @@
             lblLoginSignupRedirect.AutoSize = true;
             lblLoginSignupRedirect.BackColor = Color.Transparent;
             lblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
-            lblLoginSignupRedirect.Location = new Point(38, 265);
+            lblLoginSignupRedirect.Location = new Point(43, 353);
             lblLoginSignupRedirect.Name = "lblLoginSignupRedirect";
-            lblLoginSignupRedirect.Size = new Size(236, 15);
+            lblLoginSignupRedirect.Size = new Size(290, 20);
             lblLoginSignupRedirect.TabIndex = 9;
             lblLoginSignupRedirect.Text = "Anda Pengunjung && belum memiliki akun?";
             // 
@@ -142,9 +146,10 @@
             btnLoginSubmit.BackColor = Color.FromArgb(44, 62, 80);
             btnLoginSubmit.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoginSubmit.ForeColor = Color.White;
-            btnLoginSubmit.Location = new Point(165, 215);
+            btnLoginSubmit.Location = new Point(189, 287);
+            btnLoginSubmit.Margin = new Padding(3, 4, 3, 4);
             btnLoginSubmit.Name = "btnLoginSubmit";
-            btnLoginSubmit.Size = new Size(80, 40);
+            btnLoginSubmit.Size = new Size(91, 53);
             btnLoginSubmit.TabIndex = 17;
             btnLoginSubmit.Text = "Masuk";
             btnLoginSubmit.UseVisualStyleBackColor = false;
@@ -158,9 +163,9 @@
             lklblLoginSignupRedirect.AutoSize = true;
             lklblLoginSignupRedirect.BackColor = Color.Transparent;
             lklblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
-            lklblLoginSignupRedirect.Location = new Point(274, 265);
+            lklblLoginSignupRedirect.Location = new Point(313, 353);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
-            lklblLoginSignupRedirect.Size = new Size(93, 15);
+            lklblLoginSignupRedirect.Size = new Size(120, 20);
             lklblLoginSignupRedirect.TabIndex = 8;
             lklblLoginSignupRedirect.TabStop = true;
             lklblLoginSignupRedirect.Text = "Daftar Sekarang!";
@@ -172,24 +177,26 @@
             lblLoginAppName.BackColor = Color.Transparent;
             lblLoginAppName.Font = new Font("Bahnschrift Condensed", 42F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLoginAppName.ForeColor = Color.White;
-            lblLoginAppName.Location = new Point(30, 210);
+            lblLoginAppName.Location = new Point(34, 280);
             lblLoginAppName.Name = "lblLoginAppName";
-            lblLoginAppName.Size = new Size(286, 72);
+            lblLoginAppName.Size = new Size(327, 96);
             lblLoginAppName.TabIndex = 8;
             lblLoginAppName.Text = "BarberMate!";
             // 
             // FormLogin
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(lblLoginAppName);
             Controls.Add(gbxLogin);
             Controls.Add(lblLoginWelcome);
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Login";
+            Load += FormLogin_Load;
             gbxLogin.ResumeLayout(false);
             gbxLogin.PerformLayout();
             ResumeLayout(false);

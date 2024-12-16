@@ -132,15 +132,24 @@ namespace PBOBarberMate.View.FormReservasi
                 SetHeaderText(dgvDataReservasi, "waktu", "Waktu");
                 SetHeaderText(dgvDataReservasi, "harga", "Harga");
                 SetHeaderText(dgvDataReservasi, "nama_status_reservasi", "Status");
-                SetHeaderText(dgvDataReservasi, "id_akun", "ID");
+                SetHeaderText(dgvDataReservasi, "id_akun", "ID Akun");
                 SetHeaderText(dgvDataReservasi, "nama_akun", "Nama");
                 // masih kustomisasi column header
                 dgvDataReservasi.Columns["id_reservasi"].Width = 68;
-                dgvDataReservasi.Columns["tanggal"].Width = 68;
+                dgvDataReservasi.Columns["nama_layanan"].Width = 72;
+                dgvDataReservasi.Columns["tanggal"].Width = 52;
                 dgvDataReservasi.Columns["waktu"].Width = 52;
-                dgvDataReservasi.Columns["harga"].Width = 68;
+                dgvDataReservasi.Columns["harga"].Width = 52;
+                if (dgvDataReservasi.Columns.Contains("nama_status_reservasi"))
+                {
+                    dgvDataReservasi.Columns["nama_status_reservasi"].Width = 84;
+                }
+                if (dgvDataReservasi.Columns.Contains("id_akun"))
+                {
+                    dgvDataReservasi.Columns["id_akun"].Width = 48;
+                }
                 dgvDataReservasi.Columns["Update"].Width = 48;
-                dgvDataReservasi.Columns["Delete"].Width = 48;
+                dgvDataReservasi.Columns["Delete"].Width = 72;
                 // behaviour table
                 dgvDataReservasi.AllowUserToAddRows = false;
                 dgvDataReservasi.RowHeadersVisible = false;

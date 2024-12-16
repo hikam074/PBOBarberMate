@@ -1,5 +1,7 @@
 ﻿using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.FormPresensi;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -47,6 +49,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                     UseColumnTextForButtonValue = true
                 };
                 dataGridViewKelolaKaryawan.Columns.Add(deleteButtonColumn);
+                dataGridViewKelolaKaryawan.DataSource = kehadiranKaryawan;
             }
             catch (Exception ex)
             {
@@ -84,9 +87,9 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             }
             else if (e.ColumnIndex == dataGridViewKelolaKaryawan.Columns["Delete"].Index)
             {
-                int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id"].Value);
-                PresensiContext.DeletePresensi(mahasiswaId);
-                MenampilkanKehadiranKaryawan();
+                //int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id"].Value);
+                //PresensiContext.DeletePresensi(mahasiswaId);
+                //MenampilkanKehadiranKaryawan();
             }
         }
     }
