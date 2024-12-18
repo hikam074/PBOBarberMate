@@ -35,26 +35,27 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
 
                     dataGridViewKelolaKaryawan.Columns.Clear();
 
-                    DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
-                    nomorColumn.HeaderText = "No";
-                    nomorColumn.Name = "nomor";
-                    dataGridViewKelolaKaryawan.Columns.Add(nomorColumn);
+                    //DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                    //nomorColumn.HeaderText = "No";
+                    //nomorColumn.Name = "nomor";
+                    //dataGridViewKelolaKaryawan.Columns.Add(nomorColumn);
                     dataGridViewKelolaKaryawan.DataSource = jadwalShift;
 
 
 
 
-                    if (dataGridViewKelolaKaryawan.Columns["id_shift"] != null) dataGridViewKelolaKaryawan.Columns["id_shift"].HeaderText = "id shift";
-                    if (dataGridViewKelolaKaryawan.Columns["id_presensi"] != null) dataGridViewKelolaKaryawan.Columns["id_presensi"].HeaderText = "id presensi";
+                    if (dataGridViewKelolaKaryawan.Columns["nama_akun"] != null) dataGridViewKelolaKaryawan.Columns["nama_akun"].HeaderText = "nama akun";
+                    if (dataGridViewKelolaKaryawan.Columns["id_presensi"] != null) dataGridViewKelolaKaryawan.Columns["id_presensi"].Visible=false;
+                    if (dataGridViewKelolaKaryawan.Columns["id_akun"] != null) dataGridViewKelolaKaryawan.Columns["id_akun"].Visible=false;
                     if (dataGridViewKelolaKaryawan.Columns["nama_hari"] != null)
                         dataGridViewKelolaKaryawan.Columns["nama_hari"].HeaderText = "nama hari";
                     if (dataGridViewKelolaKaryawan.Columns["waktu_presensi"] != null)
                         dataGridViewKelolaKaryawan.Columns["waktu_presensi"].HeaderText = "waktu presensi";
 
-                    for (int i = 0; i < dataGridViewKelolaKaryawan.Rows.Count; i++)
-                    {
-                        dataGridViewKelolaKaryawan.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
-                    }
+                    //for (int i = 0; i < dataGridViewKelolaKaryawan.Rows.Count; i++)
+                    //{
+                    //    dataGridViewKelolaKaryawan.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                    //}
 
                     DataGridViewButtonColumn updateButtonColumn = new DataGridViewButtonColumn
                     {
@@ -90,17 +91,20 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             {
                 try
                 {
-                    int presensiId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
-                    DataTable presensiData = PresensiContext.GetJadwalShiftKaryawabyIdPresensi(presensiId);
 
+                    int presensiId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
+                    DataTable presensiData = PresensiContext.GetJadwalShiftKaryawanbyIdPresensi(presensiId);
+                    
                     if (presensiData.Rows.Count > 0)
                     {
                         DataRow row = presensiData.Rows[0];
                         M_Presensi presensiKaryawan = new M_Presensi
                         {
                             id_presensi = (int)row["id_presensi"],
+                            nama_akun = (string)row["nama_akun"],
                             id_akun = (int)row["id_akun"],
                             id_shift = (int)row["id_shift"],
+                            hari = (string)row["Hari"],
                             waktu_presensi = (DateTime)row["waktu_presensi"]
                         };
                         FiturPresensiKaryawan updatePresensiKaryawan = new FiturPresensiKaryawan();
@@ -135,10 +139,6 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             this.Hide();
         }
 
-        private void btnTambahkanDaftarHadir_Click(object sender, EventArgs e)
-        {
-            FiturPresensiKaryawan fiturpresensikaryawan = new FiturPresensiKaryawan();
-            fiturpresensikaryawan.ShowDialog();
-        }
+        
     }
 }
