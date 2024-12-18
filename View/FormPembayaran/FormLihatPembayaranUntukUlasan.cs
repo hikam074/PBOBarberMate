@@ -42,90 +42,99 @@ namespace PBOBarberMate.View.FormPembayaran
                     dgvDataPembayaran.DataSource = dataPembayaran;
                 }
 
-                // membuat object tombol ulas
-                // Update tombol untuk setiap baris berdasarkan ulasan yang ada
-                foreach (DataGridViewRow row in dgvDataPembayaran.Rows)
+                if (!dgvDataPembayaran.Columns.Contains("Ulas"))
                 {
-                    if (row.Cells["id_pembayaran"].Value != null)
+                    DataGridViewButtonColumn ulasanBtnColumn = new DataGridViewButtonColumn
                     {
-                        int idPembayaran = Convert.ToInt32(row.Cells["id_pembayaran"].Value);
+                        Name = "Ulas",
+                        HeaderText = "Aksi",
+                        Text = "Beri Ulasan",
+                        UseColumnTextForButtonValue = true
+                    };
+                    dgvDataPembayaran.Columns.Add(ulasanBtnColumn);
+                }
 
-                        // Mengecek apakah ulasan sudah ada
-                        if (UlasanContext.CheckUlasanExist(idPembayaran))
+                if (!dgvDataPembayaran.Columns.Contains("Ubah"))
+                {
+                    DataGridViewButtonColumn ulasanBtnColumn = new DataGridViewButtonColumn
+                    {
+                        Name = "Edit",
+                        HeaderText = "Aksi",
+                        Text = "Ubah",
+                        UseColumnTextForButtonValue = true
+                    };
+                    dgvDataPembayaran.Columns.Add(ulasanBtnColumn);
+                }
+
+                //// Perbarui tombol untuk setiap baris
+                //foreach (DataGridViewRow row in dgvDataPembayaran.Rows)
+                //{
+                //    if (row.Cells["id_pembayaran"].Value != null)
+                //    {
+                //        int idPembayaran = Convert.ToInt32(row.Cells["id_pembayaran"].Value);
+
+                //        // Periksa apakah ulasan sudah ada
+                //        if (UlasanContext.CheckUlasanExist(idPembayaran))
+                //        {
+                //            row.Cells["Ulas"].Value = "Sudah Dinilai";
+                //            ((DataGridViewButtonCell)row.Cells["Ulas"]).ReadOnly = true;
+                //        }
+                //        else
+                //        {
+                //            row.Cells["Ulas"].Value = "Beri Nilai";
+                //            ((DataGridViewButtonCell)row.Cells["Ulas"]).ReadOnly = false;
+                //        }
+                //    }
+                //}
+
+                // behaviour table
+                dgvDataPembayaran.AllowUserToAddRows = false;
+                    dgvDataPembayaran.RowHeadersVisible = false;
+                    dgvDataPembayaran.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    // method kustomisasi tabel
+                    void SetHeaderText(DataGridView dgv, string columnName, string headerText)
+                    {
+                        if (dgv.Columns[columnName] != null)
                         {
-                            if (!dgvDataPembayaran.Columns.Contains("Ulas"))
-                            {
-                                DataGridViewButtonColumn UlasanBtnColumn = new DataGridViewButtonColumn
-                                {
-                                    Name = "Ulas",
-                                    HeaderText = "Aksi",
-                                    Text = "Sudah Dinilai",
-                                    ReadOnly = true,
-                                    UseColumnTextForButtonValue = true
-                                };
-                                // menambahkan objek ke kolom dan row
-                                dgvDataPembayaran.Columns.Add(UlasanBtnColumn);
-                            }
-                        }
-                        else
-                        {
-                            if (!dgvDataPembayaran.Columns.Contains("Ulas"))
-                            {
-                                DataGridViewButtonColumn UlasanBtnColumn = new DataGridViewButtonColumn
-                                {
-                                    Name = "Ulas",
-                                    HeaderText = "Aksi",
-                                    Text = "Beri nilai",
-                                    ReadOnly = false,
-                                    UseColumnTextForButtonValue = true
-                                };
-                                // menambahkan objek ke kolom dan row
-                                dgvDataPembayaran.Columns.Add(UlasanBtnColumn);
-                            }
+                            dgv.Columns[columnName].HeaderText = headerText;
                         }
                     }
-                    // behaviour table
-                    dgvDataPembayaran.AllowUserToAddRows = false;
-                dgvDataPembayaran.RowHeadersVisible = false;
-                dgvDataPembayaran.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                // method kustomisasi tabel
-                void SetHeaderText(DataGridView dgv, string columnName, string headerText)
-                {
-                    if (dgv.Columns[columnName] != null)
-                    {
-                        dgv.Columns[columnName].HeaderText = headerText;
-                    }
-                }
-                // menggunakan method kustomisasi
-                SetHeaderText(dgvDataPembayaran, "nama_layanan", "Layanan");
-                SetHeaderText(dgvDataPembayaran, "harga", "Harga");
-                SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
-                SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
-                SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
-                SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
+                    // menggunakan method kustomisasi
+                    SetHeaderText(dgvDataPembayaran, "nama_layanan", "Layanan");
+                    SetHeaderText(dgvDataPembayaran, "harga", "Harga");
+                    SetHeaderText(dgvDataPembayaran, "nama_metode_pembayaran", "Metode Pembayaran");
+                    SetHeaderText(dgvDataPembayaran, "tanggal_dibayar", "Tanggal Pembayaran");
+                    SetHeaderText(dgvDataPembayaran, "id_akun", "ID Akun");
+                    SetHeaderText(dgvDataPembayaran, "nama_akun", "Nama Customer");
 
-                if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
-                {
-                    dgvDataPembayaran.Columns["id_akun"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
-                {
-                    dgvDataPembayaran.Columns["nama_akun"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
-                {
-                    dgvDataPembayaran.Columns["id_pembayaran"].Visible = false;
-                }
-                if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
+                    if (dgvDataPembayaran.Columns.Contains("id_akun") && UserSession.role == AkunRole.Customer)
+                    {
+                        dgvDataPembayaran.Columns["id_akun"].Visible = false;
+                    }
+                    if (dgvDataPembayaran.Columns.Contains("nama_akun") && UserSession.role == AkunRole.Customer)
+                    {
+                        dgvDataPembayaran.Columns["nama_akun"].Visible = false;
+                    }
+                    if (dgvDataPembayaran.Columns.Contains("id_pembayaran"))
+                    {
+                        dgvDataPembayaran.Columns["id_pembayaran"].Visible = false;
+                    }
+                    if (dgvDataPembayaran.Columns.Contains("id_reservasi"))
+                    {
+                        dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
+                    }
+                if (dgvDataPembayaran.Columns.Contains("id_metode_pembayaran"))
                 {
                     dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
                 }
                 if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role != AkunRole.Customer)
+                    {
+                        dgvDataPembayaran.Columns["Ulas"].Visible = false;
+                    }
+                if (dgvDataPembayaran.Columns.Contains("Edit") && UserSession.role != AkunRole.Admin)
                 {
-                    dgvDataPembayaran.Columns["Ulas"].Visible = false;
+                    dgvDataPembayaran.Columns["Edit"].Visible = false;
                 }
-                }
-
             }
             catch (Exception ex)
             {
@@ -140,9 +149,12 @@ namespace PBOBarberMate.View.FormPembayaran
             // bila yang diklik adalah tombol ulas
             if (e.ColumnIndex == dgvDataPembayaran.Columns["Ulas"].Index)
             {
-                if (dgvDataPembayaran.Rows[e.RowIndex].Cells["Ulas"].ReadOnly)
+                int idPembayaran = Convert.ToInt32(dgvDataPembayaran.Rows[e.RowIndex].Cells["id_pembayaran"].Value);
+
+                // Periksa apakah ulasan sudah ada
+                if (UlasanContext.CheckUlasanExist(idPembayaran))
                 {
-                    //MessageBox.Show("Tombol sudah dinilai dan tidak dapat diklik.");
+                    MessageBox.Show("Pembayaran ini sudah dinilai. Tidak dapat memberikan ulasan lagi.");
                     return;
                 }
                 try
@@ -153,6 +165,62 @@ namespace PBOBarberMate.View.FormPembayaran
                     FormTambahUlasan formTambahUlasan = new FormTambahUlasan();
                     formTambahUlasan.id_pembayaran = pembayaranID;
                     formTambahUlasan.Show();
+                    this.Hide();
+                    // load data setelah edit
+                    LoadDataPembayaran();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Terjadi Kesalahan [PBOBarberMate.View.FormPembayaran.FormLihatPembayaranUntukUlasan.dgvDataPembayaran_CellContentClick./tombolUlas/] : {ex}");
+                }
+            }
+            if (e.ColumnIndex == dgvDataPembayaran.Columns["Edit"].Index)
+            {
+                int idPembayaran = Convert.ToInt32(dgvDataPembayaran.Rows[e.RowIndex].Cells["id_pembayaran"].Value);
+
+                try
+                {
+                    // mengambil id pembayaran
+                    int pembayaranID = Convert.ToInt32(dgvDataPembayaran.Rows[e.RowIndex].Cells["id_pembayaran"].Value);
+                    // menampilkan popup form tujuan
+                    FormEditPembayaran formEditPembayaran = new FormEditPembayaran();
+                    formEditPembayaran.lblConfirmLayanan.Text = dgvDataPembayaran.Rows[e.RowIndex].Cells["nama_layanan"].Value.ToString();
+                    formEditPembayaran.lblConfirmNama.Text = dgvDataPembayaran.Rows[e.RowIndex].Cells["nama_akun"].Value.ToString();
+
+                    // Ambil nilai dari DataGridView dan konversi menjadi string
+                    string tanggalDibayarStr = dgvDataPembayaran.Rows[e.RowIndex].Cells["tanggal_dibayar"].Value.ToString();
+
+                    // Parse string ke DateTime
+                    DateTime tanggalDibayar = DateTime.Parse(tanggalDibayarStr);
+
+                    // Format tanggal dan waktu sesuai kebutuhan
+                    string tanggal = tanggalDibayar.ToString("yyyy-MM-dd"); // Hanya tanggal (contoh: 2024-12-16)
+                    string waktu = tanggalDibayar.ToString("HH:mm:ss");     // Hanya waktu (contoh: 12:07:12)
+
+                    formEditPembayaran.lblConfirmTanggal.Text = tanggal;
+                    formEditPembayaran.lblConfirmWaktu.Text = waktu;
+                    formEditPembayaran.id_pembayaran = idPembayaran;
+
+                    // Ambil nilai id_metode_pembayaran dari DataGridView
+                    object idMetodePembayaranValue = dgvDataPembayaran.Rows[e.RowIndex].Cells["id_metode_pembayaran"].Value;
+
+                    // Pastikan nilainya tidak null
+                    if (idMetodePembayaranValue != null)
+                    {
+                        int idMetodePembayaran = Convert.ToInt32(idMetodePembayaranValue);
+
+                        // Cocokkan dengan enum metodePembayaran dan set combobox
+                        if (Enum.IsDefined(typeof(metodePembayaran), idMetodePembayaran))
+                        {
+                            formEditPembayaran.cbxMetodePembayaran.SelectedItem = (metodePembayaran)idMetodePembayaran;
+                        }
+                        else
+                        {
+                            MessageBox.Show("Metode pembayaran tidak valid.");
+                        }
+                    }
+
+                    formEditPembayaran.Show();
                     this.Hide();
                     // load data setelah edit
                     LoadDataPembayaran();
