@@ -18,14 +18,42 @@ namespace PBOBarberMate.App.Context
         public static DataTable GetJadwalShiftKaryawanAll()
         {
             string query = $@"
-                SELECT p.id_presensi, sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
+                SELECT p.id_presensi,a.nama_akun, sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
                 FROM shift_karyawan sk
+                join akun a on sk.id_akun = a.id_akun
                 JOIN detail_hari dh ON sk.id_hari = dh.id_hari
                 LEFT JOIN presensi p ON sk.id_shift = p.id_shift
                 WHERE p.waktu_presensi IS NOT NULL;
                 ";
 
             Console.WriteLine(query);
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable jadwalData = new DataTable();
+                    jadwalData.Load(reader);
+                    return jadwalData;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
+            }
+        }
+        public static DataTable GetJadwalPresensiKaryawan()
+        {
+            string query = $@"
+                SELECT p.id_presensi,a.id_akun,a.nama_akun, sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
+                FROM shift_karyawan sk
+                JOIN detail_hari dh ON sk.id_hari = dh.id_hari
+                LEFT JOIN presensi p ON sk.id_shift = p.id_shift
+                join akun a on p.id_akun = a.id_akun
+                WHERE p.waktu_presensi IS NOT NULL";
+
+            Console.WriteLine(query);
+
+
             try
             {
                 using (NpgsqlDataReader reader = queryExecutor(query))
@@ -70,10 +98,15 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
             }
         }
-        public static DataTable GetJadwalShiftKaryawabyIdPresensi(int idPresensi)
+        public static DataTable GetJadwalShiftKaryawanbyIdPresensi(int idPresensi)
         {
             string query = $@"
-                SELECT * from presensi where id_presensi = @id_presensi";
+                SELECT p.id_presensi,a.id_akun,a.nama_akun, sk.id_shift, dh.nama_hari AS Hari, p.waktu_presensi
+                FROM shift_karyawan sk
+                JOIN detail_hari dh ON sk.id_hari = dh.id_hari
+                LEFT JOIN presensi p ON sk.id_shift = p.id_shift
+                join akun a on p.id_akun = a.id_akun
+                WHERE p.waktu_presensi IS NOT NULL and p.id_presensi = @id_presensi";
 
             NpgsqlParameter[] parameters =
             {
@@ -83,6 +116,33 @@ namespace PBOBarberMate.App.Context
             try
             {
                 using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable jadwalData = new DataTable();
+                    jadwalData.Load(reader);
+                    return jadwalData;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.GetJadwalShiftKaryawan(): {ex.Message}", ex);
+            }
+        }
+        public static DataTable GetJadwalShiftKaryawanbyIdAkun(int idAkun)
+        {
+            string query = $@"
+                select sk.id_shift, dh.nama_hari from shift_karyawan sk
+                join detail_hari dh on sk.id_hari = dh.id_hari
+                join akun a on a.id_akun = sk.id_akun
+                where a.id_akun = @id_akun";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_akun", idAkun)
+            };
+
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query, parameters))
                 {
                     DataTable jadwalData = new DataTable();
                     jadwalData.Load(reader);
@@ -117,8 +177,56 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
             }
         }
-        
+        public static void getInfoAkunKaryawan(M_Presensi presensi)
+        {
+            string query = $@"
+                select a.id_akun, a.nama_akun, sk.id_shift, dh.nama_hari as hari
+                from shift_karyawan sk
+                join akun a on sk.id_akun = a.id_akun
+                join detail_hari dh on sk.id_hari = dh.id_hari
+                where a.id_akun = @id_akun";
+
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("@id_akun", presensi.id_akun),
+            };
+
+            try
+            {
+                commandExecutor(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
+            }
+        }
         // Mengecek apakah karyawan sudah melakukan presensi pada shift tertentu
+        //public static DataTable getInfoNamaKaryawan()
+        //{
+        //    string query = $@"
+        //        select nama_akun
+        //        from akun
+        //        where akun_role_id = 2";
+
+        //    //NpgsqlParameter[] parameters =
+        //    //{
+        //    //    new NpgsqlParameter("@id_akun", presensi.id_akun),
+        //    //};
+
+        //    try
+        //    {
+        //        using (NpgsqlDataReader reader = queryExecutor(query))
+        //        {
+        //            DataTable jadwalData = new DataTable();
+        //            jadwalData.Load(reader);
+        //            return jadwalData;
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
+        //    }
+        //}
         public static bool IsPresensiExist(int idAkun, int idShift)
         {
             string query = $@"
@@ -224,17 +332,18 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
             }
         }
-        internal static void UpdatePresensi(M_Presensi presensi)
+        public static void UpdatePresensi(int idPresensi,int idAkun,int idShift, DateTime waktuPresensi)
         {
+            MessageBox.Show(waktuPresensi.ToString());
             string query = $@"
                 update presensi SET id_akun = @id_akun, id_shift = @id_shift, waktu_presensi = @waktu_presensi where id_presensi = @id_presensi";
 
             NpgsqlParameter[] parameters =
             {
-                new NpgsqlParameter("@id_presensi", presensi.id_presensi),
-                new NpgsqlParameter("@id_akun", presensi.id_akun),
-                new NpgsqlParameter("@id_shift", presensi.id_shift),
-                new NpgsqlParameter("@waktu_presensi", presensi.waktu_presensi)
+                new NpgsqlParameter("@id_presensi", idPresensi),
+                new NpgsqlParameter("@id_akun", idAkun),
+                new NpgsqlParameter("@id_shift", idShift),
+                new NpgsqlParameter("@waktu_presensi", waktuPresensi)
             };
 
             try
