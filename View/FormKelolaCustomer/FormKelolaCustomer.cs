@@ -65,6 +65,9 @@ namespace PBOBarberMate.View.FormKelolaCustomer
                 {
                     dataGridViewCustomer.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
                 }
+
+                dataGridViewCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dataGridViewCustomer.AutoResizeColumns();
             }
             catch (Exception ex)
             {
