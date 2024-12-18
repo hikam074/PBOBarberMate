@@ -21,9 +21,6 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
         public int idShift { get; set; }
         public DateTime waktuPresensi { get; set; }
 
-
-
-
         public FiturPresensiKaryawan()
         {
             InitializeComponent();
