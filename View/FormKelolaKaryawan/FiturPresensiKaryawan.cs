@@ -1,4 +1,5 @@
-﻿using PBOBarberMate.App.Context;
+using Npgsql;
+using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -15,13 +16,18 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
 {
     public partial class FiturPresensiKaryawan : Form
     {
-        public bool IsEditMode { get; set; } = false;
         public int idPresensi { get; set; }
+        public int idAkun { get; set; }
+        public int idShift { get; set; }
+        public DateTime waktuPresensi { get; set; }
+
+
+
 
         public FiturPresensiKaryawan()
         {
             InitializeComponent();
-            UpdateButtonText();
+            LoadNamaAkunKaryawanData();
         }
 
         private void btnSelesaiFiturPresensiKaryawan_Click(object sender, EventArgs e)
@@ -31,22 +37,22 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                 MessageBox.Show("Data Harus Lengkap Mohon Periksa Kembali");
                 return;
             }
-            M_Presensi presensi = new M_Presensi
-            {
-                id_akun = int.Parse(tbIDAKUNFiturPresensiKaryawan.Text),
-                id_shift = int.Parse(tbIDSHIFTFiturPresensiKaryawan.Text),
-                waktu_presensi = dtpFiturPresensiKaryawan.Value,
-            };
             
-            if (IsEditMode)
-            {
-                PresensiContext.UpdatePresensi(presensi);
-                MessageBox.Show("Jadwal berhasil diubah");
-            }
             else
             {
-                PresensiContext.AddPresensi(presensi);
-                MessageBox.Show("Jadwal berhasil ditambahkan");
+                //M_Presensi presensi = new M_Presensi
+                //{
+                //    //id_akun = (int)cbNamaAKUNFiturPresensiKaryawan.SelectedIndex,
+                //    //id_shift = (int)cbHariShiftFiturPresensiKaryawan.SelectedValue,
+                //    //waktu_presensi = (DateTime)dtpFiturPresensiKaryawan.Value
+                //    nama_akun = (string)cbNamaAKUNFiturPresensiKaryawan.SelectedValue.ToString(),
+                //    hari = (string)cbHariShiftFiturPresensiKaryawan.SelectedValue.ToString(),
+                //    waktu_presensi = (DateTime)dtpFiturPresensiKaryawan.Value
+                //};
+                idShift = (int)cbHariShiftFiturPresensiKaryawan.SelectedValue;
+                waktuPresensi = (DateTime)dtpFiturPresensiKaryawan.Value;
+                PresensiContext.UpdatePresensi(idPresensi,idAkun,idShift,waktuPresensi);
+                MessageBox.Show("Data Presensi Berhasil diubah");
             }
 
             ClearFields();
@@ -61,8 +67,8 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
 
         private bool ValidateInput()
         {
-            if (string.IsNullOrWhiteSpace(tbIDAKUNFiturPresensiKaryawan.Text) ||
-                string.IsNullOrWhiteSpace(tbIDSHIFTFiturPresensiKaryawan.Text) 
+            if (cbNamaAKUNFiturPresensiKaryawan.SelectedValue == null ||
+                cbNamaAKUNFiturPresensiKaryawan.SelectedValue == null
                 )
             {
                 return false;
@@ -72,10 +78,10 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
 
         private void ClearFields()
         {
-            tbIDAKUNFiturPresensiKaryawan.Clear();
-            tbIDSHIFTFiturPresensiKaryawan.Clear();
-            dtpFiturPresensiKaryawan.Value = dtpFiturPresensiKaryawan.MinDate; 
-            // Mengatur ke tanggal minimum
+            cbNamaAKUNFiturPresensiKaryawan.SelectedIndex = -1;
+            cbHariShiftFiturPresensiKaryawan.SelectedIndex = -1;
+            dtpFiturPresensiKaryawan.Value = dtpFiturPresensiKaryawan.MinDate; // Mengatur ke tanggal minimum
+
         }
 
         private void btnBatalFiturPresensiKaryawan_Click(object sender, EventArgs e)
@@ -85,18 +91,32 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
         }
         public void PopulateForm(M_Presensi karyawan)
         {
-            tbIDAKUNFiturPresensiKaryawan.Text = karyawan.id_akun.ToString();
-            tbIDSHIFTFiturPresensiKaryawan.Text = karyawan.id_shift.ToString();
+            cbNamaAKUNFiturPresensiKaryawan.SelectedValue= karyawan.id_akun;
+            cbHariShiftFiturPresensiKaryawan.SelectedValue= karyawan.id_shift;
             dtpFiturPresensiKaryawan.Value = karyawan.waktu_presensi;
-            IsEditMode = true;
             idPresensi = karyawan.id_presensi;
-            UpdateButtonText();
+            idAkun = karyawan.id_akun;
         }
-
-        private void UpdateButtonText()
+        private void LoadNamaAkunKaryawanData()
         {
-            btnSelesaiFiturPresensiKaryawan.Text = IsEditMode ? "Update" : "Add";
+            //MessageBox.Show(presensi.id_presensi.ToString());
+            DataTable dataAkunKaryawan = PresensiContext.GetJadwalShiftKaryawanbyIdPresensi(idPresensi);
+            cbNamaAKUNFiturPresensiKaryawan.DisplayMember = "nama_akun";
+            cbNamaAKUNFiturPresensiKaryawan.ValueMember = "id_akun";
+            cbNamaAKUNFiturPresensiKaryawan.DataSource = dataAkunKaryawan;
+            cbNamaAKUNFiturPresensiKaryawan.DropDownStyle = ComboBoxStyle.DropDownList;
         }
-        
+        private void LoadShiftKaryawanData()
+        {
+            DataTable dataShiftKaryawan = PresensiContext.GetJadwalShiftKaryawanbyIdAkun(idAkun);
+            cbHariShiftFiturPresensiKaryawan.DisplayMember = "nama_hari";
+            cbHariShiftFiturPresensiKaryawan.ValueMember = "id_shift";
+            cbHariShiftFiturPresensiKaryawan.DataSource = dataShiftKaryawan;
+            cbHariShiftFiturPresensiKaryawan.DropDownStyle = ComboBoxStyle.DropDownList;
+        }
+        private void cbIDAKUNFiturPresensiKaryawan_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadShiftKaryawanData();
+        }
     }
 }
