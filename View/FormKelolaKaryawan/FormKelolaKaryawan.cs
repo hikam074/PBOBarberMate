@@ -25,6 +25,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                 try
                 {
                     dataGridViewKelolaKaryawan.AllowUserToAddRows = false;
+                    DataGridViewDaftarKaryawan.AllowUserToAddRows = false;
 
                     DataTable jadwalShift = PresensiContext.GetJadwalShiftKaryawanAll();
                     if (jadwalShift == null)
@@ -34,6 +35,8 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                     }
 
                     dataGridViewKelolaKaryawan.Columns.Clear();
+                    DataGridViewDaftarKaryawan.Columns.Clear();
+
 
                     //DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
                     //nomorColumn.HeaderText = "No";
@@ -41,16 +44,24 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                     //dataGridViewKelolaKaryawan.Columns.Add(nomorColumn);
                     dataGridViewKelolaKaryawan.DataSource = jadwalShift;
 
-
-
-
                     if (dataGridViewKelolaKaryawan.Columns["nama_akun"] != null) dataGridViewKelolaKaryawan.Columns["nama_akun"].HeaderText = "nama akun";
-                    if (dataGridViewKelolaKaryawan.Columns["id_presensi"] != null) dataGridViewKelolaKaryawan.Columns["id_presensi"].Visible=false;
-                    if (dataGridViewKelolaKaryawan.Columns["id_akun"] != null) dataGridViewKelolaKaryawan.Columns["id_akun"].Visible=false;
+                    if (dataGridViewKelolaKaryawan.Columns["id_presensi"] != null) dataGridViewKelolaKaryawan.Columns["id_presensi"].Visible = false;
+                    if (dataGridViewKelolaKaryawan.Columns["id_akun"] != null) dataGridViewKelolaKaryawan.Columns["id_akun"].Visible = false;
                     if (dataGridViewKelolaKaryawan.Columns["nama_hari"] != null)
                         dataGridViewKelolaKaryawan.Columns["nama_hari"].HeaderText = "nama hari";
                     if (dataGridViewKelolaKaryawan.Columns["waktu_presensi"] != null)
                         dataGridViewKelolaKaryawan.Columns["waktu_presensi"].HeaderText = "waktu presensi";
+
+                    DataTable daftarKaryawan = KaryawanContext.getInfoNamaKaryawan();
+                    if (daftarKaryawan == null)
+                    {
+                        MessageBox.Show("Error: Gagal mengambil Daftar Karyawan");
+                        return;
+                    }
+                    DataGridViewDaftarKaryawan.DataSource = daftarKaryawan;
+
+                    if (DataGridViewDaftarKaryawan.Columns["nama_akun"] != null) DataGridViewDaftarKaryawan.Columns["nama_akun"].HeaderText = "Nama Karyawan";
+                    if (DataGridViewDaftarKaryawan.Columns["id_akun"] != null) DataGridViewDaftarKaryawan.Columns["id_akun"].Visible = false;
 
                     //for (int i = 0; i < dataGridViewKelolaKaryawan.Rows.Count; i++)
                     //{
@@ -65,6 +76,14 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                         UseColumnTextForButtonValue = true
                     };
                     dataGridViewKelolaKaryawan.Columns.Add(updateButtonColumn);
+                    DataGridViewButtonColumn updateButtonColumnKaryawan = new DataGridViewButtonColumn
+                    {
+                        Name = "Ubah",
+                        HeaderText = "Ubah",
+                        Text = "Ubah",
+                        UseColumnTextForButtonValue = true
+                    };
+                    DataGridViewDaftarKaryawan.Columns.Add(updateButtonColumnKaryawan);
 
                     DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
                     {
@@ -74,6 +93,15 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                         UseColumnTextForButtonValue = true
                     };
                     dataGridViewKelolaKaryawan.Columns.Add(deleteButtonColumn);
+                    DataGridViewButtonColumn deleteButtonColumnKaryawan = new DataGridViewButtonColumn
+                    {
+                        Name = "Hapus",
+                        HeaderText = "Hapus",
+                        Text = "Hapus",
+                        UseColumnTextForButtonValue = true
+                    };
+                    DataGridViewDaftarKaryawan.Columns.Add(deleteButtonColumnKaryawan);
+
                 }
                 catch (Exception ex)
                 {
@@ -94,7 +122,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
 
                     int presensiId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
                     DataTable presensiData = PresensiContext.GetJadwalShiftKaryawanbyIdPresensi(presensiId);
-                    
+
                     if (presensiData.Rows.Count > 0)
                     {
                         DataRow row = presensiData.Rows[0];
@@ -132,6 +160,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                 }
 
             }
+            
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
@@ -139,6 +168,50 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             this.Hide();
         }
 
-        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FiturTambahKaryawan tambahKaryawan = new FiturTambahKaryawan();
+            tambahKaryawan.ShowDialog();
+        }
+
+        private void DataGridViewDaftarKaryawan_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == DataGridViewDaftarKaryawan.Columns["Ubah"].Index)
+            {
+                try
+                {
+
+                    int idAkun = Convert.ToInt32(DataGridViewDaftarKaryawan.Rows[e.RowIndex].Cells["id_akun"].Value);
+                    DataTable karyawanData = KaryawanContext.getInfoAkun(idAkun);
+
+                    if (karyawanData.Rows.Count > 0)
+                    {
+                        DataRow row = karyawanData.Rows[0];
+                        FiturTambahKaryawan updateKaryawan = new FiturTambahKaryawan();
+                        updateKaryawan.PopulateForm((string)row["nama_akun"], (string)row["email"], (string)row["password"], idAkun);
+                        updateKaryawan.ShowDialog();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+            else if (e.ColumnIndex == DataGridViewDaftarKaryawan.Columns["Hapus"].Index)
+            {
+                try
+                {
+                    int idAkun = Convert.ToInt32(DataGridViewDaftarKaryawan.Rows[e.RowIndex].Cells["id_akun"].Value);
+                    KaryawanContext.DeleteKaryawan(idAkun);
+                    MenampilkanKehadiranKaryawan();
+                    MessageBox.Show("Data berhasil dihapus");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+
+            }
+        }
     }
 }
