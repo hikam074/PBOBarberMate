@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate.View.FormKelolaKaryawan
+namespace PBOBarberMate.View.FormKelolaKaryawan
 {
-    partial class FormKelolaKaryawan
+    partial class FormKelolaKaryawan 
     {
         /// <summary>
         /// Required designer variable.
@@ -43,6 +43,7 @@
             btnKembali.TabIndex = 4;
             btnKembali.Text = "KEMBALI";
             btnKembali.UseVisualStyleBackColor = true;
+            btnKembali.Click += btnKembali_Click;
             // 
             // dataGridViewKelolaKaryawan
             // 
