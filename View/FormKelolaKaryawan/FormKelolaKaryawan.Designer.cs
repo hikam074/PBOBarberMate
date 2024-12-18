@@ -31,7 +31,11 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             btnKembali = new Button();
             dataGridViewKelolaKaryawan = new DataGridView();
             lblKelolaKaryawan = new Label();
+            button1 = new Button();
+            label1 = new Label();
+            DataGridViewDaftarKaryawan = new DataGridView();
             ((System.ComponentModel.ISupportInitialize)dataGridViewKelolaKaryawan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewDaftarKaryawan).BeginInit();
             SuspendLayout();
             // 
             // btnKembali
@@ -53,7 +57,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             dataGridViewKelolaKaryawan.Margin = new Padding(2);
             dataGridViewKelolaKaryawan.Name = "dataGridViewKelolaKaryawan";
             dataGridViewKelolaKaryawan.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewKelolaKaryawan.Size = new Size(821, 301);
+            dataGridViewKelolaKaryawan.Size = new Size(446, 301);
             dataGridViewKelolaKaryawan.TabIndex = 5;
             dataGridViewKelolaKaryawan.CellContentClick += dataGridViewKelolaKaryawan_CellContentClick;
             // 
@@ -61,12 +65,46 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             // 
             lblKelolaKaryawan.AutoSize = true;
             lblKelolaKaryawan.Font = new Font("Sitka Banner", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblKelolaKaryawan.Location = new Point(297, 30);
+            lblKelolaKaryawan.Location = new Point(117, 38);
             lblKelolaKaryawan.Margin = new Padding(2, 0, 2, 0);
             lblKelolaKaryawan.Name = "lblKelolaKaryawan";
             lblKelolaKaryawan.Size = new Size(258, 39);
             lblKelolaKaryawan.TabIndex = 7;
             lblKelolaKaryawan.Text = "Daftar Hadir Karyawan";
+            // 
+            // button1
+            // 
+            button1.Location = new Point(703, 405);
+            button1.Margin = new Padding(2);
+            button1.Name = "button1";
+            button1.Size = new Size(144, 20);
+            button1.TabIndex = 8;
+            button1.Text = "TAMBAH KARYAWAN";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Sitka Banner", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            label1.Location = new Point(572, 38);
+            label1.Margin = new Padding(2, 0, 2, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(193, 39);
+            label1.TabIndex = 9;
+            label1.Text = "Daftar Karyawan";
+            // 
+            // DataGridViewDaftarKaryawan
+            // 
+            DataGridViewDaftarKaryawan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            DataGridViewDaftarKaryawan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DataGridViewDaftarKaryawan.Location = new Point(498, 90);
+            DataGridViewDaftarKaryawan.Margin = new Padding(2);
+            DataGridViewDaftarKaryawan.Name = "DataGridViewDaftarKaryawan";
+            DataGridViewDaftarKaryawan.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            DataGridViewDaftarKaryawan.Size = new Size(349, 301);
+            DataGridViewDaftarKaryawan.TabIndex = 10;
+            DataGridViewDaftarKaryawan.CellContentClick += DataGridViewDaftarKaryawan_CellContentClick;
             // 
             // FormKelolaKaryawan
             // 
@@ -74,12 +112,16 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(881, 450);
+            Controls.Add(DataGridViewDaftarKaryawan);
+            Controls.Add(label1);
+            Controls.Add(button1);
             Controls.Add(lblKelolaKaryawan);
             Controls.Add(dataGridViewKelolaKaryawan);
             Controls.Add(btnKembali);
             Name = "FormKelolaKaryawan";
             Text = "KelolaKaryawan";
             ((System.ComponentModel.ISupportInitialize)dataGridViewKelolaKaryawan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DataGridViewDaftarKaryawan).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -89,5 +131,8 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
         private Button btnKembali;
         private DataGridView dataGridViewKelolaKaryawan;
         private Label lblKelolaKaryawan;
+        private Button button1;
+        private Label label1;
+        private DataGridView DataGridViewDaftarKaryawan;
     }
 }
