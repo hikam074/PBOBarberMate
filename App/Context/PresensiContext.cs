@@ -200,33 +200,33 @@ namespace PBOBarberMate.App.Context
                 throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
             }
         }
-        // Mengecek apakah karyawan sudah melakukan presensi pada shift tertentu
-        //public static DataTable getInfoNamaKaryawan()
-        //{
-        //    string query = $@"
-        //        select nama_akun
-        //        from akun
-        //        where akun_role_id = 2";
+        //Mengecek apakah karyawan sudah melakukan presensi pada shift tertentu
+        public static DataTable getInfoNamaKaryawan()
+        {
+            string query = $@"
+                select nama_akun
+                from akun
+                where akun_role_id = 2";
 
-        //    //NpgsqlParameter[] parameters =
-        //    //{
-        //    //    new NpgsqlParameter("@id_akun", presensi.id_akun),
-        //    //};
+            //NpgsqlParameter[] parameters =
+            //{
+            //    new NpgsqlParameter("@id_akun", presensi.id_akun),
+            //};
 
-        //    try
-        //    {
-        //        using (NpgsqlDataReader reader = queryExecutor(query))
-        //        {
-        //            DataTable jadwalData = new DataTable();
-        //            jadwalData.Load(reader);
-        //            return jadwalData;
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception($"Error in PresensiContext.AddPresensi(): {ex.Message}", ex);
-        //    }
-        //}
+            try
+            {
+                using (NpgsqlDataReader reader = queryExecutor(query))
+                {
+                    DataTable jadwalData = new DataTable();
+                    jadwalData.Load(reader);
+                    return jadwalData;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Error in : {ex.Message}", ex);
+            }
+        }
         public static bool IsPresensiExist(int idAkun, int idShift)
         {
             string query = $@"
