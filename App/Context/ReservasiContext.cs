@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -215,12 +215,10 @@ namespace PBOBarberMate.App.Context
                     // bilaberhasil menambahkan data
                     if (rowsAffected > 0)
                     {
-                        MessageBox.Show("Reservasi Berhasil dilakukan!");
                         return true;
                     }
                     else
                     {
-                        MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
                         return false;
                     }
                 }
@@ -294,6 +292,8 @@ namespace PBOBarberMate.App.Context
                 return -1;
             }
         }
+        //public bool addreservasi(M_Akun akun)
+        //{
 
         public static int batalkanReservasi(int id)
         {

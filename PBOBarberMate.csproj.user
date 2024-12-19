@@ -17,6 +17,12 @@
     <Compile Update="View\FormInventaris\FormTambahInventaris.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormKelolaCustomer\FormKelolaCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormKelolaKaryawan\FormKelolaKaryawan.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\FormLayanan\FormLayanan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -24,6 +30,18 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPerforma\FormPerforma.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPresensi\FormPresensi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormPembayaran\FormLihatPembayaran.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FormProfil\FormUbahProfil.cs">
@@ -35,7 +53,19 @@
     <Compile Update="View\FormReservasi\FormLihatReservasi.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\FormShift\FormShift.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormShift\FormTambahJadwal.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\FormSignup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormUlasan\FormTambahUlasan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\FormUlasan\FormUlasan.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
