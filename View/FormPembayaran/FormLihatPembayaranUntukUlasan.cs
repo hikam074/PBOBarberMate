@@ -125,7 +125,7 @@ namespace PBOBarberMate.View.FormPembayaran
                     }
                 if (dgvDataPembayaran.Columns.Contains("id_metode_pembayaran"))
                 {
-                    dgvDataPembayaran.Columns["id_reservasi"].Visible = false;
+                    dgvDataPembayaran.Columns["id_metode_pembayaran"].Visible = false;
                 }
                 if (dgvDataPembayaran.Columns.Contains("Ulas") && UserSession.role != AkunRole.Customer)
                     {
