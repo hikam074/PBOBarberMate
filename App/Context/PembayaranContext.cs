@@ -117,7 +117,7 @@ namespace PBOBarberMate.App.Context
         //            new NpgsqlParameter("@harga", pembayaran.harga),
         //            new NpgsqlParameter("@id_metode_pembayaran", (int)pembayaran.metodePembayaran)
         //        };
-                
+
         //        int rowsInserted = commandExecutor(query, parameters);
         //    }
         //    catch (Exception ex)
@@ -126,9 +126,34 @@ namespace PBOBarberMate.App.Context
         //    }
         //}
 
+        public static bool updatePembayaran(M_Pembayaran pembayaran)
+        {
+            try
+            {
+                // Query untuk mengupdate data di tabel pembayaran
+                string query = "UPDATE pembayaran SET harga = @harga, id_metode_pembayaran = @id_metode_pembayaran WHERE id_pembayaran = @id_pembayaran";
+                NpgsqlParameter[] parameters = new NpgsqlParameter[]
+                {
+            new NpgsqlParameter("@harga", pembayaran.harga),
+            new NpgsqlParameter("@id_metode_pembayaran", (int)pembayaran.metodePembayaran),
+            new NpgsqlParameter("@id_pembayaran", pembayaran.idReservasi)
+                };
+
+                int rowsUpdated = commandExecutor(query, parameters);
+
+                return rowsUpdated > 0;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.App.Context.PembayaranContext.updatePembayaran] : {ex}");
+                return false;
+            }
+        }
+
+
         public static DataTable getDataPembayaran(int idAkun)
         {
-            string query = "SELECT r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) WHERE r.id_akun = @id";
+            string query = "SELECT r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.id_metode_pembayaran, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) WHERE r.id_akun = @id";
             NpgsqlParameter[] parameters = new NpgsqlParameter[]
             {
                 new NpgsqlParameter("@id", idAkun)
@@ -151,7 +176,7 @@ namespace PBOBarberMate.App.Context
         }
         public static DataTable getDataPembayaran()
         {
-            string query = "SELECT a.nama_akun, r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) JOIN akun a ON (r.id_akun = a.id_akun)";
+            string query = "SELECT a.nama_akun, r.id_akun, l.nama_layanan, p.id_pembayaran, p.id_reservasi, p.harga, mp.id_metode_pembayaran, mp.nama_metode_pembayaran, p.tanggal_dibayar FROM pembayaran p JOIN reservasi r ON (p.id_reservasi = r.id_reservasi) JOIN layanan l ON (r.id_layanan = l.id_layanan) JOIN metode_pembayaran mp ON (p.id_metode_pembayaran = mp.id_metode_pembayaran) JOIN akun a ON (r.id_akun = a.id_akun)";
             try
             {
                 // mendapatkan semua pembayaran dari db

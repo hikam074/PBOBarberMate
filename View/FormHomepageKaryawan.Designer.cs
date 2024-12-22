@@ -339,6 +339,7 @@
             btnPerforma.Text = "Performa &&\r\nPelayanan Anda";
             btnPerforma.TextAlign = ContentAlignment.BottomCenter;
             btnPerforma.UseVisualStyleBackColor = false;
+            btnPerforma.Click += btnPerforma_Click;
             // 
             // gbxInfo
             // 

@@ -323,6 +323,16 @@ namespace PBOBarberMate.App.Context
                 new NpgsqlParameter("@id_presensi", idpresensi),
             };
 
+
+        public static DataTable getDataPresensiById(int id)
+        {
+            string query = @"
+                SELECT 
+                    waktu_presensi
+                FROM 
+                    presensi
+                WHERE 
+                    id_presensi = @id";
             try
             {
                 commandExecutor(query, parameters);

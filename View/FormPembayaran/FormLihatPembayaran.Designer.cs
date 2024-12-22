@@ -60,7 +60,7 @@
             // 
             lblTitle.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(44, 62, 80);
-            lblTitle.Location = new Point(184, 27);
+            lblTitle.Location = new Point(253, 24);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(485, 58);
             lblTitle.TabIndex = 11;
@@ -72,7 +72,7 @@
             dgvDataReservasi.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvDataReservasi.Location = new Point(54, 297);
             dgvDataReservasi.Name = "dgvDataReservasi";
-            dgvDataReservasi.Size = new Size(720, 129);
+            dgvDataReservasi.Size = new Size(826, 136);
             dgvDataReservasi.TabIndex = 10;
             // 
             // gbxIncomeToday
@@ -97,7 +97,7 @@
             // gbxPelangganToday
             // 
             gbxPelangganToday.Controls.Add(lblHeadingPelangganToday);
-            gbxPelangganToday.Location = new Point(320, 122);
+            gbxPelangganToday.Location = new Point(382, 122);
             gbxPelangganToday.Name = "gbxPelangganToday";
             gbxPelangganToday.Size = new Size(200, 100);
             gbxPelangganToday.TabIndex = 14;
@@ -116,7 +116,7 @@
             // gbxIncomeMonth
             // 
             gbxIncomeMonth.Controls.Add(lblHeadingIncomeMonth);
-            gbxIncomeMonth.Location = new Point(574, 122);
+            gbxIncomeMonth.Location = new Point(680, 122);
             gbxIncomeMonth.Name = "gbxIncomeMonth";
             gbxIncomeMonth.Size = new Size(200, 100);
             gbxIncomeMonth.TabIndex = 15;
@@ -136,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(944, 501);
             Controls.Add(gbxIncomeMonth);
             Controls.Add(gbxPelangganToday);
             Controls.Add(gbxIncomeToday);

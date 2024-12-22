@@ -210,7 +210,6 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
-
             }
         }
     }

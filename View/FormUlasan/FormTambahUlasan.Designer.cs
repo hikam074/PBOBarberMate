@@ -58,20 +58,20 @@
             // 
             // textBox1
             // 
-            textBox1.Location = new Point(113, 125);
+            textBox1.Location = new Point(205, 213);
             textBox1.Margin = new Padding(2);
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
-            textBox1.Size = new Size(542, 101);
+            textBox1.Size = new Size(542, 202);
             textBox1.TabIndex = 0;
             // 
             // label1
             // 
-            label1.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label1.Location = new Point(216, 19);
+            label1.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold);
+            label1.Location = new Point(317, 35);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(339, 34);
+            label1.Size = new Size(339, 61);
             label1.TabIndex = 1;
             label1.Text = "BERIKAN ULASAN ANDA";
             label1.TextAlign = ContentAlignment.MiddleCenter;
@@ -79,7 +79,7 @@
             // bintang1
             // 
             bintang1.Image = (Image)resources.GetObject("bintang1.Image");
-            bintang1.Location = new Point(116, 80);
+            bintang1.Location = new Point(205, 157);
             bintang1.Margin = new Padding(2);
             bintang1.Name = "bintang1";
             bintang1.Size = new Size(44, 41);
@@ -91,7 +91,7 @@
             // bintang2
             // 
             bintang2.Image = (Image)resources.GetObject("bintang2.Image");
-            bintang2.Location = new Point(161, 80);
+            bintang2.Location = new Point(250, 157);
             bintang2.Margin = new Padding(2);
             bintang2.Name = "bintang2";
             bintang2.Size = new Size(45, 41);
@@ -103,7 +103,7 @@
             // bintang3
             // 
             bintang3.Image = (Image)resources.GetObject("bintang3.Image");
-            bintang3.Location = new Point(210, 80);
+            bintang3.Location = new Point(299, 157);
             bintang3.Margin = new Padding(2);
             bintang3.Name = "bintang3";
             bintang3.Size = new Size(44, 41);
@@ -115,7 +115,7 @@
             // bintang4
             // 
             bintang4.Image = (Image)resources.GetObject("bintang4.Image");
-            bintang4.Location = new Point(257, 80);
+            bintang4.Location = new Point(346, 157);
             bintang4.Margin = new Padding(2);
             bintang4.Name = "bintang4";
             bintang4.Size = new Size(43, 41);
@@ -127,7 +127,7 @@
             // bintang5
             // 
             bintang5.Image = (Image)resources.GetObject("bintang5.Image");
-            bintang5.Location = new Point(304, 80);
+            bintang5.Location = new Point(393, 157);
             bintang5.Margin = new Padding(2);
             bintang5.Name = "bintang5";
             bintang5.Size = new Size(45, 41);
@@ -139,7 +139,7 @@
             // pictureBox6
             // 
             pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
-            pictureBox6.Location = new Point(304, 80);
+            pictureBox6.Location = new Point(393, 157);
             pictureBox6.Margin = new Padding(2);
             pictureBox6.Name = "pictureBox6";
             pictureBox6.Size = new Size(45, 41);
@@ -150,7 +150,7 @@
             // pictureBox7
             // 
             pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(258, 80);
+            pictureBox7.Location = new Point(347, 157);
             pictureBox7.Margin = new Padding(2);
             pictureBox7.Name = "pictureBox7";
             pictureBox7.Size = new Size(42, 41);
@@ -161,7 +161,7 @@
             // pictureBox8
             // 
             pictureBox8.Image = (Image)resources.GetObject("pictureBox8.Image");
-            pictureBox8.Location = new Point(210, 80);
+            pictureBox8.Location = new Point(299, 157);
             pictureBox8.Margin = new Padding(2);
             pictureBox8.Name = "pictureBox8";
             pictureBox8.Size = new Size(44, 41);
@@ -172,7 +172,7 @@
             // pictureBox9
             // 
             pictureBox9.Image = (Image)resources.GetObject("pictureBox9.Image");
-            pictureBox9.Location = new Point(161, 80);
+            pictureBox9.Location = new Point(250, 157);
             pictureBox9.Margin = new Padding(2);
             pictureBox9.Name = "pictureBox9";
             pictureBox9.Size = new Size(45, 41);
@@ -183,7 +183,7 @@
             // pictureBox10
             // 
             pictureBox10.Image = (Image)resources.GetObject("pictureBox10.Image");
-            pictureBox10.Location = new Point(116, 80);
+            pictureBox10.Location = new Point(205, 157);
             pictureBox10.Margin = new Padding(2);
             pictureBox10.Name = "pictureBox10";
             pictureBox10.Size = new Size(41, 41);
@@ -193,30 +193,34 @@
             // 
             // button1
             // 
-            button1.Location = new Point(635, 242);
+            button1.BackColor = SystemColors.Control;
+            button1.Font = new Font("Bahnschrift Condensed", 11.25F);
+            button1.Location = new Point(794, 451);
             button1.Margin = new Padding(2);
             button1.Name = "button1";
-            button1.Size = new Size(153, 20);
+            button1.Size = new Size(139, 39);
             button1.TabIndex = 12;
             button1.Text = "Tambahkan Komentar";
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // button2
             // 
-            button2.Location = new Point(8, 242);
+            button2.BackColor = SystemColors.Control;
+            button2.Font = new Font("Bahnschrift Condensed", 11.25F);
+            button2.Location = new Point(11, 451);
             button2.Margin = new Padding(2);
             button2.Name = "button2";
-            button2.Size = new Size(71, 20);
+            button2.Size = new Size(75, 39);
             button2.TabIndex = 13;
             button2.Text = "Kembali";
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // label2
             // 
-            label2.Font = new Font("Segoe UI", 8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            label2.Location = new Point(88, 53);
+            label2.Font = new Font("Bahnschrift Condensed", 11.25F);
+            label2.Location = new Point(183, 96);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(590, 20);
@@ -228,7 +232,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(796, 272);
+            ClientSize = new Size(944, 501);
             Controls.Add(label2);
             Controls.Add(button2);
             Controls.Add(button1);
