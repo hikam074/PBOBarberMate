@@ -7,7 +7,6 @@ using Npgsql;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PBOBarberMate.App.Context;
 using System.Windows.Forms.DataVisualization.Charting;
 
 
@@ -32,29 +31,29 @@ namespace PBOBarberMate.View.FormPerforma
         {
             try
             {
-                DataTable PerformaData = PerformaContext.getUlasanByID(id_karyawan);
-                if (PerformaData == null || PerformaData.Rows.Count == 0)
-                {
-                    MessageBox.Show("Error: Gagal mengambil data performa");
-                    return;
-                }
+                //DataTable PerformaData = PerformaContext.getUlasanByID(id_karyawan);
+                //if (PerformaData == null || PerformaData.Rows.Count == 0)
+                //{
+                //    MessageBox.Show("Error: Gagal mengambil data performa");
+                //    return;
+                //}
 
-                double averageRating = PerformaData.Rows[0]["averageRating"] != DBNull.Value
-                    ? Convert.ToDouble(PerformaData.Rows[0]["averageRating"]) : 0;
+                //double averageRating = PerformaData.Rows[0]["averageRating"] != DBNull.Value
+                //    ? Convert.ToDouble(PerformaData.Rows[0]["averageRating"]) : 0;
 
                 Label avgratinglabel = new Label();
-                avgratinglabel.Text = $"Anda mendapat rating sebesar {averageRating:F2}, tingkatkan kinerja anda!";
+                //avgratinglabel.Text = $"Anda mendapat rating sebesar {averageRating:F2}, tingkatkan kinerja anda!";
                 avgratinglabel.Location = new Point(53, 110);
                 avgratinglabel.AutoSize = true;
                 this.Controls.Add(avgratinglabel);
 
                 dataGridView1.AllowUserToAddRows = false;
-                DataTable UlasanData = PerformaContext.All();
-                if (UlasanData == null)
-                {
-                    MessageBox.Show("Error: Gagal mengambil ulasan customer");
-                    return;
-                }
+                //DataTable UlasanData = PerformaContext.All();
+                //if (UlasanData == null)
+                //{
+                //    MessageBox.Show("Error: Gagal mengambil ulasan customer");
+                //    return;
+                //}
                 dataGridView1.Columns.Clear();
 
                 DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
@@ -62,7 +61,7 @@ namespace PBOBarberMate.View.FormPerforma
                 nomorColumn.Name = "nomor";
                 dataGridView1.Columns.Add(nomorColumn);
 
-                dataGridView1.DataSource = UlasanData;
+                //dataGridView1.DataSource = UlasanData;
                 if (dataGridView1.Columns["ulasan"] != null)
                     dataGridView1.Columns["ulasan"].HeaderText = "Ulasan";
                 if (dataGridView1.Columns["tanggal"] != null)

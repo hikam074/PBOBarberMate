@@ -8,8 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 
 
@@ -45,9 +43,9 @@ namespace PBOBarberMate.View.FormPembayaran
         private void btnKembali_Click(object sender, EventArgs e)
         {
             // kembali ke homepage
-            FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-            formHomepageAdmin.Show();
-            this.Hide();
+            //FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            //formHomepageAdmin.Show();
+            //this.Hide();
         }
 
         private void cbxMetodePembayaran_SelectedIndexChanged(object sender, EventArgs e)
@@ -57,19 +55,19 @@ namespace PBOBarberMate.View.FormPembayaran
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            M_Pembayaran pembayaran = new M_Pembayaran(id_pembayaran, Convert.ToInt32(lblConfirmHarga.Text), (int)(metodePembayaran)Enum.Parse(typeof(metodePembayaran), cbxMetodePembayaran.SelectedItem.ToString()));
-            bool berhasil_bayar = PembayaranContext.updatePembayaran(pembayaran);
-            if (berhasil_bayar == true)
-            {
-                MessageBox.Show("Pembayaran berhasil ditambahkan!");
-                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-                formHomepageAdmin.Show();
-                this.Hide();
-            }
-            else
-            {
-                MessageBox.Show("Data gagal ditambahkan!");
-            }
+            //M_Pembayaran pembayaran = new M_Pembayaran(id_pembayaran, Convert.ToInt32(lblConfirmHarga.Text), (int)(metodePembayaran)Enum.Parse(typeof(metodePembayaran), cbxMetodePembayaran.SelectedItem.ToString()));
+            //bool berhasil_bayar = PembayaranContext.updatePembayaran(pembayaran);
+            //if (berhasil_bayar == true)
+            //{
+            //    MessageBox.Show("Pembayaran berhasil ditambahkan!");
+            //    FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            //    formHomepageAdmin.Show();
+            //    this.Hide();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Data gagal ditambahkan!");
+            //}
         }
 
         private void tbxHarga_TextChanged(object sender, EventArgs e)

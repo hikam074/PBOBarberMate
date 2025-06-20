@@ -2,8 +2,8 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="View\FormHomepageAdmin.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Homepages\HomepageAdminUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormHomepageCustomer.cs">
       <SubType>Form</SubType>
@@ -29,8 +29,8 @@
     <Compile Update="View\FormLayanan\FormTambahLayanan.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormLogin.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Auth\LoginUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormPerforma\FormPerforma.cs">
       <SubType>Form</SubType>
@@ -59,13 +59,16 @@
     <Compile Update="View\FormShift\FormTambahJadwal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormSignup.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Auth\SignupUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormUlasan\FormTambahUlasan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\FormUlasan\FormUlasan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\MainApp.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿using PBOBarberMate.App.Context;
+﻿
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -39,28 +39,28 @@ namespace PBOBarberMate.View.FormPresensi
         {
             try
             {
-                DataTable jadwalShift = PresensiContext.GetJadwalShiftKaryawan(idAkun);
-                if (jadwalShift.Columns.Contains("waktu_presensi") && jadwalShift.Columns["waktu_presensi"].ReadOnly)
-                {
-                    jadwalShift.Columns["waktu_presensi"].ReadOnly = false;
-                }
+                //DataTable jadwalShift = PresensiContext.GetJadwalShiftKaryawan(idAkun);
+                //if (jadwalShift.Columns.Contains("waktu_presensi") && jadwalShift.Columns["waktu_presensi"].ReadOnly)
+                //{
+                //    jadwalShift.Columns["waktu_presensi"].ReadOnly = false;
+                //}
 
 
-                for (int i = 0; i < jadwalShift.Rows.Count; i++)
-                {
-                    DataRow row = jadwalShift.Rows[i];
-                    object waktuPresensi = row["waktu_presensi"];
+                //for (int i = 0; i < jadwalShift.Rows.Count; i++)
+                //{
+                //    DataRow row = jadwalShift.Rows[i];
+                //    object waktuPresensi = row["waktu_presensi"];
 
-                    // Jika waktu_presensi bernilai DBNull, biarkan kosong
-                    if (waktuPresensi == DBNull.Value)
-                    {
-                        row["waktu_presensi"] = DBNull.Value; // Tetap kosong
+                //    // Jika waktu_presensi bernilai DBNull, biarkan kosong
+                //    if (waktuPresensi == DBNull.Value)
+                //    {
+                //        row["waktu_presensi"] = DBNull.Value; // Tetap kosong
 
-                    }
-                }
+                //    }
+                //}
 
 
-                dgvPresensi.DataSource = jadwalShift;
+                //dgvPresensi.DataSource = jadwalShift;
 
                 if (dgvPresensi.Columns.Contains("id_shift"))
                 {
@@ -134,7 +134,7 @@ namespace PBOBarberMate.View.FormPresensi
                         waktu_presensi = DateTime.Now
                     };
 
-                    PresensiContext.AddPresensi(presensi);
+                    //PresensiContext.AddPresensi(presensi);
 
                     MessageBox.Show($"Presensi berhasil untuk shift hari {hari} pada {DateTime.Now}.", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
 

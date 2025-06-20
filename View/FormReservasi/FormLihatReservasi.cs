@@ -1,7 +1,6 @@
 ﻿using Npgsql;
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +24,7 @@ namespace PBOBarberMate.View.FormReservasi
             // menangkap event load untuk loading data
             this.Load += FormLihatReservasi_Load;
             // mengubah judul sesuai role
-            if (UserSession.role != AkunRole.Customer)
+            //if (SessionService.role != AkunRole.Customer)
             {
                 lblTitle.Text = "Jadwal Reservasi";
             }
@@ -34,26 +33,26 @@ namespace PBOBarberMate.View.FormReservasi
         private void btnKembali_Click(object sender, EventArgs e)
         {
             // menampilkan form homepage admin bila logged sebagai admin
-            if (UserSession.role == AkunRole.Admin)
-            {
-                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-                formHomepageAdmin.Show();
-                this.Hide();
-            }
+            //if (SessionService.role == AkunRole.Admin)
+            //{
+            //    FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            //    formHomepageAdmin.Show();
+            //    this.Hide();
+            //}
             // menampilkan form homepage karyawan bila logged sebagai karyawan
-            else if (UserSession.role == AkunRole.Karyawan)
-            {
-                FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
-                formHomepageKaryawan.Show();
-                this.Hide();
-            }
+            //else if (SessionService.role == AkunRole.Karyawan)
+            //{
+            //    FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
+            //    formHomepageKaryawan.Show();
+            //    this.Hide();
+            //}
             // menampilkan form homepage customer bila logged sebagai customer
-            else if (UserSession.role == AkunRole.Customer)
-            {
-                FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                formHomepageCustomer.Show();
-                this.Hide();
-            }
+            //else if (SessionService.role == AkunRole.Customer)
+            //{
+            //    FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+            //    formHomepageCustomer.Show();
+            //    this.Hide();
+            //}
         }
 
         private void FormLihatReservasi_Load(object sender, EventArgs e)
@@ -67,30 +66,30 @@ namespace PBOBarberMate.View.FormReservasi
             try
             {
                 // mengambil data dari db
-                if (UserSession.role == AkunRole.Customer)
-                {
-                    DataTable dataReservasi = ReservasiContext.getReservasiExceptSelesai(UserSession.email.ToString());
-                    // tidak ada yang kembali setelah diminta
-                    if (dataReservasi == null)
-                    {
-                        MessageBox.Show("Error: Gagal mengambil data Layanan");
-                        return;
-                    }
-                    // menggunakan data yang telah diambil untuk ditampilkan
-                    dgvDataReservasi.DataSource = dataReservasi;
-                }
-                else
-                {
-                    DataTable dataReservasi = ReservasiContext.getReservasiAll();
-                    // tidak ada yang kembali setelah diminta
-                    if (dataReservasi == null)
-                    {
-                        MessageBox.Show("Error: Gagal mengambil data Layanan");
-                        return;
-                    }
-                    // menggunakan data yang telah diambil untuk ditampilkan
-                    dgvDataReservasi.DataSource = dataReservasi;
-                }
+                //if (SessionService.role == AkunRole.Customer)
+                //{
+                //    DataTable dataReservasi = ReservasiContext.getReservasiExceptSelesai(SessionService.email.ToString());
+                //    // tidak ada yang kembali setelah diminta
+                //    if (dataReservasi == null)
+                //    {
+                //        MessageBox.Show("Error: Gagal mengambil data Layanan");
+                //        return;
+                //    }
+                //    // menggunakan data yang telah diambil untuk ditampilkan
+                //    dgvDataReservasi.DataSource = dataReservasi;
+                //}
+                //else
+                //{
+                //    DataTable dataReservasi = ReservasiContext.getReservasiAll();
+                //    // tidak ada yang kembali setelah diminta
+                //    if (dataReservasi == null)
+                //    {
+                //        MessageBox.Show("Error: Gagal mengambil data Layanan");
+                //        return;
+                //    }
+                //    // menggunakan data yang telah diambil untuk ditampilkan
+                //    dgvDataReservasi.DataSource = dataReservasi;
+                //}
                 // membuat object tombol edit
                 if (!dgvDataReservasi.Columns.Contains("Update"))
                 {
@@ -166,14 +165,14 @@ namespace PBOBarberMate.View.FormReservasi
         private void ActivatingBtn()
         {
             // Periksa kolom sebelum mengatur visibilitas
-            if (dgvDataReservasi.Columns.Contains("Update"))
-            {
-                dgvDataReservasi.Columns["Update"].Visible = UserSession.role == AkunRole.Customer;
-            }
-            if (dgvDataReservasi.Columns.Contains("Delete"))
-            {
-                dgvDataReservasi.Columns["Delete"].Visible = UserSession.role == AkunRole.Customer;
-            }
+            //if (dgvDataReservasi.Columns.Contains("Update"))
+            //{
+            //    dgvDataReservasi.Columns["Update"].Visible = SessionService.role == AkunRole.Customer;
+            //}
+            //if (dgvDataReservasi.Columns.Contains("Delete"))
+            //{
+            //    dgvDataReservasi.Columns["Delete"].Visible = SessionService.role == AkunRole.Customer;
+            //}
         }
 
         private void dgvDataReservasi_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -233,17 +232,17 @@ namespace PBOBarberMate.View.FormReservasi
                         // memengambil id reservasi dari baris
                         int reservasiID = Convert.ToInt32(dgvDataReservasi.Rows[e.RowIndex].Cells["id_reservasi"].Value);
                         // melakukan pembatalan reservasi
-                        int berhasilHapus = ReservasiContext.batalkanReservasi(reservasiID);
+                        //int berhasilHapus = ReservasiContext.batalkanReservasi(reservasiID);
                         // berhasil batalkan
-                        if (berhasilHapus > 0)
-                        {
-                            MessageBox.Show("Reservasi Berhasil dibatalkan!");
-                        }
-                        // gagal batalkan
-                        else
-                        {
-                            MessageBox.Show("Tidak dapat menghapus!");
-                        }
+                        //if (berhasilHapus > 0)
+                        //{
+                        //    MessageBox.Show("Reservasi Berhasil dibatalkan!");
+                        //}
+                        //// gagal batalkan
+                        //else
+                        //{
+                        //    MessageBox.Show("Tidak dapat menghapus!");
+                        //}
                     }
                     // load data setelah melakukan apapun
                     LoadDataReservasi();

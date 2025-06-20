@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace PBOBarberMate.App.Model
 {
-    public class M_Ulasan
+    public class M_Ulasan : Model
     {
         [Key] public int id_ulasan {  get; set; }
         [Required] public int id_pembayaran { get; set; }

@@ -1,5 +1,4 @@
-﻿using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
+﻿
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using System;
@@ -33,41 +32,41 @@ namespace PBOBarberMate.View.FormKelolaCustomer
         {
             try
             {
-                dataGridViewCustomer.AllowUserToAddRows = false;
-                DataTable CustomerData = CustomerContext.All();
-                if (CustomerData == null)
-                {
-                    MessageBox.Show("Error: Gagal mengambil data customer");
-                    return;
-                }
-                dataGridViewCustomer.Columns.Clear();
+                //dataGridViewCustomer.AllowUserToAddRows = false;
+                //DataTable CustomerData = CustomerContext.All();
+                //if (CustomerData == null)
+                //{
+                //    MessageBox.Show("Error: Gagal mengambil data customer");
+                //    return;
+                //}
+                //dataGridViewCustomer.Columns.Clear();
 
-                DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
-                nomorColumn.HeaderText = "No";
-                nomorColumn.Name = "nomor";
-                dataGridViewCustomer.Columns.Add(nomorColumn);
+                //DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                //nomorColumn.HeaderText = "No";
+                //nomorColumn.Name = "nomor";
+                //dataGridViewCustomer.Columns.Add(nomorColumn);
 
-                dataGridViewCustomer.DataSource = CustomerData;
+                //dataGridViewCustomer.DataSource = CustomerData;
 
-                if (dataGridViewCustomer.Columns["id_akun"] != null)
-                    dataGridViewCustomer.Columns["id_akun"].Visible = false;
-                if (dataGridViewCustomer.Columns["nama_akun"] != null)
-                    dataGridViewCustomer.Columns["nama_akun"].HeaderText = "Username";
-                if (dataGridViewCustomer.Columns["email"] != null)
-                    dataGridViewCustomer.Columns["email"].HeaderText = "Email";
-                if (dataGridViewCustomer.Columns["password"] != null)
-                    dataGridViewCustomer.Columns["password"].Visible = false;
-                if (dataGridViewCustomer.Columns["akun_role_id"] != null)
-                    dataGridViewCustomer.Columns["akun_role_id"].Visible = false;
+                //if (dataGridViewCustomer.Columns["id_akun"] != null)
+                //    dataGridViewCustomer.Columns["id_akun"].Visible = false;
+                //if (dataGridViewCustomer.Columns["nama_akun"] != null)
+                //    dataGridViewCustomer.Columns["nama_akun"].HeaderText = "Username";
+                //if (dataGridViewCustomer.Columns["email"] != null)
+                //    dataGridViewCustomer.Columns["email"].HeaderText = "Email";
+                //if (dataGridViewCustomer.Columns["password"] != null)
+                //    dataGridViewCustomer.Columns["password"].Visible = false;
+                //if (dataGridViewCustomer.Columns["akun_role_id"] != null)
+                //    dataGridViewCustomer.Columns["akun_role_id"].Visible = false;
 
 
-                for (int i = 0; i < dataGridViewCustomer.Rows.Count; i++)
-                {
-                    dataGridViewCustomer.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
-                }
+                //for (int i = 0; i < dataGridViewCustomer.Rows.Count; i++)
+                //{
+                //    dataGridViewCustomer.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                //}
 
-                dataGridViewCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                dataGridViewCustomer.AutoResizeColumns();
+                //dataGridViewCustomer.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                //dataGridViewCustomer.AutoResizeColumns();
             }
             catch (Exception ex)
             {
@@ -77,9 +76,9 @@ namespace PBOBarberMate.View.FormKelolaCustomer
 
         private void btKembali_Click(object sender, EventArgs e)
         {
-            FormHomepageAdmin admin = new FormHomepageAdmin();
-            this.Hide();
-            admin.Show();
+            //FormHomepageAdmin admin = new FormHomepageAdmin();
+            //this.Hide();
+            //admin.Show();
         }
 
         private void dataGridViewCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)

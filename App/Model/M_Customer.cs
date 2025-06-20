@@ -6,9 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
-
 
 namespace PBOBarberMate.App.Model
 {

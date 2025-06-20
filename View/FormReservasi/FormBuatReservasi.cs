@@ -7,10 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-using PBOBarberMate.App.Core;
-using PBOBarberMate.App.Context;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
 
 
 namespace PBOBarberMate.View.FormReservasi
@@ -28,7 +26,7 @@ namespace PBOBarberMate.View.FormReservasi
             // mengatur minimal tanggal yang dapat dipilih untuk reservasi adalah h-1
             dtpTanggal.MinDate = DateTime.Now.AddDays(1);
             // mengganti nama pereservasi dengan nama logged
-            lblConfirmNama.Text = UserSession.nama;
+            //lblConfirmNama.Text = SessionService.nama;
             // load data layanan
             loadcbxLayananData();
             // mengganti tampilan untuk mode edit
@@ -38,12 +36,12 @@ namespace PBOBarberMate.View.FormReservasi
         private void loadcbxLayananData()
         {
             // mendapatkan data layanan dari db
-            var dataLayanan = ReservasiContext.getDataLayananByIdNama();
+            //var dataLayanan = ReservasiContext.getDataLayananByIdNama();
             // menambahkan data layanan ke cbxLayanan
-            foreach (var layanan in dataLayanan)
-            {
-                cbxLayanan.Items.Add(layanan);
-            }
+            //foreach (var layanan in dataLayanan)
+            //{
+            //    cbxLayanan.Items.Add(layanan);
+            //}
             // menjadikan yang dimunculkan di cbxLayanan adalah namanya
             cbxLayanan.DisplayMember = "Value";
             // menjadikan yang diambil dari cbxLayanan untuk diinteraksikan di db adalah id_layanan nya
@@ -53,9 +51,9 @@ namespace PBOBarberMate.View.FormReservasi
         private void loadcbxWaktuData(string date)
         {
             // mendapatkan data waktu berdasarkan kesediaan waktu di tanggal yang dipilih
-            List<string> dataWaktu = ReservasiContext.getDataWaktuByTanggal(dtpTanggal.Value);
+            //List<string> dataWaktu = ReservasiContext.getDataWaktuByTanggal(dtpTanggal.Value);
             // menambahkan list ke cbxWaktu
-            cbxWaktu.Items.AddRange(dataWaktu.ToArray());
+            //cbxWaktu.Items.AddRange(dataWaktu.ToArray());
         }
 
         private void updateForEditText()
@@ -152,43 +150,43 @@ namespace PBOBarberMate.View.FormReservasi
                 {
                     // maka reservasi akan ditambahkan
                     // membuat object terlebih dahulu, dan pengecekan-pengecekan
-                    M_Reservasi reservasi = new M_Reservasi(idLayananDipilih, DateOnly.FromDateTime(dtpTanggal.Value), TimeOnly.Parse(cbxWaktu.SelectedItem.ToString()));
+                    //M_Reservasi reservasi = new M_Reservasi(idLayananDipilih, DateOnly.FromDateTime(dtpTanggal.Value), TimeOnly.Parse(cbxWaktu.SelectedItem.ToString()));
                     // menambahkan reservasi ke db
-                    bool berhasilReservasi = ReservasiContext.addreservasi(reservasi);
-                    // bila reservasi berhasil ditambahkan
-                    if (berhasilReservasi == true)
-                    {
-                        MessageBox.Show("Reservasi berhasil ditambahkan!");
-                        // kembali ke FormHomepageReservasi
-                        FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                        formHomepageCustomer.Show();
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
-                    }
+                    //bool berhasilReservasi = ReservasiContext.addreservasi(reservasi);
+                     //bila reservasi berhasil ditambahkan
+                    //if (berhasilReservasi == true)
+                    //{
+                    //    MessageBox.Show("Reservasi berhasil ditambahkan!");
+                    //    // kembali ke FormHomepageReservasi
+                    //    FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+                    //    formHomepageCustomer.Show();
+                    //    this.Hide();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Terjadi kesalahan ketika menambahkan data! Coba lagi");
+                    //}
                 }
                 // bila sedang di mode edit
                 else if (modeEdit == true)
                 {
                     // maka reservasi akan diedit
                     // membuat object terlebih dahulu, dan pengecekan-pengecekan
-                    M_Reservasi reservasi = new M_Reservasi(idLayananDipilih, DateOnly.FromDateTime(dtpTanggal.Value), TimeOnly.Parse(cbxWaktu.SelectedItem.ToString()));
+                    //M_Reservasi reservasi = new M_Reservasi(idLayananDipilih, DateOnly.FromDateTime(dtpTanggal.Value), TimeOnly.Parse(cbxWaktu.SelectedItem.ToString()));
                     // mengubah reservasi dipilih di db
-                    int berhasilReservasi = ReservasiContext.updateReservasi(reservasi, editedReservasiID);
+                    //int berhasilReservasi = ReservasiContext.updateReservasi(reservasi, editedReservasiID);
                     // bila reservasi berhasil diedit
-                    if (berhasilReservasi > 0 )
-                    {
-                        MessageBox.Show("Reservasi berhasil diubah!");
-                        this.modeEdit = false;
-                        // kembali ke form sebelumnya
-                        this.Hide();
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error! Tidak dapat mengubah reservasi");
-                    }
+                    //if (berhasilReservasi > 0 )
+                    //{
+                    //    MessageBox.Show("Reservasi berhasil diubah!");
+                    //    this.modeEdit = false;
+                    //    // kembali ke form sebelumnya
+                    //    this.Hide();
+                    //}
+                    //else
+                    //{
+                    //    MessageBox.Show("Error! Tidak dapat mengubah reservasi");
+                    //}
                 }
             }
         }

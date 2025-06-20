@@ -1,6 +1,5 @@
-﻿using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
-using PBOBarberMate.App.Model;
+﻿using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,24 +23,24 @@ namespace PBOBarberMate.View
 
         private void formPicker()
         {
-            if (UserSession.role == AkunRole.Admin)
-            {
-                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-                formHomepageAdmin.Show();
-                this.Hide();
-            }
-            else if (UserSession.role == AkunRole.Karyawan)
-            {
-                FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
-                formHomepageKaryawan.Show();
-                this.Hide();
-            }
-            else if (UserSession.role == AkunRole.Customer)
-            {
-                FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                formHomepageCustomer.Show();
-                this.Hide();
-            }
+            //if (SessionService.role == AkunRole.Admin)
+            //{
+            //    FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            //    formHomepageAdmin.Show();
+            //    this.Hide();
+            //}
+            //else if (SessionService.role == AkunRole.Karyawan)
+            //{
+            //    FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
+            //    formHomepageKaryawan.Show();
+            //    this.Hide();
+            //}
+            //else if (SessionService.role == AkunRole.Customer)
+            //{
+            //    FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+            //    formHomepageCustomer.Show();
+            //    this.Hide();
+            //}
         }
 
         private void btnKembali_Click(object sender, EventArgs e)
@@ -67,55 +66,55 @@ namespace PBOBarberMate.View
 
         private void btnSimpanUbahNamaPengguna_Click(object sender, EventArgs e)
         {
-            if (tbUbahNamaPengguna.Text != "")
-            {
-                M_Akun akun = new M_Akun(UserSession.email);
-                bool namaDiubah = AkunContext.ubahProfil(akun, tbUbahNamaPengguna.Text, "ubahNama");
-                if (namaDiubah = true)
-                {
-                    MessageBox.Show("Nama berhasil diubah!");
-                    formPicker();
-                }
-            }
-            else if (tbUbahNamaPengguna.Text == "")
-            {
-                MessageBox.Show("blm terisi");
-            }
+            //if (tbUbahNamaPengguna.Text != "")
+            //{
+            //    M_Akun akun = new M_Akun(SessionService.email);
+            //    bool namaDiubah = AkunService.ubahProfil(akun, tbUbahNamaPengguna.Text, "ubahNama");
+            //    if (namaDiubah = true)
+            //    {
+            //        MessageBox.Show("Nama berhasil diubah!");
+            //        formPicker();
+            //    }
+            //}
+            //else if (tbUbahNamaPengguna.Text == "")
+            //{
+            //    MessageBox.Show("blm terisi");
+            //}
         }
         private void btnSimpanUbahEmail_Click(object sender, EventArgs e)
         {
-            if (tbUbahEmail.Text != "")
-            {
-                M_Akun akun = new M_Akun(UserSession.email);
-                bool emailDiubah = AkunContext.ubahProfil(akun, tbUbahEmail.Text, "ubahEmail");
-                if (emailDiubah = true)
-                {
-                    MessageBox.Show("Email berhasil diubah!");
-                    formPicker();
-                }
-            }
-            else if (tbUbahNamaPengguna.Text == "")
-            {
-                MessageBox.Show("blm terisi");
-            }
+            //if (tbUbahEmail.Text != "")
+            //{
+            //    M_Akun akun = new M_Akun(SessionService.email);
+            //    bool emailDiubah = AkunService.ubahProfil(akun, tbUbahEmail.Text, "ubahEmail");
+            //    if (emailDiubah = true)
+            //    {
+            //        MessageBox.Show("Email berhasil diubah!");
+            //        formPicker();
+            //    }
+            //}
+            //else if (tbUbahNamaPengguna.Text == "")
+            //{
+            //    MessageBox.Show("blm terisi");
+            //}
         }
 
         private void btnSimpanUbahPassword_Click(object sender, EventArgs e)
         {
-            if (tbUbahPassword.Text != "")
-            {
-                M_Akun akun = new M_Akun(UserSession.email);
-                bool passDiubah = AkunContext.ubahProfil(akun, HashingUtility.hashPassword(tbUbahPassword.Text), "ubahPassword");
-                if (passDiubah = true)
-                {
-                    MessageBox.Show("Password berhasil diubah!");
-                    formPicker();
-                }
-            }
-            else if (tbUbahNamaPengguna.Text == "")
-            {
-                MessageBox.Show("blm terisi");
-            }
+            //if (tbUbahPassword.Text != "")
+            //{
+            //    M_Akun akun = new M_Akun(SessionService.email);
+            //    bool passDiubah = AkunService.ubahProfil(akun, HashingUtility.hashPassword(tbUbahPassword.Text), "ubahPassword");
+            //    if (passDiubah = true)
+            //    {
+            //        MessageBox.Show("Password berhasil diubah!");
+            //        formPicker();
+            //    }
+            //}
+            //else if (tbUbahNamaPengguna.Text == "")
+            //{
+            //    MessageBox.Show("blm terisi");
+            //}
         }
 
         private void btnUbahEmail_Click(object sender, EventArgs e)

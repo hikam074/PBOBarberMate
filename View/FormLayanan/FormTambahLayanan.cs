@@ -1,4 +1,4 @@
-﻿using PBOBarberMate.App.Context;
+﻿
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -54,15 +54,15 @@ namespace PBOBarberMate.View
             M_Layanan layanan = new M_Layanan { nama_layanan = textBox1.Text, harga = Convert.ToInt32(textBox2.Text)};
             if (IseditMode)
             {
-                layanan.id_layanan = LayananId;
-                LayananContext.UpdateLayanan(layanan);
-                MessageBox.Show("Layanan Berhasil Diperbarui");
+                //layanan.id_layanan = LayananId;
+                //LayananContext.UpdateLayanan(layanan);
+                //MessageBox.Show("Layanan Berhasil Diperbarui");
             }
             else
             {
                 //layanan.id_layanan = LayananId;
-                LayananContext.AddLayanan(layanan);
-                MessageBox.Show("Layanan Berhasil Ditambah");
+                //LayananContext.AddLayanan(layanan);
+                //MessageBox.Show("Layanan Berhasil Ditambah");
             }
             ClearFields();
             this.DialogResult = DialogResult.OK;

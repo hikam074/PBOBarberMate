@@ -13,7 +13,7 @@ namespace PBOBarberMate.App.Model
         selesai = 2,
         dibatalkan = 3
     }
-    public class M_Reservasi
+    public class M_Reservasi : Model
     {
         [Key] public int id_reservasi { get; set; }
         [Required] public int id_karyawan { get; set; }

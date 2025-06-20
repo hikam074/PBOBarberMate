@@ -17,7 +17,7 @@ namespace PBOBarberMate.App.Model
         jumat = 5,
         sabtu = 6,
     }
-    public class M_Shift
+    public class M_Shift : Model
     {
         [Key] public int id_shift { get; set; }
         [Required] public int id_akun { get; set; }

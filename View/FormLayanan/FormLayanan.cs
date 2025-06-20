@@ -1,7 +1,6 @@
 ﻿using Npgsql;
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
 using PBOBarberMate.View.FormUlasan;
 using System;
 using System.Collections.Generic;
@@ -31,24 +30,24 @@ namespace PBOBarberMate.View
 
         private void EnableBtn()
         {
-            if (UserSession.role == AkunRole.Admin)
-            {
-                btnTambah.Visible = true; // Tombol Tambah ditampilkan untuk Admin
-            }
-            else
-            {
-                btnTambah.Visible = false; // Tombol Tambah disembunyikan untuk role lain
-            }
+            //if (SessionService.role == AkunRole.Admin)
+            //{
+            //    btnTambah.Visible = true; // Tombol Tambah ditampilkan untuk Admin
+            //}
+            //else
+            //{
+            //    btnTambah.Visible = false; // Tombol Tambah disembunyikan untuk role lain
+            //}
 
-            // Periksa kolom sebelum mengatur visibilitas
-            if (dataGridView1.Columns.Contains("Update"))
-            {
-                dataGridView1.Columns["Update"].Visible = UserSession.role == AkunRole.Admin;
-            }
-            if (dataGridView1.Columns.Contains("Delete"))
-            {
-                dataGridView1.Columns["Delete"].Visible = UserSession.role == AkunRole.Admin;
-            }
+            //// Periksa kolom sebelum mengatur visibilitas
+            //if (dataGridView1.Columns.Contains("Update"))
+            //{
+            //    dataGridView1.Columns["Update"].Visible = SessionService.role == AkunRole.Admin;
+            //}
+            //if (dataGridView1.Columns.Contains("Delete"))
+            //{
+            //    dataGridView1.Columns["Delete"].Visible = SessionService.role == AkunRole.Admin;
+            //}
         }
 
 
@@ -58,12 +57,12 @@ namespace PBOBarberMate.View
             {
                 dataGridView1.AllowUserToAddRows = false;
 
-                DataTable LayananData = LayananContext.All();
-                if (LayananData == null)
-                {
-                    MessageBox.Show("Error: Gagal mengambil data Layanan");
-                    return;
-                }
+                //DataTable LayananData = LayananContext.All();
+                //if (LayananData == null)
+                //{
+                //    MessageBox.Show("Error: Gagal mengambil data Layanan");
+                //    return;
+                //}
 
                 dataGridView1.Columns.Clear();
 
@@ -72,7 +71,7 @@ namespace PBOBarberMate.View
                 nomorColumn.Name = "nomor";
                 dataGridView1.Columns.Add(nomorColumn);
 
-                dataGridView1.DataSource = LayananData;
+                //dataGridView1.DataSource = LayananData;
 
                 if (dataGridView1.Columns["id_layanan"] != null)
                     dataGridView1.Columns["id_layanan"].Visible = false;
@@ -131,24 +130,24 @@ namespace PBOBarberMate.View
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            if (UserSession.role == AkunRole.Admin)
-            {
-                FormHomepageAdmin admin = new FormHomepageAdmin();
-                this.Hide();
-                admin.Show();
-            }
-            if (UserSession.role == AkunRole.Karyawan)
-            {
-                FormHomepageKaryawan Karyawan = new FormHomepageKaryawan();
-                this.Hide();
-                Karyawan.Show();
-            }
-            if (UserSession.role == AkunRole.Customer)
-            {
-                FormHomepageCustomer Customer = new FormHomepageCustomer();
-                this.Hide();
-                Customer.Show();
-            }
+            //if (SessionService.role == AkunRole.Admin)
+            //{
+            //    FormHomepageAdmin admin = new FormHomepageAdmin();
+            //    this.Hide();
+            //    admin.Show();
+            //}
+            //if (SessionService.role == AkunRole.Karyawan)
+            //{
+            //    FormHomepageKaryawan Karyawan = new FormHomepageKaryawan();
+            //    this.Hide();
+            //    Karyawan.Show();
+            //}
+            //if (SessionService.role == AkunRole.Customer)
+            //{
+            //    FormHomepageCustomer Customer = new FormHomepageCustomer();
+            //    this.Hide();
+            //    Customer.Show();
+            //}
         }
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
@@ -164,9 +163,9 @@ namespace PBOBarberMate.View
 
                     int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
 
-                    NpgsqlDataReader LayananData = LayananContext.getLayananByID(layananId);
+                    //NpgsqlDataReader LayananData = LayananContext.getLayananByID(layananId);
                     DataTable layananTable = new DataTable();
-                    layananTable.Load(LayananData);
+                    //layananTable.Load(LayananData);
 
                     if (layananTable.Rows.Count > 0)
                     {
@@ -197,7 +196,7 @@ namespace PBOBarberMate.View
                 dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value == DBNull.Value) return;
 
                 int layananId = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id_layanan"].Value);
-                LayananContext.DeleteLayanan(layananId);
+                //LayananContext.DeleteLayanan(layananId);
                 LoadDataLayanan(); //layanan
             }
 

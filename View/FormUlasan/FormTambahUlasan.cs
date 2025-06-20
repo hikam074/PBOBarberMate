@@ -1,4 +1,4 @@
-﻿using PBOBarberMate.App.Context;
+﻿
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormPembayaran;
 using System;
@@ -176,7 +176,7 @@ namespace PBOBarberMate.View.FormUlasan
             if (IseditMode == true)
             {
                 ulasan.id_ulasan = id_ulasan;
-                UlasanContext.UpdateUlasan(ulasan);
+                //UlasanContext.UpdateUlasan(ulasan);
                 MessageBox.Show("Ulasan Berhasil Diperbarui");
                 FormLayanan formLayanan = new FormLayanan();
                 formLayanan.Show();
@@ -185,7 +185,7 @@ namespace PBOBarberMate.View.FormUlasan
             else
             {
                 //layanan.id_layanan = LayananId;
-                UlasanContext.AddUlasan(ulasan);
+                //UlasanContext.AddUlasan(ulasan);
                 MessageBox.Show("Ulasan Berhasil Ditambah");
                 this.DialogResult = DialogResult.OK;
                 this.Hide();
@@ -237,11 +237,11 @@ namespace PBOBarberMate.View.FormUlasan
             if (IseditMode)
             {
                 button1.Text = "Perbarui Komentar"; // Ubah teks tombol menjadi "Perbarui Komentar"
-                M_Ulasan ulasan = UlasanContext.getUlasanByID(id_ulasan); // Ambil data ulasan berdasarkan ID
-                if (ulasan != null)
-                {
-                    PopulateForm(ulasan); // Isi form dengan data ulasan
-                }
+                //M_Ulasan ulasan = UlasanContext.getUlasanByID(id_ulasan); // Ambil data ulasan berdasarkan ID
+                //if (ulasan != null)
+                //{
+                //    PopulateForm(ulasan); // Isi form dengan data ulasan
+                //}
             }
             else
             {

@@ -13,7 +13,7 @@ namespace PBOBarberMate.App.Model
         tunai = 2,
         e_wallet = 3
     }
-    public class M_Pembayaran
+    public class M_Pembayaran : Model
     {
         [Key] public int idPembayaran { get; set; }
         [Required] public int idReservasi { get; set; }

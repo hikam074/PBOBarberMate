@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate
+﻿namespace PBOBarberMate.View.Auth
 {
-    partial class FormSignup
+    partial class SignupUC
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             lblLoginSignupRedirect = new Label();
             lklblLoginSignupRedirect = new LinkLabel();
-            gbxLogin = new GroupBox();
+            gbxSignup = new GroupBox();
             btnSignupSubmit = new Button();
             tbxSignupNama = new TextBox();
             lblSignupNama = new Label();
@@ -41,7 +41,7 @@
             tbxSignupPass = new TextBox();
             lblSignupAppName = new Label();
             lblSginupWelcome = new Label();
-            gbxLogin.SuspendLayout();
+            gbxSignup.SuspendLayout();
             SuspendLayout();
             // 
             // lblLoginSignupRedirect
@@ -69,29 +69,29 @@
             lklblLoginSignupRedirect.Text = "Login";
             lklblLoginSignupRedirect.LinkClicked += lklblLoginSignupRedirect_LinkClicked;
             // 
-            // gbxLogin
+            // gbxSignup
             // 
-            gbxLogin.Anchor = AnchorStyles.Top;
-            gbxLogin.BackColor = Color.FromArgb(236, 240, 241);
-            gbxLogin.Controls.Add(lblLoginSignupRedirect);
-            gbxLogin.Controls.Add(lklblLoginSignupRedirect);
-            gbxLogin.Controls.Add(btnSignupSubmit);
-            gbxLogin.Controls.Add(tbxSignupNama);
-            gbxLogin.Controls.Add(lblSignupNama);
-            gbxLogin.Controls.Add(tbxSignupEmail);
-            gbxLogin.Controls.Add(lblLoginSubheading);
-            gbxLogin.Controls.Add(lblSignupPass);
-            gbxLogin.Controls.Add(lblSignupEmail);
-            gbxLogin.Controls.Add(tbxSignupPass);
-            gbxLogin.Location = new Point(360, 75);
-            gbxLogin.Name = "gbxLogin";
-            gbxLogin.Size = new Size(400, 300);
-            gbxLogin.TabIndex = 11;
-            gbxLogin.TabStop = false;
+            gbxSignup.Anchor = AnchorStyles.None;
+            gbxSignup.BackColor = Color.FromArgb(236, 240, 241);
+            gbxSignup.Controls.Add(lblLoginSignupRedirect);
+            gbxSignup.Controls.Add(lklblLoginSignupRedirect);
+            gbxSignup.Controls.Add(btnSignupSubmit);
+            gbxSignup.Controls.Add(tbxSignupNama);
+            gbxSignup.Controls.Add(lblSignupNama);
+            gbxSignup.Controls.Add(tbxSignupEmail);
+            gbxSignup.Controls.Add(lblLoginSubheading);
+            gbxSignup.Controls.Add(lblSignupPass);
+            gbxSignup.Controls.Add(lblSignupEmail);
+            gbxSignup.Controls.Add(tbxSignupPass);
+            gbxSignup.Location = new Point(464, 106);
+            gbxSignup.Name = "gbxSignup";
+            gbxSignup.Size = new Size(400, 300);
+            gbxSignup.TabIndex = 11;
+            gbxSignup.TabStop = false;
             // 
             // btnSignupSubmit
             // 
-            btnSignupSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnSignupSubmit.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSignupSubmit.BackColor = Color.FromArgb(44, 62, 80);
             btnSignupSubmit.CausesValidation = false;
             btnSignupSubmit.Font = new Font("Bahnschrift Condensed", 12F);
@@ -180,11 +180,11 @@
             // 
             // lblSignupAppName
             // 
-            lblSignupAppName.Anchor = AnchorStyles.Top;
+            lblSignupAppName.Anchor = AnchorStyles.None;
             lblSignupAppName.BackColor = Color.Transparent;
             lblSignupAppName.Font = new Font("Bahnschrift Condensed", 42F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblSignupAppName.ForeColor = Color.White;
-            lblSignupAppName.Location = new Point(30, 210);
+            lblSignupAppName.Location = new Point(134, 241);
             lblSignupAppName.Name = "lblSignupAppName";
             lblSignupAppName.Size = new Size(286, 72);
             lblSignupAppName.TabIndex = 13;
@@ -192,11 +192,11 @@
             // 
             // lblSginupWelcome
             // 
-            lblSginupWelcome.Anchor = AnchorStyles.Top;
+            lblSginupWelcome.Anchor = AnchorStyles.None;
             lblSginupWelcome.BackColor = Color.Transparent;
             lblSginupWelcome.Font = new Font("Bahnschrift Light Condensed", 32.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSginupWelcome.ForeColor = Color.White;
-            lblSginupWelcome.Location = new Point(30, 155);
+            lblSginupWelcome.Location = new Point(134, 186);
             lblSginupWelcome.Name = "lblSginupWelcome";
             lblSginupWelcome.Size = new Size(286, 61);
             lblSginupWelcome.TabIndex = 12;
@@ -207,15 +207,14 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(1008, 537);
             Controls.Add(lblSignupAppName);
             Controls.Add(lblSginupWelcome);
-            Controls.Add(gbxLogin);
+            Controls.Add(gbxSignup);
             Name = "FormSignup";
-            StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate : Register";
-            gbxLogin.ResumeLayout(false);
-            gbxLogin.PerformLayout();
+            gbxSignup.ResumeLayout(false);
+            gbxSignup.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -223,7 +222,7 @@
 
         private Label lblLoginSignupRedirect;
         private LinkLabel lklblLoginSignupRedirect;
-        private GroupBox gbxLogin;
+        private GroupBox gbxSignup;
         private TextBox tbxSignupEmail;
         private Label lblLoginSubheading;
         private Label lblSignupPass;

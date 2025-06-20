@@ -1,6 +1,6 @@
-﻿using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
+﻿
 using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,8 +40,8 @@ namespace PBOBarberMate.View.FormShift
         {
             try
             {
-                DataTable dataShift = ShiftContext.All(); // Ambil data shift dari database
-                dgvJadwalShift.DataSource = dataShift;    // Tampilkan data pada DataGridView
+                //DataTable dataShift = ShiftContext.All(); // Ambil data shift dari database
+                //dgvJadwalShift.DataSource = dataShift;    // Tampilkan data pada DataGridView
                 dgvJadwalShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 // membuat size kolom menjadi rata danmemenuhi tabel
 
@@ -147,7 +147,7 @@ namespace PBOBarberMate.View.FormShift
                     {
                         try
                         {
-                            ShiftContext.DeleteShift(idShift);
+                            //ShiftContext.DeleteShift(idShift);
                             MessageBox.Show("Shift berhasil dihapus.");
                             LoadData(); // Refresh data setelah delete
                         }
@@ -170,26 +170,26 @@ namespace PBOBarberMate.View.FormShift
         private void btnKembali_Click(object sender, EventArgs e)
         {
             // menampilkan form homepage admin bila logged sebagai admin
-            if (UserSession.role == AkunRole.Admin)
-            {
-                FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
-                formHomepageAdmin.Show();
-                this.Hide();
-            }
+            //if (SessionService.role == AkunRole.Admin)
+            //{
+            //    FormHomepageAdmin formHomepageAdmin = new FormHomepageAdmin();
+            //    formHomepageAdmin.Show();
+            //    this.Hide();
+            //}
             // menampilkan form homepage karyawan bila logged sebagai karyawan
-            else if (UserSession.role == AkunRole.Karyawan)
-            {
-                FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
-                formHomepageKaryawan.Show();
-                this.Hide();
-            }
+            //else if (SessionService.role == AkunRole.Karyawan)
+            //{
+            //    FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
+            //    formHomepageKaryawan.Show();
+            //    this.Hide();
+            //}
             // menampilkan form homepage customer bila logged sebagai customer
-            else if (UserSession.role == AkunRole.Customer)
-            {
-                FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                formHomepageCustomer.Show();
-                this.Hide();
-            }
+            //else if (SessionService.role == AkunRole.Customer)
+            //{
+            //    FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
+            //    formHomepageCustomer.Show();
+            //    this.Hide();
+            //}
         }
     }
 }

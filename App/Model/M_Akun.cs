@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Npgsql;
 
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
 using System.ComponentModel.DataAnnotations;
 
 
@@ -20,20 +18,39 @@ namespace PBOBarberMate.App.Model
         karyawan = 2,
         customer = 3
     }
-    public class M_Akun
+    public class M_Akun : Model
     {
         // ATRIBUT
         [Key] public int id_akun { get; set; }
         public string nama { get; set; }
         public string email { get; set; }
-        private string _password;
+        private string _passwordHash;
         public string Password
         {
-            get => _password;
-            set => _password = this.hashPassword(value);
+            get => _passwordHash;
+            set => _passwordHash = hashPassword(value);
         }
-        public virtual AkunRole role { get; }
-        public string hashPassword(string password)
+        public virtual AkunRole role { get; set; }
+
+
+        public M_Akun() { }
+        public M_Akun(int id_akun, string nama, string email, string hashedPasswordFromDb, AkunRole role)
+        {
+            this.id_akun = id_akun;
+            this.nama = nama;
+            this.email = email;
+            this._passwordHash = hashedPasswordFromDb;
+            this.role = role;
+        }
+        public M_Akun(string nama, string email, string plainPassword, AkunRole role)
+        {
+            this.nama = nama;
+            this.email = email;
+            this.Password = plainPassword;
+            this.role = role;
+        }
+
+        public static string hashPassword(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())
             {

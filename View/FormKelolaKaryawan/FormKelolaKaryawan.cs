@@ -1,4 +1,4 @@
-﻿using PBOBarberMate.App.Context;
+﻿
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormPresensi;
 
@@ -26,12 +26,12 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             try
             {
                 dataGridViewKelolaKaryawan.AllowUserToAddRows = false;
-                DataTable kehadiranKaryawan = PresensiContext.All();
-                if (kehadiranKaryawan == null)
-                {
-                    MessageBox.Show("Error: Gagal Mengambil Presensi Karyawan");
-                    return;
-                }
+                //DataTable kehadiranKaryawan = PresensiContext.All();
+                //if (kehadiranKaryawan == null)
+                //{
+                //    MessageBox.Show("Error: Gagal Mengambil Presensi Karyawan");
+                //    return;
+                //}
                 DataGridViewButtonColumn updateButtonColumn = new DataGridViewButtonColumn
                 {
                     Name = "Update",
@@ -49,7 +49,7 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
                     UseColumnTextForButtonValue = true
                 };
                 dataGridViewKelolaKaryawan.Columns.Add(deleteButtonColumn);
-                dataGridViewKelolaKaryawan.DataSource = kehadiranKaryawan;
+                //dataGridViewKelolaKaryawan.DataSource = kehadiranKaryawan;
             }
             catch (Exception ex)
             {
@@ -65,20 +65,20 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             {
                 try
                 {
-                    int presensiId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id"].Value);
+                    //int presensiId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id"].Value);
 
-                    DataTable presensiData = PresensiContext.getDataPresensiById(presensiId);
+                    //DataTable presensiData = PresensiContext.getDataPresensiById(presensiId);
 
-                    if (presensiData.Rows.Count > 0)
-                    {
-                        DataRow row = presensiData.Rows[0];
-                        M_Presensi mahasiswa = new M_Presensi
-                        {
-                            id_presensi = (int)row["id"],
-                        };
+                    //if (presensiData.Rows.Count > 0)
+                    //{
+                    //    DataRow row = presensiData.Rows[0];
+                    //    M_Presensi mahasiswa = new M_Presensi
+                    //    {
+                    //        id_presensi = (int)row["id"],
+                    //    };
 
-                        this.Hide();
-                    }
+                    //    this.Hide();
+                    //}
                 }
                 catch (Exception ex)
                 {
@@ -87,9 +87,9 @@ namespace PBOBarberMate.View.FormKelolaKaryawan
             }
             else if (e.ColumnIndex == dataGridViewKelolaKaryawan.Columns["Delete"].Index)
             {
-                int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
-                PresensiContext.DeletePresensi(mahasiswaId);
-                MenampilkanKehadiranKaryawan();
+                //int mahasiswaId = Convert.ToInt32(dataGridViewKelolaKaryawan.Rows[e.RowIndex].Cells["id_presensi"].Value);
+                //PresensiContext.DeletePresensi(mahasiswaId);
+                //MenampilkanKehadiranKaryawan();
             }
         }
     }

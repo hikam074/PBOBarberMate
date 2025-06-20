@@ -1,4 +1,4 @@
-﻿using PBOBarberMate.App.Context;
+﻿
 using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
@@ -62,14 +62,14 @@ namespace PBOBarberMate.View.FormInventaris
             M_Inventaris inventaris = new M_Inventaris { nama_barang = textBox1.Text, jumlah_barang = Convert.ToInt32(textBox2.Text) };
             if (IseditMode)
             {
-                inventaris.id_barang = InventarisID;
-                InventarisContext.UpdateInventaris(inventaris);
-                MessageBox.Show("Inventaris Berhasil Diperbarui");
+                //inventaris.id_barang = InventarisID;
+                //InventarisContext.UpdateInventaris(inventaris);
+                //MessageBox.Show("Inventaris Berhasil Diperbarui");
             }
             else
             {
-                InventarisContext.AddInventaris(inventaris);
-                MessageBox.Show("Inventaris Berhasil Ditambah");
+                //InventarisContext.AddInventaris(inventaris);
+                //MessageBox.Show("Inventaris Berhasil Ditambah");
             }
             ClearFields();
             this.DialogResult = DialogResult.OK;

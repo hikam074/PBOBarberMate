@@ -3,12 +3,11 @@ using System.Windows.Forms;
 using System.Drawing;
 using Npgsql;
 
-using PBOBarberMate.App.Context;
-using PBOBarberMate.App.Core;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
 using PBOBarberMate.View.FormPresensi;
+using PBOBarberMate.App.Services;
 
 
 namespace PBOBarberMate.View
@@ -31,20 +30,20 @@ namespace PBOBarberMate.View
 
         public void loadFormKaryawan()
         {
-            lblWelcome.Text = UserSession.nama;
-            lblStatusShiftToday.Text = ShiftContext.getShiftByIDToday(UserSession.idSession);
-            string waktuPresensi = PresensiContext.isPresensiTodayExist(UserSession.idSession);
-            string adashift = ShiftContext.getShiftByIDToday(UserSession.idSession);
-            if (adashift == "Ada")
-            {
-                adashift = "-";
-                btnLakukanPresensi.Enabled = true;
-            }
-            else
-            {
-                btnLakukanPresensi.Enabled = false;
-            }
-            lblStatusPresensiToday.Text = waktuPresensi;
+            //lblWelcome.Text = SessionService.nama;
+            //lblStatusShiftToday.Text = ShiftContext.getShiftByIDToday(SessionService.idSession);
+            //string waktuPresensi = PresensiContext.isPresensiTodayExist(SessionService.idSession);
+            //string adashift = ShiftContext.getShiftByIDToday(SessionService.idSession);
+            //if (adashift == "Ada")
+            //{
+            //    adashift = "-";
+            //    btnLakukanPresensi.Enabled = true;
+            //}
+            //else
+            //{
+            //    btnLakukanPresensi.Enabled = false;
+            //}
+            //lblStatusPresensiToday.Text = waktuPresensi;
         }
 
         private void FormHomepageKaryawan_Load(object sender, EventArgs e)
@@ -99,9 +98,9 @@ namespace PBOBarberMate.View
             // memunculkan profil
             gbxShowProfile.Visible = true;
             // memunculkan isi profil
-            lblProfilRole.Text = UserSession.role.ToString();
-            lblProfilNama.Text = UserSession.nama;
-            lblProfilEmail.Text = UserSession.email;
+            //lblProfilRole.Text = SessionService.role.ToString();
+            //lblProfilNama.Text = SessionService.nama;
+            //lblProfilEmail.Text = SessionService.email;
             // mengubah warna btnProfil
             btnProfil.BackColor = Color.White;
             btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
@@ -127,12 +126,12 @@ namespace PBOBarberMate.View
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             // kembali ke FormLogin
-            FormLogin formLogin = new FormLogin();
+            //FormLogin formLogin = new FormLogin();
             // logout dari session
-            AkunContext.logout();
+            //AkunService.logout();
 
-            formLogin.Show();
-            this.Hide();
+            //formLogin.Show();
+            //this.Hide();
         }
 
         private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
@@ -180,47 +179,47 @@ namespace PBOBarberMate.View
 
         private void btnReservasi_Click(object sender, EventArgs e)
         {
-            int idAkun = UserSession.idSession;
-            FormPresensi.FormPresensi formPresensi = new FormPresensi.FormPresensi(idAkun);
-            formPresensi.Show();
-            this.Hide();
+            //int idAkun = SessionService.idSession;
+            //FormPresensi.FormPresensi formPresensi = new FormPresensi.FormPresensi(idAkun);
+            //formPresensi.Show();
+            //this.Hide();
         }
 
         private void btnLakukanPresensi_Click(object sender, EventArgs e)
         {
 
             // apabila presensi sudah ada
-            if (PresensiContext.isPresensiTodayExist(UserSession.idSession) != null)
-            {
-                // maka kembali
-                MessageBox.Show($"Data presensi SUDAH ada!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                loadFormKaryawan();
-                return;
-            }
+            //if (PresensiContext.isPresensiTodayExist(SessionService.idSession) != null)
+            //{
+            //    // maka kembali
+            //    MessageBox.Show($"Data presensi SUDAH ada!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    loadFormKaryawan();
+            //    return;
+            //}
 
             // Sedangkan kalau belum maka tambahkan presensi
-            try
-            {
-                M_Presensi presensi = new M_Presensi
-                {
-                    id_akun = UserSession.idSession,
-                    id_shift = PresensiContext.getJadwalShiftTodayThisID(UserSession.idSession),
-                    waktu_presensi = DateTime.Now
-                };
-                MessageBox.Show($"{presensi.id_shift}");
+            //try
+            //{
+            //    M_Presensi presensi = new M_Presensi
+            //    {
+            //        id_akun = SessionService.idSession,
+            //        id_shift = PresensiContext.getJadwalShiftTodayThisID(SessionService.idSession),
+            //        waktu_presensi = DateTime.Now
+            //    };
+            //    MessageBox.Show($"{presensi.id_shift}");
                 
-                PresensiContext.AddPresensi(presensi);
+            //    PresensiContext.AddPresensi(presensi);
 
-                MessageBox.Show($"Presensi BERHASIL ditambahkan!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"GAGAL melakukan presensi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                loadFormKaryawan();
-            }
+            //    MessageBox.Show($"Presensi BERHASIL ditambahkan!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"GAGAL melakukan presensi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
+            //finally
+            //{
+            //    loadFormKaryawan();
+            //}
         }
     }
 }
