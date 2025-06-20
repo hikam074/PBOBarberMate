@@ -4,10 +4,12 @@ using System.Drawing;
 using Npgsql;
 
 using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
+
 using PBOBarberMate.View;
 using PBOBarberMate.View.FormInventaris;
 using PBOBarberMate.View.FormPresensi;
-using PBOBarberMate.App.Services;
+
 
 
 namespace PBOBarberMate.View.Homepages
@@ -16,15 +18,22 @@ namespace PBOBarberMate.View.Homepages
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
+        private readonly AkunService _akunService;
+        private readonly SessionService _sessionService;
+        private readonly MainApp _mainForm; // Referensi ke form utama
 
 
-        public HomepageKaryawanUC()
+        public HomepageKaryawanUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
         {
             InitializeComponent();
+            _akunService = akunService;
+            _sessionService = sessionService;
+            _mainForm = mainForm;
+
             // loading data-data latest di form homepage karyawan
             loadFormKaryawan();
             // menangkap tiap klik event di form
-            this.Click += new EventHandler(FormHomepageKaryawan_Click);
+            this.Click += new EventHandler(HomepageKaryawanUC_Click);
         }
 
 
@@ -44,27 +53,6 @@ namespace PBOBarberMate.View.Homepages
             //    btnLakukanPresensi.Enabled = false;
             //}
             //lblStatusPresensiToday.Text = waktuPresensi;
-        }
-
-        private void FormHomepageKaryawan_Load(object sender, EventArgs e)
-        {
-            loadFormKaryawan();
-        }
-
-        private void FormHomepageKaryawan_Click(object sender, EventArgs e)
-        {
-            Point cursorPosition = this.PointToClient(Cursor.Position);
-            // ketika klik event tidak berada di gbxShowProfile
-            if (!gbxShowProfile.Bounds.Contains(cursorPosition))
-            {
-                // maka gbxShowProfile dihilangkan
-                gbxShowProfile.Visible = false;
-                // lalu mengembalikan warna btnProfil ke default
-                btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-                btnProfil.ForeColor = Color.White;
-                // mengaktifkan kembali animasi hovers
-                hoversActivated = true;
-            }
         }
 
         private void btnLayanan_Click(object sender, EventArgs e)
@@ -207,7 +195,7 @@ namespace PBOBarberMate.View.Homepages
             //        waktu_presensi = DateTime.Now
             //    };
             //    MessageBox.Show($"{presensi.id_shift}");
-                
+
             //    PresensiContext.AddPresensi(presensi);
 
             //    MessageBox.Show($"Presensi BERHASIL ditambahkan!", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -220,6 +208,27 @@ namespace PBOBarberMate.View.Homepages
             //{
             //    loadFormKaryawan();
             //}
+        }
+
+        private void HomepageKaryawanUC_Click(object sender, EventArgs e)
+        {
+            Point cursorPosition = this.PointToClient(Cursor.Position);
+            // ketika klik event tidak berada di gbxShowProfile
+            if (!gbxShowProfile.Bounds.Contains(cursorPosition))
+            {
+                // maka gbxShowProfile dihilangkan
+                gbxShowProfile.Visible = false;
+                // lalu mengembalikan warna btnProfil ke default
+                btnProfil.BackColor = Color.FromArgb(44, 62, 80);
+                btnProfil.ForeColor = Color.White;
+                // mengaktifkan kembali animasi hovers
+                hoversActivated = true;
+            }
+        }
+
+        private void HomepageKaryawanUC_Load(object sender, EventArgs e)
+        {
+            loadFormKaryawan();
         }
     }
 }

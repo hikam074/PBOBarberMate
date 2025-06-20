@@ -15,7 +15,6 @@ namespace PBOBarberMate.View.Homepages
         private readonly SessionService _sessionService;
         private readonly MainApp _mainForm; // Referensi ke form utama
 
-        // Konstruktor sekarang menerima AkunService, SessionService, dan MainApplicationForm
         public HomepageAdminUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
         {
             InitializeComponent();

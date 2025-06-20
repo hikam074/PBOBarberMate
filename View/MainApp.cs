@@ -54,7 +54,7 @@ namespace PBOBarberMate.View
             }
             else if (userRole == AkunRole.karyawan)
             {
-                //LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
+                LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
             }
             else if (userRole == AkunRole.customer)
             {

@@ -352,12 +352,11 @@
             lklbMore.Text = "Lihat lebih banyak...";
             lklbMore.LinkClicked += lklbMore_LinkClicked;
             // 
-            // FormHomepageCustomer
+            // HomepageCustomerUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(944, 501);
             Controls.Add(lklbMore);
             Controls.Add(lblJadwalMingguIni);
             Controls.Add(dgvJadwalMingguIni);
@@ -366,9 +365,10 @@
             Controls.Add(btnProfil);
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
-            Name = "FormHomepageCustomer";
-            Load += FormHomepageCustomer_Load;
-            Click += FormHomepageCustomer_Click;
+            Name = "HomepageCustomerUC";
+            Size = new Size(944, 501);
+            Load += HomepageCustomerUC_Load;
+            Click += HomepageCustomerUC_Click;
             gbxShowProfile.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
             gbxMenu.ResumeLayout(false);

@@ -461,21 +461,21 @@ partial class HomepageKaryawanUC
         button2.TextAlign = ContentAlignment.BottomCenter;
         button2.UseVisualStyleBackColor = false;
         // 
-        // FormHomepageKaryawan
+        // HomepageKaryawanUC
         // 
         AutoScaleDimensions = new SizeF(7F, 15F);
         AutoScaleMode = AutoScaleMode.Font;
         BackColor = Color.White;
-        ClientSize = new Size(944, 501);
         Controls.Add(gbxInfo);
         Controls.Add(gbxShowProfile);
         Controls.Add(gbxMenu);
         Controls.Add(btnProfil);
         Controls.Add(lblHomepageGreet);
         Controls.Add(lblWelcome);
-        Name = "FormHomepageKaryawan";
-        Load += FormHomepageKaryawan_Load;
-        Click += FormHomepageKaryawan_Click;
+        Name = "HomepageKaryawanUC";
+        Size = new Size(944, 501);
+        Load += HomepageKaryawanUC_Load;
+        Click += HomepageKaryawanUC_Click;
         gbxShowProfile.ResumeLayout(false);
         gbxMenu.ResumeLayout(false);
         ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();

@@ -20,69 +20,23 @@ namespace PBOBarberMate.View.Homepages
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
+        private readonly AkunService _akunService;
+        private readonly SessionService _sessionService;
+        private readonly MainApp _mainForm; // Referensi ke form utama
 
-
-        public HomepageCustomerUC()
+        public HomepageCustomerUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
         {
             InitializeComponent();
+            _akunService = akunService;
+            _sessionService = sessionService;
+            _mainForm = mainForm;
+
             // mengubah ucapan nama sesuai nama logged
             //lblWelcome.Text = SessionService.nama
             // menangkap tiap klik event di form
-            this.Click += new EventHandler(FormHomepageCustomer_Click);
+            this.Click += new EventHandler(HomepageCustomerUC_Click);
         }
 
-        private void FormHomepageCustomer_Click(object sender, EventArgs e)
-        {
-            Point cursorPosition = this.PointToClient(Cursor.Position);
-            // ketika klik event tidak berada di gbxShowProfile
-            if (!gbxShowProfile.Bounds.Contains(cursorPosition))
-            {
-                // maka gbxShowProfile dihilangkan
-                gbxShowProfile.Visible = false;
-                // lalu mengembalikan warna btnProfil ke default
-                btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-                btnProfil.ForeColor = Color.White;
-                // mengaktifkan kembali animasi hovers
-                hoversActivated = true;
-            }
-        }
-
-        private void FormHomepageCustomer_Load(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    // mengambil data dari db
-            //    //DataTable src = TabelContext.getReservasiMingguIni();
-            //    // membuat size kolom menjadi rata dan memenuhi tabel
-            //    dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //    // membuat tabel responsif berdasarkan isi data
-            //    foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
-            //    {
-            //        column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
-            //    }
-            //    // behaviour table
-            //    dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
-            //    dgvJadwalMingguIni.AllowUserToAddRows = false;
-            //    dgvJadwalMingguIni.AllowUserToResizeColumns = false;
-            //    dgvJadwalMingguIni.AllowUserToResizeRows = false;
-            //    dgvJadwalMingguIni.RowHeadersVisible = false;
-            //    dgvJadwalMingguIni.ClearSelection();
-            //    dgvJadwalMingguIni.SelectionChanged += (s, e) =>
-            //    {
-            //        dgvJadwalMingguIni.ClearSelection();
-            //    };
-            //    // mengambil data dari variabel
-            //    dgvJadwalMingguIni.DataSource = src;
-
-            //    dgvJadwalMingguIni.Columns["tanggal"].HeaderText = "Tanggal";
-            //    dgvJadwalMingguIni.Columns["waktu"].HeaderText = "Waktu";
-            //    dgvJadwalMingguIni.Columns["pelayanan"].HeaderText = "Pelayanan";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
-            //}
-        }
 
         private void btnReservasi_Click(object sender, EventArgs e)
         {
@@ -222,6 +176,59 @@ namespace PBOBarberMate.View.Homepages
             FormLihatPembayaranUntukUlasan form = new FormLihatPembayaranUntukUlasan();
             form.Show();
             this.Hide();
+        }
+
+        private void HomepageCustomerUC_Click(object sender, EventArgs e)
+        {
+            Point cursorPosition = this.PointToClient(Cursor.Position);
+            // ketika klik event tidak berada di gbxShowProfile
+            if (!gbxShowProfile.Bounds.Contains(cursorPosition))
+            {
+                // maka gbxShowProfile dihilangkan
+                gbxShowProfile.Visible = false;
+                // lalu mengembalikan warna btnProfil ke default
+                btnProfil.BackColor = Color.FromArgb(44, 62, 80);
+                btnProfil.ForeColor = Color.White;
+                // mengaktifkan kembali animasi hovers
+                hoversActivated = true;
+            }
+        }
+
+        private void HomepageCustomerUC_Load(object sender, EventArgs e)
+        {
+            //try
+            //{
+            //    // mengambil data dari db
+            //    //DataTable src = TabelContext.getReservasiMingguIni();
+            //    // membuat size kolom menjadi rata dan memenuhi tabel
+            //    dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            //    // membuat tabel responsif berdasarkan isi data
+            //    foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
+            //    {
+            //        column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
+            //    }
+            //    // behaviour table
+            //    dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
+            //    dgvJadwalMingguIni.AllowUserToAddRows = false;
+            //    dgvJadwalMingguIni.AllowUserToResizeColumns = false;
+            //    dgvJadwalMingguIni.AllowUserToResizeRows = false;
+            //    dgvJadwalMingguIni.RowHeadersVisible = false;
+            //    dgvJadwalMingguIni.ClearSelection();
+            //    dgvJadwalMingguIni.SelectionChanged += (s, e) =>
+            //    {
+            //        dgvJadwalMingguIni.ClearSelection();
+            //    };
+            //    // mengambil data dari variabel
+            //    dgvJadwalMingguIni.DataSource = src;
+
+            //    dgvJadwalMingguIni.Columns["tanggal"].HeaderText = "Tanggal";
+            //    dgvJadwalMingguIni.Columns["waktu"].HeaderText = "Waktu";
+            //    dgvJadwalMingguIni.Columns["pelayanan"].HeaderText = "Pelayanan";
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
+            //}
         }
     }
 }
