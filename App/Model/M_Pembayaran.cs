@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,16 +15,9 @@ namespace PBOBarberMate.App.Model
     }
     public class M_Pembayaran
     {
-        public int idPembayaran;
-        public int idReservasi;
-        public int harga;
-        public metodePembayaran metodePembayaran;
-
-        public M_Pembayaran(int id_reservasi, int harga, int metode_pembayaran)
-        {
-            this.idReservasi = id_reservasi;
-            this.harga = harga;
-            this.metodePembayaran = (metodePembayaran)metode_pembayaran;
-        }
+        [Key] public int idPembayaran { get; set; }
+        [Required] public int idReservasi { get; set; }
+        [Required] public int harga { get; set; }
+        [Required] public metodePembayaran metodePembayaran { get; set; }
     }
 }

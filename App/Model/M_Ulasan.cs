@@ -9,11 +9,10 @@ namespace PBOBarberMate.App.Model
 {
     public class M_Ulasan
     {
-        public int id_ulasan {  get; set; }
-        public int id_pembayaran { get; set; }
-        public int rating { get; set; }
+        [Key] public int id_ulasan {  get; set; }
+        [Required] public int id_pembayaran { get; set; }
+        [Required] public int rating { get; set; }
         public string isi_ulasan { get; set; }
-        public DateTime tanggal_memberi_ulasan { get; set; }
-
+        [Required] public DateTime tanggal_memberi_ulasan { get; set; }
     }
 }
