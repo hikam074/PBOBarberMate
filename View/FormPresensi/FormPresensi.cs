@@ -155,12 +155,12 @@ namespace PBOBarberMate.View.FormPresensi
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            // Buka FormHomepageKaryawan
-            FormHomepageKaryawan formHomepageKaryawan = new FormHomepageKaryawan();
-            formHomepageKaryawan.Show();
+            //// Buka FormHomepageKaryawan
+            //HomepageKaryawanUC formHomepageKaryawan = new HomepageKaryawanUC();
+            //formHomepageKaryawan.Show();
 
-            // Tutup form saat ini (FormPresensi)
-            this.Close();
+            //// Tutup form saat ini (FormPresensi)
+            //this.Close();
         }
     }
 }

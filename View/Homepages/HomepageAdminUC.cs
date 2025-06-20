@@ -103,7 +103,7 @@ namespace PBOBarberMate.View.Homepages
         }
 
         // Contoh untuk event Click pada Form (UserControl) itu sendiri
-        private void FormHomepageAdmin_Click(object sender, EventArgs e)
+        private void HomepageAdminUC_Click(object sender, EventArgs e)
         {
             Point cursorPosition = this.PointToClient(Cursor.Position);
             if (!gbxShowProfile.Bounds.Contains(cursorPosition))

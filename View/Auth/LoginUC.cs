@@ -13,7 +13,6 @@ namespace PBOBarberMate.View.Auth
         private readonly SessionService _sessionService;
         private readonly MainApp _mainForm; // Referensi ke form utama
 
-        // Konstruktor sekarang menerima referensi MainApplicationForm
         public LoginUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
         {
             InitializeComponent();

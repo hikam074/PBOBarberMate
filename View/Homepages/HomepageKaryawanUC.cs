@@ -10,15 +10,15 @@ using PBOBarberMate.View.FormPresensi;
 using PBOBarberMate.App.Services;
 
 
-namespace PBOBarberMate.View
+namespace PBOBarberMate.View.Homepages
 {
-    public partial class FormHomepageKaryawan : Form
+    public partial class HomepageKaryawanUC : UserControl
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
 
-        public FormHomepageKaryawan()
+        public HomepageKaryawanUC()
         {
             InitializeComponent();
             // loading data-data latest di form homepage karyawan

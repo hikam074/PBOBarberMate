@@ -79,9 +79,9 @@ namespace PBOBarberMate.View.FormReservasi
             // bila bukan mode edit maka kembali ke FormHomepage Customer
             if (modeEdit == false)
             {
-                FormHomepageCustomer formHomepageCustomer = new FormHomepageCustomer();
-                formHomepageCustomer.Show();
-                this.Hide();
+                //HomepageCustomerUC formHomepageCustomer = new HomepageCustomerUC();
+                //formHomepageCustomer.Show();
+                //this.Hide();
             }
             // bila mode edit maka form ini ditutup dan bisa kembali menggunakan form sebelumnya
             else

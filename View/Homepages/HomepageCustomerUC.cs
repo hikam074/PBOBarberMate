@@ -14,15 +14,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBOBarberMate.App.Services;
 
-namespace PBOBarberMate.View
+namespace PBOBarberMate.View.Homepages
 {
-    public partial class FormHomepageCustomer : Form
+    public partial class HomepageCustomerUC : UserControl
     {
         // atribut menampung apakah animasi hovers aktif atau tidak
         private bool hoversActivated = true;
 
 
-        public FormHomepageCustomer()
+        public HomepageCustomerUC()
         {
             InitializeComponent();
             // mengubah ucapan nama sesuai nama logged

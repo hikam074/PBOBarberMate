@@ -5,11 +5,11 @@
     <Compile Update="View\Homepages\HomepageAdminUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\FormHomepageCustomer.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Homepages\HomepageCustomerUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\FormHomepageKaryawan.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Homepages\HomepageKaryawanUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormInventaris\FormInventaris.cs">
       <SubType>Form</SubType>

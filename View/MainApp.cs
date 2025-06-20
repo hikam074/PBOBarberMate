@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Windows.Forms;
-using PBOBarberMate.App.Services; // Untuk AkunService dan SessionService
-using PBOBarberMate.App.Repository; // Untuk AkunRepository
-using PBOBarberMate.App.Model;     // Untuk AkunRole
+
+using PBOBarberMate.App.Services; 
+using PBOBarberMate.App.Repository; 
+using PBOBarberMate.App.Model;    
 
 using PBOBarberMate.View.Homepages; 
 using PBOBarberMate.View.Auth;
 
 
-namespace PBOBarberMate.View // Namespace disesuaikan
+namespace PBOBarberMate.View
 {
-    // Menggunakan nama 'MainApp' sesuai preferensi Anda
     public partial class MainApp : Form
     {
         // Instansi Service Layer yang akan digunakan di seluruh aplikasi
-        // Dibuat 'readonly' dan diinisialisasi sekali di konstruktor
         private readonly AkunRepository _akunRepository;
         private readonly SessionService _sessionService;
         private readonly AkunService _akunService;
@@ -24,19 +23,14 @@ namespace PBOBarberMate.View // Namespace disesuaikan
 
         public MainApp()
         {
-            InitializeComponent(); // Ini akan menginisialisasi _contentHostPanel dari desainer
+            InitializeComponent();
+
+            _contentHostPanel = mainContentPanel;
 
             // Inisialisasi Service Layer
             _akunRepository = new AkunRepository();
             _sessionService = new SessionService();
             _akunService = new AkunService(_akunRepository, _sessionService);
-
-            // Inisialisasi _contentHostPanel di sini jika tidak dari desainer
-            // Atau pastikan properti this.Controls.Add(this.mainContentPanel); sudah ada
-            _contentHostPanel = new Panel();
-            _contentHostPanel.Dock = DockStyle.Fill;
-            this.Controls.Add(_contentHostPanel);
-
 
             // Muat LoginUC sebagai tampilan awal
             this.LoadContent(new LoginUC(_akunService, _sessionService, this));
@@ -47,10 +41,9 @@ namespace PBOBarberMate.View // Namespace disesuaikan
         {
             _contentHostPanel.Controls.Clear(); // Bersihkan panel dari konten sebelumnya
             contentUC.Dock = DockStyle.Fill;   // Pastikan UserControl mengisi seluruh panel
-            _contentHostPanel.Controls.Add(contentUC);
+            mainContentPanel.Controls.Add(contentUC);
         }
 
-        // Mengarahkan pengguna ke halaman beranda (dashboard) yang sesuai berdasarkan role sesi.
         public void RedirectToHomepage()
         {
             AkunRole? userRole = _sessionService.CurrentUserRole;

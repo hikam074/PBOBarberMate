@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.Homepages
 {
-    partial class FormHomepageCustomer
+    partial class HomepageCustomerUC
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormHomepageCustomer));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageCustomerUC));
             lblProfilEmail = new Label();
             lblProfilRole = new Label();
             lblProfilNama = new Label();
@@ -367,8 +367,6 @@
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
             Name = "FormHomepageCustomer";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "BarberMate : Dashboard";
             Load += FormHomepageCustomer_Load;
             Click += FormHomepageCustomer_Click;
             gbxShowProfile.ResumeLayout(false);

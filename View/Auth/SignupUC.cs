@@ -16,6 +16,7 @@ namespace PBOBarberMate.View.Auth
         public SignupUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
         {
             InitializeComponent();
+
             _akunService = akunService;
             _sessionService = sessionService;
             _mainForm = mainForm; // Simpan referensi form utama

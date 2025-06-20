@@ -442,20 +442,19 @@
             lblProfilNama.Text = "Nama_Pengguna";
             lblProfilNama.TextAlign = ContentAlignment.TopRight;
             // 
-            // FormHomepageAdmin
+            // HomepageAdminUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1008, 537);
             Controls.Add(gbxShowProfile);
             Controls.Add(lblHomepageGreet);
             Controls.Add(btnProfil);
             Controls.Add(gbxMenu);
             Controls.Add(lblWelcome);
-            Name = "FormHomepageAdmin";
-            Text = "BarberMate : Homepage";
-            Click += FormHomepageAdmin_Click;
+            Name = "HomepageAdminUC";
+            Size = new Size(1008, 537);
+            Click += HomepageAdminUC_Click;
             gbxMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxInventaris).EndInit();

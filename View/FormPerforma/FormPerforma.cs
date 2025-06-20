@@ -83,9 +83,9 @@ namespace PBOBarberMate.View.FormPerforma
 
         private void btkembali_Click(object sender, EventArgs e)
         {
-            FormHomepageKaryawan Karyawan = new FormHomepageKaryawan();
-            this.Hide();
-            Karyawan.Show();
+            //HomepageKaryawanUC Karyawan = new HomepageKaryawanUC();
+            //this.Hide();
+            //Karyawan.Show();
         }
 
         private void label1_Click(object sender, EventArgs e)
