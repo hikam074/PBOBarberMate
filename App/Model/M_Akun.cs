@@ -16,9 +16,9 @@ namespace PBOBarberMate.App.Model
     // ENUM untuk role akun
     public enum AkunRole
     {
-        Admin = 1,
-        Karyawan = 2,
-        Customer = 3
+        admin = 1,
+        karyawan = 2,
+        customer = 3
     }
     public class M_Akun
     {

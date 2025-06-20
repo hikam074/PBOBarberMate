@@ -15,6 +15,6 @@ namespace PBOBarberMate.App.Model
     public class M_Customer : M_Akun
     {
         // ATRIBUT
-        public override AkunRole role => AkunRole.Customer;
+        public override AkunRole role => AkunRole.customer;
     }
 }

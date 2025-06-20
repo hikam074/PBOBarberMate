@@ -9,9 +9,9 @@ namespace PBOBarberMate.App.Model
 {
     public enum metodePembayaran
     {
-        Transfer = 1,
-        Tunai = 2,
-        E_Wallet = 3
+        transfer = 1,
+        tunai = 2,
+        e_wallet = 3
     }
     public class M_Pembayaran
     {
