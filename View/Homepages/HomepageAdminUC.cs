@@ -57,17 +57,36 @@ namespace PBOBarberMate.View.Homepages // Namespace baru untuk homepages
             btnUbahProfil.MouseEnter += (s, e) => { btnUbahProfil.BackColor = Color.FromArgb(243, 156, 18); btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80); };
             btnUbahProfil.MouseLeave += (s, e) => { btnUbahProfil.BackColor = SystemColors.Control; btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80); };
 
-            // Tambahkan event handler untuk setiap tombol sidebar (untuk animasi hover jika diinginkan)
-            // Atau Anda bisa membuat method universal untuk ini jika banyak tombol
-            // Contoh untuk satu tombol:
-            btnLayanan.MouseEnter += (s, e) => { btnLayanan.BackColor = Color.FromArgb(243, 156, 18); };
-            btnLayanan.MouseLeave += (s, e) => { btnLayanan.BackColor = Color.FromArgb(44, 62, 80); };
-            // Ulangi untuk semua btnXyz di sidebarPanel
+            // Hover Effects
+            SetMouseEvents(btnReservasi, pictbxReservasi);
+            SetMouseEvents(btnPembayaran, pictbxPembayaran);
+            SetMouseEvents(btnKunjungan, pictbxKunjungan);
+            SetMouseEvents(btnKaryawan, pictbxKaryawan);
+            SetMouseEvents(btnShift, pictbxShift);
+            SetMouseEvents(btnLayanan, pictbxLayanan);
+            SetMouseEvents(btnInventaris, pictbxInventaris);
+            SetMouseEvents(btnCustomer, pictbxCustomer);
 
             // Pastikan event HomepageAdminUC_Click diaktifkan di designer atau di sini
             this.Click += new System.EventHandler(this.HomepageAdminUC_Click);
 
         }
+
+        private void SetMouseEvents(Control button, Control relatedControl)
+        {
+            button.MouseEnter += (s, e) =>
+            {
+                button.BackColor = Color.White;
+                relatedControl.BackColor = Color.Gainsboro;
+            };
+
+            button.MouseLeave += (s, e) =>
+            {
+                button.BackColor = Color.Transparent;
+                relatedControl.BackColor = Color.Transparent;
+            };
+        }
+
 
         /// <summary>
         /// Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).

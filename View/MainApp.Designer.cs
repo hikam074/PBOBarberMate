@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainApp));
             mainContentPanel = new Panel();
             SuspendLayout();
             // 
@@ -45,6 +46,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1008, 540);
             Controls.Add(mainContentPanel);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(1024, 576);
             Name = "MainApp";
             StartPosition = FormStartPosition.CenterScreen;
