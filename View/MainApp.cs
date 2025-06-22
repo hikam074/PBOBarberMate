@@ -21,6 +21,7 @@ namespace PBOBarberMate.View
         private System.Windows.Forms.Panel _contentHostPanel;
 
         private HomepageAdminUC _currentAdminHomepage;
+        private HomepageKaryawanUC _currentKaryawanHomepage;
 
         // Message filter instance
         private OutsideClickListener _outsideClickListener;
@@ -43,6 +44,7 @@ namespace PBOBarberMate.View
             // Disable listener before clearing content
             DisableGlobalClickListener();
             _currentAdminHomepage = null;
+            _currentKaryawanHomepage = null;
 
             _contentHostPanel.Controls.Clear();
             contentUC.Dock = DockStyle.Fill;
@@ -52,6 +54,11 @@ namespace PBOBarberMate.View
             {
                 _currentAdminHomepage = adminUC;
             }
+            else if (contentUC is HomepageKaryawanUC karyawanUC)
+            {
+                _currentKaryawanHomepage = karyawanUC;
+            }
+
         }
 
         public void RedirectToHomepage()
@@ -64,7 +71,7 @@ namespace PBOBarberMate.View
             }
             else if (userRole == AkunRole.karyawan)
             {
-                //LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
+                LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
             }
             else if (userRole == AkunRole.customer)
             {
@@ -91,21 +98,28 @@ namespace PBOBarberMate.View
                     {
                         _currentAdminHomepage.HideProfileBox();
                     }
+                    else if (_currentKaryawanHomepage != null)
+                    {
+                        _currentKaryawanHomepage.HideProfileBox();
+                    }
                 });
                 Application.AddMessageFilter(_outsideClickListener);
             }
             else
             {
+                Application.RemoveMessageFilter(_outsideClickListener);
                 _outsideClickListener = new OutsideClickListener(popupControl, () =>
                 {
                     if (_currentAdminHomepage != null)
                     {
                         _currentAdminHomepage.HideProfileBox();
                     }
+                    else if (_currentKaryawanHomepage != null)
+                    {
+                        _currentKaryawanHomepage.HideProfileBox();
+                    }
                 });
-
-                Application.RemoveMessageFilter(_outsideClickListener); // Remove old one first
-                Application.AddMessageFilter(_outsideClickListener); // Add new one
+                Application.AddMessageFilter(_outsideClickListener);
             }
         }
 
