@@ -2,17 +2,10 @@
 using System.Windows.Forms;
 using System.Drawing;
 
-using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
 
-using PBOBarberMate.View;
 using PBOBarberMate.View.Auth;
-using PBOBarberMate.View.FormInventaris;
-using PBOBarberMate.View.FormPresensi;
-using PBOBarberMate.View.FormPerforma;
-using PBOBarberMate.View.FormReservasi;
-using PBOBarberMate.View.FormUlasan;
-using PBOBarberMate.View.FormPembayaran;
+
 
 namespace PBOBarberMate.View.Homepages
 {
@@ -20,7 +13,7 @@ namespace PBOBarberMate.View.Homepages
     {
         private readonly AkunService _akunService;
         private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp; // Referensi ke form utama
+        private readonly MainApp _mainApp;
 
         public HomepageKaryawanUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
@@ -28,10 +21,6 @@ namespace PBOBarberMate.View.Homepages
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
-
-            // Muat konten default saat Homepage Karyawan dimuat (misal, tampilan menu utama)
-            // For Karyawan, the default might be the existing gbxMenu and gbxInfo.
-            // No explicit LoadFeatureContent needed for default in this case, as it's already on the UC.
 
             // ubah teks header
             lblHeaderMenu.Text = "Halaman Utama";
@@ -43,13 +32,14 @@ namespace PBOBarberMate.View.Homepages
 
             // Sidebar hover logic
             SetButtonHoverEvents();
-            // Panggil metode untuk mengatur posisi ikon profil
+            // metode untuk mengatur posisi ikon profil
             AdjustProfilIconPosition();
             AdjustHeaderPosition();
             this.Resize += (s, e) => AdjustProfilIconPosition();
             this.Resize += (S, e) => AdjustHeaderPosition();
         }
 
+        // METHOD DEKLAR ALL HOVER
         private void SetButtonHoverEvents()
         {
             // HOVER SIDEBAR
@@ -62,7 +52,7 @@ namespace PBOBarberMate.View.Homepages
             SetProfilHoverEvents(btnUbahProfil);
             SetProfilHoverEvents(btnHomepageLogout);
         }
-
+        // METHOD PROFIL ICON STICKS TO PROFIL NAME
         private void AdjustProfilIconPosition()
         {
             pictboxProfil.Location = new Point(btnProfil.Location.X - pictboxProfil.Width, btnProfil.Location.Y + (btnProfil.Height - pictboxProfil.Height) / 2);
@@ -70,38 +60,30 @@ namespace PBOBarberMate.View.Homepages
             pictboxProfil.BringToFront();
             btnProfil.BringToFront();
         }
-
+        // METHOD HEADER RESPONSIF
         private void AdjustHeaderPosition()
         {
             lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2;
         }
-
+        // METHOD DEKLAR SIDEBAR HOVER IN OUT
         private void SetSidebarHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
         }
-
+        // METHOD DEKLAR PROFIL HOVER IN OUT
         private void SetProfilHoverEvents(Control button)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.White; };
         }
-
+        // METHOD OVERLOAD DEKLAR PROFIL HOVER IN OUT
         private void SetProfilHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.White; };
         }
-
-        // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
-        public void LoadFeatureContent(UserControl featureUC)
-        {
-            contentAreaPanel.Controls.Clear(); // Bersihkan panel dari konten sebelumnya
-            featureUC.Dock = DockStyle.Fill;   // Pastikan UserControl mengisi seluruh panel
-            contentAreaPanel.Controls.Add(featureUC);
-        }
-
+        // METHOD HIDE GBXPROFIL
         public void HideProfileBox()
         {
             if (gbxShowProfile.Visible)
@@ -110,12 +92,63 @@ namespace PBOBarberMate.View.Homepages
                 _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
             }
         }
-
-        private void HomepageKaryawanUC_Load(object sender, EventArgs e)
+        // REDIRECT HOMEPAGE
+        private void pictboxHome_Click(object sender, EventArgs e)
         {
-            loadFormKaryawan();
+            _mainApp.RedirectToHomepage();
+        }
+        // SHOW GBXPROFIL
+        private void btnProfil_Click(object sender, EventArgs e)
+        {
+            gbxShowProfile.Visible = !gbxShowProfile.Visible;
+
+            if (gbxShowProfile.Visible)
+            {
+                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
+                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
+
+                gbxShowProfile.Location = new Point(
+                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
+                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
+                );
+
+                gbxShowProfile.BringToFront();
+                _mainApp.EnableGlobalClickListener(gbxShowProfile);
+            }
+            else
+            {
+                _mainApp.DisableGlobalClickListener();
+            }
+        }
+        // REDIRECT UBAH PROFIL
+        private void btnUbahProfil_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            _mainApp.ShowUbahProfilForm();
+        }
+        // LOGOUT
+        private void btnHomepageLogout_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            _mainApp.PerformLogout();
+        }
+        // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
+        public void LoadFeatureContent(UserControl featureUC)
+        {
+            contentAreaPanel.Controls.Clear(); // Bersihkan panel dari konten sebelumnya
+            featureUC.Dock = DockStyle.Fill;   // Pastikan UserControl mengisi seluruh panel
+            contentAreaPanel.Controls.Add(featureUC);
         }
 
+
+
+
+        
+        // METHOD KETIKA LOAD HALAMAN
+        private void HomepageKaryawanUC_Load(object sender, EventArgs e)
+        { 
+            loadFormKaryawan(); 
+        }
         public void loadFormKaryawan()
         {
             lblWelcome.Text = "Selamat Datang, " + _sessionService.CurrentUserName + " !";
@@ -141,67 +174,41 @@ namespace PBOBarberMate.View.Homepages
             lblStatusPresensiToday.Text = waktuPresensi;
         }
 
+
+
+
         private void btnLayanan_Click(object sender, EventArgs e)
         {
             HideProfileBox();
             //_mainApp.LoadContent(new FormLayanan()); // Assuming FormLayanan can be loaded as a UserControl directly, or wrap it in one.
                                                      // This will likely need to be a UserControl to fit the new MainApp architecture.
         }
-
-        private void btnProfil_Click(object sender, EventArgs e)
-        {
-            gbxShowProfile.Visible = !gbxShowProfile.Visible;
-
-            if (gbxShowProfile.Visible)
-            {
-                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
-                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
-
-                gbxShowProfile.Location = new Point(
-                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
-                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
-                );
-
-                gbxShowProfile.BringToFront();
-                _mainApp.EnableGlobalClickListener(gbxShowProfile);
-            }
-            else
-            {
-                _mainApp.DisableGlobalClickListener();
-            }
-        }
-
-        private void btnUbahProfil_Click(object sender, EventArgs e)
-        {
-            HideProfileBox();
-            //_mainApp.LoadContent(new FormUbahProfil()); // Assuming FormUbahProfil can be loaded directly.
-        }
-
-        private void btnHomepageLogout_Click(object sender, EventArgs e)
-        {
-            _akunService.Logout();
-            _mainApp.LoadContent(new LoginUC(_akunService, _sessionService, _mainApp));
-        }
-
         private void btnInventaris_Click(object sender, EventArgs e)
         {
             HideProfileBox();
             //_mainApp.LoadContent(new FormInventaris.FormInventaris()); // Assuming FormInventaris can be loaded directly.
         }
-
         private void btnPerforma_Click(object sender, EventArgs e)
         {
             HideProfileBox();
             //_mainApp.LoadContent(new FormPerforma.FormPerforma()); // Assuming FormPerforma can be loaded directly.
         }
-
         private void btnPresensi_Click(object sender, EventArgs e)
         {
             HideProfileBox();
             // Need to pass the current user's ID
             //_mainApp.LoadContent(new FormPresensi.FormPresensi(_sessionService.CurrentUserId)); // Assuming FormPresensi can be loaded directly.
         }
-
+        private void btnUlasan_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLihatPembayaranUntukUlasan());
+        }
+        private void btnLihatReservasi_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLihatReservasi());
+        }
         private void btnLakukanPresensi_Click(object sender, EventArgs e)
         {
             // if (PresensiContext.isPresensiTodayExist(_sessionService.CurrentUserId) != null)
@@ -236,23 +243,6 @@ namespace PBOBarberMate.View.Homepages
 
             // Placeholder for now
             MessageBox.Show("Presensi functionality is currently commented out.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void pictboxHome_Click(object sender, EventArgs e)
-        {
-            _mainApp.RedirectToHomepage();
-        }
-
-        private void btnUlasan_Click(object sender, EventArgs e)
-        {
-            HideProfileBox();
-            //_mainApp.LoadContent(new FormLihatPembayaranUntukUlasan());
-        }
-
-        private void btnLihatReservasi_Click(object sender, EventArgs e)
-        {
-            HideProfileBox();
-            //_mainApp.LoadContent(new FormLihatReservasi());
         }
     }
 }

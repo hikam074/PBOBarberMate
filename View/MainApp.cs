@@ -8,6 +8,7 @@ using PBOBarberMate.App.Model;
 
 using PBOBarberMate.View.Homepages;
 using PBOBarberMate.View.Auth;
+//using PBOBarberMate.View.FormProfil;
 
 
 namespace PBOBarberMate.View
@@ -89,6 +90,27 @@ namespace PBOBarberMate.View
                 LoadContent(new LoginUC(_akunService, _sessionService, this));
             }
         }
+        // GLOBAL FUNCTION SHOW UBAH PROFIL
+        public void ShowUbahProfilForm()
+        {
+            //LoadContent(new FormUbahProfil());
+        }
+        // GKOBAL FUNCTION LOGOUT
+        public void PerformLogout()
+        {
+            DialogResult result = MessageBox.Show(
+                "Anda yakin ingin logout?",
+                "Konfirmasi Logout",
+                MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question
+                );
+            if (result == DialogResult.Yes)
+            {
+                _akunService.Logout();
+                LoadContent(new LoginUC(_akunService, _sessionService, this));
+            }
+        }
+
 
         public AkunService GetAkunService() => _akunService;
         public SessionService GetSessionService() => _sessionService;

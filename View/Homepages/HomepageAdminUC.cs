@@ -1,21 +1,12 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using PBOBarberMate.App.Services;
-using PBOBarberMate.App.Model;
+using System.Xml.Linq;
 
-using PBOBarberMate.View;
+using PBOBarberMate.App.Services;
+
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
-
-using PBOBarberMate.View.FormInventaris;
-using PBOBarberMate.View.FormReservasi;
-using PBOBarberMate.View.FormShift;
-using PBOBarberMate.View.FormKelolaKaryawan;
-using PBOBarberMate.View.FormKelolaCustomer;
-using PBOBarberMate.View.FormPembayaran;
-using PBOBarberMate.View.FormUlasan;
-using System.Xml.Linq;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -49,7 +40,7 @@ namespace PBOBarberMate.View.Homepages
             this.Resize += (s, e) => AdjustProfilIconPosition();
             this.Resize += (S, e) => AdjustHeaderPosition();
         }
-
+        // METHOD DEKLAR ALL HOVER
         private void SetButtonHoverEvents()
         {
             // HOVER SIDEBAR
@@ -66,6 +57,7 @@ namespace PBOBarberMate.View.Homepages
             SetProfilHoverEvents(btnUbahProfil);
             SetProfilHoverEvents(btnHomepageLogout);
         }
+        // METHOD PROFIL ICON STICKS TO PROFIL NAME
         private void AdjustProfilIconPosition()
         {
             pictboxProfil.Location = new Point(btnProfil.Location.X - pictboxProfil.Width, btnProfil.Location.Y + (btnProfil.Height - pictboxProfil.Height) / 2);
@@ -73,29 +65,79 @@ namespace PBOBarberMate.View.Homepages
             pictboxProfil.BringToFront();
             btnProfil.BringToFront();
         }
-        private void AdjustHeaderPosition() { lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2; }
+        // METHOD HEADER RESPONSIF
+        private void AdjustHeaderPosition()
+        {
+            lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2;
+        }
+        // METHOD DEKLAR SIDEBAR HOVER IN OUT
         private void SetSidebarHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
         }
+        // METHOD DEKLAR PROFIL HOVER IN OUT
         private void SetProfilHoverEvents(Control button)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.White; };
         }
+        // METHOD OVERLOAD DEKLAR PROFIL HOVER IN OUT
         private void SetProfilHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.White; };
         }
+        // METHOD HIDE GBXPROFIL
+        public void HideProfileBox()
+        {
+            if (gbxShowProfile.Visible)
+            {
+                gbxShowProfile.Visible = false;
+                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+            }
+        }
+        // REDIRECT HOMEPAGE
+        private void pictboxHome_Click(object sender, EventArgs e)
+        {
+            _mainApp.RedirectToHomepage();
+        }
+        // SHOW GBXPROFIL
+        private void btnProfil_Click(object sender, EventArgs e)
+        {
+            gbxShowProfile.Visible = !gbxShowProfile.Visible;
 
+            if (gbxShowProfile.Visible)
+            {
+                // Convert btnProfil's location from headerPanel coordinates to HomepageAdminUC coordinates
+                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
+                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
 
+                gbxShowProfile.Location = new Point(
+                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
+                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
+                );
 
-
-
-
-
+                gbxShowProfile.BringToFront(); // Ensure it's on top of everything
+                _mainApp.EnableGlobalClickListener(gbxShowProfile); // Inform MainApp to listen for clicks outside
+            }
+            else
+            {
+                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+            }
+        }
+        // REDIRECT UBAH PROFIL
+        private void btnUbahProfil_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            _mainApp.ShowUbahProfilForm();
+        }
+        // LOGOUT
+        private void btnHomepageLogout_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            _mainApp.PerformLogout();
+        }
         // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
         public void LoadFeatureContent(UserControl featureUC)
         {
@@ -105,10 +147,19 @@ namespace PBOBarberMate.View.Homepages
         }
 
 
-        private void btnLayanan_Click(object sender, EventArgs e)
+
+
+        // METHOD KETIKA LOAD HALAMAN
+        private void HomepageAdminUC_Load(object sender, EventArgs e)
         {
-            //LoadFeatureContent(new FormLayananUC(_akunService, _sessionService, _mainApp));
-            HideProfileBox(); // Hide profile if visible when navigating
+            //
+        }
+
+
+
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        { //LoadFeatureContent(new FormLayananUC(_akunService, _sessionService, _mainApp)); HideProfileBox();
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {
@@ -145,50 +196,5 @@ namespace PBOBarberMate.View.Homepages
             //LoadFeatureContent(new FormKelolaCustomerUC(_akunService, _sessionService, _mainApp));
             HideProfileBox(); // Hide profile if visible when navigating
         }
-        private void btnProfil_Click(object sender, EventArgs e)
-        {
-            gbxShowProfile.Visible = !gbxShowProfile.Visible;
-
-            if (gbxShowProfile.Visible)
-            {
-                // Convert btnProfil's location from headerPanel coordinates to HomepageAdminUC coordinates
-                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
-                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
-
-                gbxShowProfile.Location = new Point(
-                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
-                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
-                );
-
-                gbxShowProfile.BringToFront(); // Ensure it's on top of everything
-                _mainApp.EnableGlobalClickListener(gbxShowProfile); // Inform MainApp to listen for clicks outside
-            }
-            else
-            {
-                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
-            }
-        }
-        private void btnUbahProfil_Click(object sender, EventArgs e)
-        {
-            HideProfileBox();
-            //_mainApp.LoadContent(new FormUbahProfilUC(_akunService, _sessionService, _mainApp));
-
-        }
-        public void HideProfileBox()
-        {
-            if (gbxShowProfile.Visible)
-            {
-                gbxShowProfile.Visible = false;
-                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
-            }
-        }
-        private void btnHomepageLogout_Click(object sender, EventArgs e)
-        {
-            _akunService.Logout(); // Lakukan logout melalui service
-            _mainApp.LoadContent(new LoginUC(_akunService, _sessionService, _mainApp)); // Kembali ke FormLoginUC
-        }
-
-        // REDIRECT KE HALAMAN UTAMA
-        private void pictboxHome_Click(object sender, EventArgs e) { _mainApp.RedirectToHomepage(); }
     }
 }
