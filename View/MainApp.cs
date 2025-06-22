@@ -1,11 +1,12 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
-using PBOBarberMate.App.Services; 
-using PBOBarberMate.App.Repository; 
-using PBOBarberMate.App.Model;    
+using PBOBarberMate.App.Services;
+using PBOBarberMate.App.Repository;
+using PBOBarberMate.App.Model;
 
-using PBOBarberMate.View.Homepages; 
+using PBOBarberMate.View.Homepages;
 using PBOBarberMate.View.Auth;
 
 
@@ -13,13 +14,16 @@ namespace PBOBarberMate.View
 {
     public partial class MainApp : Form
     {
-        // Instansi Service Layer yang akan digunakan di seluruh aplikasi
         private readonly AkunRepository _akunRepository;
         private readonly SessionService _sessionService;
         private readonly AkunService _akunService;
 
-        // Panel tunggal yang akan menampung semua UserControl utama
         private System.Windows.Forms.Panel _contentHostPanel;
+
+        private HomepageAdminUC _currentAdminHomepage;
+
+        // Message filter instance
+        private OutsideClickListener _outsideClickListener;
 
         public MainApp()
         {
@@ -27,21 +31,27 @@ namespace PBOBarberMate.View
 
             _contentHostPanel = mainContentPanel;
 
-            // Inisialisasi Service Layer
             _akunRepository = new AkunRepository();
             _sessionService = new SessionService();
             _akunService = new AkunService(_akunRepository, _sessionService);
 
-            // Muat LoginUC sebagai tampilan awal
             this.LoadContent(new LoginUC(_akunService, _sessionService, this));
         }
 
-        // Memuat UserControl baru sebagai konten utama ke dalam contentHostPanel.
         public void LoadContent(UserControl contentUC)
         {
-            _contentHostPanel.Controls.Clear(); // Bersihkan panel dari konten sebelumnya
-            contentUC.Dock = DockStyle.Fill;   // Pastikan UserControl mengisi seluruh panel
+            // Disable listener before clearing content
+            DisableGlobalClickListener();
+            _currentAdminHomepage = null;
+
+            _contentHostPanel.Controls.Clear();
+            contentUC.Dock = DockStyle.Fill;
             mainContentPanel.Controls.Add(contentUC);
+
+            if (contentUC is HomepageAdminUC adminUC)
+            {
+                _currentAdminHomepage = adminUC;
+            }
         }
 
         public void RedirectToHomepage()
@@ -54,25 +64,58 @@ namespace PBOBarberMate.View
             }
             else if (userRole == AkunRole.karyawan)
             {
-                LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
+                //LoadContent(new HomepageKaryawanUC(_akunService, _sessionService, this));
             }
             else if (userRole == AkunRole.customer)
             {
-                //LoadContent(new HomepageCustomerUC(_akunService, _sessionService, this));
+                //LoadContent(new HomepageCustomerUC(_akunService, _sessionService, this)); // Placeholder for Customer homepage
             }
             else
             {
                 MessageBox.Show("Role pengguna tidak dikenal atau sesi tidak valid.", "Error Redirect", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                _akunService.Logout(); // Pastikan sesi dibersihkan
-                LoadContent(new LoginUC(_akunService, _sessionService, this)); // Kembali ke login
+                _akunService.Logout();
+                LoadContent(new LoginUC(_akunService, _sessionService, this));
             }
         }
 
-        // Metode getter untuk Service Layer, agar bisa diakses oleh UserControl yang dimuat
         public AkunService GetAkunService() => _akunService;
         public SessionService GetSessionService() => _sessionService;
 
-        // Mungkin Anda perlu juga getters untuk Repository jika ada service lain
-        // public AkunRepository GetAkunRepository() => _akunRepository;
+        public void EnableGlobalClickListener(Control popupControl)
+        {
+            if (_outsideClickListener == null)
+            {
+                _outsideClickListener = new OutsideClickListener(popupControl, () =>
+                {
+                    if (_currentAdminHomepage != null)
+                    {
+                        _currentAdminHomepage.HideProfileBox();
+                    }
+                });
+                Application.AddMessageFilter(_outsideClickListener);
+            }
+            else
+            {
+                _outsideClickListener = new OutsideClickListener(popupControl, () =>
+                {
+                    if (_currentAdminHomepage != null)
+                    {
+                        _currentAdminHomepage.HideProfileBox();
+                    }
+                });
+
+                Application.RemoveMessageFilter(_outsideClickListener); // Remove old one first
+                Application.AddMessageFilter(_outsideClickListener); // Add new one
+            }
+        }
+
+        public void DisableGlobalClickListener()
+        {
+            if (_outsideClickListener != null)
+            {
+                Application.RemoveMessageFilter(_outsideClickListener);
+                _outsideClickListener = null;
+            }
+        }
     }
 }

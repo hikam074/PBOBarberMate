@@ -7,9 +7,7 @@ using PBOBarberMate.App.Model;
 using PBOBarberMate.View;
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
-using PBOBarberMate.View.Homepages; // Untuk HomepageAdminUC, HomepageKaryawanUC, HomepageCustomerUC
 
-// Import UserControls untuk fitur
 using PBOBarberMate.View.FormInventaris;
 using PBOBarberMate.View.FormReservasi;
 using PBOBarberMate.View.FormShift;
@@ -17,186 +15,180 @@ using PBOBarberMate.View.FormKelolaKaryawan;
 using PBOBarberMate.View.FormKelolaCustomer;
 using PBOBarberMate.View.FormPembayaran;
 using PBOBarberMate.View.FormUlasan;
+using System.Xml.Linq;
 
 
-namespace PBOBarberMate.View.Homepages // Namespace baru untuk homepages
+namespace PBOBarberMate.View.Homepages
 {
     public partial class HomepageAdminUC : UserControl
     {
         private readonly AkunService _akunService;
         private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp; // Referensi ke MainApp untuk navigasi global
-
-        // Panel yang akan menampung konten fitur spesifik Admin
-        // NOTE: _featureContentPanel kini adalah contentAreaPanel dari Designer.cs
-        // private System.Windows.Forms.Panel _featureContentPanel;
+        private readonly MainApp _mainApp;
 
         public HomepageAdminUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
-            InitializeComponent(); // Ini akan menginisialisasi sidebarPanel, headerPanel, contentAreaPanel, dll.
-
+            InitializeComponent();
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
-
             // Muat konten default saat Homepage Admin dimuat (misal, tampilan menu utama)
             LoadFeatureContent(new AdminDashboardUC(_akunService, _sessionService, _mainApp, this));
-            // Teruskan referensi HomepageAdminUC agar AdminMenuUC bisa memanggil LoadFeatureContent
-
-            // Tampilkan info selamat datang
-            lblWelcome.Text = _sessionService.CurrentUserName;
+            // ubah teks header
+            lblHeaderMenu.Text = "Halaman Utama";
+            // ubah teks profil
             lblProfilRole.Text = _sessionService.CurrentUserRole.ToString();
             lblProfilNama.Text = _sessionService.CurrentUserName;
             lblProfilEmail.Text = _sessionService.CurrentUserEmail;
-
-            // Tambahkan event handler untuk hover pada tombol profil jika masih diperlukan
-            btnProfil.MouseEnter += (s, e) => { if (btnProfil.Enabled) { btnProfil.BackColor = Color.FromArgb(243, 156, 18); btnProfil.ForeColor = Color.FromArgb(44, 62, 80); } };
-            btnProfil.MouseLeave += (s, e) => { if (btnProfil.Enabled) { btnProfil.BackColor = Color.FromArgb(44, 62, 80); btnProfil.ForeColor = Color.White; } };
-            btnHomepageLogout.MouseEnter += (s, e) => { btnHomepageLogout.BackColor = Color.FromArgb(243, 156, 18); btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80); };
-            btnHomepageLogout.MouseLeave += (s, e) => { btnHomepageLogout.BackColor = SystemColors.Control; btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80); };
-            btnUbahProfil.MouseEnter += (s, e) => { btnUbahProfil.BackColor = Color.FromArgb(243, 156, 18); btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80); };
-            btnUbahProfil.MouseLeave += (s, e) => { btnUbahProfil.BackColor = SystemColors.Control; btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80); };
-
-            // Hover Effects
-            SetMouseEvents(btnReservasi, pictbxReservasi);
-            SetMouseEvents(btnPembayaran, pictbxPembayaran);
-            SetMouseEvents(btnKunjungan, pictbxKunjungan);
-            SetMouseEvents(btnKaryawan, pictbxKaryawan);
-            SetMouseEvents(btnShift, pictbxShift);
-            SetMouseEvents(btnLayanan, pictbxLayanan);
-            SetMouseEvents(btnInventaris, pictbxInventaris);
-            SetMouseEvents(btnCustomer, pictbxCustomer);
-
-            // Pastikan event HomepageAdminUC_Click diaktifkan di designer atau di sini
-            this.Click += new System.EventHandler(this.HomepageAdminUC_Click);
-
+            btnProfil.Text = _sessionService.CurrentUserName;
+            // Sidebar hover logic
+            SetButtonHoverEvents();
+            // Panggil metode untuk mengatur posisi ikon profil
+            AdjustProfilIconPosition();
+            AdjustHeaderPosition();
+            this.Resize += (s, e) => AdjustProfilIconPosition();
+            this.Resize += (S, e) => AdjustHeaderPosition();
         }
 
-        private void SetMouseEvents(Control button, Control relatedControl)
+        private void SetButtonHoverEvents()
         {
-            button.MouseEnter += (s, e) =>
-            {
-                button.BackColor = Color.White;
-                relatedControl.BackColor = Color.Gainsboro;
-            };
-
-            button.MouseLeave += (s, e) =>
-            {
-                button.BackColor = Color.Transparent;
-                relatedControl.BackColor = Color.Transparent;
-            };
+            // HOVER SIDEBAR
+            SetSidebarHoverEvents(btnReservasi, pictbxReservasi);
+            SetSidebarHoverEvents(btnPembayaran, pictbxPembayaran);
+            SetSidebarHoverEvents(btnKunjungan, pictbxKunjungan);
+            SetSidebarHoverEvents(btnKaryawan, pictbxKaryawan);
+            SetSidebarHoverEvents(btnShift, pictbxShift);
+            SetSidebarHoverEvents(btnLayanan, pictbxLayanan);
+            SetSidebarHoverEvents(btnInventaris, pictbxInventaris);
+            SetSidebarHoverEvents(btnCustomer, pictbxCustomer);
+            // HOVER PROFIL
+            SetProfilHoverEvents(btnProfil, pictboxProfil);
+            SetProfilHoverEvents(btnUbahProfil);
+            SetProfilHoverEvents(btnHomepageLogout);
+        }
+        private void AdjustProfilIconPosition()
+        {
+            pictboxProfil.Location = new Point(btnProfil.Location.X - pictboxProfil.Width, btnProfil.Location.Y + (btnProfil.Height - pictboxProfil.Height) / 2);
+            // Pastikan ikon berada di depan tombol dan grup profil
+            pictboxProfil.BringToFront();
+            btnProfil.BringToFront();
+        }
+        private void AdjustHeaderPosition() { lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2; }
+        private void SetSidebarHoverEvents(Control button, Control relatedControl)
+        {
+            button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
+        }
+        private void SetProfilHoverEvents(Control button)
+        {
+            button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.White; };
+        }
+        private void SetProfilHoverEvents(Control button, Control relatedControl)
+        {
+            button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; relatedControl.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.White; };
         }
 
 
-        /// <summary>
-        /// Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
-        /// </summary>
-        /// <param name="featureUC">UserControl fitur yang akan dimuat.</param>
+
+
+
+
+
+        // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
         public void LoadFeatureContent(UserControl featureUC)
         {
             contentAreaPanel.Controls.Clear(); // Bersihkan panel dari konten sebelumnya
             featureUC.Dock = DockStyle.Fill;   // Pastikan UserControl mengisi seluruh panel
             contentAreaPanel.Controls.Add(featureUC);
-
-
         }
 
-        // --- Event Handlers Sidebar (Akan memanggil LoadFeatureContent) ---
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormLayananUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnInventaris_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormInventarisUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnShift_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormShiftUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnReservasi_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormLihatReservasiUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnPembayaran_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormAddPembayaranUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnKunjungan_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormLihatPembayaranUntukUlasanUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnKaryawan_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormKelolaKaryawanUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
         private void btnCustomer_Click(object sender, EventArgs e)
         {
             //LoadFeatureContent(new FormKelolaCustomerUC(_akunService, _sessionService, _mainApp));
+            HideProfileBox(); // Hide profile if visible when navigating
         }
-
-        // --- Event Handlers Profil/Logout (akan memanggil MainApp untuk navigasi global) ---
-
         private void btnProfil_Click(object sender, EventArgs e)
         {
-            // Ubah visibilitas gbxShowProfile
             gbxShowProfile.Visible = !gbxShowProfile.Visible;
 
-            // Jika gbxShowProfile menjadi terlihat, pastikan ia berada di paling depan
             if (gbxShowProfile.Visible)
             {
-                // Hitung posisi gbxShowProfile relatif terhadap HomepageAdminUC
-                // agar muncul tepat di bawah btnProfil
-                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty); // Posisi btnProfil di layar
-                Point gbxShowProfileLocation = this.PointToClient(btnProfilScreenLocation); // Konversi ke koordinat UserControl
+                // Convert btnProfil's location from headerPanel coordinates to HomepageAdminUC coordinates
+                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
+                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
 
-                // Atur lokasi gbxShowProfile
                 gbxShowProfile.Location = new Point(
-                    gbxShowProfileLocation.X - gbxShowProfile.Width + btnProfil.Width, // Sesuaikan agar rata kanan dengan btnProfil
-                    gbxShowProfileLocation.Y + btnProfil.Height + 5 // Beri sedikit jarak dari btnProfil
+                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
+                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
                 );
 
-                gbxShowProfile.BringToFront(); // Pastikan gbxShowProfile berada di lapisan paling depan
+                gbxShowProfile.BringToFront(); // Ensure it's on top of everything
+                _mainApp.EnableGlobalClickListener(gbxShowProfile); // Inform MainApp to listen for clicks outside
+            }
+            else
+            {
+                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
             }
         }
-
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
-            // Pindah ke FormUbahProfilUC di panel konten UTAMA (MainApp)
+            HideProfileBox();
             //_mainApp.LoadContent(new FormUbahProfilUC(_akunService, _sessionService, _mainApp));
-        }
 
+        }
+        public void HideProfileBox()
+        {
+            if (gbxShowProfile.Visible)
+            {
+                gbxShowProfile.Visible = false;
+                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+            }
+        }
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             _akunService.Logout(); // Lakukan logout melalui service
             _mainApp.LoadContent(new LoginUC(_akunService, _sessionService, _mainApp)); // Kembali ke FormLoginUC
         }
 
-        // --- Logika UI (Click di luar GbxProfil) ---
-        private void HomepageAdminUC_Click(object sender, EventArgs e)
-        {
-            // Menutup gbxShowProfile jika diklik di luar area box profil
-            Point cursorPosition = this.PointToClient(Cursor.Position);
-            // Periksa apakah gbxShowProfile terlihat dan klik di luar batasnya
-            if (gbxShowProfile.Visible && !gbxShowProfile.Bounds.Contains(cursorPosition))
-            {
-                gbxShowProfile.Visible = false;
-                // Kembalikan warna btnProfil jika ada logika hover yang dinonaktifkan
-                // if (hoversActivated == false) { btnProfil.BackColor = Color.FromArgb(44, 62, 80); btnProfil.ForeColor = Color.White; }
-            }
-        }
-
-        private void pictbxHome_Click(object sender, EventArgs e)
-        {
-            _mainApp.RedirectToHomepage();
-        }
+        // REDIRECT KE HALAMAN UTAMA
+        private void pictboxHome_Click(object sender, EventArgs e) { _mainApp.RedirectToHomepage(); }
     }
 }

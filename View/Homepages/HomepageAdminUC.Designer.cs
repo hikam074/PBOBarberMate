@@ -30,16 +30,17 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageAdminUC));
             headerPanel = new Panel();
-            pictureBox1 = new PictureBox();
+            btnProfil = new Button();
+            pictboxProfil = new PictureBox();
+            pictboxHome = new PictureBox();
+            lblHeaderMenu = new Label();
+            lblHomepageGreet = new Label();
             gbxShowProfile = new GroupBox();
             lblProfilEmail = new Label();
             lblProfilRole = new Label();
             btnUbahProfil = new Button();
             lblProfilNama = new Label();
             btnHomepageLogout = new Button();
-            lblWelcome = new Label();
-            lblHomepageGreet = new Label();
-            btnProfil = new Button();
             sidebarPanel = new Panel();
             pictbxPembayaran = new PictureBox();
             pictbxCustomer = new PictureBox();
@@ -59,7 +60,8 @@
             btnLayanan = new Button();
             contentAreaPanel = new Panel();
             headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxProfil).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
             gbxShowProfile.SuspendLayout();
             sidebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictbxPembayaran).BeginInit();
@@ -75,26 +77,86 @@
             // headerPanel
             // 
             headerPanel.BackColor = Color.FromArgb(44, 62, 80);
-            headerPanel.Controls.Add(pictureBox1);
-            headerPanel.Controls.Add(gbxShowProfile);
-            headerPanel.Controls.Add(lblWelcome);
-            headerPanel.Controls.Add(lblHomepageGreet);
             headerPanel.Controls.Add(btnProfil);
+            headerPanel.Controls.Add(pictboxProfil);
+            headerPanel.Controls.Add(pictboxHome);
+            headerPanel.Controls.Add(lblHeaderMenu);
+            headerPanel.Controls.Add(lblHomepageGreet);
             headerPanel.Dock = DockStyle.Top;
             headerPanel.Location = new Point(0, 0);
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new Size(944, 50);
             headerPanel.TabIndex = 7;
             // 
-            // pictureBox1
+            // btnProfil
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(3, 3);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(45, 45);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictureBox1.TabIndex = 7;
-            pictureBox1.TabStop = false;
+            btnProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnProfil.AutoSize = true;
+            btnProfil.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnProfil.BackColor = Color.White;
+            btnProfil.Cursor = Cursors.Hand;
+            btnProfil.FlatAppearance.BorderSize = 0;
+            btnProfil.FlatStyle = FlatStyle.Flat;
+            btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
+            btnProfil.ForeColor = Color.Black;
+            btnProfil.Location = new Point(884, 11);
+            btnProfil.Name = "btnProfil";
+            btnProfil.Size = new Size(48, 29);
+            btnProfil.TabIndex = 3;
+            btnProfil.Text = "Profil";
+            btnProfil.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnProfil.UseVisualStyleBackColor = false;
+            btnProfil.Click += btnProfil_Click;
+            // 
+            // pictboxProfil
+            // 
+            pictboxProfil.BackColor = Color.White;
+            pictboxProfil.Image = (Image)resources.GetObject("pictboxProfil.Image");
+            pictboxProfil.Location = new Point(852, 11);
+            pictboxProfil.Name = "pictboxProfil";
+            pictboxProfil.Size = new Size(29, 29);
+            pictboxProfil.SizeMode = PictureBoxSizeMode.Zoom;
+            pictboxProfil.TabIndex = 8;
+            pictboxProfil.TabStop = false;
+            // 
+            // pictboxHome
+            // 
+            pictboxHome.Cursor = Cursors.Hand;
+            pictboxHome.Image = (Image)resources.GetObject("pictboxHome.Image");
+            pictboxHome.Location = new Point(3, 3);
+            pictboxHome.Name = "pictboxHome";
+            pictboxHome.Size = new Size(45, 45);
+            pictboxHome.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictboxHome.TabIndex = 7;
+            pictboxHome.TabStop = false;
+            pictboxHome.Click += pictboxHome_Click;
+            // 
+            // lblHeaderMenu
+            // 
+            lblHeaderMenu.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblHeaderMenu.AutoSize = true;
+            lblHeaderMenu.BackColor = Color.Transparent;
+            lblHeaderMenu.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeaderMenu.ForeColor = Color.White;
+            lblHeaderMenu.Location = new Point(442, 13);
+            lblHeaderMenu.Name = "lblHeaderMenu";
+            lblHeaderMenu.Size = new Size(87, 23);
+            lblHeaderMenu.TabIndex = 0;
+            lblHeaderMenu.Text = "Nama_menu";
+            lblHeaderMenu.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblHomepageGreet
+            // 
+            lblHomepageGreet.AutoSize = true;
+            lblHomepageGreet.BackColor = Color.Transparent;
+            lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHomepageGreet.ForeColor = Color.White;
+            lblHomepageGreet.Location = new Point(53, 13);
+            lblHomepageGreet.Name = "lblHomepageGreet";
+            lblHomepageGreet.Size = new Size(84, 23);
+            lblHomepageGreet.TabIndex = 5;
+            lblHomepageGreet.Text = "BarberMate";
+            lblHomepageGreet.TextAlign = ContentAlignment.MiddleRight;
             // 
             // gbxShowProfile
             // 
@@ -106,7 +168,7 @@
             gbxShowProfile.Controls.Add(lblProfilNama);
             gbxShowProfile.Controls.Add(btnHomepageLogout);
             gbxShowProfile.ForeColor = Color.FromArgb(44, 62, 80);
-            gbxShowProfile.Location = new Point(697, 7);
+            gbxShowProfile.Location = new Point(555, 6);
             gbxShowProfile.Margin = new Padding(0);
             gbxShowProfile.Name = "gbxShowProfile";
             gbxShowProfile.Size = new Size(170, 144);
@@ -142,9 +204,10 @@
             // btnUbahProfil
             // 
             btnUbahProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnUbahProfil.BackColor = SystemColors.Control;
+            btnUbahProfil.BackColor = Color.White;
+            btnUbahProfil.Cursor = Cursors.Hand;
             btnUbahProfil.Font = new Font("Bahnschrift Light Condensed", 9F);
-            btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
+            btnUbahProfil.ForeColor = Color.Black;
             btnUbahProfil.Location = new Point(75, 108);
             btnUbahProfil.Name = "btnUbahProfil";
             btnUbahProfil.Size = new Size(39, 30);
@@ -168,9 +231,10 @@
             // btnHomepageLogout
             // 
             btnHomepageLogout.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnHomepageLogout.BackColor = SystemColors.Control;
+            btnHomepageLogout.BackColor = Color.White;
+            btnHomepageLogout.Cursor = Cursors.Hand;
             btnHomepageLogout.Font = new Font("Bahnschrift Light Condensed", 9F);
-            btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
+            btnHomepageLogout.ForeColor = Color.Black;
             btnHomepageLogout.Location = new Point(120, 108);
             btnHomepageLogout.Name = "btnHomepageLogout";
             btnHomepageLogout.Size = new Size(43, 30);
@@ -178,46 +242,6 @@
             btnHomepageLogout.Text = "Logout";
             btnHomepageLogout.UseVisualStyleBackColor = false;
             btnHomepageLogout.Click += btnHomepageLogout_Click;
-            // 
-            // lblWelcome
-            // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.BackColor = Color.Transparent;
-            lblWelcome.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.White;
-            lblWelcome.Location = new Point(161, 13);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(72, 23);
-            lblWelcome.TabIndex = 0;
-            lblWelcome.Text = "Pengguna";
-            lblWelcome.TextAlign = ContentAlignment.MiddleLeft;
-            // 
-            // lblHomepageGreet
-            // 
-            lblHomepageGreet.AutoSize = true;
-            lblHomepageGreet.BackColor = Color.Transparent;
-            lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHomepageGreet.ForeColor = Color.White;
-            lblHomepageGreet.Location = new Point(53, 13);
-            lblHomepageGreet.Name = "lblHomepageGreet";
-            lblHomepageGreet.Size = new Size(118, 23);
-            lblHomepageGreet.TabIndex = 5;
-            lblHomepageGreet.Text = "Selamat Datang, ";
-            lblHomepageGreet.TextAlign = ContentAlignment.MiddleRight;
-            // 
-            // btnProfil
-            // 
-            btnProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
-            btnProfil.ForeColor = Color.White;
-            btnProfil.Location = new Point(870, 7);
-            btnProfil.Name = "btnProfil";
-            btnProfil.Size = new Size(55, 36);
-            btnProfil.TabIndex = 3;
-            btnProfil.Text = "Profil";
-            btnProfil.UseVisualStyleBackColor = false;
-            btnProfil.Click += btnProfil_Click;
             // 
             // sidebarPanel
             // 
@@ -302,6 +326,7 @@
             // btnPembayaran
             // 
             btnPembayaran.BackColor = Color.Transparent;
+            btnPembayaran.Cursor = Cursors.Hand;
             btnPembayaran.FlatAppearance.BorderSize = 0;
             btnPembayaran.FlatStyle = FlatStyle.Flat;
             btnPembayaran.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -318,6 +343,7 @@
             // btnReservasi
             // 
             btnReservasi.BackColor = Color.Transparent;
+            btnReservasi.Cursor = Cursors.Hand;
             btnReservasi.FlatAppearance.BorderSize = 0;
             btnReservasi.FlatStyle = FlatStyle.Flat;
             btnReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -356,6 +382,7 @@
             // btnKunjungan
             // 
             btnKunjungan.BackColor = Color.Transparent;
+            btnKunjungan.Cursor = Cursors.Hand;
             btnKunjungan.FlatAppearance.BorderSize = 0;
             btnKunjungan.FlatStyle = FlatStyle.Flat;
             btnKunjungan.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -373,6 +400,7 @@
             // btnKaryawan
             // 
             btnKaryawan.BackColor = Color.Transparent;
+            btnKaryawan.Cursor = Cursors.Hand;
             btnKaryawan.FlatAppearance.BorderSize = 0;
             btnKaryawan.FlatStyle = FlatStyle.Flat;
             btnKaryawan.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -389,6 +417,7 @@
             // btnShift
             // 
             btnShift.BackColor = Color.Transparent;
+            btnShift.Cursor = Cursors.Hand;
             btnShift.FlatAppearance.BorderSize = 0;
             btnShift.FlatStyle = FlatStyle.Flat;
             btnShift.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -405,6 +434,7 @@
             // btnInventaris
             // 
             btnInventaris.BackColor = Color.Transparent;
+            btnInventaris.Cursor = Cursors.Hand;
             btnInventaris.FlatAppearance.BorderSize = 0;
             btnInventaris.FlatStyle = FlatStyle.Flat;
             btnInventaris.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -421,6 +451,7 @@
             // btnCustomer
             // 
             btnCustomer.BackColor = Color.Transparent;
+            btnCustomer.Cursor = Cursors.Hand;
             btnCustomer.FlatAppearance.BorderSize = 0;
             btnCustomer.FlatStyle = FlatStyle.Flat;
             btnCustomer.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -449,6 +480,7 @@
             // btnLayanan
             // 
             btnLayanan.BackColor = Color.Transparent;
+            btnLayanan.Cursor = Cursors.Hand;
             btnLayanan.FlatAppearance.BorderSize = 0;
             btnLayanan.FlatStyle = FlatStyle.Flat;
             btnLayanan.Font = new Font("Bahnschrift Condensed", 15.75F);
@@ -464,7 +496,7 @@
             // 
             // contentAreaPanel
             // 
-            contentAreaPanel.BackColor = Color.WhiteSmoke;
+            contentAreaPanel.BackColor = Color.Transparent;
             contentAreaPanel.Dock = DockStyle.Fill;
             contentAreaPanel.Location = new Point(200, 50);
             contentAreaPanel.Name = "contentAreaPanel";
@@ -479,12 +511,13 @@
             Controls.Add(contentAreaPanel);
             Controls.Add(sidebarPanel);
             Controls.Add(headerPanel);
+            Controls.Add(gbxShowProfile);
             Name = "HomepageAdminUC";
             Size = new Size(944, 501);
-            Click += HomepageAdminUC_Click;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxProfil).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxHome).EndInit();
             gbxShowProfile.ResumeLayout(false);
             sidebarPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxPembayaran).EndInit();
@@ -505,7 +538,7 @@
         private System.Windows.Forms.Panel contentAreaPanel;
 
         // Komponen yang dipindahkan ke headerPanel
-        public System.Windows.Forms.Label lblWelcome;
+        public System.Windows.Forms.Label lblHeaderMenu;
         private System.Windows.Forms.Label lblHomepageGreet;
         private System.Windows.Forms.Button btnProfil;
         private System.Windows.Forms.GroupBox gbxShowProfile;
@@ -534,6 +567,7 @@
         private System.Windows.Forms.PictureBox pictbxInventaris;
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.PictureBox pictbxShift;
-        private PictureBox pictureBox1;
+        private PictureBox pictboxHome;
+        private PictureBox pictboxProfil;
     }
 }
