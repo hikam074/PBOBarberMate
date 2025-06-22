@@ -29,35 +29,148 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HomepageCustomerUC));
+            headerPanel = new Panel();
+            btnProfil = new Button();
+            pictboxProfil = new PictureBox();
+            pictboxHome = new PictureBox();
+            lblHeaderMenu = new Label();
+            lblHomepageGreet = new Label();
+            gbxShowProfile = new GroupBox();
             lblProfilEmail = new Label();
             lblProfilRole = new Label();
-            lblProfilNama = new Label();
-            gbxShowProfile = new GroupBox();
             btnUbahProfil = new Button();
+            lblProfilNama = new Label();
             btnHomepageLogout = new Button();
-            lblHomepageGreet = new Label();
-            btnProfil = new Button();
-            pictbxLayanan = new PictureBox();
-            btnReservasi = new Button();
-            btnLayanan = new Button();
-            gbxMenu = new GroupBox();
+            sidebarPanel = new Panel();
             pictbxUlasan = new PictureBox();
             btnUlasan = new Button();
-            pictbxReservasiSekarang = new PictureBox();
-            pictbxRiwayat = new PictureBox();
+            pictbxLihatReservasi = new PictureBox();
             btnLihatReservasi = new Button();
+            pictbxLayanan = new PictureBox();
+            btnLayanan = new Button();
+            pictbxReservasi = new PictureBox();
+            btnReservasi = new Button();
+            contentAreaPanel = new Panel();
             lblWelcome = new Label();
-            dgvJadwalMingguIni = new DataGridView();
-            lblJadwalMingguIni = new Label();
             lklbMore = new LinkLabel();
+            lblJadwalMingguIni = new Label();
+            dgvJadwalMingguIni = new DataGridView();
+            gbxReservasiSoon = new GroupBox();
+            headerPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictboxProfil).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
             gbxShowProfile.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
-            gbxMenu.SuspendLayout();
+            sidebarPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictbxUlasan).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxReservasiSekarang).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxRiwayat).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxLihatReservasi).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxReservasi).BeginInit();
+            contentAreaPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).BeginInit();
+            gbxReservasiSoon.SuspendLayout();
             SuspendLayout();
+            // 
+            // headerPanel
+            // 
+            headerPanel.BackColor = Color.FromArgb(44, 62, 80);
+            headerPanel.Controls.Add(btnProfil);
+            headerPanel.Controls.Add(pictboxProfil);
+            headerPanel.Controls.Add(pictboxHome);
+            headerPanel.Controls.Add(lblHeaderMenu);
+            headerPanel.Controls.Add(lblHomepageGreet);
+            headerPanel.Dock = DockStyle.Top;
+            headerPanel.Location = new Point(0, 0);
+            headerPanel.Name = "headerPanel";
+            headerPanel.Size = new Size(944, 50);
+            headerPanel.TabIndex = 7;
+            // 
+            // btnProfil
+            // 
+            btnProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnProfil.AutoSize = true;
+            btnProfil.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            btnProfil.BackColor = Color.White;
+            btnProfil.Cursor = Cursors.Hand;
+            btnProfil.FlatAppearance.BorderSize = 0;
+            btnProfil.FlatStyle = FlatStyle.Flat;
+            btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
+            btnProfil.ForeColor = Color.Black;
+            btnProfil.Location = new Point(884, 11);
+            btnProfil.Name = "btnProfil";
+            btnProfil.Size = new Size(48, 29);
+            btnProfil.TabIndex = 3;
+            btnProfil.Text = "Profil";
+            btnProfil.TextImageRelation = TextImageRelation.ImageBeforeText;
+            btnProfil.UseVisualStyleBackColor = false;
+            btnProfil.Click += btnProfil_Click;
+            // 
+            // pictboxProfil
+            // 
+            pictboxProfil.BackColor = Color.White;
+            pictboxProfil.Image = (Image)resources.GetObject("pictboxProfil.Image");
+            pictboxProfil.Location = new Point(852, 11);
+            pictboxProfil.Name = "pictboxProfil";
+            pictboxProfil.Size = new Size(29, 29);
+            pictboxProfil.SizeMode = PictureBoxSizeMode.Zoom;
+            pictboxProfil.TabIndex = 8;
+            pictboxProfil.TabStop = false;
+            // 
+            // pictboxHome
+            // 
+            pictboxHome.Cursor = Cursors.Hand;
+            pictboxHome.Image = (Image)resources.GetObject("pictboxHome.Image");
+            pictboxHome.Location = new Point(3, 3);
+            pictboxHome.Name = "pictboxHome";
+            pictboxHome.Size = new Size(45, 45);
+            pictboxHome.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictboxHome.TabIndex = 7;
+            pictboxHome.TabStop = false;
+            pictboxHome.Click += pictboxHome_Click;
+            // 
+            // lblHeaderMenu
+            // 
+            lblHeaderMenu.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            lblHeaderMenu.AutoSize = true;
+            lblHeaderMenu.BackColor = Color.Transparent;
+            lblHeaderMenu.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblHeaderMenu.ForeColor = Color.White;
+            lblHeaderMenu.Location = new Point(442, 13);
+            lblHeaderMenu.Name = "lblHeaderMenu";
+            lblHeaderMenu.Size = new Size(87, 23);
+            lblHeaderMenu.TabIndex = 0;
+            lblHeaderMenu.Text = "Nama_menu";
+            lblHeaderMenu.TextAlign = ContentAlignment.MiddleLeft;
+            // 
+            // lblHomepageGreet
+            // 
+            lblHomepageGreet.AutoSize = true;
+            lblHomepageGreet.BackColor = Color.Transparent;
+            lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblHomepageGreet.ForeColor = Color.White;
+            lblHomepageGreet.Location = new Point(53, 13);
+            lblHomepageGreet.Name = "lblHomepageGreet";
+            lblHomepageGreet.Size = new Size(84, 23);
+            lblHomepageGreet.TabIndex = 5;
+            lblHomepageGreet.Text = "BarberMate";
+            lblHomepageGreet.TextAlign = ContentAlignment.MiddleRight;
+            // 
+            // gbxShowProfile
+            // 
+            gbxShowProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            gbxShowProfile.BackColor = Color.FromArgb(44, 62, 80);
+            gbxShowProfile.Controls.Add(lblProfilEmail);
+            gbxShowProfile.Controls.Add(lblProfilRole);
+            gbxShowProfile.Controls.Add(btnUbahProfil);
+            gbxShowProfile.Controls.Add(lblProfilNama);
+            gbxShowProfile.Controls.Add(btnHomepageLogout);
+            gbxShowProfile.ForeColor = Color.FromArgb(44, 62, 80);
+            gbxShowProfile.Location = new Point(759, 50);
+            gbxShowProfile.Margin = new Padding(0);
+            gbxShowProfile.Name = "gbxShowProfile";
+            gbxShowProfile.Size = new Size(170, 144);
+            gbxShowProfile.TabIndex = 11;
+            gbxShowProfile.TabStop = false;
+            gbxShowProfile.Visible = false;
             // 
             // lblProfilEmail
             // 
@@ -84,36 +197,6 @@
             lblProfilRole.Text = "nama_role";
             lblProfilRole.TextAlign = ContentAlignment.TopRight;
             // 
-            // lblProfilNama
-            // 
-            lblProfilNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            lblProfilNama.Font = new Font("Bahnschrift Condensed", 11.25F);
-            lblProfilNama.ForeColor = Color.White;
-            lblProfilNama.Location = new Point(6, 35);
-            lblProfilNama.Name = "lblProfilNama";
-            lblProfilNama.Size = new Size(158, 42);
-            lblProfilNama.TabIndex = 0;
-            lblProfilNama.Text = "Nama_Pengguna";
-            lblProfilNama.TextAlign = ContentAlignment.TopRight;
-            // 
-            // gbxShowProfile
-            // 
-            gbxShowProfile.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            gbxShowProfile.BackColor = Color.FromArgb(44, 62, 80);
-            gbxShowProfile.Controls.Add(lblProfilEmail);
-            gbxShowProfile.Controls.Add(lblProfilRole);
-            gbxShowProfile.Controls.Add(btnUbahProfil);
-            gbxShowProfile.Controls.Add(lblProfilNama);
-            gbxShowProfile.Controls.Add(btnHomepageLogout);
-            gbxShowProfile.ForeColor = Color.FromArgb(44, 62, 80);
-            gbxShowProfile.Location = new Point(759, 50);
-            gbxShowProfile.Margin = new Padding(0);
-            gbxShowProfile.Name = "gbxShowProfile";
-            gbxShowProfile.Size = new Size(170, 144);
-            gbxShowProfile.TabIndex = 11;
-            gbxShowProfile.TabStop = false;
-            gbxShowProfile.Visible = false;
-            // 
             // btnUbahProfil
             // 
             btnUbahProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
@@ -127,8 +210,18 @@
             btnUbahProfil.Text = "Ubah";
             btnUbahProfil.UseVisualStyleBackColor = false;
             btnUbahProfil.Click += btnUbahProfil_Click;
-            btnUbahProfil.MouseEnter += btnUbahProfil_MouseEnter;
-            btnUbahProfil.MouseLeave += btnUbahProfil_MouseLeave;
+            // 
+            // lblProfilNama
+            // 
+            lblProfilNama.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            lblProfilNama.Font = new Font("Bahnschrift Condensed", 11.25F);
+            lblProfilNama.ForeColor = Color.White;
+            lblProfilNama.Location = new Point(6, 35);
+            lblProfilNama.Name = "lblProfilNama";
+            lblProfilNama.Size = new Size(158, 42);
+            lblProfilNama.TabIndex = 0;
+            lblProfilNama.Text = "Nama_Pengguna";
+            lblProfilNama.TextAlign = ContentAlignment.TopRight;
             // 
             // btnHomepageLogout
             // 
@@ -143,208 +236,163 @@
             btnHomepageLogout.Text = "Logout";
             btnHomepageLogout.UseVisualStyleBackColor = false;
             btnHomepageLogout.Click += btnHomepageLogout_Click;
-            btnHomepageLogout.MouseEnter += btnHomepageLogout_MouseEnter;
-            btnHomepageLogout.MouseLeave += btnHomepageLogout_MouseLeave;
             // 
-            // lblHomepageGreet
+            // sidebarPanel
             // 
-            lblHomepageGreet.AutoSize = true;
-            lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblHomepageGreet.ForeColor = Color.FromArgb(44, 62, 80);
-            lblHomepageGreet.Location = new Point(25, 20);
-            lblHomepageGreet.Name = "lblHomepageGreet";
-            lblHomepageGreet.Size = new Size(33, 23);
-            lblHomepageGreet.TabIndex = 10;
-            lblHomepageGreet.Text = "Hai,";
-            // 
-            // btnProfil
-            // 
-            btnProfil.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            btnProfil.Font = new Font("Bahnschrift Condensed", 12F);
-            btnProfil.ForeColor = Color.White;
-            btnProfil.Location = new Point(874, 10);
-            btnProfil.Name = "btnProfil";
-            btnProfil.Size = new Size(55, 36);
-            btnProfil.TabIndex = 9;
-            btnProfil.Text = "Profil";
-            btnProfil.UseVisualStyleBackColor = false;
-            btnProfil.Click += btnProfil_Click;
-            btnProfil.MouseEnter += btnProfil_MouseEnter;
-            btnProfil.MouseLeave += btnProfil_MouseLeave;
-            // 
-            // pictbxLayanan
-            // 
-            pictbxLayanan.Anchor = AnchorStyles.Top;
-            pictbxLayanan.BackColor = Color.Transparent;
-            pictbxLayanan.Image = (Image)resources.GetObject("pictbxLayanan.Image");
-            pictbxLayanan.Location = new Point(174, 29);
-            pictbxLayanan.Name = "pictbxLayanan";
-            pictbxLayanan.Size = new Size(102, 43);
-            pictbxLayanan.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictbxLayanan.TabIndex = 7;
-            pictbxLayanan.TabStop = false;
-            // 
-            // btnReservasi
-            // 
-            btnReservasi.Anchor = AnchorStyles.Top;
-            btnReservasi.BackColor = Color.White;
-            btnReservasi.BackgroundImageLayout = ImageLayout.Zoom;
-            btnReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnReservasi.ForeColor = Color.FromArgb(44, 62, 80);
-            btnReservasi.ImageAlign = ContentAlignment.TopCenter;
-            btnReservasi.Location = new Point(8, 15);
-            btnReservasi.Name = "btnReservasi";
-            btnReservasi.Padding = new Padding(9);
-            btnReservasi.Size = new Size(140, 125);
-            btnReservasi.TabIndex = 1;
-            btnReservasi.Text = "Reservasi Sekarang!";
-            btnReservasi.TextAlign = ContentAlignment.BottomCenter;
-            btnReservasi.UseVisualStyleBackColor = false;
-            btnReservasi.Click += btnReservasi_Click;
-            // 
-            // btnLayanan
-            // 
-            btnLayanan.Anchor = AnchorStyles.Top;
-            btnLayanan.BackColor = Color.White;
-            btnLayanan.Font = new Font("Bahnschrift Condensed", 15.75F);
-            btnLayanan.ForeColor = Color.FromArgb(44, 62, 80);
-            btnLayanan.ImageAlign = ContentAlignment.TopCenter;
-            btnLayanan.Location = new Point(154, 15);
-            btnLayanan.Name = "btnLayanan";
-            btnLayanan.Padding = new Padding(9);
-            btnLayanan.Size = new Size(140, 125);
-            btnLayanan.TabIndex = 0;
-            btnLayanan.Text = "Lihat\r\nLayanan";
-            btnLayanan.TextAlign = ContentAlignment.BottomCenter;
-            btnLayanan.UseVisualStyleBackColor = false;
-            btnLayanan.Click += btnLayanan_Click;
-            // 
-            // gbxMenu
-            // 
-            gbxMenu.Anchor = AnchorStyles.Top;
-            gbxMenu.BackColor = Color.White;
-            gbxMenu.Controls.Add(pictbxUlasan);
-            gbxMenu.Controls.Add(btnUlasan);
-            gbxMenu.Controls.Add(pictbxReservasiSekarang);
-            gbxMenu.Controls.Add(pictbxRiwayat);
-            gbxMenu.Controls.Add(btnLihatReservasi);
-            gbxMenu.Controls.Add(pictbxLayanan);
-            gbxMenu.Controls.Add(btnReservasi);
-            gbxMenu.Controls.Add(btnLayanan);
-            gbxMenu.Location = new Point(182, 120);
-            gbxMenu.Name = "gbxMenu";
-            gbxMenu.Size = new Size(595, 147);
-            gbxMenu.TabIndex = 8;
-            gbxMenu.TabStop = false;
+            sidebarPanel.BackColor = Color.FromArgb(145, 197, 249);
+            sidebarPanel.Controls.Add(pictbxUlasan);
+            sidebarPanel.Controls.Add(btnUlasan);
+            sidebarPanel.Controls.Add(pictbxLihatReservasi);
+            sidebarPanel.Controls.Add(btnLihatReservasi);
+            sidebarPanel.Controls.Add(pictbxLayanan);
+            sidebarPanel.Controls.Add(btnLayanan);
+            sidebarPanel.Controls.Add(pictbxReservasi);
+            sidebarPanel.Controls.Add(btnReservasi);
+            sidebarPanel.Dock = DockStyle.Left;
+            sidebarPanel.Location = new Point(0, 50);
+            sidebarPanel.Name = "sidebarPanel";
+            sidebarPanel.Size = new Size(200, 451);
+            sidebarPanel.TabIndex = 0;
             // 
             // pictbxUlasan
             // 
-            pictbxUlasan.Anchor = AnchorStyles.Top;
+            pictbxUlasan.BackColor = Color.Transparent;
             pictbxUlasan.Image = (Image)resources.GetObject("pictbxUlasan.Image");
-            pictbxUlasan.Location = new Point(466, 29);
+            pictbxUlasan.Location = new Point(17, 180);
             pictbxUlasan.Name = "pictbxUlasan";
-            pictbxUlasan.Size = new Size(100, 43);
-            pictbxUlasan.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictbxUlasan.Size = new Size(25, 25);
+            pictbxUlasan.SizeMode = PictureBoxSizeMode.StretchImage;
             pictbxUlasan.TabIndex = 12;
             pictbxUlasan.TabStop = false;
             // 
             // btnUlasan
             // 
-            btnUlasan.Anchor = AnchorStyles.Top;
-            btnUlasan.BackColor = Color.White;
+            btnUlasan.BackColor = Color.Transparent;
+            btnUlasan.Cursor = Cursors.Hand;
+            btnUlasan.FlatAppearance.BorderSize = 0;
+            btnUlasan.FlatStyle = FlatStyle.Flat;
             btnUlasan.Font = new Font("Bahnschrift Condensed", 15.75F);
-            btnUlasan.ForeColor = Color.FromArgb(44, 62, 80);
-            btnUlasan.Location = new Point(446, 15);
+            btnUlasan.ForeColor = Color.Black;
+            btnUlasan.Location = new Point(3, 172);
             btnUlasan.Name = "btnUlasan";
-            btnUlasan.Padding = new Padding(9);
-            btnUlasan.Size = new Size(140, 125);
+            btnUlasan.Size = new Size(191, 40);
             btnUlasan.TabIndex = 11;
-            btnUlasan.Text = "Beri\r\nPenilaian";
-            btnUlasan.TextAlign = ContentAlignment.BottomCenter;
+            btnUlasan.Text = "          Beri Penilaian";
+            btnUlasan.TextAlign = ContentAlignment.MiddleLeft;
             btnUlasan.UseVisualStyleBackColor = false;
             btnUlasan.Click += btnUlasan_Click;
             // 
-            // pictbxReservasiSekarang
+            // pictbxLihatReservasi
             // 
-            pictbxReservasiSekarang.Anchor = AnchorStyles.Top;
-            pictbxReservasiSekarang.Image = (Image)resources.GetObject("pictbxReservasiSekarang.Image");
-            pictbxReservasiSekarang.Location = new Point(28, 29);
-            pictbxReservasiSekarang.Name = "pictbxReservasiSekarang";
-            pictbxReservasiSekarang.Size = new Size(100, 43);
-            pictbxReservasiSekarang.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictbxReservasiSekarang.TabIndex = 10;
-            pictbxReservasiSekarang.TabStop = false;
-            // 
-            // pictbxRiwayat
-            // 
-            pictbxRiwayat.Anchor = AnchorStyles.Top;
-            pictbxRiwayat.BackColor = Color.Transparent;
-            pictbxRiwayat.Image = (Image)resources.GetObject("pictbxRiwayat.Image");
-            pictbxRiwayat.Location = new Point(320, 29);
-            pictbxRiwayat.Name = "pictbxRiwayat";
-            pictbxRiwayat.Size = new Size(102, 43);
-            pictbxRiwayat.SizeMode = PictureBoxSizeMode.CenterImage;
-            pictbxRiwayat.TabIndex = 9;
-            pictbxRiwayat.TabStop = false;
+            pictbxLihatReservasi.BackColor = Color.Transparent;
+            pictbxLihatReservasi.Image = (Image)resources.GetObject("pictbxLihatReservasi.Image");
+            pictbxLihatReservasi.Location = new Point(17, 88);
+            pictbxLihatReservasi.Name = "pictbxLihatReservasi";
+            pictbxLihatReservasi.Size = new Size(25, 25);
+            pictbxLihatReservasi.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictbxLihatReservasi.TabIndex = 9;
+            pictbxLihatReservasi.TabStop = false;
             // 
             // btnLihatReservasi
             // 
-            btnLihatReservasi.Anchor = AnchorStyles.Top;
-            btnLihatReservasi.BackColor = Color.White;
-            btnLihatReservasi.BackgroundImageLayout = ImageLayout.Zoom;
-            btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnLihatReservasi.ForeColor = Color.FromArgb(44, 62, 80);
-            btnLihatReservasi.ImageAlign = ContentAlignment.TopCenter;
-            btnLihatReservasi.Location = new Point(300, 15);
+            btnLihatReservasi.BackColor = Color.Transparent;
+            btnLihatReservasi.Cursor = Cursors.Hand;
+            btnLihatReservasi.FlatAppearance.BorderSize = 0;
+            btnLihatReservasi.FlatStyle = FlatStyle.Flat;
+            btnLihatReservasi.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnLihatReservasi.ForeColor = Color.Black;
+            btnLihatReservasi.Location = new Point(3, 80);
             btnLihatReservasi.Name = "btnLihatReservasi";
-            btnLihatReservasi.Padding = new Padding(9);
-            btnLihatReservasi.Size = new Size(140, 125);
+            btnLihatReservasi.Size = new Size(191, 40);
             btnLihatReservasi.TabIndex = 8;
-            btnLihatReservasi.Text = "Reservasi Anda";
-            btnLihatReservasi.TextAlign = ContentAlignment.BottomCenter;
+            btnLihatReservasi.Text = "          Reservasi Anda";
+            btnLihatReservasi.TextAlign = ContentAlignment.MiddleLeft;
             btnLihatReservasi.UseVisualStyleBackColor = false;
             btnLihatReservasi.Click += btnLihatReservasi_Click;
+            // 
+            // pictbxLayanan
+            // 
+            pictbxLayanan.BackColor = Color.Transparent;
+            pictbxLayanan.Image = (Image)resources.GetObject("pictbxLayanan.Image");
+            pictbxLayanan.Location = new Point(17, 134);
+            pictbxLayanan.Name = "pictbxLayanan";
+            pictbxLayanan.Size = new Size(25, 25);
+            pictbxLayanan.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictbxLayanan.TabIndex = 7;
+            pictbxLayanan.TabStop = false;
+            // 
+            // btnLayanan
+            // 
+            btnLayanan.BackColor = Color.Transparent;
+            btnLayanan.Cursor = Cursors.Hand;
+            btnLayanan.FlatAppearance.BorderSize = 0;
+            btnLayanan.FlatStyle = FlatStyle.Flat;
+            btnLayanan.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnLayanan.ForeColor = Color.Black;
+            btnLayanan.Location = new Point(3, 126);
+            btnLayanan.Name = "btnLayanan";
+            btnLayanan.Size = new Size(191, 40);
+            btnLayanan.TabIndex = 0;
+            btnLayanan.Text = "          Lihat Layanan";
+            btnLayanan.TextAlign = ContentAlignment.MiddleLeft;
+            btnLayanan.UseVisualStyleBackColor = false;
+            btnLayanan.Click += btnLayanan_Click;
+            // 
+            // pictbxReservasi
+            // 
+            pictbxReservasi.BackColor = Color.Transparent;
+            pictbxReservasi.Image = (Image)resources.GetObject("pictbxReservasi.Image");
+            pictbxReservasi.Location = new Point(17, 28);
+            pictbxReservasi.Name = "pictbxReservasi";
+            pictbxReservasi.Size = new Size(25, 25);
+            pictbxReservasi.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictbxReservasi.TabIndex = 7;
+            pictbxReservasi.TabStop = false;
+            // 
+            // btnReservasi
+            // 
+            btnReservasi.BackColor = Color.Transparent;
+            btnReservasi.Cursor = Cursors.Hand;
+            btnReservasi.FlatAppearance.BorderSize = 0;
+            btnReservasi.FlatStyle = FlatStyle.Flat;
+            btnReservasi.Font = new Font("Bahnschrift Condensed", 15.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnReservasi.ForeColor = Color.Black;
+            btnReservasi.Location = new Point(3, 6);
+            btnReservasi.Name = "btnReservasi";
+            btnReservasi.Size = new Size(191, 68);
+            btnReservasi.TabIndex = 1;
+            btnReservasi.Text = "          Reservasi\r\n          Sekarang";
+            btnReservasi.TextAlign = ContentAlignment.MiddleLeft;
+            btnReservasi.UseVisualStyleBackColor = false;
+            btnReservasi.Click += btnReservasi_Click;
+            // 
+            // contentAreaPanel
+            // 
+            contentAreaPanel.BackColor = Color.Transparent;
+            contentAreaPanel.Controls.Add(gbxReservasiSoon);
+            contentAreaPanel.Controls.Add(lblWelcome);
+            contentAreaPanel.Dock = DockStyle.Fill;
+            contentAreaPanel.Location = new Point(200, 50);
+            contentAreaPanel.Name = "contentAreaPanel";
+            contentAreaPanel.Size = new Size(744, 451);
+            contentAreaPanel.TabIndex = 12;
             // 
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWelcome.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
-            lblWelcome.Location = new Point(18, 40);
+            lblWelcome.Location = new Point(19, 18);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(181, 58);
+            lblWelcome.Size = new Size(306, 39);
             lblWelcome.TabIndex = 7;
-            lblWelcome.Text = "Pengguna";
-            // 
-            // dgvJadwalMingguIni
-            // 
-            dgvJadwalMingguIni.Anchor = AnchorStyles.Top;
-            dgvJadwalMingguIni.BackgroundColor = Color.White;
-            dgvJadwalMingguIni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJadwalMingguIni.GridColor = Color.FromArgb(44, 62, 80);
-            dgvJadwalMingguIni.Location = new Point(184, 320);
-            dgvJadwalMingguIni.Name = "dgvJadwalMingguIni";
-            dgvJadwalMingguIni.Size = new Size(595, 97);
-            dgvJadwalMingguIni.TabIndex = 12;
-            // 
-            // lblJadwalMingguIni
-            // 
-            lblJadwalMingguIni.Anchor = AnchorStyles.Top;
-            lblJadwalMingguIni.AutoSize = true;
-            lblJadwalMingguIni.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblJadwalMingguIni.ForeColor = Color.FromArgb(44, 62, 80);
-            lblJadwalMingguIni.Location = new Point(184, 294);
-            lblJadwalMingguIni.Name = "lblJadwalMingguIni";
-            lblJadwalMingguIni.Size = new Size(173, 23);
-            lblJadwalMingguIni.TabIndex = 13;
-            lblJadwalMingguIni.Text = "Reservasi terdekat anda :";
+            lblWelcome.Text = "Selamat Datang, Pengguna!";
             // 
             // lklbMore
             // 
             lklbMore.Anchor = AnchorStyles.Top;
             lklbMore.AutoSize = true;
-            lklbMore.Location = new Point(667, 420);
+            lklbMore.Location = new Point(493, 145);
             lklbMore.Name = "lklbMore";
             lklbMore.Size = new Size(112, 15);
             lklbMore.TabIndex = 14;
@@ -352,56 +400,105 @@
             lklbMore.Text = "Lihat lebih banyak...";
             lklbMore.LinkClicked += lklbMore_LinkClicked;
             // 
+            // lblJadwalMingguIni
+            // 
+            lblJadwalMingguIni.Anchor = AnchorStyles.Top;
+            lblJadwalMingguIni.AutoSize = true;
+            lblJadwalMingguIni.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            lblJadwalMingguIni.ForeColor = Color.FromArgb(44, 62, 80);
+            lblJadwalMingguIni.Location = new Point(10, 19);
+            lblJadwalMingguIni.Name = "lblJadwalMingguIni";
+            lblJadwalMingguIni.Size = new Size(173, 23);
+            lblJadwalMingguIni.TabIndex = 13;
+            lblJadwalMingguIni.Text = "Reservasi terdekat anda :";
+            // 
+            // dgvJadwalMingguIni
+            // 
+            dgvJadwalMingguIni.Anchor = AnchorStyles.Top;
+            dgvJadwalMingguIni.BackgroundColor = Color.White;
+            dgvJadwalMingguIni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJadwalMingguIni.GridColor = Color.FromArgb(44, 62, 80);
+            dgvJadwalMingguIni.Location = new Point(10, 45);
+            dgvJadwalMingguIni.Name = "dgvJadwalMingguIni";
+            dgvJadwalMingguIni.Size = new Size(595, 97);
+            dgvJadwalMingguIni.TabIndex = 12;
+            // 
+            // gbxReservasiSoon
+            // 
+            gbxReservasiSoon.Controls.Add(lblJadwalMingguIni);
+            gbxReservasiSoon.Controls.Add(dgvJadwalMingguIni);
+            gbxReservasiSoon.Controls.Add(lklbMore);
+            gbxReservasiSoon.Location = new Point(19, 80);
+            gbxReservasiSoon.Name = "gbxReservasiSoon";
+            gbxReservasiSoon.Size = new Size(633, 178);
+            gbxReservasiSoon.TabIndex = 15;
+            gbxReservasiSoon.TabStop = false;
+            // 
             // HomepageCustomerUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            Controls.Add(lklbMore);
-            Controls.Add(lblJadwalMingguIni);
-            Controls.Add(dgvJadwalMingguIni);
+            Controls.Add(contentAreaPanel);
+            Controls.Add(sidebarPanel);
+            Controls.Add(headerPanel);
             Controls.Add(gbxShowProfile);
-            Controls.Add(lblHomepageGreet);
-            Controls.Add(btnProfil);
-            Controls.Add(gbxMenu);
-            Controls.Add(lblWelcome);
             Name = "HomepageCustomerUC";
             Size = new Size(944, 501);
             Load += HomepageCustomerUC_Load;
-            Click += HomepageCustomerUC_Click;
+            headerPanel.ResumeLayout(false);
+            headerPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictboxProfil).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictboxHome).EndInit();
             gbxShowProfile.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
-            gbxMenu.ResumeLayout(false);
+            sidebarPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictbxUlasan).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxReservasiSekarang).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxRiwayat).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxLihatReservasi).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxReservasi).EndInit();
+            contentAreaPanel.ResumeLayout(false);
+            contentAreaPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).EndInit();
+            gbxReservasiSoon.ResumeLayout(false);
+            gbxReservasiSoon.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
+        private System.Windows.Forms.Panel headerPanel;
+        private System.Windows.Forms.Panel sidebarPanel;
+        private System.Windows.Forms.Panel contentAreaPanel;
 
-        private Label lblProfilEmail;
-        private Label lblProfilRole;
-        private Label lblProfilNama;
-        private GroupBox gbxShowProfile;
-        private Button btnUbahProfil;
-        private Button btnHomepageLogout;
-        private Label lblHomepageGreet;
-        private Button btnProfil;
-        private PictureBox pictbxLayanan;
-        private Button btnReservasi;
-        private Button btnLayanan;
-        private GroupBox gbxMenu;
+        // Header Panel Controls
+        public System.Windows.Forms.Label lblHeaderMenu;
+        private System.Windows.Forms.Label lblHomepageGreet;
+        private System.Windows.Forms.Button btnProfil;
+        private System.Windows.Forms.PictureBox pictboxProfil;
+        private System.Windows.Forms.PictureBox pictboxHome;
+
+        // Profile Group Box Controls
+        private System.Windows.Forms.GroupBox gbxShowProfile;
+        private System.Windows.Forms.Label lblProfilEmail;
+        private System.Windows.Forms.Label lblProfilRole;
+        private System.Windows.Forms.Button btnUbahProfil;
+        private System.Windows.Forms.Label lblProfilNama;
+        private System.Windows.Forms.Button btnHomepageLogout;
+
+        // Sidebar Panel Buttons and PictureBoxes
+        private System.Windows.Forms.Button btnReservasi;
+        private System.Windows.Forms.PictureBox pictbxReservasi;
+        private System.Windows.Forms.Button btnLayanan;
+        private System.Windows.Forms.PictureBox pictbxLayanan;
+        private System.Windows.Forms.Button btnLihatReservasi;
+        private System.Windows.Forms.PictureBox pictbxLihatReservasi;
+        private System.Windows.Forms.Button btnUlasan;
+        private System.Windows.Forms.PictureBox pictbxUlasan;
+
+        // Content Area Panel Controls
         public Label lblWelcome;
-        private PictureBox pictbxRiwayat;
-        private Button btnLihatReservasi;
-        private PictureBox pictbxReservasiSekarang;
         private DataGridView dgvJadwalMingguIni;
         private Label lblJadwalMingguIni;
         private LinkLabel lklbMore;
-        private Button btnUlasan;
-        private PictureBox pictbxUlasan;
+        private GroupBox gbxReservasiSoon;
     }
 }

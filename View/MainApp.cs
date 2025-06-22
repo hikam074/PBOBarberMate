@@ -22,6 +22,7 @@ namespace PBOBarberMate.View
 
         private HomepageAdminUC _currentAdminHomepage;
         private HomepageKaryawanUC _currentKaryawanHomepage;
+        private HomepageCustomerUC _currentCustomerHomepage;
 
         // Message filter instance
         private OutsideClickListener _outsideClickListener;
@@ -45,6 +46,7 @@ namespace PBOBarberMate.View
             DisableGlobalClickListener();
             _currentAdminHomepage = null;
             _currentKaryawanHomepage = null;
+            _currentCustomerHomepage = null;
 
             _contentHostPanel.Controls.Clear();
             contentUC.Dock = DockStyle.Fill;
@@ -58,7 +60,10 @@ namespace PBOBarberMate.View
             {
                 _currentKaryawanHomepage = karyawanUC;
             }
-
+            else if (contentUC is HomepageCustomerUC customerUC)
+            {
+                _currentCustomerHomepage = customerUC;
+            }
         }
 
         public void RedirectToHomepage()
@@ -75,7 +80,7 @@ namespace PBOBarberMate.View
             }
             else if (userRole == AkunRole.customer)
             {
-                //LoadContent(new HomepageCustomerUC(_akunService, _sessionService, this)); // Placeholder for Customer homepage
+                LoadContent(new HomepageCustomerUC(_akunService, _sessionService, this)); // Placeholder for Customer homepage
             }
             else
             {
@@ -102,6 +107,10 @@ namespace PBOBarberMate.View
                     {
                         _currentKaryawanHomepage.HideProfileBox();
                     }
+                    else if (_currentCustomerHomepage != null)
+                    {
+                        _currentCustomerHomepage.HideProfileBox();
+                    }
                 });
                 Application.AddMessageFilter(_outsideClickListener);
             }
@@ -117,6 +126,10 @@ namespace PBOBarberMate.View
                     else if (_currentKaryawanHomepage != null)
                     {
                         _currentKaryawanHomepage.HideProfileBox();
+                    }
+                    else if (_currentCustomerHomepage != null)
+                    {
+                        _currentCustomerHomepage.HideProfileBox();
                     }
                 });
                 Application.AddMessageFilter(_outsideClickListener);

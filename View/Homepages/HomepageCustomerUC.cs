@@ -1,5 +1,4 @@
-﻿
-using PBOBarberMate.App.Model;
+﻿using PBOBarberMate.App.Model;
 using PBOBarberMate.View.FormReservasi;
 using PBOBarberMate.View.FormPembayaran;
 using PBOBarberMate.View.FormUlasan;
@@ -13,184 +12,89 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using PBOBarberMate.App.Services;
+using PBOBarberMate.View.Auth;
 
 namespace PBOBarberMate.View.Homepages
 {
     public partial class HomepageCustomerUC : UserControl
     {
-        // atribut menampung apakah animasi hovers aktif atau tidak
-        private bool hoversActivated = true;
         private readonly AkunService _akunService;
         private readonly SessionService _sessionService;
-        private readonly MainApp _mainForm; // Referensi ke form utama
+        private readonly MainApp _mainApp; // Referensi ke form utama
 
-        public HomepageCustomerUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
+        public HomepageCustomerUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
             InitializeComponent();
             _akunService = akunService;
             _sessionService = sessionService;
-            _mainForm = mainForm;
+            _mainApp = mainApp;
 
-            // mengubah ucapan nama sesuai nama logged
-            //lblWelcome.Text = SessionService.nama
-            // menangkap tiap klik event di form
-            this.Click += new EventHandler(HomepageCustomerUC_Click);
+            // Set initial header and profile info
+            lblHeaderMenu.Text = "Halaman Utama";
+            lblProfilRole.Text = _sessionService.CurrentUserRole.ToString();
+            lblProfilNama.Text = _sessionService.CurrentUserName;
+            lblProfilEmail.Text = _sessionService.CurrentUserEmail;
+            btnProfil.Text = _sessionService.CurrentUserName;
+            lblWelcome.Text = "Selamat Datang, " + _sessionService.CurrentUserName + "!";
+
+            // Set hover events for buttons
+            SetButtonHoverEvents();
+            AdjustProfilIconPosition();
+            AdjustHeaderPosition();
+
+            this.Resize += (s, e) => AdjustProfilIconPosition();
+            this.Resize += (S, e) => AdjustHeaderPosition();
         }
 
-
-        private void btnReservasi_Click(object sender, EventArgs e)
+        private void SetButtonHoverEvents()
         {
-            // beralih ke FormBuatReservasi
-            FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
-            formBuatReservasi.modeEdit = false;
-            formBuatReservasi.Show();
-            this.Hide();
+            // HOVER SIDEBAR
+            SetSidebarHoverEvents(btnReservasi, pictbxReservasi);
+            SetSidebarHoverEvents(btnLihatReservasi, pictbxLihatReservasi);
+            SetSidebarHoverEvents(btnLayanan, pictbxLayanan);
+            SetSidebarHoverEvents(btnUlasan, pictbxUlasan);
+            // HOVER PROFIL
+            SetProfilHoverEvents(btnProfil, pictboxProfil);
+            SetProfilHoverEvents(btnUbahProfil);
+            SetProfilHoverEvents(btnHomepageLogout);
         }
 
-        private void btnLayanan_Click(object sender, EventArgs e)
+        private void AdjustProfilIconPosition()
         {
-            // beralih ke FormLayanan
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
-            this.Hide();
+            pictboxProfil.Location = new Point(btnProfil.Location.X - pictboxProfil.Width, btnProfil.Location.Y + (btnProfil.Height - pictboxProfil.Height) / 2);
+            pictboxProfil.BringToFront();
+            btnProfil.BringToFront();
         }
 
-        private void btnProfil_MouseEnter(object sender, EventArgs e)
+        private void AdjustHeaderPosition()
         {
-            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
-            if (hoversActivated == false) { return; }
-            // mengubah warna ketika kursor berada di btnProfil
-            btnProfil.BackColor = Color.FromArgb(243, 156, 18);
-            btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
+            lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2;
         }
 
-        private void btnProfil_MouseLeave(object sender, EventArgs e)
+        private void SetSidebarHoverEvents(Control button, Control relatedControl)
         {
-            // ketika animasi hovers dinonaktifkan, maka warna tidak diubah
-            if (hoversActivated == false) { return; }
-            // mengubah warna ketika kursor keluar dari area btnProfil
-            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            btnProfil.ForeColor = Color.White;
+            button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
         }
 
-        private void btnProfil_Click(object sender, EventArgs e)
+        private void SetProfilHoverEvents(Control button)
         {
-            // kalau box profil belum muncul
-            //if (gbxShowProfile.Visible == false)
-            //{
-            //    // memunculkan profil
-            //    gbxShowProfile.Visible = true;
-            //    // memunculkan isi profil
-            //    lblProfilRole.Text = SessionService.role.ToString();
-            //    lblProfilNama.Text = SessionService.nama;
-            //    lblProfilEmail.Text = SessionService.email;
-            //    // mengubah warna btnProfil
-            //    btnProfil.BackColor = Color.White;
-            //    btnProfil.ForeColor = Color.FromArgb(44, 62, 80);
-            //    // membuat hover dinonaktifkan
-            //    hoversActivated = false;
-            //}
-            //else // kalau box profil sudah muncul maka jadi tombol close
-            //{
-            //    // gbxShowProfile dihilangkan
-            //    gbxShowProfile.Visible = false;
-            //    // lalu mengembalikan warna btnProfil ke default
-            //    btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            //    btnProfil.ForeColor = Color.White;
-            //    // mengaktifkan kembali animasi hovers
-            //    hoversActivated = true;
-            //}
+            button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.White; };
         }
 
-        private void btnUbahProfil_Click(object sender, EventArgs e)
+        private void SetProfilHoverEvents(Control button, Control relatedControl)
         {
-            // beralih ke FormUbahProfil
-            FormUbahProfil formUbahProfil = new FormUbahProfil();
-            formUbahProfil.Show();
-            this.Hide();
-            // menyembunyikan gbxShowProfile
-            gbxShowProfile.Visible = false;
-            // mengembalikan warna btnProfil ke default
-            btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-            btnProfil.ForeColor = Color.White;
-            // mengaktifkan kembali animasi hovers
-            hoversActivated = true;
+            button.MouseEnter += (s, e) => { button.BackColor = Color.Gainsboro; relatedControl.BackColor = Color.Gainsboro; };
+            button.MouseLeave += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.White; };
         }
 
-        private void btnHomepageLogout_Click(object sender, EventArgs e)
+        public void HideProfileBox()
         {
-            // kembali ke FormLogin
-            //FormLogin formLogin = new FormLogin();
-            // logout dari session
-            //AkunService.logout();
-
-            //formLogin.Show();
-            //this.Hide();
-        }
-
-        private void btnUbahProfil_MouseEnter(object sender, EventArgs e)
-        {
-            // mengubah warna ketika kursor berada di btnUbahProfil
-            btnUbahProfil.BackColor = Color.FromArgb(243, 156, 18);
-            btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnUbahProfil_MouseLeave(object sender, EventArgs e)
-        {
-            // mengubah warna ketika kursor keluar dari area btnUbahProfil
-            btnUbahProfil.BackColor = SystemColors.Control;
-            btnUbahProfil.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnHomepageLogout_MouseEnter(object sender, EventArgs e)
-        {
-            // mengubah warna ketika kursor berada di btnHomepageLogout
-            btnHomepageLogout.BackColor = Color.FromArgb(243, 156, 18);
-            btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnHomepageLogout_MouseLeave(object sender, EventArgs e)
-        {
-            // mengubah warna ketika kursor keluar dari area btnHomepageLogout
-            btnHomepageLogout.BackColor = SystemColors.Control;
-            btnHomepageLogout.ForeColor = Color.FromArgb(44, 62, 80);
-        }
-
-        private void btnLihatReservasi_Click(object sender, EventArgs e)
-        {
-            // beralih ke FormLihatReservasi
-            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
-            formLihatReservasi.Show();
-            this.Hide();
-        }
-
-        private void lklbMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            // beralih ke FormLihatReservasi
-            FormLihatReservasi formLihatReservasi = new FormLihatReservasi();
-            formLihatReservasi.Show();
-            this.Hide();
-        }
-        private void btnUlasan_Click(object sender, EventArgs e)
-        {
-            FormLihatPembayaranUntukUlasan form = new FormLihatPembayaranUntukUlasan();
-            form.Show();
-            this.Hide();
-        }
-
-        private void HomepageCustomerUC_Click(object sender, EventArgs e)
-        {
-            Point cursorPosition = this.PointToClient(Cursor.Position);
-            // ketika klik event tidak berada di gbxShowProfile
-            if (!gbxShowProfile.Bounds.Contains(cursorPosition))
+            if (gbxShowProfile.Visible)
             {
-                // maka gbxShowProfile dihilangkan
                 gbxShowProfile.Visible = false;
-                // lalu mengembalikan warna btnProfil ke default
-                btnProfil.BackColor = Color.FromArgb(44, 62, 80);
-                btnProfil.ForeColor = Color.White;
-                // mengaktifkan kembali animasi hovers
-                hoversActivated = true;
+                _mainApp.DisableGlobalClickListener();
             }
         }
 
@@ -229,6 +133,76 @@ namespace PBOBarberMate.View.Homepages
             //{
             //    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
             //}
+        }
+
+        private void btnReservasi_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormBuatReservasi()); // Assuming FormBuatReservasi can be loaded directly
+        }
+
+        private void btnLayanan_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLayanan()); // Assuming FormLayanan can be loaded directly
+        }
+
+        private void btnProfil_Click(object sender, EventArgs e)
+        {
+            gbxShowProfile.Visible = !gbxShowProfile.Visible;
+
+            if (gbxShowProfile.Visible)
+            {
+                Point btnProfilScreenLocation = btnProfil.PointToScreen(Point.Empty);
+                Point gbxShowProfileLocationOnUC = this.PointToClient(btnProfilScreenLocation);
+
+                gbxShowProfile.Location = new Point(
+                    gbxShowProfileLocationOnUC.X - gbxShowProfile.Width + btnProfil.Width,
+                    gbxShowProfileLocationOnUC.Y + btnProfil.Height + 15
+                );
+
+                gbxShowProfile.BringToFront();
+                _mainApp.EnableGlobalClickListener(gbxShowProfile);
+            }
+            else
+            {
+                _mainApp.DisableGlobalClickListener();
+            }
+        }
+
+        private void btnUbahProfil_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormUbahProfil()); // Assuming FormUbahProfil can be loaded directly
+        }
+
+        private void btnHomepageLogout_Click(object sender, EventArgs e)
+        {
+            _akunService.Logout();
+            _mainApp.LoadContent(new LoginUC(_akunService, _sessionService, _mainApp));
+        }
+
+        private void btnLihatReservasi_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
+        }
+
+        private void lklbMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
+        }
+
+        private void btnUlasan_Click(object sender, EventArgs e)
+        {
+            HideProfileBox();
+            //_mainApp.LoadContent(new FormLihatPembayaranUntukUlasan()); // Assuming FormLihatPembayaranUntukUlasan can be loaded directly
+        }
+
+        private void pictboxHome_Click(object sender, EventArgs e)
+        {
+            _mainApp.RedirectToHomepage();
         }
     }
 }
