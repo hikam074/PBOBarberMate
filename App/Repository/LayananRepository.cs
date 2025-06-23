@@ -22,10 +22,11 @@ namespace PBOBarberMate.App.Repository
         // METHOD repo SELECT untuk ambil semua data layanan
         public List<M_Layanan> getAllLayanan()
         {
-            string query = "SELECT id_layanan, nama_layanan, harga FROM layanan";
+            string query = "SELECT * FROM layanan";
             try
             {
                 List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query);
+                MessageBox.Show(rawData.Count.ToString());
                 // Map rawData (List<object[]>) ke List<M_Akun>
                 return rawData.Select(row => new M_Layanan(
                     Convert.ToInt32(row[0]),            // id_layanan
@@ -42,7 +43,7 @@ namespace PBOBarberMate.App.Repository
         // METHOD repo SELECT untuk ambil data layanan dengan ID
         public M_Layanan getLayananById(int id)
         {
-            string query = "SELECT * FROM akun WHERE id_akun = @id";
+            string query = "SELECT * FROM layanan WHERE id_layanan = @id";
             NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", id) };
             try
             {

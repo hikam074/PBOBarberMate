@@ -22,6 +22,7 @@ namespace PBOBarberMate.App.Services
             try
             {
                 M_Akun akunDariDb = _akunRepository.getAkunByEmail(email);
+
                 if (akunDariDb == null)
                 {
                     return false;
@@ -40,8 +41,6 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"AkunService: Gagal memproses login. Error: {ex.Message}", ex);
             }
         }
-
-
         public bool Signup(string nama, string email, string plainPassword)
         {
             try
@@ -73,31 +72,67 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"AkunService: Gagal memproses pendaftaran. Error: {ex.Message}", ex);
             }
         }
-
-
         public void Logout()
         {
             _sessionService.ClearSession();
         }
 
 
-        public bool UbahNamaProfil(int userId, string newName)
+        public List<M_Akun> getAllAkun()
         {
             try
             {
-                M_Akun akun = _akunRepository.getAkunById(userId);
-                if (akun == null) return false;
-
-                akun.nama = newName; // Update nama
+                return _akunRepository.getAllAkun();
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"AkunService: Gagal mendapatkan semua akun. Error: {ex.Message}", ex);
+            }
+        }
+        public M_Akun getAkunById(int id)
+        {
+            try
+            {
+                return _akunRepository.getAkunById(id);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"AkunService: Gagal mendapatkan akun dengan ID {id}. Error: {ex.Message}", ex);
+            }
+        }
+        public bool addLayanan(M_Akun akun)
+        {
+            try
+            {
+                int newLayananId = _akunRepository.createAkun(akun);
+                return newLayananId > 0;
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"LayananService: Gagal menambahkan layanan. Error: {ex.Message}", ex);
+            }
+        }
+        public bool udpateAkun(M_Akun akun)
+        {
+            try
+            {
                 return _akunRepository.UpdateAkun(akun);
             }
             catch (ApplicationException ex)
             {
-                throw new ApplicationException($"AkunService: Gagal mengubah nama profil. Error: {ex.Message}", ex);
+                throw new ApplicationException($"LayananService: Gagal memperbarui layanan. Error: {ex.Message}", ex);
             }
         }
-
-        // Metode lain untuk ubah email, ubah password, dll.
-        // Akan memanggil AkunRepository.UpdateAkun(akun) setelah memodifikasi objek M_Akun
+        public bool deleteAkun(int id)
+        {
+            try
+            {
+                return _akunRepository.DeleteAkun(id);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"LayananService: Gagal menghapus layanan. Error: {ex.Message}", ex);
+            }
+        }
     }
 }

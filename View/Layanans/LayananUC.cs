@@ -24,6 +24,7 @@ namespace PBOBarberMate.View.Layanan
         private readonly MainApp _mainApp;
         private readonly LayananService _layananService;
 
+
         public LayananUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
             InitializeComponent();
@@ -36,8 +37,11 @@ namespace PBOBarberMate.View.Layanan
             this.Load += FormLayanan_Load;
         }
         private void FormLayanan_Load(object sender, EventArgs e)
-        {
+        {            
+            List<M_Layanan> layananData = new List<M_Layanan>(_layananService.getAllLayanan());
+            MessageBox.Show(layananData.Count.ToString());
             LoadDgv();
+            
         }
 
         private void EnableButton()
@@ -69,114 +73,111 @@ namespace PBOBarberMate.View.Layanan
             try
             {
                 // Mengambil data layanan dari service
-                List<M_Layanan> layananData = _layananService.getAllLayanan();
-                if (layananData == null)
-                {
-                    MessageBox.Show("Error: Gagal mengambil data Layanan");
-                    
-                    return;
-                }
-                MessageBox.Show(layananData.Count.ToString());
-                // Matikan AutoGenerateColumns agar kita bisa mengontrol kolom secara manual.
-                // Ini penting jika Anda ingin urutan kolom, teks header, atau visibilitas khusus.
-                dgvLayanan.AutoGenerateColumns = false;
 
-                // Bersihkan kolom yang ada (jika ada sisa dari AutoGenerateColumns sebelumnya atau desain)
-                dgvLayanan.Columns.Clear();
+                //List<M_Layanan> layananData = new List<M_Layanan>(_layananService.getAllLayanan());
 
-                // Tambahkan kolom "No" secara manual
-                DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
-                nomorColumn.HeaderText = "No";
-                nomorColumn.Name = "nomor";
-                nomorColumn.DataPropertyName = "RowNumber"; // Tidak ada properti ini di M_Layanan, akan diisi manual
-                nomorColumn.ReadOnly = true;
-                dgvLayanan.Columns.Add(nomorColumn);
+                //// Remove the MessageBox.Show here, it's for debugging only
+                //// MessageBox.Show(layananData.Count.ToString());
 
-                // Tambahkan kolom data
-                DataGridViewTextBoxColumn namaLayananColumn = new DataGridViewTextBoxColumn();
-                namaLayananColumn.HeaderText = "Nama Layanan";
-                namaLayananColumn.Name = "nama_layanan";
-                namaLayananColumn.DataPropertyName = "nama_layanan"; // Sesuaikan dengan nama properti di M_Layanan
-                dgvLayanan.Columns.Add(namaLayananColumn);
+                //// Matikan AutoGenerateColumns agar kita bisa mengontrol kolom secara manual.
+                //// Ini penting jika Anda ingin urutan kolom, teks header, atau visibilitas khusus.
+                //dgvLayanan.AutoGenerateColumns = false;
 
-                DataGridViewTextBoxColumn hargaColumn = new DataGridViewTextBoxColumn();
-                hargaColumn.HeaderText = "Harga";
-                hargaColumn.Name = "harga";
-                hargaColumn.DataPropertyName = "harga"; // Sesuaikan dengan nama properti di M_Layanan
-                dgvLayanan.Columns.Add(hargaColumn);
+                //// Bersihkan kolom yang ada (jika ada sisa dari AutoGenerateColumns sebelumnya atau desain)
+                //dgvLayanan.Columns.Clear();
 
-                // Tambahkan kolom ID tersembunyi
-                DataGridViewTextBoxColumn idLayananColumn = new DataGridViewTextBoxColumn();
-                idLayananColumn.HeaderText = "ID Layanan";
-                idLayananColumn.Name = "id_layanan";
-                idLayananColumn.DataPropertyName = "id_layanan";
-                idLayananColumn.Visible = false; // Sembunyikan ID
-                dgvLayanan.Columns.Add(idLayananColumn);
+                //// Tambahkan kolom "No" secara manual
+                //DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
+                //nomorColumn.HeaderText = "No";
+                //nomorColumn.Name = "nomor";
+                //nomorColumn.DataPropertyName = "RowNumber"; // Tidak ada properti ini di M_Layanan, akan diisi manual
+                //nomorColumn.ReadOnly = true;
+                //dgvLayanan.Columns.Add(nomorColumn);
 
-                // Mengikat List<M_Layanan> ke DataGridView
-                dgvLayanan.DataSource = layananData;
+                //// Tambahkan kolom data
+                //DataGridViewTextBoxColumn namaLayananColumn = new DataGridViewTextBoxColumn();
+                //namaLayananColumn.HeaderText = "Nama Layanan";
+                //namaLayananColumn.Name = "nama_layanan";
+                //namaLayananColumn.DataPropertyName = "nama_layanan"; // Sesuaikan dengan nama properti di M_Layanan
+                //dgvLayanan.Columns.Add(namaLayananColumn);
 
-                // Isi kolom "No"
-                for (int i = 0; i < dgvLayanan.Rows.Count; i++)
-                {
-                    dgvLayanan.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
-                }
+                //DataGridViewTextBoxColumn hargaColumn = new DataGridViewTextBoxColumn();
+                //hargaColumn.HeaderText = "Harga";
+                //hargaColumn.Name = "harga";
+                //hargaColumn.DataPropertyName = "harga"; // Sesuaikan dengan nama properti di M_Layanan
+                //dgvLayanan.Columns.Add(hargaColumn);
 
-                // Tambahkan kolom tombol "Edit" dan "Delete" hanya jika belum ada
-                if (_sessionService.CurrentUserRole == AkunRole.admin)
-                {
-                    if (dgvLayanan.Columns["Update"] == null)
-                    {
-                        DataGridViewButtonColumn updateButtonColumn = new DataGridViewButtonColumn
-                        {
-                            Name = "Update",
-                            HeaderText = "Aksi",
-                            Text = "Edit",
-                            UseColumnTextForButtonValue = true
-                        };
-                        dgvLayanan.Columns.Add(updateButtonColumn);
-                    }
-                    if (dgvLayanan.Columns["Delete"] == null)
-                    {
-                        DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
-                        {
-                            Name = "Delete",
-                            HeaderText = "Aksi",
-                            Text = "Delete",
-                            UseColumnTextForButtonValue = true
-                        };
-                        dgvLayanan.Columns.Add(deleteButtonColumn);
-                    }
-                }
+                //// Tambahkan kolom ID tersembunyi
+                //DataGridViewTextBoxColumn idLayananColumn = new DataGridViewTextBoxColumn();
+                //idLayananColumn.HeaderText = "ID Layanan";
+                //idLayananColumn.Name = "id_layanan";
+                //idLayananColumn.DataPropertyName = "id_layanan";
+                //idLayananColumn.Visible = false; // Sembunyikan ID
+                //dgvLayanan.Columns.Add(idLayananColumn);
 
-                // Tambahkan tombol "Lihat Ulasan" untuk semua role
-                if (dgvLayanan.Columns["Lihat Ulasan"] == null)
-                {
-                    DataGridViewButtonColumn LihatUlasanColumn = new DataGridViewButtonColumn
-                    {
-                        Name = "Lihat Ulasan",
-                        HeaderText = "Lihat Ulasan",
-                        Text = "Lihat Ulasan",
-                        UseColumnTextForButtonValue = true
-                    };
-                    dgvLayanan.Columns.Add(LihatUlasanColumn);
-                }
+                //// Mengikat List<M_Layanan> ke DataGridView
+                //dgvLayanan.DataSource = layananData;
 
-                // Atur properti DataGridView
-                dgvLayanan.AllowUserToAddRows = false;
-                dgvLayanan.RowHeadersVisible = false;
-                dgvLayanan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                // dgvLayanan.AutoResizeColumns(); // Tidak selalu diperlukan jika AutoSizeColumnsMode = Fill
+                //// Isi kolom "No"
+                //for (int i = 0; i < dgvLayanan.Rows.Count; i++)
+                //{
+                //    dgvLayanan.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
+                //}
 
-                // Atur visibilitas tombol Update dan Delete berdasarkan role
-                if (dgvLayanan.Columns.Contains("Update"))
-                {
-                    dgvLayanan.Columns["Update"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
-                }
-                if (dgvLayanan.Columns.Contains("Delete"))
-                {
-                    dgvLayanan.Columns["Delete"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
-                }
+                //// Tambahkan kolom tombol "Edit" dan "Delete" hanya jika belum ada
+                //if (_sessionService.CurrentUserRole == AkunRole.admin)
+                //{
+                //    if (dgvLayanan.Columns["Update"] == null)
+                //    {
+                //        DataGridViewButtonColumn updateButtonColumn = new DataGridViewButtonColumn
+                //        {
+                //            Name = "Update",
+                //            HeaderText = "Aksi",
+                //            Text = "Edit",
+                //            UseColumnTextForButtonValue = true
+                //        };
+                //        dgvLayanan.Columns.Add(updateButtonColumn);
+                //    }
+                //    if (dgvLayanan.Columns["Delete"] == null)
+                //    {
+                //        DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn
+                //        {
+                //            Name = "Delete",
+                //            HeaderText = "Aksi",
+                //            Text = "Delete",
+                //            UseColumnTextForButtonValue = true
+                //        };
+                //        dgvLayanan.Columns.Add(deleteButtonColumn);
+                //    }
+                //}
+
+                //// Tambahkan tombol "Lihat Ulasan" untuk semua role
+                //if (dgvLayanan.Columns["Lihat Ulasan"] == null)
+                //{
+                //    DataGridViewButtonColumn LihatUlasanColumn = new DataGridViewButtonColumn
+                //    {
+                //        Name = "Lihat Ulasan",
+                //        HeaderText = "Lihat Ulasan",
+                //        Text = "Lihat Ulasan",
+                //        UseColumnTextForButtonValue = true
+                //    };
+                //    dgvLayanan.Columns.Add(LihatUlasanColumn);
+                //}
+
+                //// Atur properti DataGridView
+                //dgvLayanan.AllowUserToAddRows = false;
+                //dgvLayanan.RowHeadersVisible = false;
+                //dgvLayanan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+                //// Atur visibilitas tombol Update dan Delete berdasarkan role
+                //if (dgvLayanan.Columns.Contains("Update"))
+                //{
+                //    dgvLayanan.Columns["Update"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
+                //}
+                //if (dgvLayanan.Columns.Contains("Delete"))
+                //{
+                //    dgvLayanan.Columns["Delete"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
+                //}
             }
             catch (Exception ex)
             {

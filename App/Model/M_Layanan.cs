@@ -16,8 +16,17 @@ namespace PBOBarberMate.App.Model
 
 
         // CONSTRUCTOR CREATE
-        public M_Layanan(string nama_layanan, int harga) { }
+        public M_Layanan(string nama_layanan, int harga)
+        {
+            this.nama_layanan = nama_layanan;
+            this.harga = harga;
+        }
         // CONSTRUCTOR GET
-        public M_Layanan(int id_layanan, string nama_layanan, int harga) { }
+        public M_Layanan(int id_layanan, string nama_layanan, int harga) 
+        {
+            this.id_layanan = id_layanan;
+            this.nama_layanan = nama_layanan;
+            this.harga = harga;
+        }
     }
 }

@@ -29,6 +29,7 @@ namespace PBOBarberMate.App.Repository
             try
             {
                 List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query);
+                MessageBox.Show(rawData.Count.ToString());
                 // Map rawData (List<object[]>) ke List<M_Akun>
                 return rawData.Select(row => new M_Akun(
                     Convert.ToInt32(row[0]),            // id_akun
