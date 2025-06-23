@@ -51,7 +51,7 @@ namespace PBOBarberMate.View
                 MessageBox.Show("Mohon Isi Semua Data");
                 return;
             }
-            M_Layanan layanan = new M_Layanan { nama_layanan = textBox1.Text, harga = Convert.ToInt32(textBox2.Text)};
+            //M_Layanan layanan = new M_Layanan { nama_layanan = textBox1.Text, harga = Convert.ToInt32(textBox2.Text)};
             if (IseditMode)
             {
                 //layanan.id_layanan = LayananId;

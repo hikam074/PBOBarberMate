@@ -137,64 +137,64 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (!ValidateInput())
-            {
-                MessageBox.Show("Mohon Isi Semua Data");
-                return;
-            }
+            //if (!ValidateInput())
+            //{
+            //    MessageBox.Show("Mohon Isi Semua Data");
+            //    return;
+            //}
 
 
-            M_Ulasan ulasan = new M_Ulasan
-            {
-                isi_ulasan = textBox1.Text,
-                id_pembayaran = id_pembayaran,
-            };
-            if (bintang1.Visible)
-            {
-                ulasan.rating = 1;
-            }
-            if (bintang2.Visible)
-            {
-                ulasan.rating = 2;
-            }
-            if (bintang3.Visible)
-            {
-                ulasan.rating = 3;
-            }
-            if (bintang4.Visible)
-            {
-                ulasan.rating = 4;
-            }
-            if (bintang5.Visible)
-            {
-                ulasan.rating = 5;
-            }
+            //M_Ulasan ulasan = new M_Ulasan
+            //{
+            //    isi_ulasan = textBox1.Text,
+            //    id_pembayaran = id_pembayaran,
+            //};
+            //if (bintang1.Visible)
+            //{
+            //    ulasan.rating = 1;
+            //}
+            //if (bintang2.Visible)
+            //{
+            //    ulasan.rating = 2;
+            //}
+            //if (bintang3.Visible)
+            //{
+            //    ulasan.rating = 3;
+            //}
+            //if (bintang4.Visible)
+            //{
+            //    ulasan.rating = 4;
+            //}
+            //if (bintang5.Visible)
+            //{
+            //    ulasan.rating = 5;
+            //}
 
-            MessageBox.Show($"Isi Ulasan: {ulasan.isi_ulasan}, Rating: {ulasan.rating}, ID Ulasan: {id_ulasan}");
+            //MessageBox.Show($"Isi Ulasan: {ulasan.isi_ulasan}, Rating: {ulasan.rating}, ID Ulasan: {id_ulasan}");
 
 
-            if (IseditMode == true)
-            {
-                ulasan.id_ulasan = id_ulasan;
-                //UlasanContext.UpdateUlasan(ulasan);
-                MessageBox.Show("Ulasan Berhasil Diperbarui");
-                FormLayanan formLayanan = new FormLayanan();
-                formLayanan.Show();
-                this.Hide();
-            }
-            else
-            {
-                //layanan.id_layanan = LayananId;
-                //UlasanContext.AddUlasan(ulasan);
-                MessageBox.Show("Ulasan Berhasil Ditambah");
-                this.DialogResult = DialogResult.OK;
-                this.Hide();
-                FormLayanan formLayanan = new FormLayanan();
-                formLayanan.Show();
-                this.Hide();
-            }
+            //if (IseditMode == true)
+            //{
+            //    ulasan.id_ulasan = id_ulasan;
+            //    //UlasanContext.UpdateUlasan(ulasan);
+            //    MessageBox.Show("Ulasan Berhasil Diperbarui");
+            //    FormLayanan formLayanan = new FormLayanan();
+            //    formLayanan.Show();
+            //    this.Hide();
+            //}
+            //else
+            //{
+            //    //layanan.id_layanan = LayananId;
+            //    //UlasanContext.AddUlasan(ulasan);
+            //    MessageBox.Show("Ulasan Berhasil Ditambah");
+            //    this.DialogResult = DialogResult.OK;
+            //    this.Hide();
+            //    FormLayanan formLayanan = new FormLayanan();
+            //    formLayanan.Show();
+            //    this.Hide();
+            //}
 
-            ClearFields();
+            //ClearFields();
 
         }
 

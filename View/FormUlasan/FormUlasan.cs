@@ -214,9 +214,9 @@ namespace PBOBarberMate.View.FormUlasan
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            FormLayanan formLayanan = new FormLayanan();
-            formLayanan.Show();
-            this.Hide();
+            //FormLayanan formLayanan = new FormLayanan();
+            //formLayanan.Show();
+            //this.Hide();
         }
     }
 }

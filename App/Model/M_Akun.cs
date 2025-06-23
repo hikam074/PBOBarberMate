@@ -32,8 +32,9 @@ namespace PBOBarberMate.App.Model
         }
         public virtual AkunRole role { get; set; }
 
-
+        // CONSTUCTOR KOSOSNG
         public M_Akun() { }
+        // CONSTRUCTOR GET
         public M_Akun(int id_akun, string nama, string email, string hashedPasswordFromDb, AkunRole role)
         {
             this.id_akun = id_akun;
@@ -42,6 +43,7 @@ namespace PBOBarberMate.App.Model
             this._passwordHash = hashedPasswordFromDb;
             this.role = role;
         }
+        // CONSTRUCTOR CREATE
         public M_Akun(string nama, string email, string plainPassword, AkunRole role)
         {
             this.nama = nama;
@@ -49,7 +51,7 @@ namespace PBOBarberMate.App.Model
             this.Password = plainPassword;
             this.role = role;
         }
-
+        // UTILS HASH PASSWORD
         public static string hashPassword(string password)
         {
             using (SHA256 sha256Hash = SHA256.Create())

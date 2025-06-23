@@ -7,6 +7,7 @@ using PBOBarberMate.App.Services;
 
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
+using PBOBarberMate.View.Layanan;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -159,7 +160,14 @@ namespace PBOBarberMate.View.Homepages
 
 
         private void btnLayanan_Click(object sender, EventArgs e)
-        { //LoadFeatureContent(new FormLayananUC(_akunService, _sessionService, _mainApp)); HideProfileBox();
+        {
+            LoadFeatureContent(new LayananUC(_akunService, _sessionService, _mainApp));
+            // ubah teks header
+            lblHeaderMenu.Text = "Layanan";
+            // posisikan ulang header
+            AdjustHeaderPosition();
+
+            HideProfileBox();
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {

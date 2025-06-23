@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using PBOBarberMate.App.Services;
 
 using PBOBarberMate.View.Auth;
+using PBOBarberMate.View.Layanan;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -196,8 +197,13 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnLayanan_Click(object sender, EventArgs e)
         {
+            LoadFeatureContent(new LayananUC(_akunService, _sessionService, _mainApp));
+            // ubah teks header
+            lblHeaderMenu.Text = "Layanan";
+            // posisikan ulang header
+            AdjustHeaderPosition();
+
             HideProfileBox();
-            //_mainApp.LoadContent(new FormLayanan()); // Assuming FormLayanan can be loaded directly
         }
         private void btnLihatReservasi_Click(object sender, EventArgs e)
         {
