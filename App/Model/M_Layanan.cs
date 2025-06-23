@@ -15,6 +15,7 @@ namespace PBOBarberMate.App.Model
         [Required] public int harga { get; set; }
 
 
+        public M_Layanan() { }
         // CONSTRUCTOR CREATE
         public M_Layanan(string nama_layanan, int harga)
         {

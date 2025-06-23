@@ -38,9 +38,14 @@ namespace PBOBarberMate.View.Layanan
         }
         private void FormLayanan_Load(object sender, EventArgs e)
         {            
-            List<M_Layanan> layananData = new List<M_Layanan>(_layananService.getAllLayanan());
-            MessageBox.Show(layananData.Count.ToString());
-            LoadDgv();
+            //debug
+            //List<M_Layanan> layananData = _layananService.getAllLayanan();
+            //MessageBox.Show(layananData.Count.ToString());
+            //LoadDgv();
+            // devug
+            //M_Layanan a = new M_Layanan( );
+            //a = _layananService.getLayananById(1);
+            //MessageBox.Show(a.ToString());
             
         }
 
