@@ -22,7 +22,7 @@ namespace PBOBarberMate.App.Repository
         // METHOD repo SELECT untuk ambil semua data layanan
         public List<M_Layanan> getAllLayanan()
         {
-            string query = "SELECT * FROM layanan";
+            string query = "SELECT id_layanan, nama_layanan, harga FROM layanan";
             try
             {
                 List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query);
@@ -84,7 +84,7 @@ namespace PBOBarberMate.App.Repository
         }
 
         // METHOD repo UPDATE untuk menyimpan perubahan layanan
-        public bool UpdateAkun(M_Layanan layanan)
+        public bool updateLayanan(M_Layanan layanan)
         {
             string query = "UPDATE akun SET nama_layanan = @nama, harga = @harga WHERE id_layanan = @id";
             NpgsqlParameter[] parameters = {
@@ -102,7 +102,7 @@ namespace PBOBarberMate.App.Repository
         }
 
         // METHOD repo DELETE untuk hapus layanan
-        public bool DeleteLayanan(int id)
+        public bool deleteLayanan(int id)
         {
             string query = "DELETE FROM layanan WHERE id_layanan = @id";
             NpgsqlParameter[] parameters = {
