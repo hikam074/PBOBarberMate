@@ -107,34 +107,5 @@ namespace PBOBarberMate.App.Infrastructure
             }
             return rows;
         }
-
-        // Opsional: Metode untuk mengembalikan DataTable jika Anda masih memerlukannya untuk DataGridView
-        public DataTable ExecuteReaderAsDataTable(string query, NpgsqlParameter[] parameters = null)
-        {
-            DataTable dataTable = new DataTable();
-            try
-            {
-                using (NpgsqlConnection conn = new NpgsqlConnection(_connectionString))
-                {
-                    conn.Open();
-                    using (NpgsqlCommand cmd = new NpgsqlCommand(query, conn))
-                    {
-                        if (parameters != null)
-                        {
-                            cmd.Parameters.AddRange(parameters);
-                        }
-                        using (NpgsqlDataReader reader = cmd.ExecuteReader())
-                        {
-                            dataTable.Load(reader); // Memuat data langsung ke DataTable
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new ApplicationException($"Database DataTable query failed for query: {query}. Error: {ex.Message}", ex);
-            }
-            return dataTable;
-        }
     }
 }
