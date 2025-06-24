@@ -48,6 +48,9 @@ namespace PBOBarberMate.View.Layanan
             List<M_Layanan> daftarLayanan = _layananService.getAllLayanan();
             DataTable dtLayanan = ConvertLayananListToDataTable(daftarLayanan);
             dgvLayanan.DataSource = dtLayanan;
+            dgvLayanan.AutoGenerateColumns = false;
+            dgvLayanan.RowHeadersVisible = false;
+            dgvLayanan.AllowUserToAddRows = false;
         }
         private DataTable ConvertLayananListToDataTable(List<M_Layanan> layananList)
         {
