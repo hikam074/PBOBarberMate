@@ -3,12 +3,14 @@ using System.Drawing;
 using System.Windows.Forms;
 using System.Xml.Linq;
 
+
 using PBOBarberMate.App.Services;
-using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Repository;
 
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
 using PBOBarberMate.View.Layanan;
+
 
 
 namespace PBOBarberMate.View.Homepages
@@ -19,12 +21,21 @@ namespace PBOBarberMate.View.Homepages
         private readonly SessionService _sessionService;
         private readonly MainApp _mainApp;
 
+        private readonly LayananService _layananService;
+
         public HomepageAdminUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
             InitializeComponent();
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
+
+            _layananService = new LayananService(new LayananRepository());
+
+
+
+
+
             // Muat konten default saat Homepage Admin dimuat (misal, tampilan menu utama)
             //LoadFeatureContent(new AdminDashboardUC(_akunService, _sessionService, _mainApp, this));
             // ubah teks header
@@ -162,7 +173,7 @@ namespace PBOBarberMate.View.Homepages
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp), "Layanan");
+            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {

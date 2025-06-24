@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace PBOBarberMate.App.Repository
 {
-    internal class LayananRepository
+    public class LayananRepository
     {
         private readonly DB_Executor _dbExecutor;
         // Inisialisasi DBExecutor dengan connection string
@@ -67,7 +67,7 @@ namespace PBOBarberMate.App.Repository
         // METHOD repo INSERT untuk membuat layanan
         public int createLayanan(M_Layanan layanan)
         {
-            string query = "INSERT INTO layanan (nama_layanan, harga VALUES (@nama, @harga) RETURNING id_layanan;";
+            string query = "INSERT INTO layanan (nama_layanan, harga) VALUES (@nama, @harga) RETURNING id_layanan;";
             NpgsqlParameter[] parameters = {
                 new NpgsqlParameter("@nama", layanan.nama_layanan),
                 new NpgsqlParameter("@harga", layanan.harga)
@@ -88,6 +88,7 @@ namespace PBOBarberMate.App.Repository
         {
             string query = "UPDATE layanan SET nama_layanan = @nama, harga = @harga WHERE id_layanan = @id";
             NpgsqlParameter[] parameters = {
+                new NpgsqlParameter("@id", layanan.id_layanan),
                 new NpgsqlParameter("@nama", layanan.nama_layanan),
                 new NpgsqlParameter("@harga", layanan.harga)
             };

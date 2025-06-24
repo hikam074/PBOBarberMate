@@ -6,6 +6,7 @@ using PBOBarberMate.App.Services;
 
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Layanan;
+using PBOBarberMate.App.Repository;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -16,12 +17,16 @@ namespace PBOBarberMate.View.Homepages
         private readonly SessionService _sessionService;
         private readonly MainApp _mainApp;
 
+        private readonly LayananService _layananService;
+
         public HomepageKaryawanUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
         {
             InitializeComponent();
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
+
+            _layananService = new LayananService(new LayananRepository());
 
             // ubah teks header
             lblHeaderMenu.Text = "Halaman Utama";
@@ -180,13 +185,7 @@ namespace PBOBarberMate.View.Homepages
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            LoadFeatureContent(new LayananUC(_akunService, _sessionService, _mainApp));
-            // ubah teks header
-            lblHeaderMenu.Text = "Layanan";
-            // posisikan ulang header
-            AdjustHeaderPosition();
-
-            HideProfileBox();
+            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {

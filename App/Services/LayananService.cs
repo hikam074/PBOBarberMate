@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace PBOBarberMate.App.Services
 {
-    internal class LayananService
+    public class LayananService
     {
         private readonly LayananRepository _layananRepository;
 
@@ -41,11 +41,13 @@ namespace PBOBarberMate.App.Services
             }
         }
 
-        public bool addLayanan(M_Layanan layanan)
+        public bool addLayanan(string layanan, int harga)
         {
             try
             {
-                int newLayananId = _layananRepository.createLayanan(layanan);
+                M_Layanan layananBaru = new M_Layanan(layanan, harga);
+                // eksekusi
+                int newLayananId = _layananRepository.createLayanan(layananBaru);
                 return newLayananId > 0;
             }
             catch (ApplicationException ex)
@@ -54,11 +56,12 @@ namespace PBOBarberMate.App.Services
             }
         }
 
-        public bool updateLayanan(M_Layanan layanan)
+        public bool updateLayanan(int id, string layanan, int harga)
         {
             try
             {
-                return _layananRepository.updateLayanan(layanan);
+                M_Layanan layananBaru = new M_Layanan(id, layanan, harga);
+                return _layananRepository.updateLayanan(layananBaru);
             }
             catch (ApplicationException ex)
             {

@@ -28,7 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayananTambahUC));
+            lblTambahLayanan = new Label();
             btnCancel = new Button();
             btnAdd = new Button();
             tbxHargaLayanan = new TextBox();
@@ -36,23 +37,26 @@
             lblHarga = new Label();
             lblNamaLayanan = new Label();
             gbxLayananAdd = new GroupBox();
+            pictbxBack = new PictureBox();
             gbxLayananAdd.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictbxBack).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // lblTambahLayanan
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
-            label1.Location = new Point(100, 40);
-            label1.Margin = new Padding(2, 0, 2, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(288, 39);
-            label1.TabIndex = 0;
-            label1.Text = "Tambahkan Layanan Baru";
+            lblTambahLayanan.AutoSize = true;
+            lblTambahLayanan.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
+            lblTambahLayanan.Location = new Point(100, 40);
+            lblTambahLayanan.Margin = new Padding(2, 0, 2, 0);
+            lblTambahLayanan.Name = "lblTambahLayanan";
+            lblTambahLayanan.Size = new Size(288, 39);
+            lblTambahLayanan.TabIndex = 0;
+            lblTambahLayanan.Text = "Tambahkan Layanan Baru";
             // 
             // btnCancel
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            btnCancel.AutoSize = true;
             btnCancel.BackColor = SystemColors.Control;
             btnCancel.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnCancel.ForeColor = Color.Black;
@@ -60,22 +64,24 @@
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 39);
             btnCancel.TabIndex = 23;
-            btnCancel.Text = "Cancel";
+            btnCancel.Text = "Batalkan";
+            btnCancel.TextAlign = ContentAlignment.MiddleRight;
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
             // 
             // btnAdd
             // 
             btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnAdd.BackColor = SystemColors.Control;
+            btnAdd.AutoSize = true;
+            btnAdd.BackColor = Color.WhiteSmoke;
             btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnAdd.ForeColor = Color.Black;
-            btnAdd.Location = new Point(463, 105);
+            btnAdd.Location = new Point(457, 105);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 39);
+            btnAdd.Size = new Size(81, 39);
             btnAdd.TabIndex = 22;
-            btnAdd.Text = "Add";
+            btnAdd.Text = "Tambahkan";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
@@ -120,6 +126,7 @@
             // gbxLayananAdd
             // 
             gbxLayananAdd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            gbxLayananAdd.Controls.Add(pictbxBack);
             gbxLayananAdd.Controls.Add(lblNamaLayanan);
             gbxLayananAdd.Controls.Add(btnAdd);
             gbxLayananAdd.Controls.Add(btnCancel);
@@ -132,26 +139,39 @@
             gbxLayananAdd.TabIndex = 24;
             gbxLayananAdd.TabStop = false;
             // 
+            // pictbxBack
+            // 
+            pictbxBack.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pictbxBack.BackColor = SystemColors.Control;
+            pictbxBack.Image = (Image)resources.GetObject("pictbxBack.Image");
+            pictbxBack.Location = new Point(16, 119);
+            pictbxBack.Name = "pictbxBack";
+            pictbxBack.Size = new Size(12, 12);
+            pictbxBack.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxBack.TabIndex = 24;
+            pictbxBack.TabStop = false;
+            // 
             // LayananTambahUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(gbxLayananAdd);
-            Controls.Add(label1);
+            Controls.Add(lblTambahLayanan);
             Margin = new Padding(2);
             Name = "LayananTambahUC";
             Size = new Size(744, 451);
             Load += FormTambahLayanan_Load;
             gbxLayananAdd.ResumeLayout(false);
             gbxLayananAdd.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictbxBack).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
+        private Label lblTambahLayanan;
         private Button btnCancel;
         private Button btnAdd;
         private TextBox tbxHargaLayanan;
@@ -159,5 +179,6 @@
         private Label lblHarga;
         private Label lblNamaLayanan;
         private GroupBox gbxLayananAdd;
+        private PictureBox pictbxBack;
     }
 }

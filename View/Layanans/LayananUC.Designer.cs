@@ -46,6 +46,7 @@
             dgvLayanan.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             dgvLayanan.Size = new Size(544, 300);
             dgvLayanan.TabIndex = 0;
+            dgvLayanan.CellContentClick += dgvLayanan_CellContentClick;
             // 
             // lblLayanan
             // 
