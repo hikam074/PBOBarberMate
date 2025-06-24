@@ -32,10 +32,8 @@ namespace PBOBarberMate.View.Layanan
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
-
             _layananService = new LayananService(new LayananRepository());
 
-            
             this.Load += FormLayanan_Load;
         }
         private void FormLayanan_Load(object sender, EventArgs e)
@@ -80,10 +78,7 @@ namespace PBOBarberMate.View.Layanan
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            //FormTambahLayanan formTambahLayanan = new FormTambahLayanan();
-            //LoadDataLayanan();
-            //formTambahLayanan.ShowDialog();
-            //LoadDataLayanan();
+            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_mainApp, _akunService, _sessionService), "Tambah Layanan");
         }
     }
 }

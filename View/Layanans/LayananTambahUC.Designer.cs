@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate.View
+﻿namespace PBOBarberMate.View.Layanan
 {
-    partial class FormTambahLayanan
+    partial class LayananTambahUC
     {
         /// <summary>
         /// Required designer variable.
@@ -31,29 +31,32 @@
             label1 = new Label();
             btnCancel = new Button();
             btnAdd = new Button();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
+            tbxHargaLayanan = new TextBox();
+            tbxNamaLayanan = new TextBox();
             lblHarga = new Label();
             lblNamaLayanan = new Label();
+            gbxLayananAdd = new GroupBox();
+            gbxLayananAdd.SuspendLayout();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold);
-            label1.Location = new Point(312, 53);
+            label1.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
+            label1.Location = new Point(43, 34);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(357, 58);
+            label1.Size = new Size(239, 39);
             label1.TabIndex = 0;
             label1.Text = "TAMBAHKAN LAYANAN";
             // 
             // btnCancel
             // 
+            btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancel.BackColor = SystemColors.Control;
             btnCancel.Font = new Font("Bahnschrift Condensed", 11.25F);
-            btnCancel.ForeColor = Color.FromArgb(44, 62, 80);
-            btnCancel.Location = new Point(12, 450);
+            btnCancel.ForeColor = Color.Black;
+            btnCancel.Location = new Point(9, 105);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(75, 39);
             btnCancel.TabIndex = 23;
@@ -63,10 +66,12 @@
             // 
             // btnAdd
             // 
+            btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdd.BackColor = SystemColors.Control;
+            btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
-            btnAdd.ForeColor = Color.FromArgb(44, 62, 80);
-            btnAdd.Location = new Point(857, 450);
+            btnAdd.ForeColor = Color.Black;
+            btnAdd.Location = new Point(394, 105);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 39);
             btnAdd.TabIndex = 22;
@@ -74,27 +79,29 @@
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
-            // textBox2
+            // tbxHargaLayanan
             // 
-            textBox2.Location = new Point(285, 296);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(497, 23);
-            textBox2.TabIndex = 18;
-            textBox2.TextChanged += textBox2_TextChanged;
+            tbxHargaLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxHargaLayanan.Location = new Point(90, 54);
+            tbxHargaLayanan.Name = "tbxHargaLayanan";
+            tbxHargaLayanan.Size = new Size(379, 23);
+            tbxHargaLayanan.TabIndex = 18;
+            tbxHargaLayanan.TextChanged += tbxHargaLayanan_TextChanged;
             // 
-            // textBox1
+            // tbxNamaLayanan
             // 
-            textBox1.Location = new Point(285, 192);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(497, 23);
-            textBox1.TabIndex = 17;
-            textBox1.TextChanged += textBox1_TextChanged;
+            tbxNamaLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxNamaLayanan.Location = new Point(90, 19);
+            tbxNamaLayanan.Name = "tbxNamaLayanan";
+            tbxNamaLayanan.Size = new Size(379, 23);
+            tbxNamaLayanan.TabIndex = 17;
+            tbxNamaLayanan.TextChanged += tbxNamaLayanan_TextChanged;
             // 
             // lblHarga
             // 
             lblHarga.AutoSize = true;
             lblHarga.Font = new Font("Bahnschrift Condensed", 11.25F);
-            lblHarga.Location = new Point(184, 296);
+            lblHarga.Location = new Point(6, 54);
             lblHarga.Name = "lblHarga";
             lblHarga.Size = new Size(37, 18);
             lblHarga.TabIndex = 13;
@@ -104,30 +111,39 @@
             // 
             lblNamaLayanan.AutoSize = true;
             lblNamaLayanan.Font = new Font("Bahnschrift Condensed", 11.25F);
-            lblNamaLayanan.Location = new Point(184, 192);
+            lblNamaLayanan.Location = new Point(6, 19);
             lblNamaLayanan.Name = "lblNamaLayanan";
             lblNamaLayanan.Size = new Size(78, 18);
             lblNamaLayanan.TabIndex = 12;
             lblNamaLayanan.Text = "Nama layanan";
             // 
-            // FormTambahLayanan
+            // gbxLayananAdd
+            // 
+            gbxLayananAdd.Controls.Add(lblNamaLayanan);
+            gbxLayananAdd.Controls.Add(btnAdd);
+            gbxLayananAdd.Controls.Add(btnCancel);
+            gbxLayananAdd.Controls.Add(tbxNamaLayanan);
+            gbxLayananAdd.Controls.Add(lblHarga);
+            gbxLayananAdd.Controls.Add(tbxHargaLayanan);
+            gbxLayananAdd.Location = new Point(133, 140);
+            gbxLayananAdd.Name = "gbxLayananAdd";
+            gbxLayananAdd.Size = new Size(475, 150);
+            gbxLayananAdd.TabIndex = 24;
+            gbxLayananAdd.TabStop = false;
+            // 
+            // LayananTambahUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Control;
-            ClientSize = new Size(944, 501);
-            Controls.Add(btnCancel);
-            Controls.Add(btnAdd);
-            Controls.Add(textBox2);
-            Controls.Add(textBox1);
-            Controls.Add(lblHarga);
-            Controls.Add(lblNamaLayanan);
+            Controls.Add(gbxLayananAdd);
             Controls.Add(label1);
-            Margin = new Padding(2, 2, 2, 2);
-            Name = "FormTambahLayanan";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormTambahLayanan";
+            Margin = new Padding(2);
+            Name = "LayananTambahUC";
+            Size = new Size(744, 451);
             Load += FormTambahLayanan_Load;
+            gbxLayananAdd.ResumeLayout(false);
+            gbxLayananAdd.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -137,9 +153,10 @@
         private Label label1;
         private Button btnCancel;
         private Button btnAdd;
-        private TextBox textBox2;
-        private TextBox textBox1;
+        private TextBox tbxHargaLayanan;
+        private TextBox tbxNamaLayanan;
         private Label lblHarga;
         private Label lblNamaLayanan;
+        private GroupBox gbxLayananAdd;
     }
 }

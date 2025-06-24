@@ -29,8 +29,8 @@
     <Compile Update="View\Layanans\LayananUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Layanans\FormTambahLayanan.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Layanans\LayananTambahUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\Auth\LoginUC.cs">
       <SubType>UserControl</SubType>

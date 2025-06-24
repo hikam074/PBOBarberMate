@@ -26,7 +26,7 @@ namespace PBOBarberMate.View.Homepages
             _sessionService = sessionService;
             _mainApp = mainApp;
             // Muat konten default saat Homepage Admin dimuat (misal, tampilan menu utama)
-            LoadFeatureContent(new AdminDashboardUC(_akunService, _sessionService, _mainApp, this));
+            //LoadFeatureContent(new AdminDashboardUC(_akunService, _sessionService, _mainApp, this));
             // ubah teks header
             lblHeaderMenu.Text = "Halaman Utama";
             // ubah teks profil
@@ -68,7 +68,7 @@ namespace PBOBarberMate.View.Homepages
             btnProfil.BringToFront();
         }
         // METHOD HEADER RESPONSIF
-        private void AdjustHeaderPosition()
+        public void AdjustHeaderPosition()
         {
             lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2;
         }
@@ -162,13 +162,7 @@ namespace PBOBarberMate.View.Homepages
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            LoadFeatureContent(new LayananUC(_akunService, _sessionService, _mainApp));
-            // ubah teks header
-            lblHeaderMenu.Text = "Layanan";
-            // posisikan ulang header
-            AdjustHeaderPosition();
-
-            HideProfileBox();
+            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp), "Layanan");
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {
