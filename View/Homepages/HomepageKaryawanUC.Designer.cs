@@ -144,9 +144,9 @@ partial class HomepageKaryawanUC
         lblHeaderMenu.ForeColor = Color.White;
         lblHeaderMenu.Location = new Point(442, 13);
         lblHeaderMenu.Name = "lblHeaderMenu";
-        lblHeaderMenu.Size = new Size(87, 23);
+        lblHeaderMenu.Size = new Size(13, 23);
         lblHeaderMenu.TabIndex = 0;
-        lblHeaderMenu.Text = "Nama_menu";
+        lblHeaderMenu.Text = ".";
         lblHeaderMenu.TextAlign = ContentAlignment.MiddleLeft;
         // 
         // lblHomepageGreet

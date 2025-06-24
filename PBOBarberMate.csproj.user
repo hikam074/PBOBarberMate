@@ -5,6 +5,12 @@
     <Compile Update="View\Dashboard\AdminDashboardUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="View\Dashboard\CustomerDashboardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="View\Dashboard\KaryawanDashboardUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="View\Homepages\HomepageAdminUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

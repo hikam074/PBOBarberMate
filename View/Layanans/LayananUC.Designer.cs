@@ -36,21 +36,22 @@
             // 
             // dgvLayanan
             // 
+            dgvLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvLayanan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLayanan.BackgroundColor = SystemColors.Control;
             dgvLayanan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvLayanan.Location = new Point(43, 93);
+            dgvLayanan.Location = new Point(100, 100);
             dgvLayanan.Margin = new Padding(2);
             dgvLayanan.Name = "dgvLayanan";
             dgvLayanan.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dgvLayanan.Size = new Size(684, 340);
+            dgvLayanan.Size = new Size(544, 300);
             dgvLayanan.TabIndex = 0;
             // 
             // lblLayanan
             // 
             lblLayanan.AutoSize = true;
             lblLayanan.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblLayanan.Location = new Point(43, 34);
+            lblLayanan.Location = new Point(100, 40);
             lblLayanan.Margin = new Padding(2, 0, 2, 0);
             lblLayanan.Name = "lblLayanan";
             lblLayanan.Size = new Size(201, 39);
@@ -59,10 +60,11 @@
             // 
             // btnTambah
             // 
+            btnTambah.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTambah.BackColor = SystemColors.Control;
             btnTambah.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnTambah.ForeColor = Color.FromArgb(44, 62, 80);
-            btnTambah.Location = new Point(652, 34);
+            btnTambah.Location = new Point(569, 40);
             btnTambah.Margin = new Padding(2);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(75, 39);

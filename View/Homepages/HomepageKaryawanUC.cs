@@ -62,7 +62,7 @@ namespace PBOBarberMate.View.Homepages
             btnProfil.BringToFront();
         }
         // METHOD HEADER RESPONSIF
-        private void AdjustHeaderPosition()
+        public void AdjustHeaderPosition()
         {
             lblHeaderMenu.Left = (headerPanel.Width - lblHeaderMenu.Width) / 2;
         }

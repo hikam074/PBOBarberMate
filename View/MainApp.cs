@@ -8,6 +8,7 @@ using PBOBarberMate.App.Model;
 
 using PBOBarberMate.View.Homepages;
 using PBOBarberMate.View.Auth;
+using PBOBarberMate.View.Dashboard;
 //using PBOBarberMate.View.FormProfil;
 
 
@@ -80,14 +81,17 @@ namespace PBOBarberMate.View
             if (userRole == AkunRole.admin)
             {
                 LoadContent(GetHomepageInstance(AkunRole.admin));
+                LoadFeatureIntoActiveHomepageContent(new AdminDashboardUC(_akunService, _sessionService, this, _adminHomepageInstance), "Halaman Utama");
             }
             else if (userRole == AkunRole.karyawan)
             {
                 LoadContent(GetHomepageInstance(AkunRole.karyawan));
+                LoadFeatureIntoActiveHomepageContent(new KaryawanDashboardUC(_akunService, _sessionService, this, _karyawanHomepageInstance), "Halaman Utama");
             }
             else if (userRole == AkunRole.customer)
             {
                 LoadContent(GetHomepageInstance(AkunRole.customer));
+                LoadFeatureIntoActiveHomepageContent(new CustomerDashboardUC(_akunService, _sessionService, this, _customerHomepageInstance), "Halaman Utama");
             }
             else
             {

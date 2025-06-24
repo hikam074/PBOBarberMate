@@ -51,11 +51,11 @@
             pictbxReservasi = new PictureBox();
             btnReservasi = new Button();
             contentAreaPanel = new Panel();
-            lblWelcome = new Label();
-            lklbMore = new LinkLabel();
+            gbxReservasiSoon = new GroupBox();
             lblJadwalMingguIni = new Label();
             dgvJadwalMingguIni = new DataGridView();
-            gbxReservasiSoon = new GroupBox();
+            lklbMore = new LinkLabel();
+            lblWelcome = new Label();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictboxProfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
@@ -66,8 +66,8 @@
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).BeginInit();
             contentAreaPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).BeginInit();
             gbxReservasiSoon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).BeginInit();
             SuspendLayout();
             // 
             // headerPanel
@@ -136,9 +136,9 @@
             lblHeaderMenu.ForeColor = Color.White;
             lblHeaderMenu.Location = new Point(442, 13);
             lblHeaderMenu.Name = "lblHeaderMenu";
-            lblHeaderMenu.Size = new Size(87, 23);
+            lblHeaderMenu.Size = new Size(13, 23);
             lblHeaderMenu.TabIndex = 0;
-            lblHeaderMenu.Text = "Nama_menu";
+            lblHeaderMenu.Text = ".";
             lblHeaderMenu.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // lblHomepageGreet
@@ -377,28 +377,16 @@
             contentAreaPanel.Size = new Size(744, 451);
             contentAreaPanel.TabIndex = 12;
             // 
-            // lblWelcome
+            // gbxReservasiSoon
             // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
-            lblWelcome.Location = new Point(19, 18);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(306, 39);
-            lblWelcome.TabIndex = 7;
-            lblWelcome.Text = "Selamat Datang, Pengguna!";
-            // 
-            // lklbMore
-            // 
-            lklbMore.Anchor = AnchorStyles.Top;
-            lklbMore.AutoSize = true;
-            lklbMore.Location = new Point(493, 145);
-            lklbMore.Name = "lklbMore";
-            lklbMore.Size = new Size(112, 15);
-            lklbMore.TabIndex = 14;
-            lklbMore.TabStop = true;
-            lklbMore.Text = "Lihat lebih banyak...";
-            lklbMore.LinkClicked += lklbMore_LinkClicked;
+            gbxReservasiSoon.Controls.Add(lblJadwalMingguIni);
+            gbxReservasiSoon.Controls.Add(dgvJadwalMingguIni);
+            gbxReservasiSoon.Controls.Add(lklbMore);
+            gbxReservasiSoon.Location = new Point(19, 80);
+            gbxReservasiSoon.Name = "gbxReservasiSoon";
+            gbxReservasiSoon.Size = new Size(633, 178);
+            gbxReservasiSoon.TabIndex = 15;
+            gbxReservasiSoon.TabStop = false;
             // 
             // lblJadwalMingguIni
             // 
@@ -423,16 +411,28 @@
             dgvJadwalMingguIni.Size = new Size(595, 97);
             dgvJadwalMingguIni.TabIndex = 12;
             // 
-            // gbxReservasiSoon
+            // lklbMore
             // 
-            gbxReservasiSoon.Controls.Add(lblJadwalMingguIni);
-            gbxReservasiSoon.Controls.Add(dgvJadwalMingguIni);
-            gbxReservasiSoon.Controls.Add(lklbMore);
-            gbxReservasiSoon.Location = new Point(19, 80);
-            gbxReservasiSoon.Name = "gbxReservasiSoon";
-            gbxReservasiSoon.Size = new Size(633, 178);
-            gbxReservasiSoon.TabIndex = 15;
-            gbxReservasiSoon.TabStop = false;
+            lklbMore.Anchor = AnchorStyles.Top;
+            lklbMore.AutoSize = true;
+            lklbMore.Location = new Point(493, 145);
+            lklbMore.Name = "lklbMore";
+            lklbMore.Size = new Size(112, 15);
+            lklbMore.TabIndex = 14;
+            lklbMore.TabStop = true;
+            lklbMore.Text = "Lihat lebih banyak...";
+            lklbMore.LinkClicked += lklbMore_LinkClicked;
+            // 
+            // lblWelcome
+            // 
+            lblWelcome.AutoSize = true;
+            lblWelcome.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
+            lblWelcome.Location = new Point(19, 18);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(306, 39);
+            lblWelcome.TabIndex = 7;
+            lblWelcome.Text = "Selamat Datang, Pengguna!";
             // 
             // HomepageCustomerUC
             // 
@@ -458,9 +458,9 @@
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).EndInit();
             contentAreaPanel.ResumeLayout(false);
             contentAreaPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).EndInit();
             gbxReservasiSoon.ResumeLayout(false);
             gbxReservasiSoon.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).EndInit();
             ResumeLayout(false);
         }
 

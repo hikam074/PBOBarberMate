@@ -43,12 +43,12 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
-            label1.Location = new Point(43, 34);
+            label1.Location = new Point(100, 40);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(239, 39);
+            label1.Size = new Size(288, 39);
             label1.TabIndex = 0;
-            label1.Text = "TAMBAHKAN LAYANAN";
+            label1.Text = "Tambahkan Layanan Baru";
             // 
             // btnCancel
             // 
@@ -71,7 +71,7 @@
             btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnAdd.ForeColor = Color.Black;
-            btnAdd.Location = new Point(394, 105);
+            btnAdd.Location = new Point(463, 105);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(75, 39);
             btnAdd.TabIndex = 22;
@@ -84,7 +84,7 @@
             tbxHargaLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tbxHargaLayanan.Location = new Point(90, 54);
             tbxHargaLayanan.Name = "tbxHargaLayanan";
-            tbxHargaLayanan.Size = new Size(379, 23);
+            tbxHargaLayanan.Size = new Size(448, 23);
             tbxHargaLayanan.TabIndex = 18;
             tbxHargaLayanan.TextChanged += tbxHargaLayanan_TextChanged;
             // 
@@ -93,7 +93,7 @@
             tbxNamaLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             tbxNamaLayanan.Location = new Point(90, 19);
             tbxNamaLayanan.Name = "tbxNamaLayanan";
-            tbxNamaLayanan.Size = new Size(379, 23);
+            tbxNamaLayanan.Size = new Size(448, 23);
             tbxNamaLayanan.TabIndex = 17;
             tbxNamaLayanan.TextChanged += tbxNamaLayanan_TextChanged;
             // 
@@ -103,9 +103,9 @@
             lblHarga.Font = new Font("Bahnschrift Condensed", 11.25F);
             lblHarga.Location = new Point(6, 54);
             lblHarga.Name = "lblHarga";
-            lblHarga.Size = new Size(37, 18);
+            lblHarga.Size = new Size(62, 18);
             lblHarga.TabIndex = 13;
-            lblHarga.Text = "Harga";
+            lblHarga.Text = "Harga : Rp.";
             // 
             // lblNamaLayanan
             // 
@@ -119,15 +119,16 @@
             // 
             // gbxLayananAdd
             // 
+            gbxLayananAdd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             gbxLayananAdd.Controls.Add(lblNamaLayanan);
             gbxLayananAdd.Controls.Add(btnAdd);
             gbxLayananAdd.Controls.Add(btnCancel);
             gbxLayananAdd.Controls.Add(tbxNamaLayanan);
             gbxLayananAdd.Controls.Add(lblHarga);
             gbxLayananAdd.Controls.Add(tbxHargaLayanan);
-            gbxLayananAdd.Location = new Point(133, 140);
+            gbxLayananAdd.Location = new Point(100, 100);
             gbxLayananAdd.Name = "gbxLayananAdd";
-            gbxLayananAdd.Size = new Size(475, 150);
+            gbxLayananAdd.Size = new Size(544, 150);
             gbxLayananAdd.TabIndex = 24;
             gbxLayananAdd.TabStop = false;
             // 
@@ -135,7 +136,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.Control;
+            BackColor = Color.White;
             Controls.Add(gbxLayananAdd);
             Controls.Add(label1);
             Margin = new Padding(2);
