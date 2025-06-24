@@ -22,6 +22,7 @@ namespace PBOBarberMate.View.Layanan
         private readonly AkunService _akunService;
         private readonly SessionService _sessionService;
         private readonly MainApp _mainApp;
+
         private readonly LayananService _layananService;
 
 
@@ -31,22 +32,31 @@ namespace PBOBarberMate.View.Layanan
             _akunService = akunService;
             _sessionService = sessionService;
             _mainApp = mainApp;
+
             _layananService = new LayananService(new LayananRepository());
 
             EnableButton();
             this.Load += FormLayanan_Load;
         }
         private void FormLayanan_Load(object sender, EventArgs e)
-        {            
-            //debug
-            //List<M_Layanan> layananData = _layananService.getAllLayanan();
-            //MessageBox.Show(layananData.Count.ToString());
-            LoadDgv();
-            // devug
-            //M_Layanan a = new M_Layanan( );
-            //a = _layananService.getLayananById(1);
-            //MessageBox.Show(a.ToString());
+        {
+            List<M_Layanan> daftarLayanan = _layananService.getAllLayanan();
+            MessageBox.Show(daftarLayanan.Count.ToString());
+            DataTable dtLayanan = ConvertLayananListToDataTable(daftarLayanan);
+            dgvLayanan.DataSource = dtLayanan;
+        }
+        private DataTable ConvertLayananListToDataTable(List<M_Layanan> layananList)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("ID Layanan", typeof(int));
+            dt.Columns.Add("Nama Layanan", typeof(string));
+            dt.Columns.Add("Harga", typeof(int));
+            foreach (M_Layanan layanan in layananList)
+            {
+                dt.Rows.Add(layanan.id_layanan, layanan.nama_layanan, layanan.harga);
+            }
 
+            return dt;
         }
 
         private void EnableButton()
@@ -80,43 +90,35 @@ namespace PBOBarberMate.View.Layanan
                 // Mengambil data layanan dari service
                 List<M_Layanan> layananData = _layananService.getAllLayanan();
 
-                // Matikan AutoGenerateColumns agar kita bisa mengontrol kolom secara manual.
-                // Ini penting jika Anda ingin urutan kolom, teks header, atau visibilitas khusus.
                 dgvLayanan.AutoGenerateColumns = false;
-
-                // Bersihkan kolom yang ada (jika ada sisa dari AutoGenerateColumns sebelumnya atau desain)
                 dgvLayanan.Columns.Clear();
 
-                // Tambahkan kolom "No" secara manual
                 DataGridViewTextBoxColumn nomorColumn = new DataGridViewTextBoxColumn();
                 nomorColumn.HeaderText = "No";
                 nomorColumn.Name = "nomor";
-                nomorColumn.DataPropertyName = "RowNumber"; // Tidak ada properti ini di M_Layanan, akan diisi manual
+                // DataPropertyName tidak perlu diset jika Anda mengisi secara manual
                 nomorColumn.ReadOnly = true;
                 dgvLayanan.Columns.Add(nomorColumn);
 
-                // Tambahkan kolom data
                 DataGridViewTextBoxColumn namaLayananColumn = new DataGridViewTextBoxColumn();
                 namaLayananColumn.HeaderText = "Nama Layanan";
                 namaLayananColumn.Name = "nama_layanan";
-                namaLayananColumn.DataPropertyName = "nama_layanan"; // Sesuaikan dengan nama properti di M_Layanan
+                namaLayananColumn.DataPropertyName = "nama_layanan";
                 dgvLayanan.Columns.Add(namaLayananColumn);
 
                 DataGridViewTextBoxColumn hargaColumn = new DataGridViewTextBoxColumn();
                 hargaColumn.HeaderText = "Harga";
                 hargaColumn.Name = "harga";
-                hargaColumn.DataPropertyName = "harga"; // Sesuaikan dengan nama properti di M_Layanan
+                hargaColumn.DataPropertyName = "harga";
                 dgvLayanan.Columns.Add(hargaColumn);
 
-                // Tambahkan kolom ID tersembunyi
                 DataGridViewTextBoxColumn idLayananColumn = new DataGridViewTextBoxColumn();
                 idLayananColumn.HeaderText = "ID Layanan";
                 idLayananColumn.Name = "id_layanan";
                 idLayananColumn.DataPropertyName = "id_layanan";
-                idLayananColumn.Visible = false; // Sembunyikan ID
+                idLayananColumn.Visible = false;
                 dgvLayanan.Columns.Add(idLayananColumn);
 
-                // Mengikat List<M_Layanan> ke DataGridView
                 dgvLayanan.DataSource = layananData;
 
                 // Isi kolom "No"
@@ -125,7 +127,7 @@ namespace PBOBarberMate.View.Layanan
                     dgvLayanan.Rows[i].Cells["nomor"].Value = (i + 1).ToString();
                 }
 
-                // Tambahkan kolom tombol "Edit" dan "Delete" hanya jika belum ada
+                // Tambahkan kolom tombol "Edit" dan "Delete" hanya jika admin yang login
                 if (_sessionService.CurrentUserRole == AkunRole.admin)
                 {
                     if (dgvLayanan.Columns["Update"] == null)
@@ -165,7 +167,6 @@ namespace PBOBarberMate.View.Layanan
                     dgvLayanan.Columns.Add(LihatUlasanColumn);
                 }
 
-                // Atur properti DataGridView
                 dgvLayanan.AllowUserToAddRows = false;
                 dgvLayanan.RowHeadersVisible = false;
                 dgvLayanan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;

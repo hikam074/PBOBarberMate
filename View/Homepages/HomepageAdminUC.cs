@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Xml.Linq;
 
 using PBOBarberMate.App.Services;
+using PBOBarberMate.App.Model;
 
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;

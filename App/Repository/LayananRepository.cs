@@ -67,7 +67,7 @@ namespace PBOBarberMate.App.Repository
         // METHOD repo INSERT untuk membuat layanan
         public int createLayanan(M_Layanan layanan)
         {
-            string query = "INSERT INTO layanan (nama_layanan, harga VALUES (@nama, @harga) RETURNING id_akun;";
+            string query = "INSERT INTO layanan (nama_layanan, harga VALUES (@nama, @harga) RETURNING id_layanan;";
             NpgsqlParameter[] parameters = {
                 new NpgsqlParameter("@nama", layanan.nama_layanan),
                 new NpgsqlParameter("@harga", layanan.harga)
