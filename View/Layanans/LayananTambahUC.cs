@@ -22,35 +22,29 @@ namespace PBOBarberMate.View.Layanan
         public readonly bool _isEditMode;
         public readonly M_Layanan _layananDiedit;
 
-        private readonly MainApp _mainApp;
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
+        private readonly CommonAppServices _commonServices;
 
         private readonly LayananService _layananService;
 
-        public LayananTambahUC(MainApp mainApp, AkunService akunService, SessionService sessionService, LayananService layananService)
+        public LayananTambahUC(CommonAppServices commonServices, LayananService layananService)
         {
             InitializeComponent();
 
-            _mainApp = mainApp;
-            _akunService = akunService;
-            _sessionService = sessionService;
+            _commonServices = commonServices;
 
             _layananService = layananService;
 
             _isEditMode = false;
 
-            SetButtonlHoverEvents(btnCancel, pictbxBack);
-            SetButtonlHoverEvents(btnAdd);
+            SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
+            SetAddButtonlHoverEvents(btnAdd, pictbxAdd);
         }
 
-        public LayananTambahUC(MainApp mainApp, AkunService akunService, SessionService sessionService, LayananService layananService, M_Layanan layananDiedit)
+        public LayananTambahUC(CommonAppServices commonServices, LayananService layananService, M_Layanan layananDiedit)
         {
             InitializeComponent();
 
-            _mainApp = mainApp;
-            _akunService = akunService;
-            _sessionService = sessionService;
+            _commonServices = commonServices;
 
             _layananService = layananService;
 
@@ -62,25 +56,31 @@ namespace PBOBarberMate.View.Layanan
             tbxHargaLayanan.Text = layananDiedit.harga.ToString();
             btnAdd.Text = "Simpan Perubahan";
             lblTambahLayanan.Text = "Ubah Layanan " + layananDiedit.nama_layanan;
-            SetButtonlHoverEvents(btnCancel, pictbxBack);
-            SetButtonlHoverEvents(btnAdd);
+            SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
+            SetAddButtonlHoverEvents(btnAdd, pictbxAdd);
         }
 
-        private void SetButtonlHoverEvents(Control button, Control relatedControl)
+        private void SetCancelButtonlHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.Orange; relatedControl.BackColor = Color.Orange; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.WhiteSmoke; relatedControl.BackColor = Color.WhiteSmoke; };
         }
-        private void SetButtonlHoverEvents(Control button)
+        private void SetAddButtonlHoverEvents(Control button, Control relatedControl)
         {
-            button.MouseEnter += (s, e) => { button.BackColor = Color.Green; button.ForeColor = Color.White; };
-            button.MouseLeave += (s, e) => { button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black; };
+            button.MouseEnter += (s, e) => { 
+                button.BackColor = Color.Green; button.ForeColor = Color.White;
+                relatedControl.BackColor = Color.Green;// relatedControl.image
+            };
+            button.MouseLeave += (s, e) => { 
+                button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black;
+                relatedControl.BackColor = Color.WhiteSmoke;
+            };
         }
 
         // KEMBALI KE LIHAT LAYANAN
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _layananService), "Layanan");
         }
 
 
@@ -134,7 +134,7 @@ namespace PBOBarberMate.View.Layanan
                 }
                 if (berhasil)
                 {
-                    _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
+                    _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _layananService), "Layanan");
                 }
             }
 

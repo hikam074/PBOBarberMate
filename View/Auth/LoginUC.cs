@@ -1,6 +1,8 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+
+
 using PBOBarberMate.App.Services; // Untuk AkunService dan SessionService
 using PBOBarberMate.App.Model;    // Untuk AkunRole
 using PBOBarberMate.View;         // Untuk MainApplicationForm dan FormHomepageAdmin dll.
@@ -9,20 +11,15 @@ namespace PBOBarberMate.View.Auth
 {
     public partial class LoginUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainForm; // Referensi ke form utama
+        private readonly CommonAppServices _commonServices;
 
-        public LoginUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
+        public LoginUC(CommonAppServices commonServices)
         {
             InitializeComponent();
-
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainForm = mainForm; // Simpan referensi form utama
+            _commonServices = commonServices;
 
             tbxLoginPass.PasswordChar = '*';
-            _akunService.Logout();
+            _commonServices.AkunServiceInstance.Logout();
             UpdateLoginButtonState();
             this.Resize += new EventHandler(FormLogin_Resize);
         }
@@ -49,12 +46,12 @@ namespace PBOBarberMate.View.Auth
 
             try
             {
-                bool loginBerhasil = _akunService.Login(email, password);
+                bool loginBerhasil = _commonServices.AkunServiceInstance.Login(email, password);
 
                 if (loginBerhasil)
                 {
                     // redirect ke homepage
-                    _mainForm.RedirectToHomepage();
+                    _commonServices.MainAppInstance.RedirectToHomepage();
                 }
                 else
                 {
@@ -74,7 +71,7 @@ namespace PBOBarberMate.View.Auth
         private void lklblLoginSignupRedirect_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // redirect ke signup
-            _mainForm.LoadContent(new SignupUC(_mainForm.GetAkunService(), _mainForm.GetSessionService(), _mainForm));
+            _commonServices.MainAppInstance.LoadContent(new SignupUC(_commonServices));
         }
 
         private void btnLoginSubmit_MouseEnter(object sender, EventArgs e)

@@ -19,18 +19,14 @@ namespace PBOBarberMate.View.Layanan
 {
     public partial class LayananUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp;
+        private readonly CommonAppServices _commonServices;
         private readonly LayananService _layananService;
 
 
-        public LayananUC(AkunService akunService, SessionService sessionService, MainApp mainApp, LayananService layananService)
+        public LayananUC(CommonAppServices commonServices, LayananService layananService)
         {
             InitializeComponent();
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainApp = mainApp;
+            _commonServices = commonServices;
             _layananService = layananService;
 
             this.Load += FormLayanan_Load;
@@ -90,15 +86,15 @@ namespace PBOBarberMate.View.Layanan
         private void EnableButtonAdd()
         {
             // atur tombol add layanan
-            btnTambah.Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
+            btnTambah.Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
             // atur tombol edit hapus layanan
             if (dgvLayanan.Columns.Contains("btnUbah"))
             {
-                dgvLayanan.Columns["btnUbah"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
+                dgvLayanan.Columns["btnUbah"].Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
             }
             if (dgvLayanan.Columns.Contains("btnHapus"))
             {
-                dgvLayanan.Columns["btnHapus"].Visible = (_sessionService.CurrentUserRole == AkunRole.admin);
+                dgvLayanan.Columns["btnHapus"].Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
             }
         }
 
@@ -107,7 +103,7 @@ namespace PBOBarberMate.View.Layanan
         private void btnTambah_Click(object sender, EventArgs e)
         {
             // FALSE KARENA CREATE (BKN EDIT)
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_mainApp, _akunService, _sessionService, _layananService), "Tambah Layanan");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_commonServices, _layananService), "Tambah Layanan");
         }
 
         // EVENT HANDLER TOMBOL UBAH DAN HAPUS
@@ -128,7 +124,7 @@ namespace PBOBarberMate.View.Layanan
                 if (layananUntukDiedit != null)
                 {
                     // Muat LayananTambahUC dalam mode edit dengan data layanan
-                    _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_mainApp, _akunService, _sessionService, _layananService, layananUntukDiedit), "Ubah Layanan");
+                    _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_commonServices, _layananService, layananUntukDiedit), "Ubah Layanan");
                 }
                 else
                 {

@@ -9,17 +9,12 @@ namespace PBOBarberMate.View.Auth
 {
     public partial class SignupUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainForm; // Referensi ke form utama
+        private readonly CommonAppServices _commonServices;
         
-        public SignupUC(AkunService akunService, SessionService sessionService, MainApp mainForm)
+        public SignupUC(CommonAppServices commonServices)
         {
             InitializeComponent();
-
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainForm = mainForm; // Simpan referensi form utama
+            _commonServices = commonServices;
 
             // nonaktifkan btnSignupSubmit bila yang diisi belum lengkap
             if (tbxSignupEmail.Text == "" || tbxSignupNama.Text == "" || tbxSignupPass.Text == "")
@@ -36,7 +31,7 @@ namespace PBOBarberMate.View.Auth
         private void lklblLoginSignupRedirect_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             // mengarahkan ke FormLogin
-            _mainForm.LoadContent(new LoginUC(_mainForm.GetAkunService(), _mainForm.GetSessionService(), _mainForm));
+            _commonServices.MainAppInstance.LoadContent(new LoginUC(_commonServices ));
         }
 
         private void tbxSignupEmail_TextChanged(object sender, EventArgs e)
@@ -87,12 +82,12 @@ namespace PBOBarberMate.View.Auth
 
             try
             {
-                bool signupBerhasil = _akunService.Signup(nama, email, password);
+                bool signupBerhasil = _commonServices.AkunServiceInstance.Signup(nama, email, password);
 
                 if (signupBerhasil)
                 {
                     // redirect ke homepage
-                    _mainForm.RedirectToHomepage();
+                    _commonServices.MainAppInstance.RedirectToHomepage();
                 }
                 else
                 {

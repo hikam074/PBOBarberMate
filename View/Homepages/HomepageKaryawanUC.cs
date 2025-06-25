@@ -13,28 +13,16 @@ namespace PBOBarberMate.View.Homepages
 {
     public partial class HomepageKaryawanUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp;
+        private readonly CommonAppServices _commonServices;
+        private readonly CommonKaryawanServices _commonKaryawanServices;
 
-        private readonly LayananService _layananService;
-
-        public HomepageKaryawanUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
+        public HomepageKaryawanUC(CommonAppServices commonServices)
         {
             InitializeComponent();
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainApp = mainApp;
+            _commonServices = commonServices;
 
-            _layananService = new LayananService(new LayananRepository());
-
-            // ubah teks header
-            lblHeaderMenu.Text = "Halaman Utama";
-            // ubah teks profil
-            lblProfilRole.Text = _sessionService.CurrentUserRole.ToString();
-            lblProfilNama.Text = _sessionService.CurrentUserName;
-            lblProfilEmail.Text = _sessionService.CurrentUserEmail;
-            btnProfil.Text = _sessionService.CurrentUserName;
+            LayananService _layananService = new LayananService(new LayananRepository());
+            _commonKaryawanServices = new CommonKaryawanServices(_layananService);
 
             // Sidebar hover logic
             SetButtonHoverEvents();
@@ -48,6 +36,11 @@ namespace PBOBarberMate.View.Homepages
         // METHOD DEKLAR ALL HOVER
         private void SetButtonHoverEvents()
         {
+            // SET UI
+            lblProfilRole.Text = _commonServices.SessionServiceInstance.CurrentUserRole.ToString();
+            lblProfilNama.Text = _commonServices.SessionServiceInstance.CurrentUserName;
+            lblProfilEmail.Text = _commonServices.SessionServiceInstance.CurrentUserEmail;
+            btnProfil.Text = _commonServices.SessionServiceInstance.CurrentUserName;
             // HOVER SIDEBAR
             SetSidebarHoverEvents(btnPresensi, pictbxPresensi);
             SetSidebarHoverEvents(btnPerforma, pictbxPerforma);
@@ -95,13 +88,13 @@ namespace PBOBarberMate.View.Homepages
             if (gbxShowProfile.Visible)
             {
                 gbxShowProfile.Visible = false;
-                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+                _commonServices.MainAppInstance.DisableGlobalClickListener(); // Disable listener when profile box is hidden
             }
         }
         // REDIRECT HOMEPAGE
         private void pictboxHome_Click(object sender, EventArgs e)
         {
-            _mainApp.RedirectToHomepage();
+            _commonServices.MainAppInstance.RedirectToHomepage();
         }
         // SHOW GBXPROFIL
         private void btnProfil_Click(object sender, EventArgs e)
@@ -119,24 +112,24 @@ namespace PBOBarberMate.View.Homepages
                 );
 
                 gbxShowProfile.BringToFront();
-                _mainApp.EnableGlobalClickListener(gbxShowProfile);
+                _commonServices.MainAppInstance.EnableGlobalClickListener(gbxShowProfile);
             }
             else
             {
-                _mainApp.DisableGlobalClickListener();
+                _commonServices.MainAppInstance.DisableGlobalClickListener();
             }
         }
         // REDIRECT UBAH PROFIL
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.ShowUbahProfilForm();
+            _commonServices.MainAppInstance.ShowUbahProfilForm();
         }
         // LOGOUT
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.PerformLogout();
+            _commonServices.MainAppInstance.PerformLogout();
         }
         // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
         public void LoadFeatureContent(UserControl featureUC)
@@ -147,45 +140,9 @@ namespace PBOBarberMate.View.Homepages
         }
 
 
-
-
-        
-        // METHOD KETIKA LOAD HALAMAN
-        private void HomepageKaryawanUC_Load(object sender, EventArgs e)
-        { 
-            loadFormKaryawan(); 
-        }
-        public void loadFormKaryawan()
-        {
-            lblWelcome.Text = "Selamat Datang, " + _sessionService.CurrentUserName + " !";
-            // Assuming ShiftContext and PresensiContext will be refactored to use Repositories
-            // lblStatusShiftToday.Text = ShiftContext.getShiftByIDToday(_sessionService.CurrentUserId);
-            // string waktuPresensi = PresensiContext.isPresensiTodayExist(_sessionService.CurrentUserId);
-            // string adashift = ShiftContext.getShiftByIDToday(_sessionService.CurrentUserId);
-
-            // Placeholder logic for now, as contexts are commented out
-            string adashift = "Ada"; // Assume shift exists for now
-            string waktuPresensi = "N/A"; // Placeholder
-
-            if (adashift == "Ada")
-            {
-                lblStatusShiftToday.Text = "Ada";
-                btnLakukanPresensi.Enabled = true;
-            }
-            else
-            {
-                lblStatusShiftToday.Text = "Tidak Ada";
-                btnLakukanPresensi.Enabled = false;
-            }
-            lblStatusPresensiToday.Text = waktuPresensi;
-        }
-
-
-
-
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _commonKaryawanServices.LayananServiceInstance), "Layanan");
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {

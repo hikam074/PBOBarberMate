@@ -20,28 +20,16 @@ namespace PBOBarberMate.View.Homepages
 {
     public partial class HomepageCustomerUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp;
+        private readonly CommonAppServices _commonServices;
+        private readonly CommonCustomerServices _commonCustomerServices;
 
-        private readonly LayananService _layananService;
-
-        public HomepageCustomerUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
+        public HomepageCustomerUC(CommonAppServices commonServices)
         {
             InitializeComponent();
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainApp = mainApp;
+            _commonServices = commonServices;
 
-            _layananService = new LayananService(new LayananRepository());
-
-            // Set initial header and profile info
-            lblHeaderMenu.Text = "Halaman Utama";
-            lblProfilRole.Text = _sessionService.CurrentUserRole.ToString();
-            lblProfilNama.Text = _sessionService.CurrentUserName;
-            lblProfilEmail.Text = _sessionService.CurrentUserEmail;
-            btnProfil.Text = _sessionService.CurrentUserName;
-            lblWelcome.Text = "Selamat Datang, " + _sessionService.CurrentUserName + "!";
+            LayananService _layananService = new LayananService(new LayananRepository());
+            _commonCustomerServices = new CommonCustomerServices(_layananService);
 
             // Set hover events for buttons
             SetButtonHoverEvents();
@@ -54,6 +42,11 @@ namespace PBOBarberMate.View.Homepages
         // METHOD DEKLAR ALL HOVER
         private void SetButtonHoverEvents()
         {
+            // SET UI
+            lblProfilRole.Text = _commonServices.SessionServiceInstance.CurrentUserRole.ToString();
+            lblProfilNama.Text = _commonServices.SessionServiceInstance.CurrentUserName;
+            lblProfilEmail.Text = _commonServices.SessionServiceInstance.CurrentUserEmail;
+            btnProfil.Text = _commonServices.SessionServiceInstance.CurrentUserName;
             // HOVER SIDEBAR
             SetSidebarHoverEvents(btnReservasi, pictbxReservasi);
             SetSidebarHoverEvents(btnLihatReservasi, pictbxLihatReservasi);
@@ -100,13 +93,13 @@ namespace PBOBarberMate.View.Homepages
             if (gbxShowProfile.Visible)
             {
                 gbxShowProfile.Visible = false;
-                _mainApp.DisableGlobalClickListener();
+                _commonServices.MainAppInstance.DisableGlobalClickListener();
             }
         }
         // REDIRECT HOMEPAGE
         private void pictboxHome_Click(object sender, EventArgs e)
         {
-            _mainApp.RedirectToHomepage();
+            _commonServices.MainAppInstance.RedirectToHomepage();
         }
         // SHOW GBXPROFIL
         private void btnProfil_Click(object sender, EventArgs e)
@@ -124,24 +117,24 @@ namespace PBOBarberMate.View.Homepages
                 );
 
                 gbxShowProfile.BringToFront();
-                _mainApp.EnableGlobalClickListener(gbxShowProfile);
+                _commonServices.MainAppInstance.EnableGlobalClickListener(gbxShowProfile);
             }
             else
             {
-                _mainApp.DisableGlobalClickListener();
+                _commonServices.MainAppInstance.DisableGlobalClickListener();
             }
         }
         // REDIRECT UBAH PROFIL
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.ShowUbahProfilForm();
+            _commonServices.MainAppInstance.ShowUbahProfilForm();
         }
         // LOGOUT
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.PerformLogout();
+            _commonServices.MainAppInstance.PerformLogout();
         }
         // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
         public void LoadFeatureContent(UserControl featureUC)
@@ -153,72 +146,29 @@ namespace PBOBarberMate.View.Homepages
 
 
 
-
-        // METHOD KETIKA LOAD HALAMAN
-        private void HomepageCustomerUC_Load(object sender, EventArgs e)
-        {
-            //try
-            //{
-            //    // mengambil data dari db
-            //    //DataTable src = TabelContext.getReservasiMingguIni();
-            //    // membuat size kolom menjadi rata dan memenuhi tabel
-            //    dgvJadwalMingguIni.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            //    // membuat tabel responsif berdasarkan isi data
-            //    foreach (DataGridViewColumn column in dgvJadwalMingguIni.Columns)
-            //    {
-            //        column.Width = dgvJadwalMingguIni.Width / dgvJadwalMingguIni.Columns.Count;
-            //    }
-            //    // behaviour table
-            //    dgvJadwalMingguIni.ScrollBars = ScrollBars.None;
-            //    dgvJadwalMingguIni.AllowUserToAddRows = false;
-            //    dgvJadwalMingguIni.AllowUserToResizeColumns = false;
-            //    dgvJadwalMingguIni.AllowUserToResizeRows = false;
-            //    dgvJadwalMingguIni.RowHeadersVisible = false;
-            //    dgvJadwalMingguIni.ClearSelection();
-            //    dgvJadwalMingguIni.SelectionChanged += (s, e) =>
-            //    {
-            //        dgvJadwalMingguIni.ClearSelection();
-            //    };
-            //    // mengambil data dari variabel
-            //    dgvJadwalMingguIni.DataSource = src;
-
-            //    dgvJadwalMingguIni.Columns["tanggal"].HeaderText = "Tanggal";
-            //    dgvJadwalMingguIni.Columns["waktu"].HeaderText = "Waktu";
-            //    dgvJadwalMingguIni.Columns["pelayanan"].HeaderText = "Pelayanan";
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show($"Terjadi kesalahan [PBOBarberMate.View.FormHomepageCustomer.FormHomepageCustomer_Load] : {ex}");
-            //}
-        }
-
-
-
-
-
         private void btnReservasi_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            //_mainApp.LoadContent(new FormBuatReservasi()); // Assuming FormBuatReservasi can be loaded directly
+            //_commonServices.MainAppInstance.LoadContent(new FormBuatReservasi()); // Assuming FormBuatReservasi can be loaded directly
         }
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _commonCustomerServices.LayananServiceInstance), "Layanan");
         }
         private void btnLihatReservasi_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            //_mainApp.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
+            //_commonServices.MainAppInstance.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
         }
         private void btnUlasan_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            //_mainApp.LoadContent(new FormLihatPembayaranUntukUlasan()); // Assuming FormLihatPembayaranUntukUlasan can be loaded directly
+            //_commonServices.MainAppInstance.LoadContent(new FormLihatPembayaranUntukUlasan()); // Assuming FormLihatPembayaranUntukUlasan can be loaded directly
         }
         private void lklbMore_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             HideProfileBox();
-            //_mainApp.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
+            //_commonServices.MainAppInstance.LoadContent(new FormLihatReservasi()); // Assuming FormLihatReservasi can be loaded directly
         }
     }
 }

@@ -53,15 +53,6 @@ partial class HomepageKaryawanUC
         pictbxInventaris = new PictureBox();
         btnInventaris = new Button();
         contentAreaPanel = new Panel();
-        lblWelcome = new Label();
-        gbxInfo = new GroupBox();
-        pictbxStatusShiftToday = new PictureBox();
-        lblStatusShiftToday = new Label();
-        lblStatusPresensiToday = new Label();
-        lblStatusShiftTodayHeading = new Label();
-        pictbxStatusPresensiToday = new PictureBox();
-        btnLakukanPresensi = new Button();
-        lblStatusPresensiTodayHeading = new Label();
         headerPanel.SuspendLayout();
         ((System.ComponentModel.ISupportInitialize)pictboxProfil).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
@@ -72,10 +63,6 @@ partial class HomepageKaryawanUC
         ((System.ComponentModel.ISupportInitialize)pictbxPerforma).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictbxInventaris).BeginInit();
-        contentAreaPanel.SuspendLayout();
-        gbxInfo.SuspendLayout();
-        ((System.ComponentModel.ISupportInitialize)pictbxStatusShiftToday).BeginInit();
-        ((System.ComponentModel.ISupportInitialize)pictbxStatusPresensiToday).BeginInit();
         SuspendLayout();
         // 
         // headerPanel
@@ -407,126 +394,11 @@ partial class HomepageKaryawanUC
         // contentAreaPanel
         // 
         contentAreaPanel.BackColor = Color.Transparent;
-        contentAreaPanel.Controls.Add(lblWelcome);
-        contentAreaPanel.Controls.Add(gbxInfo);
         contentAreaPanel.Dock = DockStyle.Fill;
         contentAreaPanel.Location = new Point(200, 50);
         contentAreaPanel.Name = "contentAreaPanel";
         contentAreaPanel.Size = new Size(744, 451);
         contentAreaPanel.TabIndex = 11;
-        // 
-        // lblWelcome
-        // 
-        lblWelcome.AutoSize = true;
-        lblWelcome.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-        lblWelcome.Location = new Point(19, 18);
-        lblWelcome.Name = "lblWelcome";
-        lblWelcome.Size = new Size(307, 39);
-        lblWelcome.TabIndex = 6;
-        lblWelcome.Text = "Selamat Datang, karyawan!";
-        // 
-        // gbxInfo
-        // 
-        gbxInfo.BackColor = Color.Transparent;
-        gbxInfo.Controls.Add(pictbxStatusShiftToday);
-        gbxInfo.Controls.Add(lblStatusShiftToday);
-        gbxInfo.Controls.Add(lblStatusPresensiToday);
-        gbxInfo.Controls.Add(lblStatusShiftTodayHeading);
-        gbxInfo.Controls.Add(pictbxStatusPresensiToday);
-        gbxInfo.Controls.Add(btnLakukanPresensi);
-        gbxInfo.Controls.Add(lblStatusPresensiTodayHeading);
-        gbxInfo.Location = new Point(29, 80);
-        gbxInfo.Name = "gbxInfo";
-        gbxInfo.Size = new Size(595, 94);
-        gbxInfo.TabIndex = 11;
-        gbxInfo.TabStop = false;
-        // 
-        // pictbxStatusShiftToday
-        // 
-        pictbxStatusShiftToday.Anchor = AnchorStyles.Top;
-        pictbxStatusShiftToday.Image = (Image)resources.GetObject("pictbxStatusShiftToday.Image");
-        pictbxStatusShiftToday.Location = new Point(12, 29);
-        pictbxStatusShiftToday.Name = "pictbxStatusShiftToday";
-        pictbxStatusShiftToday.Size = new Size(44, 44);
-        pictbxStatusShiftToday.SizeMode = PictureBoxSizeMode.CenterImage;
-        pictbxStatusShiftToday.TabIndex = 18;
-        pictbxStatusShiftToday.TabStop = false;
-        // 
-        // lblStatusShiftToday
-        // 
-        lblStatusShiftToday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        lblStatusShiftToday.AutoSize = true;
-        lblStatusShiftToday.BackColor = Color.Transparent;
-        lblStatusShiftToday.Font = new Font("Bahnschrift SemiLight Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        lblStatusShiftToday.ForeColor = Color.Black;
-        lblStatusShiftToday.Location = new Point(64, 52);
-        lblStatusShiftToday.Name = "lblStatusShiftToday";
-        lblStatusShiftToday.Size = new Size(53, 19);
-        lblStatusShiftToday.TabIndex = 17;
-        lblStatusShiftToday.Text = "teksHari";
-        // 
-        // lblStatusPresensiToday
-        // 
-        lblStatusPresensiToday.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-        lblStatusPresensiToday.AutoSize = true;
-        lblStatusPresensiToday.BackColor = Color.Transparent;
-        lblStatusPresensiToday.Font = new Font("Bahnschrift SemiLight Condensed", 12F);
-        lblStatusPresensiToday.ForeColor = Color.Black;
-        lblStatusPresensiToday.Location = new Point(265, 52);
-        lblStatusPresensiToday.Name = "lblStatusPresensiToday";
-        lblStatusPresensiToday.Size = new Size(15, 19);
-        lblStatusPresensiToday.TabIndex = 16;
-        lblStatusPresensiToday.Text = "-";
-        // 
-        // lblStatusShiftTodayHeading
-        // 
-        lblStatusShiftTodayHeading.AutoSize = true;
-        lblStatusShiftTodayHeading.Font = new Font("Bahnschrift Condensed", 15.75F);
-        lblStatusShiftTodayHeading.ForeColor = Color.FromArgb(44, 62, 80);
-        lblStatusShiftTodayHeading.Location = new Point(62, 27);
-        lblStatusShiftTodayHeading.Name = "lblStatusShiftTodayHeading";
-        lblStatusShiftTodayHeading.Size = new Size(99, 25);
-        lblStatusShiftTodayHeading.TabIndex = 15;
-        lblStatusShiftTodayHeading.Text = "Shift Hari ini";
-        // 
-        // pictbxStatusPresensiToday
-        // 
-        pictbxStatusPresensiToday.Anchor = AnchorStyles.Top;
-        pictbxStatusPresensiToday.Image = (Image)resources.GetObject("pictbxStatusPresensiToday.Image");
-        pictbxStatusPresensiToday.Location = new Point(214, 27);
-        pictbxStatusPresensiToday.Name = "pictbxStatusPresensiToday";
-        pictbxStatusPresensiToday.Size = new Size(44, 44);
-        pictbxStatusPresensiToday.SizeMode = PictureBoxSizeMode.CenterImage;
-        pictbxStatusPresensiToday.TabIndex = 14;
-        pictbxStatusPresensiToday.TabStop = false;
-        // 
-        // btnLakukanPresensi
-        // 
-        btnLakukanPresensi.Anchor = AnchorStyles.Top;
-        btnLakukanPresensi.BackColor = Color.White;
-        btnLakukanPresensi.BackgroundImageLayout = ImageLayout.Zoom;
-        btnLakukanPresensi.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        btnLakukanPresensi.ForeColor = Color.FromArgb(44, 62, 80);
-        btnLakukanPresensi.ImageAlign = ContentAlignment.TopCenter;
-        btnLakukanPresensi.Location = new Point(446, 15);
-        btnLakukanPresensi.Name = "btnLakukanPresensi";
-        btnLakukanPresensi.Padding = new Padding(9);
-        btnLakukanPresensi.Size = new Size(140, 72);
-        btnLakukanPresensi.TabIndex = 13;
-        btnLakukanPresensi.Text = "Presensi Sekarang!";
-        btnLakukanPresensi.UseVisualStyleBackColor = false;
-        btnLakukanPresensi.Click += btnLakukanPresensi_Click;
-        // 
-        // lblStatusPresensiTodayHeading
-        // 
-        lblStatusPresensiTodayHeading.AutoSize = true;
-        lblStatusPresensiTodayHeading.Font = new Font("Bahnschrift Condensed", 15.75F);
-        lblStatusPresensiTodayHeading.ForeColor = Color.FromArgb(44, 62, 80);
-        lblStatusPresensiTodayHeading.Location = new Point(264, 27);
-        lblStatusPresensiTodayHeading.Name = "lblStatusPresensiTodayHeading";
-        lblStatusPresensiTodayHeading.Size = new Size(126, 25);
-        lblStatusPresensiTodayHeading.TabIndex = 12;
-        lblStatusPresensiTodayHeading.Text = "Presensi Hari ini";
         // 
         // HomepageKaryawanUC
         // 
@@ -539,7 +411,6 @@ partial class HomepageKaryawanUC
         Controls.Add(gbxShowProfile);
         Name = "HomepageKaryawanUC";
         Size = new Size(944, 501);
-        Load += HomepageKaryawanUC_Load;
         headerPanel.ResumeLayout(false);
         headerPanel.PerformLayout();
         ((System.ComponentModel.ISupportInitialize)pictboxProfil).EndInit();
@@ -551,12 +422,6 @@ partial class HomepageKaryawanUC
         ((System.ComponentModel.ISupportInitialize)pictbxPerforma).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictbxInventaris).EndInit();
-        contentAreaPanel.ResumeLayout(false);
-        contentAreaPanel.PerformLayout();
-        gbxInfo.ResumeLayout(false);
-        gbxInfo.PerformLayout();
-        ((System.ComponentModel.ISupportInitialize)pictbxStatusShiftToday).EndInit();
-        ((System.ComponentModel.ISupportInitialize)pictbxStatusPresensiToday).EndInit();
         ResumeLayout(false);
     }
 
@@ -585,17 +450,6 @@ partial class HomepageKaryawanUC
     private System.Windows.Forms.PictureBox pictbxLayanan;
     private System.Windows.Forms.Button btnInventaris;
     private System.Windows.Forms.PictureBox pictbxInventaris;
-
-    // Content Area controls (moved from original design)
-    public Label lblWelcome;
-    private GroupBox gbxInfo;
-    private Label lblStatusPresensiTodayHeading;
-    private PictureBox pictbxStatusPresensiToday;
-    private Button btnLakukanPresensi;
-    private Label lblStatusShiftTodayHeading;
-    private Label lblStatusShiftToday;
-    private Label lblStatusPresensiToday;
-    private PictureBox pictbxStatusShiftToday;
     private PictureBox pictboxReservasi;
     private Button btnReservasi;
 }

@@ -17,34 +17,18 @@ namespace PBOBarberMate.View.Homepages
 {
     public partial class HomepageAdminUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp;
+        private readonly CommonAppServices _commonServices;
+        private readonly CommonAdminServices _commonAdminServices;
 
-        private readonly LayananService _layananService;
-
-        public HomepageAdminUC(AkunService akunService, SessionService sessionService, MainApp mainApp)
+        public HomepageAdminUC(CommonAppServices commonServices)
         {
             InitializeComponent();
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainApp = mainApp;
+            _commonServices = commonServices;
 
-            _layananService = new LayananService(new LayananRepository());
-
-
-
-
-
-            // Muat konten default saat Homepage Admin dimuat (misal, tampilan menu utama)
-            //LoadFeatureContent(new AdminDashboardUC(_akunService, _sessionService, _mainApp, this));
-            // ubah teks header
-            lblHeaderMenu.Text = "Halaman Utama";
-            // ubah teks profil
-            lblProfilRole.Text = _sessionService.CurrentUserRole.ToString();
-            lblProfilNama.Text = _sessionService.CurrentUserName;
-            lblProfilEmail.Text = _sessionService.CurrentUserEmail;
-            btnProfil.Text = _sessionService.CurrentUserName;
+            LayananService _layananService = new LayananService(new LayananRepository());
+            _commonAdminServices = new CommonAdminServices(_layananService);
+            
+            
             // Sidebar hover logic
             SetButtonHoverEvents();
             // Panggil metode untuk mengatur posisi ikon profil
@@ -56,6 +40,11 @@ namespace PBOBarberMate.View.Homepages
         // METHOD DEKLAR ALL HOVER
         private void SetButtonHoverEvents()
         {
+            // SET UI
+            lblProfilRole.Text = _commonServices.SessionServiceInstance.CurrentUserRole.ToString();
+            lblProfilNama.Text = _commonServices.SessionServiceInstance.CurrentUserName;
+            lblProfilEmail.Text = _commonServices.SessionServiceInstance.CurrentUserEmail;
+            btnProfil.Text = _commonServices.SessionServiceInstance.CurrentUserName;
             // HOVER SIDEBAR
             SetSidebarHoverEvents(btnReservasi, pictbxReservasi);
             SetSidebarHoverEvents(btnPembayaran, pictbxPembayaran);
@@ -107,13 +96,13 @@ namespace PBOBarberMate.View.Homepages
             if (gbxShowProfile.Visible)
             {
                 gbxShowProfile.Visible = false;
-                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+                _commonServices.MainAppInstance.DisableGlobalClickListener(); // Disable listener when profile box is hidden
             }
         }
         // REDIRECT HOMEPAGE
         private void pictboxHome_Click(object sender, EventArgs e)
         {
-            _mainApp.RedirectToHomepage();
+            _commonServices.MainAppInstance.RedirectToHomepage();
         }
         // SHOW GBXPROFIL
         private void btnProfil_Click(object sender, EventArgs e)
@@ -132,24 +121,24 @@ namespace PBOBarberMate.View.Homepages
                 );
 
                 gbxShowProfile.BringToFront(); // Ensure it's on top of everything
-                _mainApp.EnableGlobalClickListener(gbxShowProfile); // Inform MainApp to listen for clicks outside
+                _commonServices.MainAppInstance.EnableGlobalClickListener(gbxShowProfile); // Inform MainApp to listen for clicks outside
             }
             else
             {
-                _mainApp.DisableGlobalClickListener(); // Disable listener when profile box is hidden
+                _commonServices.MainAppInstance.DisableGlobalClickListener(); // Disable listener when profile box is hidden
             }
         }
         // REDIRECT UBAH PROFIL
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.ShowUbahProfilForm();
+            _commonServices.MainAppInstance.ShowUbahProfilForm();
         }
         // LOGOUT
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            _mainApp.PerformLogout();
+            _commonServices.MainAppInstance.PerformLogout();
         }
         // Memuat UserControl fitur ke dalam area konten utama homepage ini (contentAreaPanel).
         public void LoadFeatureContent(UserControl featureUC)
@@ -162,18 +151,10 @@ namespace PBOBarberMate.View.Homepages
 
 
 
-        // METHOD KETIKA LOAD HALAMAN
-        private void HomepageAdminUC_Load(object sender, EventArgs e)
-        {
-            //
-        }
-
-
-
 
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            _mainApp.LoadFeatureIntoActiveHomepageContent(new LayananUC(_akunService, _sessionService, _mainApp, _layananService), "Layanan");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _commonAdminServices.LayananServiceInstance), "Layanan");
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {

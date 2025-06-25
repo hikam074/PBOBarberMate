@@ -38,8 +38,10 @@
             lblNamaLayanan = new Label();
             gbxLayananAdd = new GroupBox();
             pictbxBack = new PictureBox();
+            pictbxAdd = new PictureBox();
             gbxLayananAdd.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictbxBack).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).BeginInit();
             SuspendLayout();
             // 
             // lblTambahLayanan
@@ -77,11 +79,12 @@
             btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnAdd.ForeColor = Color.Black;
-            btnAdd.Location = new Point(457, 105);
+            btnAdd.Location = new Point(447, 105);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(81, 39);
+            btnAdd.Size = new Size(91, 39);
             btnAdd.TabIndex = 22;
-            btnAdd.Text = "Tambahkan";
+            btnAdd.Text = "      Tambahkan";
+            btnAdd.TextAlign = ContentAlignment.MiddleRight;
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
@@ -126,6 +129,7 @@
             // gbxLayananAdd
             // 
             gbxLayananAdd.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            gbxLayananAdd.Controls.Add(pictbxAdd);
             gbxLayananAdd.Controls.Add(pictbxBack);
             gbxLayananAdd.Controls.Add(lblNamaLayanan);
             gbxLayananAdd.Controls.Add(btnAdd);
@@ -151,6 +155,18 @@
             pictbxBack.TabIndex = 24;
             pictbxBack.TabStop = false;
             // 
+            // pictbxAdd
+            // 
+            pictbxAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictbxAdd.BackColor = Color.WhiteSmoke;
+            pictbxAdd.Image = (Image)resources.GetObject("pictbxAdd.Image");
+            pictbxAdd.Location = new Point(455, 117);
+            pictbxAdd.Name = "pictbxAdd";
+            pictbxAdd.Size = new Size(15, 15);
+            pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAdd.TabIndex = 25;
+            pictbxAdd.TabStop = false;
+            // 
             // LayananTambahUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -165,6 +181,7 @@
             gbxLayananAdd.ResumeLayout(false);
             gbxLayananAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictbxBack).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -180,5 +197,6 @@
         private Label lblNamaLayanan;
         private GroupBox gbxLayananAdd;
         private PictureBox pictbxBack;
+        private PictureBox pictbxAdd;
     }
 }

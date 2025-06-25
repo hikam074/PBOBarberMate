@@ -20,6 +20,8 @@ namespace PBOBarberMate.View
         private readonly SessionService _sessionService;
         private readonly AkunService _akunService;
 
+        private CommonAppServices _commonAppServices;
+
         private System.Windows.Forms.Panel _contentHostPanel;
 
         // Pertahankan referensi ke homepage yang sudah dibuat
@@ -40,8 +42,12 @@ namespace PBOBarberMate.View
             _sessionService = new SessionService();
             _akunService = new AkunService(_akunRepository, _sessionService);
 
+            _commonAppServices = new CommonAppServices(this, _akunService, _sessionService);
+
+
+
             // Pada awalnya, tampilkan LoginUC
-            LoadContent(new LoginUC(_akunService, _sessionService, this));
+            LoadContent(new LoginUC(_commonAppServices));
         }
 
         // Metode umum untuk memuat UserControl ke panel utama MainApp
@@ -81,23 +87,23 @@ namespace PBOBarberMate.View
             if (userRole == AkunRole.admin)
             {
                 LoadContent(GetHomepageInstance(AkunRole.admin));
-                LoadFeatureIntoActiveHomepageContent(new AdminDashboardUC(_akunService, _sessionService, this, _adminHomepageInstance), "Halaman Utama");
+                LoadFeatureIntoActiveHomepageContent(new AdminDashboardUC(_commonAppServices, _adminHomepageInstance), "Halaman Utama");
             }
             else if (userRole == AkunRole.karyawan)
             {
                 LoadContent(GetHomepageInstance(AkunRole.karyawan));
-                LoadFeatureIntoActiveHomepageContent(new KaryawanDashboardUC(_akunService, _sessionService, this, _karyawanHomepageInstance), "Halaman Utama");
+                LoadFeatureIntoActiveHomepageContent(new KaryawanDashboardUC(_commonAppServices, _karyawanHomepageInstance), "Halaman Utama");
             }
             else if (userRole == AkunRole.customer)
             {
                 LoadContent(GetHomepageInstance(AkunRole.customer));
-                LoadFeatureIntoActiveHomepageContent(new CustomerDashboardUC(_akunService, _sessionService, this, _customerHomepageInstance), "Halaman Utama");
+                LoadFeatureIntoActiveHomepageContent(new CustomerDashboardUC(_commonAppServices, _customerHomepageInstance), "Halaman Utama");
             }
             else
             {
                 MessageBox.Show("Role pengguna tidak dikenal atau sesi tidak valid.", "Error Redirect", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _akunService.Logout();
-                LoadContent(new LoginUC(_akunService, _sessionService, this));
+                LoadContent(new LoginUC(_commonAppServices));
             }
         }
 
@@ -108,15 +114,15 @@ namespace PBOBarberMate.View
             {
                 case AkunRole.admin:
                     if (_adminHomepageInstance == null)
-                        _adminHomepageInstance = new HomepageAdminUC(_akunService, _sessionService, this);
+                        _adminHomepageInstance = new HomepageAdminUC(_commonAppServices);
                     return _adminHomepageInstance;
                 case AkunRole.karyawan:
                     if (_karyawanHomepageInstance == null)
-                        _karyawanHomepageInstance = new HomepageKaryawanUC(_akunService, _sessionService, this);
+                        _karyawanHomepageInstance = new HomepageKaryawanUC(_commonAppServices);
                     return _karyawanHomepageInstance;
                 case AkunRole.customer:
                     if (_customerHomepageInstance == null)
-                        _customerHomepageInstance = new HomepageCustomerUC(_akunService, _sessionService, this);
+                        _customerHomepageInstance = new HomepageCustomerUC(_commonAppServices);
                     return _customerHomepageInstance;
                 default:
                     throw new InvalidOperationException("Role tidak didukung.");
@@ -176,7 +182,7 @@ namespace PBOBarberMate.View
             if (result == DialogResult.Yes)
             {
                 _akunService.Logout();
-                LoadContent(new LoginUC(_akunService, _sessionService, this));
+                LoadContent(new LoginUC(_commonAppServices));
             }
         }
 

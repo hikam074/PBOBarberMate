@@ -51,11 +51,6 @@
             pictbxReservasi = new PictureBox();
             btnReservasi = new Button();
             contentAreaPanel = new Panel();
-            gbxReservasiSoon = new GroupBox();
-            lblJadwalMingguIni = new Label();
-            dgvJadwalMingguIni = new DataGridView();
-            lklbMore = new LinkLabel();
-            lblWelcome = new Label();
             headerPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictboxProfil).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
@@ -65,9 +60,6 @@
             ((System.ComponentModel.ISupportInitialize)pictbxLihatReservasi).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).BeginInit();
-            contentAreaPanel.SuspendLayout();
-            gbxReservasiSoon.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).BeginInit();
             SuspendLayout();
             // 
             // headerPanel
@@ -369,70 +361,11 @@
             // contentAreaPanel
             // 
             contentAreaPanel.BackColor = Color.Transparent;
-            contentAreaPanel.Controls.Add(gbxReservasiSoon);
-            contentAreaPanel.Controls.Add(lblWelcome);
             contentAreaPanel.Dock = DockStyle.Fill;
             contentAreaPanel.Location = new Point(200, 50);
             contentAreaPanel.Name = "contentAreaPanel";
             contentAreaPanel.Size = new Size(744, 451);
             contentAreaPanel.TabIndex = 12;
-            // 
-            // gbxReservasiSoon
-            // 
-            gbxReservasiSoon.Controls.Add(lblJadwalMingguIni);
-            gbxReservasiSoon.Controls.Add(dgvJadwalMingguIni);
-            gbxReservasiSoon.Controls.Add(lklbMore);
-            gbxReservasiSoon.Location = new Point(19, 80);
-            gbxReservasiSoon.Name = "gbxReservasiSoon";
-            gbxReservasiSoon.Size = new Size(633, 178);
-            gbxReservasiSoon.TabIndex = 15;
-            gbxReservasiSoon.TabStop = false;
-            // 
-            // lblJadwalMingguIni
-            // 
-            lblJadwalMingguIni.Anchor = AnchorStyles.Top;
-            lblJadwalMingguIni.AutoSize = true;
-            lblJadwalMingguIni.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblJadwalMingguIni.ForeColor = Color.FromArgb(44, 62, 80);
-            lblJadwalMingguIni.Location = new Point(10, 19);
-            lblJadwalMingguIni.Name = "lblJadwalMingguIni";
-            lblJadwalMingguIni.Size = new Size(173, 23);
-            lblJadwalMingguIni.TabIndex = 13;
-            lblJadwalMingguIni.Text = "Reservasi terdekat anda :";
-            // 
-            // dgvJadwalMingguIni
-            // 
-            dgvJadwalMingguIni.Anchor = AnchorStyles.Top;
-            dgvJadwalMingguIni.BackgroundColor = Color.White;
-            dgvJadwalMingguIni.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJadwalMingguIni.GridColor = Color.FromArgb(44, 62, 80);
-            dgvJadwalMingguIni.Location = new Point(10, 45);
-            dgvJadwalMingguIni.Name = "dgvJadwalMingguIni";
-            dgvJadwalMingguIni.Size = new Size(595, 97);
-            dgvJadwalMingguIni.TabIndex = 12;
-            // 
-            // lklbMore
-            // 
-            lklbMore.Anchor = AnchorStyles.Top;
-            lklbMore.AutoSize = true;
-            lklbMore.Location = new Point(493, 145);
-            lklbMore.Name = "lklbMore";
-            lklbMore.Size = new Size(112, 15);
-            lklbMore.TabIndex = 14;
-            lklbMore.TabStop = true;
-            lklbMore.Text = "Lihat lebih banyak...";
-            lklbMore.LinkClicked += lklbMore_LinkClicked;
-            // 
-            // lblWelcome
-            // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblWelcome.ForeColor = Color.FromArgb(44, 62, 80);
-            lblWelcome.Location = new Point(19, 18);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(306, 39);
-            lblWelcome.TabIndex = 7;
-            lblWelcome.Text = "Selamat Datang, Pengguna!";
             // 
             // HomepageCustomerUC
             // 
@@ -445,7 +378,6 @@
             Controls.Add(gbxShowProfile);
             Name = "HomepageCustomerUC";
             Size = new Size(944, 501);
-            Load += HomepageCustomerUC_Load;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictboxProfil).EndInit();
@@ -456,11 +388,6 @@
             ((System.ComponentModel.ISupportInitialize)pictbxLihatReservasi).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).EndInit();
-            contentAreaPanel.ResumeLayout(false);
-            contentAreaPanel.PerformLayout();
-            gbxReservasiSoon.ResumeLayout(false);
-            gbxReservasiSoon.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvJadwalMingguIni).EndInit();
             ResumeLayout(false);
         }
 
@@ -493,12 +420,5 @@
         private System.Windows.Forms.PictureBox pictbxLihatReservasi;
         private System.Windows.Forms.Button btnUlasan;
         private System.Windows.Forms.PictureBox pictbxUlasan;
-
-        // Content Area Panel Controls
-        public Label lblWelcome;
-        private DataGridView dgvJadwalMingguIni;
-        private Label lblJadwalMingguIni;
-        private LinkLabel lklbMore;
-        private GroupBox gbxReservasiSoon;
     }
 }

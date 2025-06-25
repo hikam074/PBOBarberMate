@@ -514,7 +514,6 @@
             Controls.Add(gbxShowProfile);
             Name = "HomepageAdminUC";
             Size = new Size(944, 501);
-            Load += HomepageAdminUC_Load;
             headerPanel.ResumeLayout(false);
             headerPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictboxProfil).EndInit();

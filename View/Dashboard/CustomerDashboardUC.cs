@@ -14,18 +14,14 @@ namespace PBOBarberMate.View.Dashboard
 {
     public partial class CustomerDashboardUC : UserControl
     {
-        private readonly AkunService _akunService;
-        private readonly SessionService _sessionService;
-        private readonly MainApp _mainApp; // Referensi ke MainApp untuk navigasi global
+        private readonly CommonAppServices _commonServices;
         private readonly HomepageCustomerUC _homepageCustomerUC;
 
-        public CustomerDashboardUC(AkunService akunService, SessionService sessionService, MainApp mainApp, HomepageCustomerUC homepageCustomerUC)
+        public CustomerDashboardUC(CommonAppServices commonServices, HomepageCustomerUC homepageCustomerUC)
         {
             InitializeComponent();
 
-            _akunService = akunService;
-            _sessionService = sessionService;
-            _mainApp = mainApp;
+            _commonServices = commonServices;
             _homepageCustomerUC = homepageCustomerUC;
 
         }
