@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
@@ -36,8 +37,33 @@ namespace PBOBarberMate.View.Layanan
         {
             LoadDgvLayanan();
             EnableButtonAdd();
+            SetAddButtonlHoverEvents(btnTambah, pictbxAdd, pictbxAddHov);
+            AdjustPictbxAddPosition();
         }
+        private void SetAddButtonlHoverEvents(Control button, Control relatedControl, Control relatedHovControl)
+        {
+            button.MouseEnter += (s, e) => { 
+                button.BackColor = SystemColors.Highlight; button.ForeColor = Color.White; 
+                relatedControl.Visible = false; relatedHovControl.Visible = true; relatedHovControl.BringToFront(); relatedHovControl.BackColor = SystemColors.Highlight; 
+            };
+            button.MouseLeave += (s, e) => { 
+                button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black; 
+                relatedControl.Visible = true; relatedHovControl.Visible = false; relatedControl.BringToFront();
+            };
+        }
+        private void AdjustPictbxAddPosition()
+        {
+            if (btnTambah != null && pictbxAdd != null && pictbxAddHov != null)
+            {
+                int x = btnTambah.Location.X + 7;
+                int y = btnTambah.Location.Y + (btnTambah.Height - pictbxAdd.Height) / 2;
 
+                pictbxAddHov.Location = new Point(x, y);
+                pictbxAdd.Location = new Point(x, y);
+                pictbxAdd.BringToFront();
+
+            }
+        }
         // NAMPILKAN SEMUA DATA LAYANAN
         private void LoadDgvLayanan()
         {
@@ -86,12 +112,16 @@ namespace PBOBarberMate.View.Layanan
         private void EnableButtonAdd()
         {
             // atur tombol add layanan
-            btnTambah.Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
-            // atur tombol edit hapus layanan
+            if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
+            {
+                btnTambah.Visible = true;
+            }
+            // atur tombol edit layanan
             if (dgvLayanan.Columns.Contains("btnUbah"))
             {
                 dgvLayanan.Columns["btnUbah"].Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
             }
+            // atur tombol hapus layanan
             if (dgvLayanan.Columns.Contains("btnHapus"))
             {
                 dgvLayanan.Columns["btnHapus"].Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);

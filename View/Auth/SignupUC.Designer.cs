@@ -94,6 +94,7 @@
             btnSignupSubmit.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSignupSubmit.BackColor = Color.FromArgb(44, 62, 80);
             btnSignupSubmit.CausesValidation = false;
+            btnSignupSubmit.Enabled = false;
             btnSignupSubmit.Font = new Font("Bahnschrift Condensed", 12F);
             btnSignupSubmit.ForeColor = Color.White;
             btnSignupSubmit.Location = new Point(165, 215);
@@ -202,17 +203,16 @@
             lblSginupWelcome.TabIndex = 12;
             lblSginupWelcome.Text = "Selamat datang di";
             // 
-            // FormSignup
+            // SignupUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
-            ClientSize = new Size(1008, 537);
             Controls.Add(lblSignupAppName);
             Controls.Add(lblSginupWelcome);
             Controls.Add(gbxSignup);
-            Name = "FormSignup";
-            Text = "BarberMate : Register";
+            Name = "SignupUC";
+            Size = new Size(1008, 537);
             gbxSignup.ResumeLayout(false);
             gbxSignup.PerformLayout();
             ResumeLayout(false);

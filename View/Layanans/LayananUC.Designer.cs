@@ -28,10 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayananUC));
             dgvLayanan = new DataGridView();
             lblLayanan = new Label();
             btnTambah = new Button();
+            pictbxAdd = new PictureBox();
+            pictbxAddHov = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvLayanan).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).BeginInit();
             SuspendLayout();
             // 
             // dgvLayanan
@@ -64,29 +69,59 @@
             btnTambah.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTambah.BackColor = SystemColors.Control;
             btnTambah.Font = new Font("Bahnschrift Condensed", 11.25F);
-            btnTambah.ForeColor = Color.FromArgb(44, 62, 80);
+            btnTambah.ForeColor = Color.Black;
             btnTambah.Location = new Point(569, 40);
             btnTambah.Margin = new Padding(2);
             btnTambah.Name = "btnTambah";
             btnTambah.Size = new Size(75, 39);
             btnTambah.TabIndex = 2;
-            btnTambah.Text = "TAMBAH";
+            btnTambah.Text = "Tambah";
+            btnTambah.TextAlign = ContentAlignment.MiddleRight;
             btnTambah.UseVisualStyleBackColor = false;
             btnTambah.Click += btnTambah_Click;
+            // 
+            // pictbxAdd
+            // 
+            pictbxAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictbxAdd.BackColor = Color.WhiteSmoke;
+            pictbxAdd.Image = (Image)resources.GetObject("pictbxAdd.Image");
+            pictbxAdd.Location = new Point(578, 52);
+            pictbxAdd.Name = "pictbxAdd";
+            pictbxAdd.Size = new Size(15, 15);
+            pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAdd.TabIndex = 26;
+            pictbxAdd.TabStop = false;
+            // 
+            // pictbxAddHov
+            // 
+            pictbxAddHov.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictbxAddHov.BackColor = Color.WhiteSmoke;
+            pictbxAddHov.Image = (Image)resources.GetObject("pictbxAddHov.Image");
+            pictbxAddHov.Location = new Point(578, 52);
+            pictbxAddHov.Name = "pictbxAddHov";
+            pictbxAddHov.Size = new Size(15, 15);
+            pictbxAddHov.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAddHov.TabIndex = 27;
+            pictbxAddHov.TabStop = false;
+            pictbxAddHov.Visible = false;
             // 
             // LayananUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(pictbxAdd);
             Controls.Add(btnTambah);
             Controls.Add(lblLayanan);
             Controls.Add(dgvLayanan);
+            Controls.Add(pictbxAddHov);
             Margin = new Padding(2);
             Name = "LayananUC";
             Size = new Size(744, 451);
             Load += FormLayanan_Load;
             ((System.ComponentModel.ISupportInitialize)dgvLayanan).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -96,5 +131,7 @@
         private DataGridView dgvLayanan;
         private Label lblLayanan;
         private Button btnTambah;
+        private PictureBox pictbxAdd;
+        private PictureBox pictbxAddHov;
     }
 }

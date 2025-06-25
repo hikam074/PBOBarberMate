@@ -140,6 +140,7 @@
             // 
             btnLoginSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnLoginSubmit.BackColor = Color.FromArgb(44, 62, 80);
+            btnLoginSubmit.Enabled = false;
             btnLoginSubmit.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoginSubmit.ForeColor = Color.White;
             btnLoginSubmit.Location = new Point(165, 215);
@@ -178,17 +179,16 @@
             lblLoginAppName.TabIndex = 8;
             lblLoginAppName.Text = "BarberMate!";
             // 
-            // FormLogin
+            // LoginUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(44, 62, 80);
-            ClientSize = new Size(1008, 537);
             Controls.Add(lblLoginAppName);
             Controls.Add(gbxLogin);
             Controls.Add(lblLoginWelcome);
-            Name = "FormLogin";
-            Text = "BarberMate : Login";
+            Name = "LoginUC";
+            Size = new Size(1008, 537);
             Load += FormLogin_Load;
             gbxLogin.ResumeLayout(false);
             gbxLogin.PerformLayout();

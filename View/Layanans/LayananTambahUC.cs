@@ -37,7 +37,7 @@ namespace PBOBarberMate.View.Layanan
             _isEditMode = false;
 
             SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
-            SetAddButtonlHoverEvents(btnAdd, pictbxAdd);
+            SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
         }
 
         public LayananTambahUC(CommonAppServices commonServices, LayananService layananService, M_Layanan layananDiedit)
@@ -54,10 +54,11 @@ namespace PBOBarberMate.View.Layanan
             // penyesuaian view
             tbxNamaLayanan.Text = layananDiedit.nama_layanan;
             tbxHargaLayanan.Text = layananDiedit.harga.ToString();
-            btnAdd.Text = "Simpan Perubahan";
+            btnAdd.Text = "     Simpan Perubahan";
             lblTambahLayanan.Text = "Ubah Layanan " + layananDiedit.nama_layanan;
             SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
-            SetAddButtonlHoverEvents(btnAdd, pictbxAdd);
+            SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
+            AdjustPictbxAddPosition();
         }
 
         private void SetCancelButtonlHoverEvents(Control button, Control relatedControl)
@@ -65,16 +66,31 @@ namespace PBOBarberMate.View.Layanan
             button.MouseEnter += (s, e) => { button.BackColor = Color.Orange; relatedControl.BackColor = Color.Orange; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.WhiteSmoke; relatedControl.BackColor = Color.WhiteSmoke; };
         }
-        private void SetAddButtonlHoverEvents(Control button, Control relatedControl)
+        private void SetAddButtonlHoverEvents(Control button, Control relatedControl, Control relatedHovControl)
         {
             button.MouseEnter += (s, e) => { 
                 button.BackColor = Color.Green; button.ForeColor = Color.White;
-                relatedControl.BackColor = Color.Green;// relatedControl.image
+                relatedHovControl.BackColor = Color.Green; relatedHovControl.Visible = true; relatedHovControl.BringToFront();
+                relatedControl.Visible = false;
             };
             button.MouseLeave += (s, e) => { 
                 button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black;
-                relatedControl.BackColor = Color.WhiteSmoke;
+                relatedHovControl.Visible = false;
+                relatedControl.Visible = true;
             };
+        }
+        private void AdjustPictbxAddPosition()
+        {
+            if (btnAdd != null && pictbxAdd != null && pictbxAddHov != null)
+            {
+                int x = btnAdd.Location.X + 7;
+                int y = btnAdd.Location.Y + (btnAdd.Height - pictbxAdd.Height) / 2;
+                
+                pictbxAddHov.Location = new Point(x, y);
+                pictbxAdd.Location = new Point(x, y);
+                pictbxAdd.BringToFront();
+
+            }
         }
 
         // KEMBALI KE LIHAT LAYANAN

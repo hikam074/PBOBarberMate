@@ -15,17 +15,6 @@ namespace PBOBarberMate.View.Auth
         {
             InitializeComponent();
             _commonServices = commonServices;
-
-            // nonaktifkan btnSignupSubmit bila yang diisi belum lengkap
-            if (tbxSignupEmail.Text == "" || tbxSignupNama.Text == "" || tbxSignupPass.Text == "")
-            {
-                btnSignupSubmit.Enabled = false;
-            }
-            // mengaktifkan btnSignupSubmit bila data tidak kosong
-            else
-            {
-                btnSignupSubmit.Enabled = true;
-            }
         }
 
         private void lklblLoginSignupRedirect_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

@@ -37,11 +37,13 @@
             lblHarga = new Label();
             lblNamaLayanan = new Label();
             gbxLayananAdd = new GroupBox();
-            pictbxBack = new PictureBox();
             pictbxAdd = new PictureBox();
+            pictbxBack = new PictureBox();
+            pictbxAddHov = new PictureBox();
             gbxLayananAdd.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictbxBack).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxBack).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).BeginInit();
             SuspendLayout();
             // 
             // lblTambahLayanan
@@ -137,11 +139,24 @@
             gbxLayananAdd.Controls.Add(tbxNamaLayanan);
             gbxLayananAdd.Controls.Add(lblHarga);
             gbxLayananAdd.Controls.Add(tbxHargaLayanan);
+            gbxLayananAdd.Controls.Add(pictbxAddHov);
             gbxLayananAdd.Location = new Point(100, 100);
             gbxLayananAdd.Name = "gbxLayananAdd";
             gbxLayananAdd.Size = new Size(544, 150);
             gbxLayananAdd.TabIndex = 24;
             gbxLayananAdd.TabStop = false;
+            // 
+            // pictbxAdd
+            // 
+            pictbxAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictbxAdd.BackColor = Color.WhiteSmoke;
+            pictbxAdd.Image = (Image)resources.GetObject("pictbxAdd.Image");
+            pictbxAdd.Location = new Point(455, 117);
+            pictbxAdd.Name = "pictbxAdd";
+            pictbxAdd.Size = new Size(15, 15);
+            pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAdd.TabIndex = 25;
+            pictbxAdd.TabStop = false;
             // 
             // pictbxBack
             // 
@@ -155,17 +170,17 @@
             pictbxBack.TabIndex = 24;
             pictbxBack.TabStop = false;
             // 
-            // pictbxAdd
+            // pictbxAddHov
             // 
-            pictbxAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            pictbxAdd.BackColor = Color.WhiteSmoke;
-            pictbxAdd.Image = (Image)resources.GetObject("pictbxAdd.Image");
-            pictbxAdd.Location = new Point(455, 117);
-            pictbxAdd.Name = "pictbxAdd";
-            pictbxAdd.Size = new Size(15, 15);
-            pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
-            pictbxAdd.TabIndex = 25;
-            pictbxAdd.TabStop = false;
+            pictbxAddHov.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            pictbxAddHov.BackColor = Color.WhiteSmoke;
+            pictbxAddHov.Image = (Image)resources.GetObject("pictbxAddHov.Image");
+            pictbxAddHov.Location = new Point(455, 117);
+            pictbxAddHov.Name = "pictbxAddHov";
+            pictbxAddHov.Size = new Size(15, 15);
+            pictbxAddHov.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAddHov.TabIndex = 26;
+            pictbxAddHov.TabStop = false;
             // 
             // LayananTambahUC
             // 
@@ -180,8 +195,9 @@
             Load += FormTambahLayanan_Load;
             gbxLayananAdd.ResumeLayout(false);
             gbxLayananAdd.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictbxBack).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxBack).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -198,5 +214,6 @@
         private GroupBox gbxLayananAdd;
         private PictureBox pictbxBack;
         private PictureBox pictbxAdd;
+        private PictureBox pictbxAddHov;
     }
 }
