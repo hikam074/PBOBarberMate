@@ -114,6 +114,14 @@ namespace PBOBarberMate.View.Layanan
             if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
             {
                 btnTambah.Visible = true;
+                pictbxAdd.Visible = true;
+                pictbxAddHov.Visible = true;
+            }
+            else
+            {
+                btnTambah.Visible = false;
+                pictbxAdd.Visible = false;
+                pictbxAddHov.Visible = false;
             }
             // atur tombol edit layanan
             if (dgvLayanan.Columns.Contains("btnUbah"))

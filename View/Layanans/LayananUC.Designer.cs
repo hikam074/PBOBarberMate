@@ -78,6 +78,7 @@
             btnTambah.Text = "Tambah";
             btnTambah.TextAlign = ContentAlignment.MiddleRight;
             btnTambah.UseVisualStyleBackColor = false;
+            btnTambah.Visible = false;
             btnTambah.Click += btnTambah_Click;
             // 
             // pictbxAdd
@@ -91,6 +92,7 @@
             pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
             pictbxAdd.TabIndex = 26;
             pictbxAdd.TabStop = false;
+            pictbxAdd.Visible = false;
             // 
             // pictbxAddHov
             // 
