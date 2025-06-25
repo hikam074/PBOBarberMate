@@ -9,6 +9,7 @@ using Npgsql;
 
 using PBOBarberMate.App.Infrastructure;
 using PBOBarberMate.App.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace PBOBarberMate.App.Repository
@@ -41,6 +42,26 @@ namespace PBOBarberMate.App.Repository
             catch (Exception ex)
             {
                 throw new ApplicationException($"Error in GetAllAkun: {ex.Message}", ex);
+            }
+        }
+        // METHOD repo SELECT untuk ambil semua data akun
+        public List<M_Karyawan> getAllKaryawan()
+        {
+            string query = "SELECT id_akun, nama_akun, email FROM akun WHERE akun_role_id = @id";
+            NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", (int)AkunRole.karyawan) };
+            try
+            {
+                List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query, parameters);
+                return rawData.Select(row => new M_Karyawan(
+                    Convert.ToInt32(row[0]),            // id
+                    Convert.ToString(row[1]),           // nama
+                    Convert.ToString(row[2])            // email
+                )).ToList();
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error in GetAllKaryawan: {ex.Message}", ex);
             }
         }
 
@@ -118,14 +139,22 @@ namespace PBOBarberMate.App.Repository
         }
 
         // METHOD repo UPDATE untuk menyimpan perubahan akun
-        public bool UpdateAkun(M_Akun akun) {
-            string query = "UPDATE akun SET nama_akun = @nama, email = @email, password = @password, akun_role_id = @role_id WHERE id_akun = @id_akun";
+        public bool UpdateAkun(M_Akun akun, int id) {
+            string query;
+            if (akun.Password == null)
+            {
+                query = "UPDATE akun SET nama_akun = @nama, email = @email, akun_role_id = @role_id WHERE id_akun = @id_akun";
+            }
+            else
+            {
+                query = "UPDATE akun SET nama_akun = @nama, email = @email, password = @password, akun_role_id = @role_id WHERE id_akun = @id_akun";
+            }
             NpgsqlParameter[] parameters = {
                 new NpgsqlParameter("@nama", akun.nama),
                 new NpgsqlParameter("@email", akun.email),
                 new NpgsqlParameter("@password", akun.Password),
                 new NpgsqlParameter("@role_id", (int)akun.role),
-                new NpgsqlParameter("@id_akun", akun.id_akun)
+                new NpgsqlParameter("@id_akun", id)
             };
             try
             {

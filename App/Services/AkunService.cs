@@ -2,6 +2,8 @@
 
 using PBOBarberMate.App.Repository;
 using PBOBarberMate.App.Model;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+using System.Data;
 
 
 namespace PBOBarberMate.App.Services
@@ -91,6 +93,17 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"AkunService: Gagal mendapatkan semua akun. Error: {ex.Message}", ex);
             }
         }
+        public List<M_Karyawan> getAllKaryawan()
+        {
+            try
+            {
+                return _akunRepository.getAllKaryawan();
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"AkunService: Gagal mendapatkan semua karyawan. Error: {ex.Message}", ex);
+            }
+        }
         public M_Akun getAkunById(int id)
         {
             try
@@ -102,27 +115,40 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"AkunService: Gagal mendapatkan akun dengan ID {id}. Error: {ex.Message}", ex);
             }
         }
-        public bool addLayanan(M_Akun akun)
+        public M_Akun getAkunByEmail(string email)
         {
             try
             {
-                int newLayananId = _akunRepository.createAkun(akun);
-                return newLayananId > 0;
+                return _akunRepository.getAkunByEmail(email);
             }
             catch (ApplicationException ex)
             {
-                throw new ApplicationException($"LayananService: Gagal menambahkan layanan. Error: {ex.Message}", ex);
+                throw new ApplicationException($"AkunService: Gagal mendapatkan akun dengan email {email}. Error: {ex.Message}", ex);
             }
         }
-        public bool udpateAkun(M_Akun akun)
+        public bool addAkun(string nama, string email, string password, AkunRole role)
         {
             try
             {
-                return _akunRepository.UpdateAkun(akun);
+                M_Akun akun = new M_Akun(nama, email, password, role);
+                int id = _akunRepository.createAkun(akun);
+                return id > 0;
             }
             catch (ApplicationException ex)
             {
-                throw new ApplicationException($"LayananService: Gagal memperbarui layanan. Error: {ex.Message}", ex);
+                throw new ApplicationException($"AkunService: Gagal menambahkan akun. Error: {ex.Message}", ex);
+            }
+        }
+        public bool updateAkun(string nama, string email, string password, AkunRole role, int id)
+        {
+            try
+            {
+                M_Akun akun = new M_Akun(nama, email, password, role);
+                return _akunRepository.UpdateAkun(akun, id);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"AkunService: Gagal memperbarui akun. Error: {ex.Message}", ex);
             }
         }
         public bool deleteAkun(int id)
@@ -133,7 +159,7 @@ namespace PBOBarberMate.App.Services
             }
             catch (ApplicationException ex)
             {
-                throw new ApplicationException($"LayananService: Gagal menghapus layanan. Error: {ex.Message}", ex);
+                throw new ApplicationException($"AkunService: Gagal menghapus akun. Error: {ex.Message}", ex);
             }
         }
     }

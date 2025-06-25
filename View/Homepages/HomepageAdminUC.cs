@@ -11,6 +11,7 @@ using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
 using PBOBarberMate.View.Layanan;
 using PBOBarberMate.View.Inventaris;
+using PBOBarberMate.View.KelolaKaryawan;
 
 
 
@@ -184,8 +185,7 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnKaryawan_Click(object sender, EventArgs e)
         {
-            //LoadFeatureContent(new FormKelolaKaryawanUC(_akunService, _sessionService, _mainApp));
-            HideProfileBox(); // Hide profile if visible when navigating
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new KelolaKaryawanUC(_commonServices), "Kelola Karyawan");
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
