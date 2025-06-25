@@ -99,6 +99,10 @@ namespace PBOBarberMate.View.Inventaris
         private void FormTambahInventaris_Load(object sender, EventArgs e)
         {
             UpdateAddButtonState();
+            if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
+            {
+                tbxNama.Enabled = true;
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

@@ -89,6 +89,7 @@
             // tbxNama
             // 
             tbxNama.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxNama.Enabled = false;
             tbxNama.Location = new Point(90, 19);
             tbxNama.Name = "tbxNama";
             tbxNama.Size = new Size(448, 23);

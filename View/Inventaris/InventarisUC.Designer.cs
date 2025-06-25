@@ -53,6 +53,7 @@
             btnTambah.Text = "Tambah";
             btnTambah.TextAlign = ContentAlignment.MiddleRight;
             btnTambah.UseVisualStyleBackColor = false;
+            btnTambah.Visible = false;
             btnTambah.Click += btnTambah_Click;
             // 
             // lblInventaris
@@ -91,6 +92,7 @@
             pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
             pictbxAdd.TabIndex = 27;
             pictbxAdd.TabStop = false;
+            pictbxAdd.Visible = false;
             // 
             // pictbxAddHov
             // 
@@ -103,6 +105,7 @@
             pictbxAddHov.SizeMode = PictureBoxSizeMode.Zoom;
             pictbxAddHov.TabIndex = 28;
             pictbxAddHov.TabStop = false;
+            pictbxAddHov.Visible = false;
             // 
             // InventarisUC
             // 

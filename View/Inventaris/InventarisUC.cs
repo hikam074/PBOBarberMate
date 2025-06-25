@@ -70,11 +70,16 @@ namespace PBOBarberMate.View.Inventaris
             if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
             {
                 btnTambah.Visible = true;
+                pictbxAdd.Visible = true;
+                pictbxAddHov.Visible = true;
             }
             // atur tombol edit layanan
             if (dgvInventaris.Columns.Contains("btnUbah"))
             {
-                dgvInventaris.Columns["btnUbah"].Visible = (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin);
+                dgvInventaris.Columns["btnUbah"].Visible = (
+                    (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin) || 
+                    (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.karyawan)
+                    );
             }
             // atur tombol hapus layanan
             if (dgvInventaris.Columns.Contains("btnHapus"))
