@@ -1,18 +1,20 @@
 ﻿using Npgsql;
-using PBOBarberMate.App.Infrastructure;
-using PBOBarberMate.App.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using PBOBarberMate.App.Infrastructure;
+using PBOBarberMate.App.Model;
+
+
 namespace PBOBarberMate.App.Repository
 {
     public class LayananRepository
     {
         private readonly DB_Executor _dbExecutor;
-        // Inisialisasi DBExecutor dengan connection string
+        
         public LayananRepository()
         {
             _dbExecutor = new DB_Executor(DB_ConnectionFactory.ConnectionString);

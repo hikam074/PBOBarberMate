@@ -16,7 +16,7 @@ namespace PBOBarberMate.App.Repository
     public class AkunRepository
     {
         private readonly DB_Executor _dbExecutor;
-        // Inisialisasi DBExecutor dengan connection string
+        
         public AkunRepository()
         {
             _dbExecutor = new DB_Executor(DB_ConnectionFactory.ConnectionString);

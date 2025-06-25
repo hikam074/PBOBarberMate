@@ -1,5 +1,4 @@
 ﻿using Npgsql;
-
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -132,7 +131,6 @@ namespace PBOBarberMate.View.Layanan
         // REDIRECT KE TAMBAH LAYANAN
         private void btnTambah_Click(object sender, EventArgs e)
         {
-            // FALSE KARENA CREATE (BKN EDIT)
             _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananTambahUC(_commonServices, _layananService), "Tambah Layanan");
         }
 

@@ -10,6 +10,7 @@ using PBOBarberMate.App.Repository;
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Dashboard;
 using PBOBarberMate.View.Layanan;
+using PBOBarberMate.View.Inventaris;
 
 
 
@@ -26,7 +27,8 @@ namespace PBOBarberMate.View.Homepages
             _commonServices = commonServices;
 
             LayananService _layananService = new LayananService(new LayananRepository());
-            _commonAdminServices = new CommonAdminServices(_layananService);
+            InventarisService _inventarisService = new InventarisService(new InventarisRepository());
+            _commonAdminServices = new CommonAdminServices(_layananService, _inventarisService);
             
             
             // Sidebar hover logic
@@ -158,8 +160,7 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnInventaris_Click(object sender, EventArgs e)
         {
-            //LoadFeatureContent(new FormInventarisUC(_akunService, _sessionService, _mainApp));
-            HideProfileBox(); // Hide profile if visible when navigating
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new InventarisUC(_commonServices, _commonAdminServices.InventarisServiceInstance), "Inventaris Barang");
         }
         private void btnShift_Click(object sender, EventArgs e)
         {

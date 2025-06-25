@@ -20,11 +20,11 @@
     <Compile Update="View\Homepages\HomepageKaryawanUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\FormInventaris\FormInventaris.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Inventaris\InventarisUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\FormInventaris\FormTambahInventaris.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Inventaris\InventarisTambah.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormKelolaCustomer\FormKelolaCustomer.cs">
       <SubType>Form</SubType>

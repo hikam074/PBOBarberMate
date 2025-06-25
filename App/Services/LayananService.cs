@@ -1,10 +1,12 @@
-﻿using PBOBarberMate.App.Model;
-using PBOBarberMate.App.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Repository;
+
 
 namespace PBOBarberMate.App.Services
 {

@@ -1,6 +1,8 @@
-﻿using PBOBarberMate.App.Repository;
+﻿using System;
+
+using PBOBarberMate.App.Repository;
 using PBOBarberMate.App.Model;
-using System;
+
 
 namespace PBOBarberMate.App.Services
 {

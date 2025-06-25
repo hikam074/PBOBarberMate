@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,52 +9,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
+using PBOBarberMate.View.Layanan;
 
 
-namespace PBOBarberMate.View.Layanan
+namespace PBOBarberMate.View.Inventaris
 {
-    public partial class LayananTambahUC : UserControl
+    public partial class InventarisTambahUC : UserControl
     {
         public readonly bool _isEditMode;
-        public readonly M_Layanan _layananDiedit;
+        public readonly M_Inventaris _inventarisDiedit;
 
         private readonly CommonAppServices _commonServices;
 
-        private readonly LayananService _layananService;
+        private readonly InventarisService _inventarisService;
 
-        public LayananTambahUC(CommonAppServices commonServices, LayananService layananService)
+        public InventarisTambahUC(CommonAppServices commonServices, InventarisService inventarisService)
         {
             InitializeComponent();
 
             _commonServices = commonServices;
 
-            _layananService = layananService;
+            _inventarisService = inventarisService;
 
             _isEditMode = false;
 
             SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
             SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
         }
-
-        public LayananTambahUC(CommonAppServices commonServices, LayananService layananService, M_Layanan layananDiedit)
+        public InventarisTambahUC(CommonAppServices commonServices, InventarisService inventarisService, M_Inventaris inventarisDiedit)
         {
             InitializeComponent();
 
             _commonServices = commonServices;
 
-            _layananService = layananService;
+            _inventarisService = inventarisService;
 
             _isEditMode = true;
-            _layananDiedit = layananDiedit;
+            _inventarisDiedit = inventarisDiedit;
 
             // penyesuaian view
-            tbxNamaLayanan.Text = layananDiedit.nama_layanan;
-            tbxHargaLayanan.Text = layananDiedit.harga.ToString();
-            btnAdd.Text = "     Simpan Perubahan";
-            lblTambahLayanan.Text = "Ubah Layanan " + layananDiedit.nama_layanan;
+            tbxNama.Text = inventarisDiedit.nama_barang;
+            tbxJumlah.Text = inventarisDiedit.jumlah_barang.ToString();
+            btnAdd.Text = "      Simpan Perubahan";
+            lblTambahInventaris.Text = "Ubah Inventaris " + inventarisDiedit.nama_barang;
             SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
             SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
             AdjustPictbxAddPosition();
@@ -66,12 +66,14 @@ namespace PBOBarberMate.View.Layanan
         }
         private void SetAddButtonlHoverEvents(Control button, Control relatedControl, Control relatedHovControl)
         {
-            button.MouseEnter += (s, e) => { 
+            button.MouseEnter += (s, e) =>
+            {
                 button.BackColor = Color.Green; button.ForeColor = Color.White;
                 relatedHovControl.BackColor = Color.Green; relatedHovControl.Visible = true; relatedHovControl.BringToFront();
                 relatedControl.Visible = false;
             };
-            button.MouseLeave += (s, e) => { 
+            button.MouseLeave += (s, e) =>
+            {
                 button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black;
                 relatedHovControl.Visible = false;
                 relatedControl.Visible = true;
@@ -83,28 +85,27 @@ namespace PBOBarberMate.View.Layanan
             {
                 int x = btnAdd.Location.X + 7;
                 int y = btnAdd.Location.Y + (btnAdd.Height - pictbxAdd.Height) / 2;
-                
+
                 pictbxAddHov.Location = new Point(x, y);
                 pictbxAdd.Location = new Point(x, y);
                 pictbxAdd.BringToFront();
-
             }
         }
-
-        // KEMBALI KE LIHAT LAYANAN
-        private void btnCancel_Click(object sender, EventArgs e)
+        public void UpdateAddButtonState()
         {
-            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _layananService), "Layanan");
+            btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNama.Text) || string.IsNullOrWhiteSpace(tbxJumlah.Text));
         }
 
-
-
-        private void FormTambahLayanan_Load(object sender, EventArgs e)
+        private void FormTambahInventaris_Load(object sender, EventArgs e)
         {
             UpdateAddButtonState();
         }
 
-        // SUBMIT DATA KE DATABASE
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new InventarisUC(_commonServices, _inventarisService), "Inventaris Barang");
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -112,8 +113,8 @@ namespace PBOBarberMate.View.Layanan
                 return;
             }
             // ambil data dari V
-            string nama_layanan_baru = tbxNamaLayanan.Text;
-            int harga_baru = Int32.Parse(tbxHargaLayanan.Text);
+            string nama = tbxNama.Text;
+            int jumlah = Int32.Parse(tbxJumlah.Text);
             // konfirmasi berhasil
             bool berhasil = false;
 
@@ -129,65 +130,57 @@ namespace PBOBarberMate.View.Layanan
             {
                 if (!_isEditMode)
                 {
-                    berhasil = _layananService.addLayanan(nama_layanan_baru, harga_baru);
-                    if (berhasil) 
+                    berhasil = _inventarisService.addInventaris(nama, jumlah);
+                    if (berhasil)
                     {
-                        MessageBox.Show("Data \"" + nama_layanan_baru + "\" Berhasil Ditambahkan!");
+                        MessageBox.Show("Data \"" + nama + "\" Berhasil Ditambahkan!");
                     }
                 }
                 else
                 {
                     // ambil id
-                    int id_diedit = _layananDiedit.id_layanan;
+                    int id_diedit = _inventarisDiedit.id_barang;
+                    
                     // lakukan
-                    berhasil = _layananService.updateLayanan(id_diedit, nama_layanan_baru, harga_baru);
+                    berhasil = _inventarisService.updateInventaris(id_diedit, nama, jumlah);
                     if (berhasil)
                     {
-                        MessageBox.Show("Data \"" + nama_layanan_baru + "\" Berhasil diubah!");
+                        MessageBox.Show("Data \"" + nama + "\" Berhasil diubah!");
                     }
                 }
                 if (berhasil)
                 {
-                    _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _layananService), "Layanan");
+                    _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new InventarisUC(_commonServices, _inventarisService), "Inventaris Barang");
                 }
             }
 
         }
-
-
         private bool ValidateInput()
         {
             // not null
-            if (string.IsNullOrWhiteSpace(tbxNamaLayanan.Text) || string.IsNullOrWhiteSpace(tbxHargaLayanan.Text))
+            if (string.IsNullOrWhiteSpace(tbxNama.Text) || string.IsNullOrWhiteSpace(tbxJumlah.Text))
             {
-                MessageBox.Show("Nama Layanan dan Harga tidak boleh kosong.", "Validasi Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Nama Barang dan Jumlah tidak boleh kosong.", "Validasi Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             // harga = int
-            if (!int.TryParse(tbxHargaLayanan.Text, out _)) // Menggunakan '_' sebagai discard variable karena kita tidak butuh nilai parsed di sini, hanya sukses/gagalnya
+            if (!int.TryParse(tbxJumlah.Text, out _)) // Menggunakan '_' sebagai discard variable karena kita tidak butuh nilai parsed di sini, hanya sukses/gagalnya
             {
-                MessageBox.Show("Harga harus berupa angka.", "Validasi Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Jumlah harus berupa angka.", "Validasi Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
             return true;
         }
 
+        private void tbxNama_TextChanged(object sender, EventArgs e)
+        {
+            UpdateAddButtonState();
+        }
 
-        // ACTIVING ADD BTN IF NOT EMPTY
-        private void tbxNamaLayanan_TextChanged(object sender, EventArgs e)
+        private void tbxJumlah_TextChanged(object sender, EventArgs e)
         {
             UpdateAddButtonState();
-        }
-        // ACTIVING ADD BTN IF NOT EMPTY
-        private void tbxHargaLayanan_TextChanged(object sender, EventArgs e)
-        {
-            UpdateAddButtonState();
-        }
-        // METHOD ACTIVING ADD BTN IF NOT EMPTY
-        public void UpdateAddButtonState()
-        {
-            btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNamaLayanan.Text) || string.IsNullOrWhiteSpace(tbxHargaLayanan.Text));
         }
     }
 }
