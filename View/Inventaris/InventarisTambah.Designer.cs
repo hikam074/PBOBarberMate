@@ -89,7 +89,6 @@
             // tbxNama
             // 
             tbxNama.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            tbxNama.Enabled = false;
             tbxNama.Location = new Point(90, 19);
             tbxNama.Name = "tbxNama";
             tbxNama.Size = new Size(448, 23);
@@ -192,6 +191,7 @@
             Margin = new Padding(2);
             Name = "InventarisTambahUC";
             Size = new Size(744, 451);
+            Load += InventarisTambahUC_Load;
             gbxAdd.ResumeLayout(false);
             gbxAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictbxAdd).EndInit();

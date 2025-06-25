@@ -96,12 +96,16 @@ namespace PBOBarberMate.View.Inventaris
             btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNama.Text) || string.IsNullOrWhiteSpace(tbxJumlah.Text));
         }
 
-        private void FormTambahInventaris_Load(object sender, EventArgs e)
+        private void InventarisTambahUC_Load(object sender, EventArgs e)
         {
             UpdateAddButtonState();
             if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
             {
                 tbxNama.Enabled = true;
+            }
+            else
+            {
+                tbxNama.Enabled = false;
             }
         }
 
@@ -144,7 +148,7 @@ namespace PBOBarberMate.View.Inventaris
                 {
                     // ambil id
                     int id_diedit = _inventarisDiedit.id_barang;
-                    
+
                     // lakukan
                     berhasil = _inventarisService.updateInventaris(id_diedit, nama, jumlah);
                     if (berhasil)
