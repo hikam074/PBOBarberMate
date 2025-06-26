@@ -52,6 +52,7 @@
             dgvLayanan.Size = new Size(544, 300);
             dgvLayanan.TabIndex = 0;
             dgvLayanan.CellContentClick += dgvLayanan_CellContentClick;
+            dgvLayanan.ColumnHeaderMouseClick += dgvLayanan_ColumnHeaderMouseClick;
             // 
             // lblLayanan
             // 

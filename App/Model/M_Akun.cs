@@ -51,6 +51,13 @@ namespace PBOBarberMate.App.Model
             this.Password = plainPassword;
             this.role = role;
         }
+        // CONSTRUCTOR SEARCH
+        public M_Akun(int id, string nama, string email)
+        {
+            this.id_akun = id;
+            this.nama = nama;
+            this.email = email;
+        }
         // UTILS HASH PASSWORD
         public static string hashPassword(string password)
         {

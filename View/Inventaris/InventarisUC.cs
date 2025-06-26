@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
 using PBOBarberMate.View.Layanan;
+using PBOBarberMate.App.Utils;
 
 
 namespace PBOBarberMate.View.Inventaris
@@ -77,7 +78,7 @@ namespace PBOBarberMate.View.Inventaris
             if (dgvInventaris.Columns.Contains("btnUbah"))
             {
                 dgvInventaris.Columns["btnUbah"].Visible = (
-                    (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin) || 
+                    (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin) ||
                     (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.karyawan)
                     );
             }
@@ -91,11 +92,36 @@ namespace PBOBarberMate.View.Inventaris
         private void LoadDgvInventaris()
         {
             List<M_Inventaris> daftarInventaris = _inventarisService.getAllInventaris();
-            DataTable dt = ConvertInventarisListToDataTable(daftarInventaris);
-            dgvInventaris.DataSource = dt;
+            // set juga var global internal
+            inventarisList = daftarInventaris;
+
             dgvInventaris.AutoGenerateColumns = false;
+            dgvInventaris.Columns.Clear();
+
+            // kolom dengan header kustom
+            dgvInventaris.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID Barang",
+                DataPropertyName = "id_barang",
+                Name = "colId"
+            });
+            dgvInventaris.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Nama Barang",
+                DataPropertyName = "nama_barang",
+                Name = "colNama"
+            });
+            dgvInventaris.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Jumlah",
+                DataPropertyName = "jumlah_barang",
+                Name = "colJumlah"
+            });
+
+            dgvInventaris.DataSource = daftarInventaris;
             dgvInventaris.RowHeadersVisible = false;
             dgvInventaris.AllowUserToAddRows = false;
+
             // Kolom Ubah
             if (dgvInventaris.Columns["btnUbah"] == null)
             {
@@ -117,19 +143,7 @@ namespace PBOBarberMate.View.Inventaris
                 dgvInventaris.Columns.Add(btnHapus);
             }
         }
-        // METHOD MEMBUAT DATA TABLE DARI DATA OBJECT
-        private DataTable ConvertInventarisListToDataTable(List<M_Inventaris> list)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID Barang", typeof(int));
-            dt.Columns.Add("Nama Barang", typeof(string));
-            dt.Columns.Add("Jumlah", typeof(int));
-            foreach (M_Inventaris inventaris in list)
-            {
-                dt.Rows.Add(inventaris.id_barang, inventaris.nama_barang, inventaris.jumlah_barang);
-            }
-            return dt;
-        }
+
         // REDIRECT KE TAMBAH INVENTARIS
         private void btnTambah_Click(object sender, EventArgs e)
         {
@@ -142,7 +156,7 @@ namespace PBOBarberMate.View.Inventaris
             // Pastikan baris yang diklik valid (bukan header atau baris kosong)
             if (e.RowIndex < 0) return;
             // Dapatkan ID dari baris yang diklik
-            int id_inventaris = Convert.ToInt32(dgvInventaris.Rows[e.RowIndex].Cells["ID Barang"].Value);
+            int id_inventaris = Convert.ToInt32(dgvInventaris.Rows[e.RowIndex].Cells["colId"].Value);
 
             // Jika tombol "Ubah" yang diklik
             if (e.ColumnIndex == dgvInventaris.Columns["btnUbah"].Index)
@@ -189,6 +203,12 @@ namespace PBOBarberMate.View.Inventaris
                     }
                 }
             }
+        }
+
+        private List<M_Inventaris> inventarisList;
+        private void dgvInventaris_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewSorter.Sort(dgvInventaris, e, ref inventarisList);
         }
     }
 }

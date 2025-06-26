@@ -26,8 +26,8 @@
     <Compile Update="View\Inventaris\InventarisTambah.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\FormKelolaCustomer\FormKelolaCustomer.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\KelolaCustomers\KelolaCustomerUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\KelolaKaryawans\KelolaKaryawanTambahUC.cs">
       <SubType>UserControl</SubType>

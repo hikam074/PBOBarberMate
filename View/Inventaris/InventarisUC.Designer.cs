@@ -80,6 +80,7 @@
             dgvInventaris.Size = new Size(544, 300);
             dgvInventaris.TabIndex = 4;
             dgvInventaris.CellContentClick += dgvInventaris_CellContentClick;
+            dgvInventaris.ColumnHeaderMouseClick += dgvInventaris_ColumnHeaderMouseClick;
             // 
             // pictbxAdd
             // 

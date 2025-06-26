@@ -53,6 +53,7 @@
             dgvKaryawan.Size = new Size(544, 300);
             dgvKaryawan.TabIndex = 5;
             dgvKaryawan.CellContentClick += dgvKaryawan_CellContentClick;
+            dgvKaryawan.ColumnHeaderMouseClick += dgvKaryawan_ColumnHeaderMouseClick;
             // 
             // lblKelolaKaryawan
             // 

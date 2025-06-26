@@ -12,6 +12,7 @@ using PBOBarberMate.View.Dashboard;
 using PBOBarberMate.View.Layanan;
 using PBOBarberMate.View.Inventaris;
 using PBOBarberMate.View.KelolaKaryawan;
+using PBOBarberMate.View.KelolaCustomer;
 
 
 
@@ -189,8 +190,7 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnCustomer_Click(object sender, EventArgs e)
         {
-            //LoadFeatureContent(new FormKelolaCustomerUC(_akunService, _sessionService, _mainApp));
-            HideProfileBox(); // Hide profile if visible when navigating
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new KelolaCustomerUC(_commonServices), "Kelola Customer");
         }
     }
 }

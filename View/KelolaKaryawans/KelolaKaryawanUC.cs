@@ -1,7 +1,4 @@
-﻿
-using PBOBarberMate.App.Model;
-using PBOBarberMate.App.Services;
-using PBOBarberMate.View.Layanan;
+﻿using PBOBarberMate.View.Layanan;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,6 +7,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
+using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Services;
+using PBOBarberMate.App.Utils;
 
 
 namespace PBOBarberMate.View.KelolaKaryawan
@@ -57,15 +59,40 @@ namespace PBOBarberMate.View.KelolaKaryawan
 
             }
         }
-        // NAMPILKAN SEMUA DATA LAYANAN
+        // NAMPILKAN SEMUA DATA KARYAWAN
         private void LoadDgvKaryawan()
         {
             List<M_Karyawan> karyawans = _commonServices.AkunServiceInstance.getAllKaryawan();
-            DataTable dt = ConvertListToDataTable(karyawans);
-            dgvKaryawan.DataSource = dt;
+            // set juga var global internal
+            karyawanList = karyawans;
+
             dgvKaryawan.AutoGenerateColumns = false;
+            dgvKaryawan.Columns.Clear();
+
+            // kolom dengan header kustom
+            dgvKaryawan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID Karyawan",
+                DataPropertyName = "id_akun",
+                Name = "colId"
+            });
+            dgvKaryawan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Nama Lengkap",
+                DataPropertyName = "nama",
+                Name = "colNama"
+            });
+            dgvKaryawan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Alamat Email",
+                DataPropertyName = "email",
+                Name = "colEmail"
+            });
+
+            dgvKaryawan.DataSource = karyawans;
             dgvKaryawan.RowHeadersVisible = false;
             dgvKaryawan.AllowUserToAddRows = false;
+
             // Kolom Ubah
             if (dgvKaryawan.Columns["btnUbah"] == null)
             {
@@ -87,19 +114,6 @@ namespace PBOBarberMate.View.KelolaKaryawan
                 dgvKaryawan.Columns.Add(btnHapus);
             }
         }
-        // METHOD MEMBUAT DATA TABLE DARI DATA OBJECT
-        private DataTable ConvertListToDataTable(List<M_Karyawan> list)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID Karyawan", typeof(int));
-            dt.Columns.Add("Nama Karyawan", typeof(string));
-            dt.Columns.Add("Email", typeof(string));
-            foreach (M_Karyawan karyawan in list)
-            {
-                dt.Rows.Add(karyawan.id_akun, karyawan.nama, karyawan.email);
-            }
-            return dt;
-        }
 
         private void btnTambah_Click(object sender, EventArgs e)
         {
@@ -112,7 +126,7 @@ namespace PBOBarberMate.View.KelolaKaryawan
             if (e.RowIndex < 0) return;
 
             // Dapatkan ID Layanan dari baris yang diklik
-            int id = Convert.ToInt32(dgvKaryawan.Rows[e.RowIndex].Cells["ID Karyawan"].Value);
+            int id = Convert.ToInt32(dgvKaryawan.Rows[e.RowIndex].Cells["colId"].Value);
 
             // Jika tombol "Ubah" yang diklik
             if (e.ColumnIndex == dgvKaryawan.Columns["btnUbah"].Index)
@@ -162,6 +176,12 @@ namespace PBOBarberMate.View.KelolaKaryawan
                     }
                 }
             }
+        }
+
+        private List<M_Karyawan> karyawanList;
+        private void dgvKaryawan_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewSorter.Sort(dgvKaryawan, e, ref karyawanList);
         }
     }
 }

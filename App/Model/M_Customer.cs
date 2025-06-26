@@ -13,5 +13,12 @@ namespace PBOBarberMate.App.Model
     {
         // ATRIBUT
         public override AkunRole role => AkunRole.customer;
+        public M_Customer(M_Akun akun)
+        {
+            this.id_akun = akun.id_akun;
+            this.nama = akun.nama;
+            this.email = akun.email;
+            this.role = akun.role;
+        }
     }
 }

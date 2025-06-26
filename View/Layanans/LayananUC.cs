@@ -13,6 +13,7 @@ using System.Drawing;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
 using PBOBarberMate.App.Repository;
+using PBOBarberMate.App.Utils;
 
 
 namespace PBOBarberMate.View.Layanan
@@ -41,12 +42,14 @@ namespace PBOBarberMate.View.Layanan
         }
         private void SetAddButtonlHoverEvents(Control button, Control relatedControl, Control relatedHovControl)
         {
-            button.MouseEnter += (s, e) => { 
-                button.BackColor = SystemColors.Highlight; button.ForeColor = Color.White; 
-                relatedControl.Visible = false; relatedHovControl.Visible = true; relatedHovControl.BringToFront(); relatedHovControl.BackColor = SystemColors.Highlight; 
+            button.MouseEnter += (s, e) =>
+            {
+                button.BackColor = SystemColors.Highlight; button.ForeColor = Color.White;
+                relatedControl.Visible = false; relatedHovControl.Visible = true; relatedHovControl.BringToFront(); relatedHovControl.BackColor = SystemColors.Highlight;
             };
-            button.MouseLeave += (s, e) => { 
-                button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black; 
+            button.MouseLeave += (s, e) =>
+            {
+                button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black;
                 relatedControl.Visible = true; relatedHovControl.Visible = false; relatedControl.BringToFront();
             };
         }
@@ -67,11 +70,36 @@ namespace PBOBarberMate.View.Layanan
         private void LoadDgvLayanan()
         {
             List<M_Layanan> daftarLayanan = _layananService.getAllLayanan();
-            DataTable dtLayanan = ConvertLayananListToDataTable(daftarLayanan);
-            dgvLayanan.DataSource = dtLayanan;
+            // taruh juga data ke var global internal
+            layananList = daftarLayanan;
+
             dgvLayanan.AutoGenerateColumns = false;
+            dgvLayanan.Columns.Clear();
+
+            // kolom dengan header kustom
+            dgvLayanan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "ID Layanan",
+                DataPropertyName = "id_layanan",
+                Name = "colId",
+            });
+            dgvLayanan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Nama Layanan",
+                DataPropertyName = "nama_layanan",
+                Name = "colNama",
+            });
+            dgvLayanan.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Harga",
+                DataPropertyName = "harga",
+                Name = "colHarga",
+            });
+
+            dgvLayanan.DataSource = daftarLayanan;
             dgvLayanan.RowHeadersVisible = false;
             dgvLayanan.AllowUserToAddRows = false;
+
             // Kolom Ubah
             if (dgvLayanan.Columns["btnUbah"] == null)
             {
@@ -92,20 +120,6 @@ namespace PBOBarberMate.View.Layanan
                 btnHapus.UseColumnTextForButtonValue = true;
                 dgvLayanan.Columns.Add(btnHapus);
             }
-        }
-        // METHOD MEMBUAT DATA TABLE DARI DATA OBJECT
-        private DataTable ConvertLayananListToDataTable(List<M_Layanan> layananList)
-        {
-            DataTable dt = new DataTable();
-            dt.Columns.Add("ID Layanan", typeof(int));
-            dt.Columns.Add("Nama Layanan", typeof(string));
-            dt.Columns.Add("Harga", typeof(int));
-            foreach (M_Layanan layanan in layananList)
-            {
-                dt.Rows.Add(layanan.id_layanan, layanan.nama_layanan, layanan.harga);
-            }
-
-            return dt;
         }
         // METHOD AKTIFKAN TOMBOL KHUSUS ADMIN
         private void EnableButtonAdd()
@@ -149,7 +163,7 @@ namespace PBOBarberMate.View.Layanan
             if (e.RowIndex < 0) return;
 
             // Dapatkan ID Layanan dari baris yang diklik
-            int idLayanan = Convert.ToInt32(dgvLayanan.Rows[e.RowIndex].Cells["ID Layanan"].Value);
+            int idLayanan = Convert.ToInt32(dgvLayanan.Rows[e.RowIndex].Cells["colId"].Value);
 
             // Jika tombol "Ubah" yang diklik
             if (e.ColumnIndex == dgvLayanan.Columns["btnUbah"].Index)
@@ -198,6 +212,12 @@ namespace PBOBarberMate.View.Layanan
                     }
                 }
             }
+        }
+
+        private List<M_Layanan> layananList;
+        private void dgvLayanan_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DataGridViewSorter.Sort(dgvLayanan, e, ref layananList);
         }
     }
 }

@@ -45,14 +45,14 @@ namespace PBOBarberMate.App.Repository
             }
         }
         // METHOD repo SELECT untuk ambil semua data akun
-        public List<M_Karyawan> getAllKaryawan()
+        public List<M_Akun> getAllAkun(AkunRole role)
         {
             string query = "SELECT id_akun, nama_akun, email FROM akun WHERE akun_role_id = @id";
-            NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", (int)AkunRole.karyawan) };
+            NpgsqlParameter[] parameters = { new NpgsqlParameter("@id", (int)role) };
             try
             {
                 List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query, parameters);
-                return rawData.Select(row => new M_Karyawan(
+                return rawData.Select(row => new M_Akun(
                     Convert.ToInt32(row[0]),            // id
                     Convert.ToString(row[1]),           // nama
                     Convert.ToString(row[2])            // email
@@ -61,7 +61,7 @@ namespace PBOBarberMate.App.Repository
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error in GetAllKaryawan: {ex.Message}", ex);
+                throw new ApplicationException($"Error in GetAllAkun(role): {ex.Message}", ex);
             }
         }
 

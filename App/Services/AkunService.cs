@@ -97,11 +97,28 @@ namespace PBOBarberMate.App.Services
         {
             try
             {
-                return _akunRepository.getAllKaryawan();
+                // Ambil semua data
+                var akunList = _akunRepository.getAllAkun(AkunRole.karyawan);
+                // Konversi M_Akun ke M_Karyawan
+                return akunList.Select(akun => new M_Karyawan(akun)).ToList();
             }
             catch (ApplicationException ex)
             {
                 throw new ApplicationException($"AkunService: Gagal mendapatkan semua karyawan. Error: {ex.Message}", ex);
+            }
+        }
+        public List<M_Customer> getAllCustomer()
+        {
+            try
+            {
+                // Ambil semua data
+                var akunList = _akunRepository.getAllAkun(AkunRole.customer);
+                // Konversi M_Akun ke M_Karyawan
+                return akunList.Select(akun => new M_Customer(akun)).ToList();
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"AkunService: Gagal mendapatkan semua customer. Error: {ex.Message}", ex);
             }
         }
         public M_Akun getAkunById(int id)
