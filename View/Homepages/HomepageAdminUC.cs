@@ -13,6 +13,7 @@ using PBOBarberMate.View.Layanan;
 using PBOBarberMate.View.Inventaris;
 using PBOBarberMate.View.KelolaKaryawan;
 using PBOBarberMate.View.KelolaCustomer;
+using PBOBarberMate.View.Shift;
 
 
 
@@ -30,7 +31,8 @@ namespace PBOBarberMate.View.Homepages
 
             LayananService _layananService = new LayananService(new LayananRepository());
             InventarisService _inventarisService = new InventarisService(new InventarisRepository());
-            _commonAdminServices = new CommonAdminServices(_layananService, _inventarisService);
+            ShiftService _shiftService = new ShiftService(new ShiftRepository(), new AkunRepository());
+            _commonAdminServices = new CommonAdminServices(_layananService, _inventarisService, _shiftService);
             
             
             // Sidebar hover logic
@@ -166,7 +168,7 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnShift_Click(object sender, EventArgs e)
         {
-            //LoadFeatureContent(new FormShiftUC(_akunService, _sessionService, _mainApp));
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance), "Layanan");
             HideProfileBox(); // Hide profile if visible when navigating
         }
         private void btnReservasi_Click(object sender, EventArgs e)

@@ -24,9 +24,9 @@ namespace PBOBarberMate.View.FormShift
 
         private void btnKembali_Click(object sender, EventArgs e)
         {
-            FormShift formShift = new FormShift();
-            formShift.Show();
-            this.Hide();
+            //FormShift formShift = new FormShift();
+            //formShift.Show();
+            //this.Hide();
         }
 
         private void btnTambahkan_Click(object sender, EventArgs e)
@@ -81,9 +81,9 @@ namespace PBOBarberMate.View.FormShift
 
         private void btnBatal_Click(object sender, EventArgs e)
         {
-            FormShift formShift = new FormShift();
-            this.Hide();
-            formShift.Show();
+            //FormShift formShift = new FormShift();
+            //this.Hide();
+            //formShift.Show();
         }
 
         private void btnTambah_Click(object sender, EventArgs e)

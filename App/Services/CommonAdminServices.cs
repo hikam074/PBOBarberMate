@@ -6,11 +6,13 @@ namespace PBOBarberMate.App.Services
     {
         public LayananService LayananServiceInstance { get; }
         public InventarisService InventarisServiceInstance { get; }
+        public ShiftService ShiftServiceInstance { get; }
 
-        public CommonAdminServices(LayananService layananService, InventarisService inventarisService)
+        public CommonAdminServices(LayananService layananService, InventarisService inventarisService, ShiftService shiftService)
         {
             LayananServiceInstance = layananService;
             InventarisServiceInstance = inventarisService;
+            ShiftServiceInstance = shiftService;
         }
     }
 }

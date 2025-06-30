@@ -40,9 +40,9 @@
             lblCustomer.Location = new Point(100, 40);
             lblCustomer.Margin = new Padding(2, 0, 2, 0);
             lblCustomer.Name = "lblCustomer";
-            lblCustomer.Size = new Size(313, 39);
+            lblCustomer.Size = new Size(177, 39);
             lblCustomer.TabIndex = 0;
-            lblCustomer.Text = "Customer Pernah Berunjung";
+            lblCustomer.Text = "Customer Anda";
             // 
             // dgvCustomer
             // 
