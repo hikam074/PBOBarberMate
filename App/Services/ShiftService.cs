@@ -1,10 +1,13 @@
-﻿using PBOBarberMate.App.Model;
-using PBOBarberMate.App.Repository;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
+
+using PBOBarberMate.App.Model;
+using PBOBarberMate.App.Repository;
+
 
 namespace PBOBarberMate.App.Services
 {
@@ -54,7 +57,32 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"ShiftService: Gagal mengambil jadwal karyawan. Error: {ex.Message}", ex);
             }
         }
-
-
+        public bool addShift(int id_karyawan, int id_hari)
+        {
+            int id_shift = int.Parse( id_karyawan.ToString() + id_hari.ToString() );
+            Hari hari = (Hari)id_hari;
+            M_Shift shiftBaru = new M_Shift(id_shift, id_karyawan, hari);
+            try
+            {
+                int berhasil = _shiftRepository.addShift(shiftBaru);
+                return berhasil > 0;
+                
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"ShiftService: Gagal menambahkan data. Error: {ex.Message}", ex);
+            }
+        }
+        public bool deleteShift(int id)
+        {
+            try
+            {
+                return _shiftRepository.deleteShift(id);
+            }
+            catch (ApplicationException ex)
+            {
+                throw new ApplicationException($"ShiftService: Gagal menghapus shift. Error: {ex.Message}", ex);
+            }
+        }
     }
 }

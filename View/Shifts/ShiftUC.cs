@@ -42,7 +42,6 @@ namespace PBOBarberMate.View.Shift
             {
                 MessageBox.Show($"Error loading shift data: {ex.Message}");
             }
-
         }
         private void LoadDgvShift()
         {
@@ -107,37 +106,37 @@ namespace PBOBarberMate.View.Shift
             }
             if (e.ColumnIndex == dgvShift.Columns["ShiftSenin"].Index)
             {
-                e.Value = jadwal.id_shift_senin != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_senin != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftSelasa"].Index)
             {
-                e.Value = jadwal.id_shift_selasa != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_selasa != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftRabu"].Index)
             {
-                e.Value = jadwal.id_shift_rabu != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_rabu != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftKamis"].Index)
             {
-                e.Value = jadwal.id_shift_kamis != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_kamis != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftJumat"].Index)
             {
-                e.Value = jadwal.id_shift_jumat != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_jumat != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftSabtu"].Index)
             {
-                e.Value = jadwal.id_shift_sabtu != 0 ? "Ada" : "-";
+                e.Value = (jadwal.id_shift_sabtu != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftMinggu"].Index)
             {
-                e.Value = jadwal.id_shift_minggu != 0 ? jadwal.id_shift_minggu.ToString() : "-";
+                e.Value = (jadwal.id_shift_minggu != 0) ? jadwal.id_shift_minggu.ToString() : "-";
                 e.FormattingApplied = true;
             }
         }
@@ -183,7 +182,7 @@ namespace PBOBarberMate.View.Shift
                 if (idShift == 0)
                 {
                     DialogResult result = MessageBox.Show(
-                        $"Anda yakin menambahkan {columnName} untuk {jadwal.nama_karyawan}?",
+                        $"Anda yakin menambahkan '{columnName}' untuk '{jadwal.nama_karyawan}'?",
                         "Tambahkan Shift Baru",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question
@@ -192,11 +191,21 @@ namespace PBOBarberMate.View.Shift
                     {
                         try
                         {
-                            //
+                            bool success = _shiftService.addShift(jadwal.id_akun, idHari);
+                            if (success)
+                            {
+                                MessageBox.Show($"Shift '{jadwal.nama_karyawan} - {columnName}' berhasil ditambahkan.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadDgvShift();
+                            }
+                            else
+                            {
+                                MessageBox.Show("Gagal menambah shift.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                LoadDgvShift();
+                            }
                         }
                         catch ( Exception ex )
                         {
-                            //
+                            MessageBox.Show($"Terjadi kesalahan saat menambahkan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }
@@ -204,7 +213,7 @@ namespace PBOBarberMate.View.Shift
                 else
                 {
                     DialogResult result = MessageBox.Show(
-                        $"Anda yakin menghapus {columnName} untuk {jadwal.nama_karyawan}?",
+                        $"Anda yakin menghapus '{columnName}' untuk '{jadwal.nama_karyawan}'?",
                         "Hapus Shift",
                         MessageBoxButtons.YesNo,
                         MessageBoxIcon.Question
@@ -213,11 +222,21 @@ namespace PBOBarberMate.View.Shift
                     {
                         try
                         {
-                            //
+                            bool success = _shiftService.deleteShift(idShift);
+                            if (success)
+                            {
+                                MessageBox.Show("Shift berhasil dihapus.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                LoadDgvShift(); 
+                            }
+                            else
+                            {
+                                MessageBox.Show("Gagal menghapus shift.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                LoadDgvShift();
+                            }
                         }
                         catch (Exception ex)
                         {
-                            //
+                            MessageBox.Show($"Terjadi kesalahan saat menghapus: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                 }

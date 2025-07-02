@@ -4,8 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Npgsql;
+
 using PBOBarberMate.App.Infrastructure;
 using PBOBarberMate.App.Model;
+using PBOBarberMate.View.Layanan;
 using PBOBarberMate.View.Shift;
 
 
@@ -93,6 +96,38 @@ namespace PBOBarberMate.App.Repository
             catch (Exception ex)
             {
                 throw new ApplicationException($"Error in getAllShift: {ex.Message}", ex);
+            }
+        }
+        public int addShift(M_Shift shift)
+        {
+            string query = "INSERT INTO shift_karyawan (id_shift, id_akun, id_hari) VALUES (@idShift, @idKaryawan, @idHari)";
+            NpgsqlParameter[] parameters = {
+                new NpgsqlParameter("@idShift", shift.id_shift),
+                new NpgsqlParameter("@idKaryawan", shift.id_akun),
+                new NpgsqlParameter("idHari", (int)shift.hari)
+            };
+            try
+            {
+                return _dbExecutor.ExecuteScalar<int>(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error in addShift: {ex.Message}", ex);
+            }
+        }
+        public bool deleteShift(int id)
+        {
+            string query = "DELETE FROM shift_karyawan WHERE id_shift = @id";
+            NpgsqlParameter[] parameters = {
+                new NpgsqlParameter("@id", id)
+            };
+            try
+            {
+                return _dbExecutor.ExecuteNonQuery(query, parameters) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error in DeleteShift for ID {id}: {ex.Message}", ex);
             }
         }
     }
