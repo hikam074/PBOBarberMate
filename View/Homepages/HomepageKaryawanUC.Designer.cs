@@ -42,6 +42,8 @@ partial class HomepageKaryawanUC
         lblProfilNama = new Label();
         btnHomepageLogout = new Button();
         sidebarPanel = new Panel();
+        pictbxShift = new PictureBox();
+        btnShift = new Button();
         pictboxReservasi = new PictureBox();
         btnReservasi = new Button();
         pictbxPresensi = new PictureBox();
@@ -58,6 +60,7 @@ partial class HomepageKaryawanUC
         ((System.ComponentModel.ISupportInitialize)pictboxHome).BeginInit();
         gbxShowProfile.SuspendLayout();
         sidebarPanel.SuspendLayout();
+        ((System.ComponentModel.ISupportInitialize)pictbxShift).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictboxReservasi).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictbxPresensi).BeginInit();
         ((System.ComponentModel.ISupportInitialize)pictbxPerforma).BeginInit();
@@ -235,6 +238,8 @@ partial class HomepageKaryawanUC
         // sidebarPanel
         // 
         sidebarPanel.BackColor = Color.FromArgb(145, 197, 249);
+        sidebarPanel.Controls.Add(pictbxShift);
+        sidebarPanel.Controls.Add(btnShift);
         sidebarPanel.Controls.Add(pictboxReservasi);
         sidebarPanel.Controls.Add(btnReservasi);
         sidebarPanel.Controls.Add(pictbxPresensi);
@@ -250,6 +255,34 @@ partial class HomepageKaryawanUC
         sidebarPanel.Name = "sidebarPanel";
         sidebarPanel.Size = new Size(200, 451);
         sidebarPanel.TabIndex = 10;
+        // 
+        // pictbxShift
+        // 
+        pictbxShift.BackColor = Color.Transparent;
+        pictbxShift.Image = (Image)resources.GetObject("pictbxShift.Image");
+        pictbxShift.Location = new Point(17, 257);
+        pictbxShift.Name = "pictbxShift";
+        pictbxShift.Size = new Size(25, 25);
+        pictbxShift.SizeMode = PictureBoxSizeMode.StretchImage;
+        pictbxShift.TabIndex = 15;
+        pictbxShift.TabStop = false;
+        // 
+        // btnShift
+        // 
+        btnShift.BackColor = Color.Transparent;
+        btnShift.Cursor = Cursors.Hand;
+        btnShift.FlatAppearance.BorderSize = 0;
+        btnShift.FlatStyle = FlatStyle.Flat;
+        btnShift.Font = new Font("Bahnschrift Condensed", 15.75F);
+        btnShift.ForeColor = Color.Black;
+        btnShift.Location = new Point(3, 249);
+        btnShift.Name = "btnShift";
+        btnShift.Size = new Size(191, 40);
+        btnShift.TabIndex = 14;
+        btnShift.Text = "          Shift Karyawan";
+        btnShift.TextAlign = ContentAlignment.MiddleLeft;
+        btnShift.UseVisualStyleBackColor = false;
+        btnShift.Click += btnShift_Click;
         // 
         // pictboxReservasi
         // 
@@ -417,6 +450,7 @@ partial class HomepageKaryawanUC
         ((System.ComponentModel.ISupportInitialize)pictboxHome).EndInit();
         gbxShowProfile.ResumeLayout(false);
         sidebarPanel.ResumeLayout(false);
+        ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictboxReservasi).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictbxPresensi).EndInit();
         ((System.ComponentModel.ISupportInitialize)pictbxPerforma).EndInit();
@@ -452,4 +486,6 @@ partial class HomepageKaryawanUC
     private System.Windows.Forms.PictureBox pictbxInventaris;
     private PictureBox pictboxReservasi;
     private Button btnReservasi;
+    private PictureBox pictbxShift;
+    private Button btnShift;
 }

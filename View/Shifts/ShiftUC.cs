@@ -34,6 +34,14 @@ namespace PBOBarberMate.View.Shift
 
             _commonAdminServices = commonAdminServices;
         }
+        public ShiftUC(CommonAppServices commonService, ShiftService shiftService)
+        {
+            InitializeComponent();
+
+            _commonServices = commonService;
+            _shiftService = shiftService;
+            lblKiat.Visible = false;
+        }
 
         private void FormShift_Load(object sender, EventArgs e)
         {

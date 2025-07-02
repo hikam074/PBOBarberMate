@@ -8,6 +8,7 @@ using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Layanan;
 using PBOBarberMate.App.Repository;
 using PBOBarberMate.View.Inventaris;
+using PBOBarberMate.View.Shift;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -24,7 +25,8 @@ namespace PBOBarberMate.View.Homepages
 
             LayananService _layananService = new LayananService(new LayananRepository());
             InventarisService _inventarisService = new InventarisService(new InventarisRepository());
-            _commonKaryawanServices = new CommonKaryawanServices(_layananService, _inventarisService);
+            ShiftService _shiftService = new ShiftService(new ShiftRepository(), new AkunRepository());
+            _commonKaryawanServices = new CommonKaryawanServices(_layananService, _inventarisService, _shiftService);
 
             // Sidebar hover logic
             SetButtonHoverEvents();
@@ -205,6 +207,11 @@ namespace PBOBarberMate.View.Homepages
 
             // Placeholder for now
             MessageBox.Show("Presensi functionality is currently commented out.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnShift_Click(object sender, EventArgs e)
+        {
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonKaryawanServices.ShiftServiceInstance), "Shift");
         }
     }
 }
