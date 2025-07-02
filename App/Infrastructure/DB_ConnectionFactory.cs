@@ -8,11 +8,11 @@ namespace PBOBarberMate.App.Infrastructure
 {
     public static class DB_ConnectionFactory
     {
-        private static readonly string dbHost = "localhost";
-        private static readonly string dbDatabase = "";
-        private static readonly string dbUsername = "postgres";
-        private static readonly string dbPassword = "";
-        private static readonly string dbPort = "5432";
+        private static readonly string dbHost = "-";
+        private static readonly string dbDatabase = "-";
+        private static readonly string dbUsername = "-";
+        private static readonly string dbPassword = "-";
+        private static readonly string dbPort = "-";
 
         public static string ConnectionString =>
             $"Host={dbHost};Port={dbPort};Username={dbUsername};Password={dbPassword};Database={dbDatabase}";
