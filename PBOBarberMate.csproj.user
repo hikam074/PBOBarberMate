@@ -68,9 +68,6 @@
     <Compile Update="View\Shifts\ShiftUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Shifts\FormTambahJadwal.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="View\Auth\SignupUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
