@@ -9,9 +9,9 @@ namespace PBOBarberMate.App.Infrastructure
     public static class DB_ConnectionFactory
     {
         private static readonly string dbHost = "localhost";
-        private static readonly string dbDatabase = "BarberMate";
+        private static readonly string dbDatabase = "";
         private static readonly string dbUsername = "postgres";
-        private static readonly string dbPassword = "dammahom51";
+        private static readonly string dbPassword = "";
         private static readonly string dbPort = "5432";
 
         public static string ConnectionString =>
