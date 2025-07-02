@@ -19,17 +19,20 @@ namespace PBOBarberMate.View.Shift
     public partial class ShiftUC : UserControl
     {
         private readonly CommonAppServices _commonServices;
+        private readonly CommonAdminServices _commonAdminServices;
         private readonly ShiftService _shiftService;
         private List<M_Jadwal> jadwalList;
 
 
-        public ShiftUC(CommonAppServices commonService, ShiftService shiftService)
+        public ShiftUC(CommonAppServices commonService,  ShiftService shiftService, CommonAdminServices commonAdminServices)
         {
             InitializeComponent();
 
             _commonServices = commonService;
             _shiftService = shiftService;
             if (!(_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)) { lblKiat.Visible = false; }
+
+            _commonAdminServices = commonAdminServices;
         }
 
         private void FormShift_Load(object sender, EventArgs e)
@@ -45,15 +48,10 @@ namespace PBOBarberMate.View.Shift
         }
         private void LoadDgvShift()
         {
-            jadwalList = _shiftService.getAllShift();
-
-            // Binding ke DataGridView
-            BindingSource bindingSource = new BindingSource();
-            bindingSource.DataSource = jadwalList;
-            dgvShift.DataSource = bindingSource;
-
-            CreateCustomColumns();
             dgvShift.AutoGenerateColumns = false;
+            dgvShift.Columns.Clear();
+            CreateCustomColumns();
+            
             dgvShift.RowHeadersVisible = false;
             dgvShift.AllowUserToAddRows = false;
             dgvShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -61,10 +59,19 @@ namespace PBOBarberMate.View.Shift
             {
                 dgvShift.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
+
+            jadwalList = _shiftService.getAllShift();
+
+            // Binding ke DataGridView
+            BindingSource bindingSource = new BindingSource();
+            bindingSource.DataSource = jadwalList;
+            dgvShift.DataSource = bindingSource;
+
+
         }
         private void CreateCustomColumns()
         {
-            dgvShift.Columns.Clear();
+
             // Kolom Nama Karyawan
             dgvShift.Columns.Add(new DataGridViewTextBoxColumn()
             {
@@ -136,7 +143,7 @@ namespace PBOBarberMate.View.Shift
             }
             else if (e.ColumnIndex == dgvShift.Columns["ShiftMinggu"].Index)
             {
-                e.Value = (jadwal.id_shift_minggu != 0) ? jadwal.id_shift_minggu.ToString() : "-";
+                e.Value = (jadwal.id_shift_minggu != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
         }
@@ -195,17 +202,19 @@ namespace PBOBarberMate.View.Shift
                             if (success)
                             {
                                 MessageBox.Show($"Shift '{jadwal.nama_karyawan} - {columnName}' berhasil ditambahkan.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                LoadDgvShift();
                             }
                             else
                             {
                                 MessageBox.Show("Gagal menambah shift.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                LoadDgvShift();
                             }
                         }
                         catch ( Exception ex )
                         {
                             MessageBox.Show($"Terjadi kesalahan saat menambahkan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices), "Shift");
                         }
                     }
                 }
@@ -226,17 +235,19 @@ namespace PBOBarberMate.View.Shift
                             if (success)
                             {
                                 MessageBox.Show("Shift berhasil dihapus.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                LoadDgvShift(); 
                             }
                             else
                             {
                                 MessageBox.Show("Gagal menghapus shift.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                LoadDgvShift();
                             }
                         }
                         catch (Exception ex)
                         {
                             MessageBox.Show($"Terjadi kesalahan saat menghapus: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        finally
+                        {
+                            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices), "Shift");
                         }
                     }
                 }

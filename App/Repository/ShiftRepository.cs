@@ -100,7 +100,7 @@ namespace PBOBarberMate.App.Repository
         }
         public int addShift(M_Shift shift)
         {
-            string query = "INSERT INTO shift_karyawan (id_shift, id_akun, id_hari) VALUES (@idShift, @idKaryawan, @idHari)";
+            string query = "INSERT INTO shift_karyawan (id_shift, id_akun, id_hari) VALUES (@idShift, @idKaryawan, @idHari) RETURNING id_shift";
             NpgsqlParameter[] parameters = {
                 new NpgsqlParameter("@idShift", shift.id_shift),
                 new NpgsqlParameter("@idKaryawan", shift.id_akun),

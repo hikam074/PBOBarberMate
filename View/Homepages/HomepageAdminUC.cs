@@ -168,8 +168,7 @@ namespace PBOBarberMate.View.Homepages
         }
         private void btnShift_Click(object sender, EventArgs e)
         {
-            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance), "Layanan");
-            HideProfileBox(); // Hide profile if visible when navigating
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices), "Shift");
         }
         private void btnReservasi_Click(object sender, EventArgs e)
         {
