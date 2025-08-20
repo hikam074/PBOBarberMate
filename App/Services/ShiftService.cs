@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Repository;
+using PBOBarberMate.App.Utils;
 
 
 namespace PBOBarberMate.App.Services
@@ -55,6 +56,20 @@ namespace PBOBarberMate.App.Services
             catch (Exception ex)
             {
                 throw new ApplicationException($"ShiftService: Gagal mengambil jadwal karyawan. Error: {ex.Message}", ex);
+            }
+        }
+
+        public M_Shift getShiftbyIdKaryawan(int id_karyawan)
+        {
+            Hari idHari = HariUtils.GetIdHariFromDate(DateTime.Now);
+            try
+            {
+                M_Shift shiftKaryawan = _shiftRepository.getShiftByIdKaryawan(id_karyawan, idHari);
+                return shiftKaryawan;
+            }
+            catch (Exception e)
+            {
+                throw new ApplicationException($"ShiftService: Gagal mengambil 1 shift karyawan. Error: {e.Message}", e);
             }
         }
         public bool addShift(int id_karyawan, int id_hari)

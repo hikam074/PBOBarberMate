@@ -98,6 +98,34 @@ namespace PBOBarberMate.App.Repository
                 throw new ApplicationException($"Error in getAllShift: {ex.Message}", ex);
             }
         }
+
+        public M_Shift getShiftByIdKaryawan(int id_karyawan, Hari id_hari)
+        {
+            string query = "SELECT * FROM shift_karyawan WHERE id_akun = @idKaryawan AND id_hari = @idHari";
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("idKaryawan", id_karyawan),
+                new NpgsqlParameter("idHari", (int)id_hari)
+            };
+            try
+            {
+                List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query, parameters);
+                if (rawData.Any())
+                {
+                    object[] row = rawData.First();
+                    return new M_Shift(
+                        Convert.ToInt32(row[0]),
+                        Convert.ToInt32(row[1]),
+                        (Hari)Convert.ToInt32(row[2])
+                    );
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"PresensiRepository : gagal mengambil data id presensi by id karyawan. Error {ex.Message}", ex);
+            }
+        }
         public int addShift(M_Shift shift)
         {
             string query = "INSERT INTO shift_karyawan (id_shift, id_akun, id_hari) VALUES (@idShift, @idKaryawan, @idHari) RETURNING id_shift";

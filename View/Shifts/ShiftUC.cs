@@ -20,27 +20,37 @@ namespace PBOBarberMate.View.Shift
     {
         private readonly CommonAppServices _commonServices;
         private readonly CommonAdminServices _commonAdminServices;
+        private readonly CommonKaryawanServices _commonKaryawanServices;
         private readonly ShiftService _shiftService;
+        private readonly PresensiService _presensiService;
         private List<M_Jadwal> jadwalList;
 
 
-        public ShiftUC(CommonAppServices commonService,  ShiftService shiftService, CommonAdminServices commonAdminServices)
+        public ShiftUC(CommonAppServices commonService, CommonAdminServices commonAdminServices)
         {
             InitializeComponent();
 
             _commonServices = commonService;
-            _shiftService = shiftService;
-            if (!(_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)) { lblKiat.Visible = false; }
-
             _commonAdminServices = commonAdminServices;
-        }
-        public ShiftUC(CommonAppServices commonService, ShiftService shiftService)
+            _shiftService = commonAdminServices.ShiftServiceInstance;
+            _presensiService = commonAdminServices.PresensiServiceInstance;
+
+            // hide kiat selain admin
+            if (!(_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)) { lblKiat.Visible = false; }
+            // hide btn presensi sekarang selain karyawan
+            if (!(_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.karyawan)) { btnPresensi.Visible = false; pictbxAdd.Visible = false; }
+        }   
+        public ShiftUC(CommonAppServices commonService, CommonKaryawanServices commonKaryawanService)
         {
             InitializeComponent();
 
             _commonServices = commonService;
-            _shiftService = shiftService;
-            lblKiat.Visible = false;
+            _commonKaryawanServices = commonKaryawanService;
+            _shiftService = commonKaryawanService.ShiftServiceInstance;
+            _presensiService = commonKaryawanService.PresensiServiceInstance;
+
+            // hide kiat karena bukan admin
+            if (!(_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)) { lblKiat.Visible = false; }
         }
 
         private void FormShift_Load(object sender, EventArgs e)
@@ -59,7 +69,7 @@ namespace PBOBarberMate.View.Shift
             dgvShift.AutoGenerateColumns = false;
             dgvShift.Columns.Clear();
             CreateCustomColumns();
-            
+
             dgvShift.RowHeadersVisible = false;
             dgvShift.AllowUserToAddRows = false;
             dgvShift.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
@@ -68,7 +78,14 @@ namespace PBOBarberMate.View.Shift
                 dgvShift.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
 
-            jadwalList = _shiftService.getAllShift();
+            // sortir id bersangkutan diatas untuk logged in karyawan
+            var allJadwal = _shiftService.getAllShift();
+            var currentUser = _commonServices.SessionServiceInstance.CurrentUserId;
+
+            jadwalList = allJadwal
+                .OrderByDescending(j => j.id_akun == currentUser)
+                .ToList();
+
 
             // Binding ke DataGridView
             BindingSource bindingSource = new BindingSource();
@@ -113,47 +130,66 @@ namespace PBOBarberMate.View.Shift
             if (e.RowIndex < 0 || e.RowIndex >= jadwalList.Count) return;
 
             var jadwal = jadwalList[e.RowIndex];
-            // Format kolom berdasarkan nama
-            if (e.ColumnIndex == dgvShift.Columns["NamaKaryawan"].Index)
+            var currentUserId = _commonServices.SessionServiceInstance.CurrentUserId;
+            string namaKolomHariIni = GetColumnNameForToday();
+            var colName = dgvShift.Columns[e.ColumnIndex].Name;
+
+            if (colName == "NamaKaryawan")
             {
-                e.Value = jadwal.nama_karyawan != null ? jadwal.nama_karyawan : "???";
+                e.Value = jadwal.nama_karyawan ?? "???";
                 e.FormattingApplied = true;
             }
-            if (e.ColumnIndex == dgvShift.Columns["ShiftSenin"].Index)
+            else if (colName.StartsWith("Shift"))
             {
-                e.Value = (jadwal.id_shift_senin != 0) ? "Ada" : "-";
+                int shiftId = colName switch
+                {
+                    "ShiftSenin" => jadwal.id_shift_senin,
+                    "ShiftSelasa" => jadwal.id_shift_selasa,
+                    "ShiftRabu" => jadwal.id_shift_rabu,
+                    "ShiftKamis" => jadwal.id_shift_kamis,
+                    "ShiftJumat" => jadwal.id_shift_jumat,
+                    "ShiftSabtu" => jadwal.id_shift_sabtu,
+                    "ShiftMinggu" => jadwal.id_shift_minggu,
+                    _ => 0
+                };
+
+                e.Value = (shiftId != 0) ? "Ada" : "-";
                 e.FormattingApplied = true;
             }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftSelasa"].Index)
+
+            bool isHariIni = colName == namaKolomHariIni;
+            bool isBarisUserLogin = jadwal.id_akun == currentUserId;
+
+            if (isHariIni && isBarisUserLogin)
             {
-                e.Value = (jadwal.id_shift_selasa != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
+                // sel milik user logged dan kolom hari ini
+                e.CellStyle.BackColor = Color.GreenYellow;
             }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftRabu"].Index)
+            else if (isHariIni)
             {
-                e.Value = (jadwal.id_shift_rabu != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
+                // kolom hari ini
+                e.CellStyle.BackColor = Color.LightBlue;
             }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftKamis"].Index)
+            else if (isBarisUserLogin)
             {
-                e.Value = (jadwal.id_shift_kamis != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
+                // baris user logged in
+                e.CellStyle.BackColor = Color.LightGreen;
             }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftJumat"].Index)
+        }
+
+        private string GetColumnNameForToday()
+        {
+            return DateTime.Today.DayOfWeek switch
             {
-                e.Value = (jadwal.id_shift_jumat != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
-            }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftSabtu"].Index)
-            {
-                e.Value = (jadwal.id_shift_sabtu != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
-            }
-            else if (e.ColumnIndex == dgvShift.Columns["ShiftMinggu"].Index)
-            {
-                e.Value = (jadwal.id_shift_minggu != 0) ? "Ada" : "-";
-                e.FormattingApplied = true;
-            }
+                DayOfWeek.Monday => "ShiftSenin",
+                DayOfWeek.Tuesday => "ShiftSelasa",
+                DayOfWeek.Wednesday => "ShiftRabu",
+                DayOfWeek.Thursday => "ShiftKamis",
+                DayOfWeek.Friday => "ShiftJumat",
+                DayOfWeek.Saturday => "ShiftSabtu",
+                DayOfWeek.Sunday => "ShiftMinggu",
+                _ => ""
+            };
         }
 
         private void dgvShift_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -216,13 +252,13 @@ namespace PBOBarberMate.View.Shift
                                 MessageBox.Show("Gagal menambah shift.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
-                        catch ( Exception ex )
+                        catch (Exception ex)
                         {
                             MessageBox.Show($"Terjadi kesalahan saat menambahkan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                         finally
                         {
-                            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices), "Shift");
+                            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices), "Shift");
                         }
                     }
                 }
@@ -255,10 +291,51 @@ namespace PBOBarberMate.View.Shift
                         }
                         finally
                         {
-                            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices), "Shift");
+                            //_commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonAdminServices.ShiftServiceInstance, _commonAdminServices.PresensiServiceInstance, _commonAdminServices), "Shift");
+                            this.LoadDgvShift();
                         }
                     }
                 }
+            }
+        }
+
+        private void btnPresensi_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                M_Shift shift = _shiftService.getShiftbyIdKaryawan(_commonServices.SessionServiceInstance.CurrentUserId);
+                if (shift != null)
+                {
+                    M_Presensi presensi = _presensiService.getPresensiById(_commonServices.SessionServiceInstance.CurrentUserId);
+                    if (presensi == null)
+                    {
+                        bool berhasil = _presensiService.addPresensi(_commonServices.SessionServiceInstance.CurrentUserId);
+                        if (berhasil)
+                        {
+                            MessageBox.Show("Data presensi berhasil diperbarui!");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Terjadi Kesalahan, silahkan coba lagi!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Anda sudah presensi hari ini!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Anda tidak ada jadwal shift hari ini!");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Terjadi kesalahan saat menambahkan: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.LoadDgvShift();
             }
         }
     }

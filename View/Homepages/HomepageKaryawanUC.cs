@@ -26,7 +26,8 @@ namespace PBOBarberMate.View.Homepages
             LayananService _layananService = new LayananService(new LayananRepository());
             InventarisService _inventarisService = new InventarisService(new InventarisRepository());
             ShiftService _shiftService = new ShiftService(new ShiftRepository(), new AkunRepository());
-            _commonKaryawanServices = new CommonKaryawanServices(_layananService, _inventarisService, _shiftService);
+            PresensiService _presensiService = new PresensiService(new PresensiRepository(), _shiftService);
+            _commonKaryawanServices = new CommonKaryawanServices(_layananService, _inventarisService, _shiftService, _presensiService);
 
             // Sidebar hover logic
             SetButtonHoverEvents();
@@ -211,7 +212,7 @@ namespace PBOBarberMate.View.Homepages
 
         private void btnShift_Click(object sender, EventArgs e)
         {
-            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonKaryawanServices.ShiftServiceInstance), "Shift");
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ShiftUC(_commonServices, _commonKaryawanServices), "Shift");
         }
     }
 }

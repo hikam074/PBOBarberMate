@@ -1,6 +1,6 @@
-﻿namespace PBOBarberMate.View.FormPresensi
+﻿namespace PBOBarberMate.View.Presensi
 {
-    partial class FormPresensi
+    partial class PresensiHistoryUC
     {
         /// <summary>
         /// Required designer variable.
@@ -32,25 +32,24 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             lblPresensi = new Label();
             dgvPresensi = new DataGridView();
-            btnKembali = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPresensi).BeginInit();
             SuspendLayout();
             // 
             // lblPresensi
             // 
             lblPresensi.AutoSize = true;
-            lblPresensi.Font = new Font("Bahnschrift Condensed", 36F, FontStyle.Bold);
-            lblPresensi.ForeColor = Color.FromArgb(44, 62, 80);
-            lblPresensi.Location = new Point(320, 30);
+            lblPresensi.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
+            lblPresensi.ForeColor = Color.Black;
+            lblPresensi.Location = new Point(100, 40);
             lblPresensi.Name = "lblPresensi";
-            lblPresensi.Size = new Size(315, 58);
+            lblPresensi.Size = new Size(206, 39);
             lblPresensi.TabIndex = 0;
             lblPresensi.Text = "Jadwal Shift Anda";
-            lblPresensi.Click += lblPresensi_Click;
             // 
             // dgvPresensi
             // 
-            dgvPresensi.BackgroundColor = Color.White;
+            dgvPresensi.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            dgvPresensi.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Control;
             dataGridViewCellStyle1.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -69,43 +68,25 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.White;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvPresensi.DefaultCellStyle = dataGridViewCellStyle2;
-            dgvPresensi.GridColor = Color.FromArgb(80, 61, 44);
-            dgvPresensi.Location = new Point(75, 125);
+            dgvPresensi.GridColor = Color.Black;
+            dgvPresensi.Location = new Point(100, 100);
             dgvPresensi.Margin = new Padding(3, 2, 3, 2);
             dgvPresensi.Name = "dgvPresensi";
             dgvPresensi.RowHeadersWidth = 51;
-            dgvPresensi.Size = new Size(800, 324);
+            dgvPresensi.Size = new Size(544, 300);
             dgvPresensi.TabIndex = 1;
-            dgvPresensi.CellContentClick += dgvPresensi_CellContentClick;
             // 
-            // btnKembali
-            // 
-            btnKembali.BackColor = Color.White;
-            btnKembali.Font = new Font("Bahnschrift Condensed", 11.25F);
-            btnKembali.ForeColor = Color.FromArgb(44, 62, 80);
-            btnKembali.Location = new Point(15, 15);
-            btnKembali.Margin = new Padding(3, 2, 3, 2);
-            btnKembali.Name = "btnKembali";
-            btnKembali.Size = new Size(75, 39);
-            btnKembali.TabIndex = 2;
-            btnKembali.Text = "Kembali";
-            btnKembali.UseVisualStyleBackColor = false;
-            btnKembali.Click += btnKembali_Click;
-            // 
-            // FormPresensi
+            // PresensiUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.WhiteSmoke;
-            ClientSize = new Size(944, 501);
-            Controls.Add(btnKembali);
+            BackColor = Color.White;
             Controls.Add(dgvPresensi);
             Controls.Add(lblPresensi);
             ForeColor = Color.White;
             Margin = new Padding(3, 2, 3, 2);
-            Name = "FormPresensi";
-            StartPosition = FormStartPosition.CenterScreen;
-            Text = "FormPresensi";
+            Name = "PresensiUC";
+            Size = new Size(744, 451);
             Load += FormPresensi_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPresensi).EndInit();
             ResumeLayout(false);
@@ -116,6 +97,5 @@
 
         private Label lblPresensi;
         private DataGridView dgvPresensi;
-        private Button btnKembali;
     }
 }

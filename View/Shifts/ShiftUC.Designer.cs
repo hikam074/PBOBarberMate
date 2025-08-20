@@ -30,10 +30,16 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ShiftUC));
             lblShift = new Label();
             dgvShift = new DataGridView();
             lblKiat = new Label();
+            pictbxAdd = new PictureBox();
+            btnPresensi = new Button();
+            pictbxAddHov = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)dgvShift).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).BeginInit();
             SuspendLayout();
             // 
             // lblShift
@@ -92,11 +98,55 @@
             lblKiat.Text = "Klik sel shift kosong untuk menambahkan,\r\nKlik sel shift terisi untuk menghapus";
             lblKiat.TextAlign = ContentAlignment.BottomRight;
             // 
+            // pictbxAdd
+            // 
+            pictbxAdd.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictbxAdd.BackColor = Color.WhiteSmoke;
+            pictbxAdd.Image = (Image)resources.GetObject("pictbxAdd.Image");
+            pictbxAdd.Location = new Point(515, 59);
+            pictbxAdd.Name = "pictbxAdd";
+            pictbxAdd.Size = new Size(15, 15);
+            pictbxAdd.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAdd.TabIndex = 30;
+            pictbxAdd.TabStop = false;
+            // 
+            // btnPresensi
+            // 
+            btnPresensi.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnPresensi.BackColor = SystemColors.Control;
+            btnPresensi.Font = new Font("Bahnschrift Condensed", 11.25F);
+            btnPresensi.ForeColor = Color.Black;
+            btnPresensi.Location = new Point(506, 47);
+            btnPresensi.Margin = new Padding(2);
+            btnPresensi.Name = "btnPresensi";
+            btnPresensi.Size = new Size(138, 39);
+            btnPresensi.TabIndex = 29;
+            btnPresensi.Text = "Presensi Sekarang!";
+            btnPresensi.TextAlign = ContentAlignment.MiddleRight;
+            btnPresensi.UseVisualStyleBackColor = false;
+            btnPresensi.Click += btnPresensi_Click;
+            // 
+            // pictbxAddHov
+            // 
+            pictbxAddHov.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            pictbxAddHov.BackColor = Color.WhiteSmoke;
+            pictbxAddHov.Image = (Image)resources.GetObject("pictbxAddHov.Image");
+            pictbxAddHov.Location = new Point(515, 59);
+            pictbxAddHov.Name = "pictbxAddHov";
+            pictbxAddHov.Size = new Size(15, 15);
+            pictbxAddHov.SizeMode = PictureBoxSizeMode.Zoom;
+            pictbxAddHov.TabIndex = 31;
+            pictbxAddHov.TabStop = false;
+            pictbxAddHov.Visible = false;
+            // 
             // ShiftUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(pictbxAdd);
+            Controls.Add(btnPresensi);
+            Controls.Add(pictbxAddHov);
             Controls.Add(lblKiat);
             Controls.Add(dgvShift);
             Controls.Add(lblShift);
@@ -105,6 +155,8 @@
             Size = new Size(744, 451);
             Load += FormShift_Load;
             ((System.ComponentModel.ISupportInitialize)dgvShift).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAdd).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxAddHov).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -114,5 +166,8 @@
         private Label lblShift;
         private DataGridView dgvShift;
         private Label lblKiat;
+        private PictureBox pictbxAdd;
+        private Button btnPresensi;
+        private PictureBox pictbxAddHov;
     }
 }

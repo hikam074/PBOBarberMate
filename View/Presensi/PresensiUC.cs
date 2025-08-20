@@ -10,15 +10,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Globalization;
+using PBOBarberMate.App.Services;
 
-namespace PBOBarberMate.View.FormPresensi
+namespace PBOBarberMate.View.Presensi
 {
-    public partial class FormPresensi : Form
+    public partial class PresensiHistoryUC : UserControl
     {
         private int idAkun;
-        public FormPresensi(int akunId)
+        public PresensiHistoryUC(CommonAppServices commonService, ShiftService shiftService, CommonAdminServices commonAdminServices)
         {
-            idAkun = akunId;
             InitializeComponent();
         }
 
@@ -99,68 +99,6 @@ namespace PBOBarberMate.View.FormPresensi
             {
                 MessageBox.Show($"Error saat memuat jadwal shift: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-        private void dgvPresensi_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dgvPresensi.Columns[e.ColumnIndex] is DataGridViewButtonColumn)
-            {
-                // Ambil data dari baris yang diklik
-                int idShift = Convert.ToInt32(dgvPresensi.Rows[e.RowIndex].Cells["id_shift"].Value);
-                string hari = dgvPresensi.Rows[e.RowIndex].Cells["Hari"].Value.ToString();
-                object waktuPresensi = dgvPresensi.Rows[e.RowIndex].Cells["waktu_presensi"].Value;
-
-                // Cek apakah presensi sudah dilakukan
-                if (waktuPresensi != null && waktuPresensi != DBNull.Value)
-                {
-                    MessageBox.Show("Anda sudah melakukan presensi untuk shift ini.", "Presensi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                string hariSekarang = DateTime.Now.ToString("dddd", new CultureInfo("id-ID")); // Bahasa Indonesia
-                if (!hari.Equals(hariSekarang, StringComparison.OrdinalIgnoreCase))
-                {
-                    MessageBox.Show($"Presensi hanya dapat dilakukan pada hari {hari}.", "Presensi Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-                // Tambahkan presensi
-                try
-                {
-                    M_Presensi presensi = new M_Presensi
-                    {
-                        id_akun = idAkun,
-                        id_shift = idShift,
-                        waktu_presensi = DateTime.Now
-                    };
-
-                    //PresensiContext.AddPresensi(presensi);
-
-                    MessageBox.Show($"Presensi berhasil untuk shift hari {hari} pada {DateTime.Now}.", "Presensi", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    // Reload jadwal setelah presensi berhasil
-                    LoadJadwalShift();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Gagal melakukan presensi: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void lblPresensi_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnKembali_Click(object sender, EventArgs e)
-        {
-            //// Buka FormHomepageKaryawan
-            //HomepageKaryawanUC formHomepageKaryawan = new HomepageKaryawanUC();
-            //formHomepageKaryawan.Show();
-
-            //// Tutup form saat ini (FormPresensi)
-            //this.Close();
         }
     }
 }
