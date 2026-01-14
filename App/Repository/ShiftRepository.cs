@@ -10,6 +10,7 @@ using PBOBarberMate.App.Infrastructure;
 using PBOBarberMate.App.Model;
 using PBOBarberMate.View.Layanan;
 using PBOBarberMate.View.Shift;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
 
 
 namespace PBOBarberMate.App.Repository
@@ -55,7 +56,7 @@ namespace PBOBarberMate.App.Repository
         public List<M_Jadwal> getAllShift()
         {
             string query = "SELECT " +
-                "s.id_shift, s.id_akun, a.nama_akun, s.id_hari, d.nama_hari " +
+                "s.id_shift, s.id_akun, a.nama_akun, s.id_hari, d.nama_hari, s.is_active " +
                 "FROM shift_karyawan s " +
                 "JOIN akun a ON (s.id_akun = a.id_akun) " +
                 "JOIN detail_hari d ON (s.id_hari = d.id_hari)";
@@ -72,6 +73,7 @@ namespace PBOBarberMate.App.Repository
                     int id_akun = Convert.ToInt32(data[1]);
                     string nama_karyawan = Convert.ToString(data[2]);
                     int id_hari = Convert.ToInt32(data[3]);
+                    bool is_active = Convert.ToBoolean(data[5]);
 
                     if (!jadwalMapping.ContainsKey(id_akun))
                     {
@@ -82,20 +84,20 @@ namespace PBOBarberMate.App.Repository
                     // atribut berdasarkan id_hari
                     switch (id_hari)
                     {
-                        case 1: jadwal.id_shift_senin = id_shift; break;
-                        case 2: jadwal.id_shift_selasa = id_shift; break;
-                        case 3: jadwal.id_shift_rabu = id_shift; break;
-                        case 4: jadwal.id_shift_kamis = id_shift; break;
-                        case 5: jadwal.id_shift_jumat = id_shift; break;
-                        case 6: jadwal.id_shift_sabtu = id_shift; break;
-                        case 7: jadwal.id_shift_minggu = id_shift; break;
+                        case 1: jadwal.id_shift_senin = is_active == true ? id_shift : 0; break;
+                        case 2: jadwal.id_shift_selasa = is_active == true ? id_shift : 0; break;
+                        case 3: jadwal.id_shift_rabu = is_active == true ? id_shift : 0; break;
+                        case 4: jadwal.id_shift_kamis = is_active == true ? id_shift : 0; break;
+                        case 5: jadwal.id_shift_jumat = is_active == true ? id_shift : 0; break;
+                        case 6: jadwal.id_shift_sabtu = is_active == true ? id_shift : 0; break;
+                        case 7: jadwal.id_shift_minggu = is_active == true ? id_shift : 0; break;
                     }
                 }
                 return jadwalMapping.Values.ToList();
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error in getAllShift: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftRepository : Gagal getAllShift. Error : {ex.Message}", ex);
             }
         }
 
@@ -116,15 +118,44 @@ namespace PBOBarberMate.App.Repository
                     return new M_Shift(
                         Convert.ToInt32(row[0]),
                         Convert.ToInt32(row[1]),
-                        (Hari)Convert.ToInt32(row[2])
+                        (Hari)Convert.ToInt32(row[2]),
+                        Convert.ToBoolean(row[3])
                     );
                 }
                 return null;
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"PresensiRepository : gagal mengambil data id presensi by id karyawan. Error {ex.Message}", ex);
+                throw new ApplicationException($"ShiftRepository : Gagal getShiftByIdKaryawan. Error : {ex.Message}", ex);
             }
+        }
+        public M_Shift getShiftById(int id_shift)
+        {
+            string query = "SELECT * FROM shift_karyawan WHERE id_shift = @id_shift";
+            NpgsqlParameter[] parameters =
+            {
+                new NpgsqlParameter("id_shift", id_shift)
+            };
+            try
+            {
+                List<object[]> rawData = _dbExecutor.ExecuteReaderAsRawList(query, parameters);
+                if (rawData.Any())
+                {
+                    object[] row = rawData.First();
+                    return new M_Shift(
+                        Convert.ToInt32(row[0]),
+                        Convert.ToInt32(row[1]),
+                        (Hari)Convert.ToInt32(row[2]),
+                        Convert.ToBoolean(row[3])
+                    );
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"ShiftRepository : Gagal getShiftById. Error : {ex.Message}", ex);
+            }
+
         }
         public int addShift(M_Shift shift)
         {
@@ -140,12 +171,12 @@ namespace PBOBarberMate.App.Repository
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error in addShift: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftRepository : Gagal addShift. Error : {ex.Message}", ex);
             }
         }
-        public bool deleteShift(int id)
+        public bool activateShift(int id)
         {
-            string query = "DELETE FROM shift_karyawan WHERE id_shift = @id";
+            string query = "UPDATE shift_karyawan SET is_active = true WHERE id_shift = @id";
             NpgsqlParameter[] parameters = {
                 new NpgsqlParameter("@id", id)
             };
@@ -155,7 +186,22 @@ namespace PBOBarberMate.App.Repository
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"Error in DeleteShift for ID {id}: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftRepository : Gagal activateShift. Error : {ex.Message}", ex);
+            }
+        }
+        public bool deactivateShift(int id)
+        {
+            string query = "UPDATE shift_karyawan SET is_active = false WHERE id_shift = @id";
+            NpgsqlParameter[] parameters = {
+                new NpgsqlParameter("@id", id)
+            };
+            try
+            {
+                return _dbExecutor.ExecuteNonQuery(query, parameters) > 0;
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"ShiftRepository : Gagal deactivateShift. Error : {ex.Message}", ex);
             }
         }
     }

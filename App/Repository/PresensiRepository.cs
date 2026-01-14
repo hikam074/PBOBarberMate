@@ -52,8 +52,8 @@ namespace PBOBarberMate.App.Repository
         {
             string query = "INSERT INTO presensi (id_akun, id_shift, waktu_presensi) VALUES (@idKaryawan, @idShift, @waktu) RETURNING id_presensi";
             NpgsqlParameter[] parameters = {
-                new NpgsqlParameter("@idKaryawan", presensi_baru.id_akun),
-                new NpgsqlParameter("@idShift", presensi_baru.id_shift),
+                new NpgsqlParameter("idKaryawan", presensi_baru.id_akun),
+                new NpgsqlParameter("idShift", presensi_baru.id_shift),
                 new NpgsqlParameter("waktu", presensi_baru.waktu_presensi)
             };
             try
@@ -65,8 +65,25 @@ namespace PBOBarberMate.App.Repository
                 throw new ApplicationException($"Error in addPresensi: {ex.Message}", ex);
             }
         }
+        public int deletePresensi(M_Presensi presensi)
+        {
+            string query = "DELETE FROM presensi WHERE id_preseni = @id";
+            NpgsqlParameter[] parameters = {
+
+                new NpgsqlParameter("id_presensi", presensi.id_presensi)
+            };
+            try
+            {
+                return _dbExecutor.ExecuteScalar<int>(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"Error in deletePresensi: {ex.Message}", ex);
+            }
+        }
     }
 }
+
 //public class M_Presensi : Model
 //{
 //    [Key] public int id_presensi { get; set; }

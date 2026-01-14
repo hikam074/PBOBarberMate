@@ -11,23 +11,25 @@ using PBOBarberMate.App.Model;
 using PBOBarberMate.App.Services;
 
 
-namespace PBOBarberMate.View.FormReservasi
+namespace PBOBarberMate.View.Reservasi
 {
-    public partial class FormBuatReservasi : Form
+    public partial class ReservasiTambahUC : UserControl
     {
+        private readonly CommonAppServices _commonServices;
+        private readonly CommonCustomerServices _commonCustomerServices;
+        private readonly ReservasiService _reservasiService;
+        private List<M_Jadwal> jadwalList;
+
+
         public bool modeEdit { get; set; }
         public int editedReservasiID { get; set; }
         private int idLayananDipilih;
 
 
-        public FormBuatReservasi()
+        public ReservasiTambahUC()
         {
             InitializeComponent();
-            // mengatur minimal tanggal yang dapat dipilih untuk reservasi adalah h-1
             dtpTanggal.MinDate = DateTime.Now.AddDays(1);
-            // mengganti nama pereservasi dengan nama logged
-            //lblConfirmNama.Text = SessionService.nama;
-            // load data layanan
             loadcbxLayananData();
             // mengganti tampilan untuk mode edit
             updateForEditText();

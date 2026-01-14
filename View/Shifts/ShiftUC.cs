@@ -130,6 +130,7 @@ namespace PBOBarberMate.View.Shift
             if (e.RowIndex < 0 || e.RowIndex >= jadwalList.Count) return;
 
             var jadwal = jadwalList[e.RowIndex];
+
             var currentUserId = _commonServices.SessionServiceInstance.CurrentUserId;
             string namaKolomHariIni = GetColumnNameForToday();
             var colName = dgvShift.Columns[e.ColumnIndex].Name;
@@ -275,7 +276,7 @@ namespace PBOBarberMate.View.Shift
                     {
                         try
                         {
-                            bool success = _shiftService.deleteShift(idShift);
+                            bool success = _shiftService.deactivateShift(idShift);
                             if (success)
                             {
                                 MessageBox.Show("Shift berhasil dihapus.", "Sukses", MessageBoxButtons.OK, MessageBoxIcon.Information);

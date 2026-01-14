@@ -59,8 +59,8 @@
     <Compile Update="View\FormProfil\FormUbahProfil.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\FormReservasi\FormBuatReservasi.cs">
-      <SubType>Form</SubType>
+    <Compile Update="View\Reservasi\ReservasiTambahUC.cs">
+      <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormReservasi\FormLihatReservasi.cs">
       <SubType>Form</SubType>

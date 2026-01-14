@@ -55,7 +55,7 @@ namespace PBOBarberMate.App.Services
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"ShiftService: Gagal mengambil jadwal karyawan. Error: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftService: Gagal getAllShift. Error: {ex.Message}", ex);
             }
         }
 
@@ -69,34 +69,42 @@ namespace PBOBarberMate.App.Services
             }
             catch (Exception e)
             {
-                throw new ApplicationException($"ShiftService: Gagal mengambil 1 shift karyawan. Error: {e.Message}", e);
+                throw new ApplicationException($"ShiftService: Gagal getShiftbyIdKaryawan. Error: {e.Message}", e);
             }
         }
         public bool addShift(int id_karyawan, int id_hari)
         {
             int id_shift = int.Parse( id_karyawan.ToString() + id_hari.ToString() );
             Hari hari = (Hari)id_hari;
-            M_Shift shiftBaru = new M_Shift(id_shift, id_karyawan, hari);
+            M_Shift shiftBaru = new M_Shift(id_shift, id_karyawan, hari, true);
             try
             {
-                int berhasil = _shiftRepository.addShift(shiftBaru);
-                return berhasil > 0;
-                
+                // apakah existed
+                M_Shift existing = _shiftRepository.getShiftById(shiftBaru.id_shift);
+                bool berhasil = false;
+                if (existing != null)
+                {
+                    berhasil = _shiftRepository.activateShift(shiftBaru.id_shift);
+                } else
+                {
+                    berhasil = _shiftRepository.addShift(shiftBaru) > 0;
+                }
+                return berhasil;
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"ShiftService: Gagal menambahkan data. Error: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftService: Gagal addShift. Error: {ex.Message}", ex);
             }
         }
-        public bool deleteShift(int id)
+        public bool deactivateShift(int id)
         {
             try
             {
-                return _shiftRepository.deleteShift(id);
+                return _shiftRepository.deactivateShift(id);
             }
             catch (ApplicationException ex)
             {
-                throw new ApplicationException($"ShiftService: Gagal menghapus shift. Error: {ex.Message}", ex);
+                throw new ApplicationException($"ShiftService: Gagal deactivateShift. Error: {ex.Message}", ex);
             }
         }
     }

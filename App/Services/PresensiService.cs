@@ -35,6 +35,10 @@ namespace PBOBarberMate.App.Services
         public bool addPresensi(int id_karyawan)
         {
             M_Shift shift = _shiftService.getShiftbyIdKaryawan(id_karyawan);
+            if (shift.is_active == false)
+            {
+                throw new ApplicationException("Shift tidak ada untuk hari tersebut");
+            }
             M_Presensi presensiBaru = new M_Presensi(id_karyawan, shift.id_shift);
             try
             {
@@ -47,17 +51,20 @@ namespace PBOBarberMate.App.Services
                 throw new ApplicationException($"PresensiService: Gagal menambahkan data presensi. Error: {ex.Message}", ex);
             }
         }
+        public bool deletePresensi(int id_karyawan)
+        {
+            M_Shift shift = _shiftService.getShiftbyIdKaryawan(id_karyawan);
+            M_Presensi presensiExisting = new M_Presensi(id_karyawan, shift.id_shift);
+            try
+            {
+                int berhasil = _presensiRepository.deletePresensi(presensiExisting);
+                return berhasil > 0;
 
-        //public bool deleteShift(int id) harusnya edit
-        //{
-        //try
-        //{
-        //    return _shiftRepository.deleteShift(id);
-        //}
-        //catch (ApplicationException ex)
-        //{
-        //    throw new ApplicationException($"ShiftService: Gagal menghapus shift. Error: {ex.Message}", ex);
-        //}
-        //}
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"PresensiService: Gagal menghapus data presensi. Error: {ex.Message}", ex);
+            }
+        }
     }
 }

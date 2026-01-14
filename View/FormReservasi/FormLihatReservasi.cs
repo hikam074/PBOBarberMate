@@ -192,9 +192,9 @@ namespace PBOBarberMate.View.FormReservasi
                     // mengambil id reservasi
                     int reservasiID = Convert.ToInt32(dgvDataReservasi.Rows[e.RowIndex].Cells["id_reservasi"].Value);
                     // menampilkan popup form ubah reservasi
-                    FormBuatReservasi formBuatReservasi = new FormBuatReservasi();
-                    formBuatReservasi.changeToEdit(reservasiID);
-                    formBuatReservasi.Show();
+                    //ReservasiTambahUC formBuatReservasi = new ReservasiTambahUC();
+                    //formBuatReservasi.changeToEdit(reservasiID);
+                    //formBuatReservasi.Show();
                     // load data setelah edit
                     LoadDataReservasi();
                 }

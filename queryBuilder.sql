@@ -59,6 +59,7 @@ CREATE TABLE shift_karyawan (
     id_shift SERIAL PRIMARY KEY,
     id_akun INTEGER NOT NULL, -- FK ke akun (karyawan)
     id_hari INTEGER NOT NULL, -- FK ke detail_hari
+    is_active BOOLEAN NOT NULL DEFAULT true,
     FOREIGN KEY (id_akun) REFERENCES akun(id_akun),
     FOREIGN KEY (id_hari) REFERENCES detail_hari(id_hari)
 );

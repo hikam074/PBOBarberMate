@@ -22,12 +22,14 @@ namespace PBOBarberMate.App.Model
         [Key] public int id_shift { get; set; }
         [Required] public int id_akun { get; set; }
         [Required] public Hari hari { get; set; }
+        public bool is_active { get; set; }
 
-        public M_Shift(int _id_shift, int _id_akun, Hari _hari)
+        public M_Shift(int _id_shift, int _id_akun, Hari _hari, bool _is_active)
         {
             this.id_shift = _id_shift;
             this.id_akun = _id_akun;
             this.hari = _hari;
+            this.is_active = _is_active;
         }
     }
 }

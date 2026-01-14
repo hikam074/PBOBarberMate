@@ -14,6 +14,7 @@ using PBOBarberMate.App.Repository;
 
 using PBOBarberMate.View.Auth;
 using PBOBarberMate.View.Layanan;
+using PBOBarberMate.View.Reservasi;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -150,6 +151,7 @@ namespace PBOBarberMate.View.Homepages
         {
             HideProfileBox();
             //_commonServices.MainAppInstance.LoadContent(new FormBuatReservasi()); // Assuming FormBuatReservasi can be loaded directly
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new ReservasiTambahUC(), "Layanan");
         }
         private void btnLayanan_Click(object sender, EventArgs e)
         {
