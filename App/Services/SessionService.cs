@@ -1,34 +1,28 @@
-﻿using PBOBarberMate.App.Model;
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace PBOBarberMate.App.Services
 {
-    public class SessionService
+    using PBOBarberMate.Core.Entities;
+    public static class SessionService
     {
-        public string CurrentUserEmail { get; private set; }
-        public string CurrentUserName { get; private set; }
-        public int CurrentUserId { get; private set; }
-        public AkunRole? CurrentUserRole { get; private set; } // Role bisa null jika belum login
-
-        // Mengatur data sesi pengguna setelah login berhasil
-        public void SetSession(string email, string nama, int id, AkunRole role)
+        public static M_Akun CurrentUser { get; private set; }
+        public static void StartSession(M_Akun user)
         {
-            CurrentUserEmail = email;
-            CurrentUserName = nama;
-            CurrentUserId = id;
-            CurrentUserRole = role;
+            CurrentUser = user;
         }
 
-        // Menghapus data sesi saat pengguna logout.
-        public void ClearSession()
+        public static void EndSession()
         {
-            CurrentUserEmail = null;
-            CurrentUserName = null;
-            CurrentUserId = 0;
-            CurrentUserRole = null;
+            CurrentUser = null;
         }
 
-        // Memeriksa apakah ada pengguna yang sedang login
-        public bool IsLoggedIn() => CurrentUserEmail != null;
+        public static bool IsLoggedIn() => CurrentUser != null;
+
+        // Helper untuk cek apakah admin
+        public static bool IsAdmin() => CurrentUser?.NamaRole == "Admin";
     }
 }

@@ -1,8 +1,8 @@
-using PBOBarberMate.View;
 using System.Windows.Forms;
 
 namespace PBOBarberMate
 {
+    using PBOBarberMate.Presentation.Forms;
     internal static class Program
     {
         /// <summary>

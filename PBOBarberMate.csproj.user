@@ -2,83 +2,29 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="View\Dashboard\AdminDashboardUC.cs">
+    <Compile Update="Presentation\Views\Auth\LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="View\Dashboard\CustomerDashboardUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Dashboard\KaryawanDashboardUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Homepages\HomepageAdminUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Homepages\HomepageCustomerUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Homepages\HomepageKaryawanUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Inventaris\InventarisUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Inventaris\InventarisTambah.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\KelolaCustomers\KelolaCustomerUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\KelolaKaryawans\KelolaKaryawanTambahUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\KelolaKaryawans\KelolaKaryawanUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Layanans\LayananUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Layanans\LayananTambahUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Auth\LoginUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\FormPerforma\FormPerforma.cs">
+    <Compile Update="BUANG\View\FormPerforma\FormPerforma.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Presensi\PresensiHistoryUC.cs">
+    <Compile Update="BUANG\View\FormPembayaran\FormAddPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BUANG\View\FormPembayaran\FormLihatPembayaran.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BUANG\View\FormReservasi\FormLihatReservasi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="BUANG\View\FormUlasan\FormTambahUlasan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Forms\MainApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Auth\SignupUC.cs">
       <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\FormPembayaran\FormLihatPembayaran.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\FormProfil\FormUbahProfil.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\Reservasi\ReservasiTambahUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\FormReservasi\FormLihatReservasi.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\Shifts\ShiftUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\Auth\SignupUC.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="View\FormUlasan\FormTambahUlasan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\FormUlasan\FormUlasan.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\MainApp.cs">
-      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 </Project>
