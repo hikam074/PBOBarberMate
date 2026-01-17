@@ -34,6 +34,7 @@
             dgvPresensi = new DataGridView();
             lblNamaKaryawan = new Label();
             lblTanggalRange = new Label();
+            flpCalendar = new FlowLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)dgvPresensi).BeginInit();
             SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
@@ -101,16 +102,27 @@
             lblTanggalRange.Text = "Tanggal awal - Akhir";
             lblTanggalRange.TextAlign = ContentAlignment.MiddleRight;
             // 
+            // flpCalendar
+            // 
+            flpCalendar.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            flpCalendar.BackColor = SystemColors.Control;
+            flpCalendar.Location = new Point(100, 100);
+            flpCalendar.Name = "flpCalendar";
+            flpCalendar.Size = new Size(544, 300);
+            flpCalendar.TabIndex = 4;
+            flpCalendar.SizeChanged += flpCalendar_SizeChanged;
+            // 
             // PresensiHistoryUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
+            Controls.Add(flpCalendar);
             Controls.Add(lblTanggalRange);
             Controls.Add(lblNamaKaryawan);
             Controls.Add(dgvPresensi);
             Controls.Add(lblPresensi);
-            ForeColor = Color.White;
+            ForeColor = Color.Black;
             Margin = new Padding(3, 2, 3, 2);
             Name = "PresensiHistoryUC";
             Size = new Size(744, 451);
@@ -126,5 +138,6 @@
         private DataGridView dgvPresensi;
         private Label lblNamaKaryawan;
         private Label lblTanggalRange;
+        private FlowLayoutPanel flpCalendar;
     }
 }
