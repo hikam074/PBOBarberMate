@@ -9,6 +9,7 @@ using PBOBarberMate.View.Layanan;
 using PBOBarberMate.App.Repository;
 using PBOBarberMate.View.Inventaris;
 using PBOBarberMate.View.Shift;
+using PBOBarberMate.View.Presensi;
 
 
 namespace PBOBarberMate.View.Homepages
@@ -161,8 +162,9 @@ namespace PBOBarberMate.View.Homepages
         private void btnPresensi_Click(object sender, EventArgs e)
         {
             HideProfileBox();
-            // Need to pass the current user's ID
+            //// Need to pass the current user's ID
             //_mainApp.LoadContent(new FormPresensi.FormPresensi(_sessionService.CurrentUserId)); // Assuming FormPresensi can be loaded directly.
+            _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new PresensiHistoryUC(_commonServices, _commonKaryawanServices), "Riwayat Presensi");
         }
         private void btnUlasan_Click(object sender, EventArgs e)
         {

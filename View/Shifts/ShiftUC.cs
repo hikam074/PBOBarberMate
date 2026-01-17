@@ -307,7 +307,7 @@ namespace PBOBarberMate.View.Shift
                 M_Shift shift = _shiftService.getShiftbyIdKaryawan(_commonServices.SessionServiceInstance.CurrentUserId);
                 if (shift != null)
                 {
-                    M_Presensi presensi = _presensiService.getPresensiById(_commonServices.SessionServiceInstance.CurrentUserId);
+                    M_Presensi presensi = _presensiService.getPresensiByIdKaryawan(_commonServices.SessionServiceInstance.CurrentUserId);
                     if (presensi == null)
                     {
                         bool berhasil = _presensiService.addPresensi(_commonServices.SessionServiceInstance.CurrentUserId);

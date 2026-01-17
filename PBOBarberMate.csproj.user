@@ -47,7 +47,7 @@
     <Compile Update="View\FormPerforma\FormPerforma.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Presensi\PresensiUC.cs">
+    <Compile Update="View\Presensi\PresensiHistoryUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\FormPembayaran\FormAddPembayaran.cs">

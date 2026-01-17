@@ -4,6 +4,7 @@ using PBOBarberMate.App.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,17 +20,27 @@ namespace PBOBarberMate.App.Services
             _presensiRepository = presensiRepository;
             _shiftService = shiftService;
         }
-
-        public M_Presensi getPresensiById(int id_karyawan)
+        public List<M_Presensi> getPresensiByIdKaryawan(int id_karyawan, DateTime start_date, DateTime end_date)
+        {
+            try
+            {
+                return _presensiRepository.getPresensiByIdKaryawan(start_date, end_date, id_karyawan);
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException($"PresensiService: Gagal getPresensiByIdKaryawan. Error: {ex.Message}", ex);
+            }
+        }
+        public M_Presensi getPresensiByIdKaryawan(int id_karyawan)
         {
             try
             {
                 DateTime now = DateTime.Now.Date;
-                return _presensiRepository.getPresensiById(id_karyawan, now);
+                return _presensiRepository.getPresensiByIdKaryawan(id_karyawan, now);
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"PresensiService: Gagal mendapatkan data presensi. Error: {ex.Message}", ex);
+                throw new ApplicationException($"PresensiService: Gagal getPresensiByIdKaryawan. Error: {ex.Message}", ex);
             }
         }
         public bool addPresensi(int id_karyawan)
@@ -48,7 +59,7 @@ namespace PBOBarberMate.App.Services
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"PresensiService: Gagal menambahkan data presensi. Error: {ex.Message}", ex);
+                throw new ApplicationException($"PresensiService: Gagal addPresensi. Error: {ex.Message}", ex);
             }
         }
         public bool deletePresensi(int id_karyawan)
@@ -63,7 +74,7 @@ namespace PBOBarberMate.App.Services
             }
             catch (Exception ex)
             {
-                throw new ApplicationException($"PresensiService: Gagal menghapus data presensi. Error: {ex.Message}", ex);
+                throw new ApplicationException($"PresensiService: Gagal deletePresensi. Error: {ex.Message}", ex);
             }
         }
     }
