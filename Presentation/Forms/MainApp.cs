@@ -38,11 +38,26 @@ namespace PBOBarberMate.Presentation.Forms
         }
         public void UpdateUIByRole()
         {
-            // Logika perpindahan halaman setelah login
-            if (SessionService.IsAdmin())
+            // cegah unauthorized
+            if (!SessionService.IsLoggedIn()) return;
+
+            var user = SessionService.CurrentUser;
+            mainPanel.Controls.Clear();
+
+            // pemilihan homepage
+            UserControl homepage;
+            switch (user.NamaRole)
             {
-                // Tampilkan menu admin
+                case "Admin":
+                    homepage = new HomepageAdminUC();
+                    break;
+                default:
+                    homepage = new HomepageAdminUC();
+                    break;
             }
+
+            homepage.Dock = DockStyle.Fill;
+            mainPanel.Controls.Add(homepage);
         }
     }
 }

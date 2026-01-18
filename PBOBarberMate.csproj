@@ -47,11 +47,10 @@
     <Folder Include="BUANG\Features\Presensi\Views\" />
     <Folder Include="BUANG\Infrastructures\Database\" />
     <Folder Include="BUANG\View\Auth\" />
+    <Folder Include="BUANG\View\Inventaris\" />
     <Folder Include="Presentation\Components\" />
     <Folder Include="Presentation\Utils\" />
     <Folder Include="Presentation\ViewModels\" />
-    <Folder Include="Presentation\Views\Inventory\" />
-    <Folder Include="Presentation\Views\Shared\" />
   </ItemGroup>
 
 </Project>

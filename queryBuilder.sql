@@ -20,7 +20,7 @@ INSERT INTO akun (nama, username, email, password, id_role) VALUES
 ('Customer Alice', '3', 'alice@barbermate.com', '4e07408562bedb8b60ce05c1decfe3ad16b72230967de01f640b7e4729b49fce', 3)
 
 -- Tabel Inventaris
-CREATE TABLE inventaris (
+CREATE TABLE inventory (
     id_barang SERIAL PRIMARY KEY,
     nama_barang VARCHAR(100) NOT NULL,
     stok INT DEFAULT 0,

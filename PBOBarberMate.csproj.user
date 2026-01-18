@@ -2,6 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
+    <Compile Update="Presentation\Views\Auth\HomepageAdminUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Presentation\Views\Auth\LoginUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -24,6 +27,15 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Presentation\Views\Auth\SignupUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Inventory\InventoryTambahUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Inventory\InventoryUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Shared\ProfilePopupUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
