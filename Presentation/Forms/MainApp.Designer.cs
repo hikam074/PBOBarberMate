@@ -51,6 +51,7 @@
             Name = "MainApp";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "BarberMate";
+            FormClosing += MainApp_FormClosing;
             ResumeLayout(false);
         }
 

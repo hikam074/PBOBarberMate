@@ -15,6 +15,7 @@ namespace PBOBarberMate.Presentation.Forms
         {
             InitializeComponent();
             ShowLogin();
+            this.FormClosing += MainApp_FormClosing;
         }
         public void ShowLogin()
         {
@@ -58,6 +59,11 @@ namespace PBOBarberMate.Presentation.Forms
 
             homepage.Dock = DockStyle.Fill;
             mainPanel.Controls.Add(homepage);
+        }
+
+        private void MainApp_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
