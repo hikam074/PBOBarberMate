@@ -116,7 +116,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
             SetSidebarHoverEvents(btnKaryawan, pictbxKaryawan);
             SetSidebarHoverEvents(btnShift, pictbxShift);
             SetSidebarHoverEvents(btnLayanan, pictbxLayanan);
-            SetSidebarHoverEvents(btnInventaris, pictbxInventaris);
+            SetSidebarHoverEvents(btnInventory, pictbxInventory);
             SetSidebarHoverEvents(btnCustomer, pictbxCustomer);
             SetProfilHoverEvents(btnProfil, pictboxProfil);
         }

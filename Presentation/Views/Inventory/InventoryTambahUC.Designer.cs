@@ -34,7 +34,7 @@
             tbxNama = new TextBox();
             lblJumlah = new Label();
             lblNama = new Label();
-            lblTambahInventaris = new Label();
+            lblTambahInventory = new Label();
             gbxAdd = new GroupBox();
             numStok = new NumericUpDown();
             lblSatuan = new Label();
@@ -109,17 +109,17 @@
             lblNama.TabIndex = 25;
             lblNama.Text = "Nama Barang";
             // 
-            // lblTambahInventaris
+            // lblTambahInventory
             // 
-            lblTambahInventaris.AutoSize = true;
-            lblTambahInventaris.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
-            lblTambahInventaris.Location = new Point(100, 40);
-            lblTambahInventaris.Margin = new Padding(2, 0, 2, 0);
-            lblTambahInventaris.Name = "lblTambahInventaris";
-            lblTambahInventaris.Size = new Size(274, 39);
-            lblTambahInventaris.TabIndex = 24;
-            lblTambahInventaris.Text = "Tambahkan Barang Baru";
-            lblTambahInventaris.TextAlign = ContentAlignment.MiddleCenter;
+            lblTambahInventory.AutoSize = true;
+            lblTambahInventory.Font = new Font("Bahnschrift Condensed", 24F, FontStyle.Bold);
+            lblTambahInventory.Location = new Point(100, 40);
+            lblTambahInventory.Margin = new Padding(2, 0, 2, 0);
+            lblTambahInventory.Name = "lblTambahInventory";
+            lblTambahInventory.Size = new Size(274, 39);
+            lblTambahInventory.TabIndex = 24;
+            lblTambahInventory.Text = "Tambahkan Barang Baru";
+            lblTambahInventory.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // gbxAdd
             // 
@@ -210,7 +210,7 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             Controls.Add(gbxAdd);
-            Controls.Add(lblTambahInventaris);
+            Controls.Add(lblTambahInventory);
             Margin = new Padding(2);
             Name = "InventoryTambahUC";
             Size = new Size(744, 451);
@@ -231,7 +231,7 @@
         private TextBox tbxNama;
         private Label lblJumlah;
         private Label lblNama;
-        private Label lblTambahInventaris;
+        private Label lblTambahInventory;
         private GroupBox gbxAdd;
         private PictureBox pictbxBack;
         private PictureBox pictbxAdd;

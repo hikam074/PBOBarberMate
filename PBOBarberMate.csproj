@@ -35,7 +35,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="BUANG\Assets\asset_calendar-days-regular.png">
+    <None Update="Presentation\Assets\asset_calendar-days-regular.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

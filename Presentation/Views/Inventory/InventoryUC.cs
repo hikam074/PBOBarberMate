@@ -111,7 +111,7 @@ namespace PBOBarberMate.Presentation.Views.Inventory
             else if (e.ColumnIndex == dgvInventory.Columns["btnHapus"].Index)
             {
                 DialogResult confirm = MessageBox.Show(
-                    $"Apakah Anda yakin ingin menghapus inventaris ini (ID Barang: {barangDipilih.IdBarang})?",
+                    $"Apakah Anda yakin ingin menghapus inventory ini (ID Barang: {barangDipilih.IdBarang})?",
                     "Konfirmasi Hapus",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question

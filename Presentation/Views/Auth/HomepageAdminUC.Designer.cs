@@ -43,12 +43,12 @@
             pictbxKunjungan = new PictureBox();
             btnPembayaran = new Button();
             btnReservasi = new Button();
-            pictbxInventaris = new PictureBox();
+            pictbxInventory = new PictureBox();
             pictbxShift = new PictureBox();
             btnKunjungan = new Button();
             btnKaryawan = new Button();
             btnShift = new Button();
-            btnInventaris = new Button();
+            btnInventory = new Button();
             btnCustomer = new Button();
             pictbxLayanan = new PictureBox();
             btnLayanan = new Button();
@@ -62,7 +62,7 @@
             ((System.ComponentModel.ISupportInitialize)pictbxKaryawan).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxKunjungan).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxInventaris).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxInventory).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxShift).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).BeginInit();
             SuspendLayout();
@@ -163,12 +163,12 @@
             sidebarPanel.Controls.Add(pictbxKunjungan);
             sidebarPanel.Controls.Add(btnPembayaran);
             sidebarPanel.Controls.Add(btnReservasi);
-            sidebarPanel.Controls.Add(pictbxInventaris);
+            sidebarPanel.Controls.Add(pictbxInventory);
             sidebarPanel.Controls.Add(pictbxShift);
             sidebarPanel.Controls.Add(btnKunjungan);
             sidebarPanel.Controls.Add(btnKaryawan);
             sidebarPanel.Controls.Add(btnShift);
-            sidebarPanel.Controls.Add(btnInventaris);
+            sidebarPanel.Controls.Add(btnInventory);
             sidebarPanel.Controls.Add(btnCustomer);
             sidebarPanel.Controls.Add(pictbxLayanan);
             sidebarPanel.Controls.Add(btnLayanan);
@@ -267,16 +267,16 @@
             btnReservasi.UseVisualStyleBackColor = false;
             btnReservasi.Click += btnReservasi_Click;
             // 
-            // pictbxInventaris
+            // pictbxInventory
             // 
-            pictbxInventaris.BackColor = Color.Transparent;
-            pictbxInventaris.Image = (Image)resources.GetObject("pictbxInventaris.Image");
-            pictbxInventaris.Location = new Point(17, 311);
-            pictbxInventaris.Name = "pictbxInventaris";
-            pictbxInventaris.Size = new Size(25, 25);
-            pictbxInventaris.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictbxInventaris.TabIndex = 11;
-            pictbxInventaris.TabStop = false;
+            pictbxInventory.BackColor = Color.Transparent;
+            pictbxInventory.Image = (Image)resources.GetObject("pictbxInventory.Image");
+            pictbxInventory.Location = new Point(17, 311);
+            pictbxInventory.Name = "pictbxInventory";
+            pictbxInventory.Size = new Size(25, 25);
+            pictbxInventory.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictbxInventory.TabIndex = 11;
+            pictbxInventory.TabStop = false;
             // 
             // pictbxShift
             // 
@@ -341,22 +341,22 @@
             btnShift.UseVisualStyleBackColor = false;
             btnShift.Click += btnShift_Click;
             // 
-            // btnInventaris
+            // btnInventory
             // 
-            btnInventaris.BackColor = Color.Transparent;
-            btnInventaris.Cursor = Cursors.Hand;
-            btnInventaris.FlatAppearance.BorderSize = 0;
-            btnInventaris.FlatStyle = FlatStyle.Flat;
-            btnInventaris.Font = new Font("Bahnschrift Condensed", 15.75F);
-            btnInventaris.ForeColor = Color.Black;
-            btnInventaris.Location = new Point(3, 302);
-            btnInventaris.Name = "btnInventaris";
-            btnInventaris.Size = new Size(191, 40);
-            btnInventaris.TabIndex = 10;
-            btnInventaris.Text = "          Kelola Inventory";
-            btnInventaris.TextAlign = ContentAlignment.MiddleLeft;
-            btnInventaris.UseVisualStyleBackColor = false;
-            btnInventaris.Click += btnInventory_Click;
+            btnInventory.BackColor = Color.Transparent;
+            btnInventory.Cursor = Cursors.Hand;
+            btnInventory.FlatAppearance.BorderSize = 0;
+            btnInventory.FlatStyle = FlatStyle.Flat;
+            btnInventory.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnInventory.ForeColor = Color.Black;
+            btnInventory.Location = new Point(3, 302);
+            btnInventory.Name = "btnInventory";
+            btnInventory.Size = new Size(191, 40);
+            btnInventory.TabIndex = 10;
+            btnInventory.Text = "          Kelola Inventory";
+            btnInventory.TextAlign = ContentAlignment.MiddleLeft;
+            btnInventory.UseVisualStyleBackColor = false;
+            btnInventory.Click += btnInventory_Click;
             // 
             // btnCustomer
             // 
@@ -433,7 +433,7 @@
             ((System.ComponentModel.ISupportInitialize)pictbxKaryawan).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxReservasi).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxKunjungan).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictbxInventaris).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictbxInventory).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictbxLayanan).EndInit();
             ResumeLayout(false);
@@ -463,8 +463,8 @@
         private System.Windows.Forms.PictureBox pictbxReservasi;
         private System.Windows.Forms.Button btnLayanan;
         private System.Windows.Forms.PictureBox pictbxLayanan;
-        private System.Windows.Forms.Button btnInventaris;
-        private System.Windows.Forms.PictureBox pictbxInventaris;
+        private System.Windows.Forms.Button btnInventory;
+        private System.Windows.Forms.PictureBox pictbxInventory;
         private System.Windows.Forms.Button btnShift;
         private System.Windows.Forms.PictureBox pictbxShift;
         private PictureBox pictboxHome;

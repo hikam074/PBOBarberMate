@@ -109,7 +109,7 @@ namespace PBOBarberMate.Presentation.Views.Inventory
             // btnAdd disable first
             UpdateAddButtonState();
             // update text
-            lblTambahInventaris.Text = _isEditMode ? $"Ubah Barang \"{_dataDiedit.NamaBarang}\"" : "Tambahkan Barang Baru";
+            lblTambahInventory.Text = _isEditMode ? $"Ubah Barang \"{_dataDiedit.NamaBarang}\"" : "Tambahkan Barang Baru";
             btnAdd.Text = _isEditMode ? "    Simpan" : "     Tambahkan";
         }
         private void FillForm(M_Inventory barang)
