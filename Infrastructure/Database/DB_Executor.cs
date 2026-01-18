@@ -13,33 +13,62 @@ namespace PBOBarberMate.Infrastructure.Database
         public static int ExecuteNonQuery(string sql, NpgsqlParameter[] parameters = null)
         // Metode untuk eksekusi INSERT, UPDATE, DELETE (non-query), Mengembalikan jumlah baris yang terpengaruh
         {
-            using (var conn = DB_ConnectionFactory.CreateConnection())
+            try
             {
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                using (var conn = DB_ConnectionFactory.CreateConnection())
                 {
-                    if (parameters != null) cmd.Parameters.AddRange(parameters);
-                    conn.Open();
-                    return cmd.ExecuteNonQuery();
+                    using (var cmd = new NpgsqlCommand(sql, conn))
+                    {
+                        if (parameters != null) cmd.Parameters.AddRange(parameters);
+                        conn.Open();
+                        return cmd.ExecuteNonQuery();
+                    }
                 }
+            }
+            catch (NpgsqlException e)
+            {
+                throw new Exception(HandleDatabaseError(e));
             }
         }
         public static DataTable ExecuteQuery(string sql, NpgsqlParameter[] parameters = null)
         // Metode untuk eksekusi SELECT
         {
-            DataTable dt = new DataTable();
-            using (var conn = DB_ConnectionFactory.CreateConnection())
+            try
             {
-                using (var cmd = new NpgsqlCommand(sql, conn))
+                DataTable dt = new DataTable();
+                using (var conn = DB_ConnectionFactory.CreateConnection())
                 {
-                    if (parameters != null) cmd.Parameters.AddRange(parameters);
-                    conn.Open();
-                    using (var reader = cmd.ExecuteReader())
+                    using (var cmd = new NpgsqlCommand(sql, conn))
                     {
-                        dt.Load(reader);
+                        if (parameters != null) cmd.Parameters.AddRange(parameters);
+                        conn.Open();
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            dt.Load(reader);
+                        }
                     }
                 }
+                return dt;
             }
-            return dt;
+            catch (NpgsqlException e)
+            {
+                throw new Exception(HandleDatabaseError(e));
+            }
+        }
+        private static string HandleDatabaseError(NpgsqlException e)
+        // mereturn pesan dan status eror spesifik
+        {
+            switch (e.SqlState)
+            {
+                case "23505": // unique_violation
+                    return "Data sudah terdaftar di sistem (Duplikat).";
+                case "23503": // foreign_key_violation
+                    return "Data tidak bisa dihapus atau diubah karena masih digunakan oleh data lain.";
+                case "08001": // connection_failure
+                    return "Gagal terhubung ke database. Periksa koneksi internet atau server.";
+                default:
+                    return $"Terjadi kesalahan database: {e.Message}";
+            }
         }
     }
 }

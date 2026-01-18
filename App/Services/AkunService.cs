@@ -31,14 +31,19 @@ namespace PBOBarberMate.App.Services
             SessionService.StartSession(user);
             return Result<M_Akun>.Success(user, "Login Berhasil");
         }
-        public Result<M_Akun> Register(M_Akun akun)
+        public Result<bool> Register(M_Akun akun)
         {
-            akun.Password = SecurityHelper.hashPassword(akun.Password);
-            akun.IdRole = (int)UserRole.Customer;
-            bool success = _akunRepo.Insert(akun);
-            return success ? 
-                Result<M_Akun>.Success(akun, "Sukses") : 
-                Result<M_Akun>.Failure("Gagal") ;
+            try
+            {
+                akun.Password = SecurityHelper.hashPassword(akun.Password);
+                akun.IdRole = (int)UserRole.Customer;
+                bool success = _akunRepo.Insert(akun);
+                return Result<bool>.Success(true, "Registrasi Berhasil, silahkan login");
+            }
+            catch (Exception e)
+            {
+                return Result<bool>.Failure(e.Message);
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
 
             if (result.IsSuccess)
             {
-                MessageBox.Show("Akun anda berhasil dibuat! Silahkan login");
+                MessageBox.Show(result.Message, "Berhasil", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // mengarahkan ke LoginUC
                 if (this.ParentForm is MainApp main)
                 {
@@ -49,7 +49,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
             }
             else
             {
-                MessageBox.Show(result.Message, "Register Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.Message, "Gagal", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
