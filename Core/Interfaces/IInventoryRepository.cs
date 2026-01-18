@@ -12,6 +12,7 @@ namespace PBOBarberMate.Core.Interfaces
     {
         List<M_Inventory> GetAll();
         bool Insert(M_Inventory barang);
+        bool Update(M_Inventory barang);
         bool UpdateStok(int idBarang, int jumlahStok);
         bool Delete(int idbarang);
     }

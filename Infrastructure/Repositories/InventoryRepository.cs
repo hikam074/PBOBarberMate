@@ -45,6 +45,18 @@ namespace PBOBarberMate.Infrastructure.Repositories
             };
             return DB_Executor.ExecuteNonQuery(sql, p) > 0;
         }
+        public bool Update(M_Inventory barang)
+        {
+            string sql = "UPDATE inventory SET nama_barang = @namaBarang, stok = @jumlahStok, satuan = @satuan WHERE id_barang = @idBarang";
+            var p = new NpgsqlParameter[]
+            {
+                new NpgsqlParameter("@namaBarang", barang.NamaBarang),
+                new NpgsqlParameter("@jumlahStok", barang.Stok),
+                new NpgsqlParameter("@satuan", barang.Satuan),
+                new NpgsqlParameter("@idBarang", barang.IdBarang)
+            };
+            return DB_Executor.ExecuteNonQuery(sql, p) > 0;
+        }
         public bool UpdateStok(int idBarang, int jumlahStok)
         {
             string sql = "UPDATE inventory SET stok = @jumlahStok WHERE id_barang = @idBarang";

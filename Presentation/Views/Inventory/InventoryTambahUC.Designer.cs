@@ -148,7 +148,7 @@
             numStok.Name = "numStok";
             numStok.Size = new Size(448, 23);
             numStok.TabIndex = 36;
-            numStok.ValueChanged += this.numStok_ValueChanged;
+            numStok.ValueChanged += numStok_ValueChanged;
             // 
             // lblSatuan
             // 
@@ -214,7 +214,6 @@
             Margin = new Padding(2);
             Name = "InventoryTambahUC";
             Size = new Size(744, 451);
-            Load += InventarisTambahUC_Load;
             gbxAdd.ResumeLayout(false);
             gbxAdd.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)numStok).EndInit();

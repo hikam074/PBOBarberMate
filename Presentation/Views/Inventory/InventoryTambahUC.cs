@@ -11,40 +11,38 @@ using System.Windows.Forms;
 namespace PBOBarberMate.Presentation.Views.Inventory
 {
     using PBOBarberMate.App.Services;
+    using PBOBarberMate.Core.Common;
     using PBOBarberMate.Core.Entities;
+    using PBOBarberMate.Core.Enums;
     using PBOBarberMate.Core.Interfaces;
 
     public partial class InventoryTambahUC : UserControl, IPageFeature
     {
-        //public readonly bool _isEditMode;
-        //public readonly M_Inventaris _inventarisDiedit;
-
-
-        public string PageTitle => "Tambah Barang Baru";
+        public string PageTitle => _isEditMode ? "Ubah Barang" : "Tambah Barang Baru";
         private readonly InventoryService _service;
         private readonly INavigationService _nav;
+        // mode edit
+        public readonly bool _isEditMode;
+        public readonly M_Inventory _dataDiedit;
 
         public InventoryTambahUC(InventoryService service, INavigationService nav)
         {
             InitializeComponent();
             _service = service;
             _nav = nav;
-            //_isEditMode = false;
-            SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
-            SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
+            _isEditMode = false;
+            SetupUI();
         }
-
-        private void InventarisTambahUC_Load(object sender, EventArgs e)
+        public InventoryTambahUC(InventoryService service, INavigationService nav, M_Inventory barang)
         {
-            UpdateAddButtonState();
-            //if (_commonServices.SessionServiceInstance.CurrentUserRole == AkunRole.admin)
-            //{
-            //    tbxNama.Enabled = true;
-            //}
-            //else
-            //{
-            //    tbxNama.Enabled = false;
-            //}
+            InitializeComponent();
+            _service = service;
+            _nav = nav;
+            _isEditMode = true;
+            _dataDiedit = barang;
+            SetupUI();
+            FillForm(_dataDiedit);
+            SetupFormByRole();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -62,9 +60,17 @@ namespace PBOBarberMate.Presentation.Views.Inventory
                     NamaBarang = tbxNama.Text,
                     Stok = (int)numStok.Value,
                     Satuan = tbxSatuan.Text
-
                 };
-                var result = _service.TambahBarang(barang);
+                Result<bool> result;
+                if (_isEditMode)
+                {
+                    barang.IdBarang = _dataDiedit.IdBarang;
+                    result = _service.PerbaruiBarang(barang);
+                }
+                else
+                {
+                    result = _service.TambahBarang(barang);
+                }
                 if (result.IsSuccess)
                 {
                     MessageBox.Show(result.Message);
@@ -75,118 +81,53 @@ namespace PBOBarberMate.Presentation.Views.Inventory
                 {
                     MessageBox.Show(result.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
             }
-
-
-
-
-
-            //if (!ValidateInput())
-            //{
-            //    return;
-            //}
-            //// ambil data dari V
-            //string nama = tbxNama.Text;
-            //int jumlah = Int32.Parse(tbxJumlah.Text);
-            //// konfirmasi berhasil
-            //bool berhasil = false;
-
-            //// konfirmasi
-            //DialogResult confirm = MessageBox.Show(
-            //    $"Apakah Anda yakin?",
-            //    "Konfirmasi",
-            //    MessageBoxButtons.YesNo,
-            //    MessageBoxIcon.Question
-            //);
-            //// konfirmasi yes
-            //if (confirm == DialogResult.Yes)
-            //{
-            //    if (!_isEditMode)
-            //    {
-            //        berhasil = _inventarisService.addInventaris(nama, jumlah);
-            //        if (berhasil)
-            //        {
-            //            MessageBox.Show("Data \"" + nama + "\" Berhasil Ditambahkan!");
-            //        }
-            //    }
-            //    else
-            //    {
-            //        // ambil id
-            //        int id_diedit = _inventarisDiedit.id_barang;
-
-            //        // lakukan
-            //        berhasil = _inventarisService.updateInventaris(id_diedit, nama, jumlah);
-            //        if (berhasil)
-            //        {
-            //            MessageBox.Show("Data \"" + nama + "\" Berhasil diubah!");
-            //        }
-            //    }
-            //    if (berhasil)
-            //    {
-            //        _commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new InventarisUC(_commonServices, _inventarisService), "Inventaris Barang");
-            //    }
-            //}
-
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             _nav.LoadFitur(new InventoryUC(_service, _nav));
         }
 
-        //public InventarisTambahUC(CommonAppServices commonServices, InventarisService inventarisService, M_Inventaris inventarisDiedit)
-        //{
-        //    InitializeComponent();
-
-        //    _commonServices = commonServices;
-
-        //    _inventarisService = inventarisService;
-
-        //    _isEditMode = true;
-        //    _inventarisDiedit = inventarisDiedit;
-
-        //    // penyesuaian view
-        //    tbxNama.Text = inventarisDiedit.nama_barang;
-        //    tbxJumlah.Text = inventarisDiedit.jumlah_barang.ToString();
-        //    btnAdd.Text = "      Simpan Perubahan";
-        //    lblTambahInventaris.Text = "Ubah Inventaris " + inventarisDiedit.nama_barang;
-        //    SetCancelButtonlHoverEvents(btnCancel, pictbxBack);
-        //    SetAddButtonlHoverEvents(btnAdd, pictbxAdd, pictbxAddHov);
-        //    AdjustPictbxAddPosition();
-        //}
-
-        private void SetCancelButtonlHoverEvents(Control button, Control relatedControl)
+        private void SetupUI()
         {
-            button.MouseEnter += (s, e) => { button.BackColor = Color.Orange; relatedControl.BackColor = Color.Orange; };
-            button.MouseLeave += (s, e) => { button.BackColor = Color.WhiteSmoke; relatedControl.BackColor = Color.WhiteSmoke; };
+            // btnCancel hover
+            btnCancel.MouseEnter += (s, e) => { btnCancel.BackColor = Color.Orange; pictbxBack.BackColor = Color.Orange; };
+            btnCancel.MouseLeave += (s, e) => { btnCancel.BackColor = Color.WhiteSmoke; pictbxBack.BackColor = Color.WhiteSmoke; };
+            // btnAdd hover
+            btnAdd.MouseEnter += (s, e) =>
+            {
+                btnAdd.BackColor = Color.Green; btnAdd.ForeColor = Color.White;
+                pictbxAddHov.BackColor = Color.Green; pictbxAddHov.Visible = true; pictbxAddHov.BringToFront();
+                pictbxAdd.Visible = false;
+            };
+            btnAdd.MouseLeave += (s, e) =>
+            {
+                btnAdd.BackColor = Color.WhiteSmoke; btnAdd.ForeColor = Color.Black;
+                pictbxAddHov.Visible = false;
+                pictbxAdd.Visible = true;
+            };
+            // btnAdd disable first
+            UpdateAddButtonState();
+            // update text
+            lblTambahInventaris.Text = _isEditMode ? $"Ubah Barang \"{_dataDiedit.NamaBarang}\"" : "Tambahkan Barang Baru";
+            btnAdd.Text = _isEditMode ? "    Simpan" : "     Tambahkan";
         }
-        private void SetAddButtonlHoverEvents(Control button, Control relatedControl, Control relatedHovControl)
+        private void FillForm(M_Inventory barang)
         {
-            button.MouseEnter += (s, e) =>
-            {
-                button.BackColor = Color.Green; button.ForeColor = Color.White;
-                relatedHovControl.BackColor = Color.Green; relatedHovControl.Visible = true; relatedHovControl.BringToFront();
-                relatedControl.Visible = false;
-            };
-            button.MouseLeave += (s, e) =>
-            {
-                button.BackColor = Color.WhiteSmoke; button.ForeColor = Color.Black;
-                relatedHovControl.Visible = false;
-                relatedControl.Visible = true;
-            };
+            tbxNama.Text = barang.NamaBarang;
+            numStok.Value = barang.Stok;
+            tbxSatuan.Text = barang.Satuan;
         }
-        //private void AdjustPictbxAddPosition()
-        //{
-        //    if (btnAdd != null && pictbxAdd != null && pictbxAddHov != null)
-        //    {
-        //        int x = btnAdd.Location.X + 7;
-        //        int y = btnAdd.Location.Y + (btnAdd.Height - pictbxAdd.Height) / 2;
-
-        //        pictbxAddHov.Location = new Point(x, y);
-        //        pictbxAdd.Location = new Point(x, y);
-        //        pictbxAdd.BringToFront();
-        //    }
-        //}
+        private void SetupFormByRole()
+        {
+            var user = SessionService.CurrentUser;
+            bool isAdmin = user.IdRole == (int)UserRole.Admin;
+            // nama, satuan = admin only
+            tbxNama.ReadOnly = !isAdmin;
+            tbxSatuan.ReadOnly = !isAdmin;
+            // stok = all
+            numStok.ReadOnly = false;
+        }
         public void UpdateAddButtonState()
         {
             btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNama.Text) || decimal.IsNegative(numStok.Value) || string.IsNullOrWhiteSpace(tbxSatuan.Text));
