@@ -8,24 +8,23 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace PBOBarberMate.Presentation.Views.Inventory
+namespace PBOBarberMate.Presentation.Views.Layanan
 {
     using PBOBarberMate.App.Services;
     using PBOBarberMate.Core.Common;
     using PBOBarberMate.Core.Entities;
-    using PBOBarberMate.Core.Enums;
     using PBOBarberMate.Core.Interfaces;
 
-    public partial class InventoryTambahUC : UserControl, IPageFeature
+    public partial class LayananTambahUC : UserControl, IPageFeature
     {
-        public string PageTitle => _isEditMode ? "Ubah Barang" : "Tambah Barang Baru";
-        private readonly InventoryService _service;
+        public string PageTitle => _isEditMode ? "Ubah Layanan" : "Tambah layanan Baru";
+        private readonly LayananService _service;
         private readonly INavigationService _nav;
         // mode edit
         public readonly bool _isEditMode;
-        public readonly M_Inventory _dataDiedit;
+        public readonly M_Layanan _dataDiedit;
 
-        public InventoryTambahUC(InventoryService service, INavigationService nav)
+        public LayananTambahUC(LayananService service, INavigationService nav)
         {
             InitializeComponent();
             _service = service;
@@ -33,16 +32,15 @@ namespace PBOBarberMate.Presentation.Views.Inventory
             _isEditMode = false;
             SetupUI();
         }
-        public InventoryTambahUC(InventoryService service, INavigationService nav, M_Inventory barang)
+        public LayananTambahUC(LayananService service, INavigationService nav, M_Layanan layanan)
         {
             InitializeComponent();
             _service = service;
             _nav = nav;
             _isEditMode = true;
-            _dataDiedit = barang;
+            _dataDiedit = layanan;
             SetupUI();
             FillForm(_dataDiedit);
-            SetupFormByRole();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -55,27 +53,27 @@ namespace PBOBarberMate.Presentation.Views.Inventory
             );
             if (confirm == DialogResult.Yes)
             {
-                var barang = new M_Inventory
+                var layanan = new M_Layanan()
                 {
-                    NamaBarang = tbxNama.Text,
-                    Stok = (int)numStok.Value,
-                    Satuan = tbxSatuan.Text
+                    NamaLayanan = tbxNama.Text,
+                    Harga = (decimal)numHarga.Value,
+                    Deskripsi = tbxDeskripsi.Text
                 };
                 Result<bool> result;
                 if (_isEditMode)
                 {
-                    barang.IdBarang = _dataDiedit.IdBarang;
-                    result = _service.PerbaruiBarang(barang);
+                    layanan.IdLayanan = _dataDiedit.IdLayanan;
+                    result = _service.PerbaruiLayanan(layanan);
                 }
                 else
                 {
-                    result = _service.TambahBarang(barang);
+                    result = _service.TambahLayanan(layanan);
                 }
                 if (result.IsSuccess)
                 {
                     MessageBox.Show(result.Message);
-                    //redirect ke InventoryUC
-                    _nav.LoadFitur(new InventoryUC(_service, _nav));
+                    //redirect ke LayananUC
+                    _nav.LoadFitur(new LayananUC(_service, _nav));
                 }
                 else
                 {
@@ -85,7 +83,7 @@ namespace PBOBarberMate.Presentation.Views.Inventory
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            _nav.LoadFitur(new InventoryUC(_service, _nav));
+            _nav.LoadFitur(new LayananUC(_service, _nav));
         }
 
         private void SetupUI()
@@ -109,39 +107,25 @@ namespace PBOBarberMate.Presentation.Views.Inventory
             // btnAdd disable first
             UpdateAddButtonState();
             // update text
-            lblTambahInventory.Text = _isEditMode ? $"Ubah Barang \"{_dataDiedit.NamaBarang}\"" : "Tambahkan Barang Baru";
+            lblTambahLayanan.Text = _isEditMode ? $"Ubah Layanan \"{_dataDiedit.NamaLayanan}\"" : "Tambahkan Layanan Baru";
             btnAdd.Text = _isEditMode ? "    Simpan" : "     Tambahkan";
         }
-        private void FillForm(M_Inventory barang)
+        private void FillForm(M_Layanan layanan)
         {
-            tbxNama.Text = barang.NamaBarang;
-            numStok.Value = barang.Stok;
-            tbxSatuan.Text = barang.Satuan;
-        }
-        private void SetupFormByRole()
-        {
-            var user = SessionService.CurrentUser;
-            bool isAdmin = user.IdRole == (int)UserRole.Admin;
-            // nama, satuan = admin only
-            tbxNama.ReadOnly = !isAdmin;
-            tbxSatuan.ReadOnly = !isAdmin;
-            // stok = all
-            numStok.ReadOnly = false;
+            tbxNama.Text = layanan.NamaLayanan;
+            numHarga.Value = layanan.Harga;
+            tbxDeskripsi.Text = layanan.Deskripsi;
         }
         public void UpdateAddButtonState()
         {
-            btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNama.Text) || numStok.Value < 0 || string.IsNullOrWhiteSpace(tbxSatuan.Text));
+            btnAdd.Enabled = !(string.IsNullOrWhiteSpace(tbxNama.Text) || numHarga.Value < 0);
         }
 
         private void tbxNama_TextChanged(object sender, EventArgs e)
         {
             UpdateAddButtonState();
         }
-        private void tbxJumlah_TextChanged(object sender, EventArgs e)
-        {
-            UpdateAddButtonState();
-        }
-        private void numStok_ValueChanged(object sender, EventArgs e)
+        private void numHarga_ValueChanged(object sender, EventArgs e)
         {
             UpdateAddButtonState();
         }

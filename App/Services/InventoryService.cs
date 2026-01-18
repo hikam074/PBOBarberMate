@@ -34,6 +34,7 @@ namespace PBOBarberMate.App.Services
         }
         public Result<bool> TambahBarang(M_Inventory barang)
         {
+            if (SessionService.CurrentUser.IdRole != (int)UserRole.Admin) return Result<bool>.Failure("Role tidak berwenang");
             try
             {
                 barang.IdAkunPengelola = SessionService.CurrentUser.IdAkun;
@@ -72,7 +73,6 @@ namespace PBOBarberMate.App.Services
         }
         public Result<bool> HapusBarang(M_Inventory barang)
         {
-            var user = SessionService.CurrentUser;
             if (SessionService.CurrentUser.IdRole != (int)UserRole.Admin) return Result<bool>.Failure("Role tidak berwenang");
             try
             {

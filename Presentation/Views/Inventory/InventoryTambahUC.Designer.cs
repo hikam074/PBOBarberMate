@@ -145,6 +145,7 @@
             // 
             numStok.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numStok.Location = new Point(90, 48);
+            numStok.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
             numStok.Name = "numStok";
             numStok.Size = new Size(448, 23);
             numStok.TabIndex = 36;

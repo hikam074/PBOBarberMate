@@ -29,3 +29,10 @@ CREATE TABLE inventory (
     last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Tabel Layanan
+CREATE TABLE layanan (
+    id_layanan SERIAL PRIMARY KEY,
+    nama_layanan VARCHAR(100) NOT NULL,
+    harga DECIMAL(10, 2) NOT NULL,
+    deskripsi TEXT
+);

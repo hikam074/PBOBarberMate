@@ -8,7 +8,6 @@ using System.Data;
 namespace PBOBarberMate.Infrastructure.Repositories
 {
     using Npgsql;
-    using PBOBarberMate.BUANG.Core.Entities;
     using PBOBarberMate.Core.Entities;
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Infrastructure.Database;

@@ -1,15 +1,15 @@
-﻿using PBOBarberMate.View;
+﻿//using PBOBarberMate.View;
 
-namespace PBOBarberMate.BUANG.App.Services
-{
-    public class CommonCustomerServices
-    {
-        public LayananService LayananServiceInstance { get; }
+//namespace PBOBarberMate.BUANG.App.Services
+//{
+//    public class CommonCustomerServices
+//    {
+//        public LayananService LayananServiceInstance { get; }
 
-        public CommonCustomerServices(LayananService layananService)
-        {
-            LayananServiceInstance = layananService;
+//        public CommonCustomerServices(LayananService layananService)
+//        {
+//            LayananServiceInstance = layananService;
 
-        }
-    }
-}
+//        }
+//    }
+//}

@@ -8,8 +8,9 @@ namespace PBOBarberMate.Presentation.Views.Auth
     using PBOBarberMate.App.Services;
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Infrastructure.Repositories;
-    using PBOBarberMate.Presentation.Views.Inventory;
     using PBOBarberMate.Presentation.Views.Shared;
+    using PBOBarberMate.Presentation.Views.Inventory;
+    using PBOBarberMate.Presentation.Views.Layanan;
 
     public partial class HomepageAdminUC : UserControl, INavigationService
     {
@@ -53,7 +54,10 @@ namespace PBOBarberMate.Presentation.Views.Auth
         }
         private void btnLayanan_Click(object sender, EventArgs e)
         {
-            //_commonServices.MainAppInstance.LoadFeatureIntoActiveHomepageContent(new LayananUC(_commonServices, _commonAdminServices.LayananServiceInstance), "Layanan");
+            ILayananRepository repo = new LayananRepository();
+            LayananService service = new LayananService(repo);
+            LayananUC layananUC = new LayananUC(service, this);
+            this.LoadFitur(layananUC);
         }
         private void btnInventory_Click(object sender, EventArgs e)
         {

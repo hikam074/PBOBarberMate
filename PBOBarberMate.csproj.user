@@ -35,6 +35,12 @@
     <Compile Update="Presentation\Views\Inventory\InventoryUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Presentation\Views\Layanan\LayananTambahUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Layanan\LayananUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Presentation\Views\Shared\ProfilePopupUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
