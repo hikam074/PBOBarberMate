@@ -36,12 +36,12 @@ namespace PBOBarberMate.Presentation.Views.Auth
                 Email = tbxSignupEmail.Text,
                 Password = tbxSignupPass.Text,
             };
-            string result = _akunService.Register(akun);
+            var result = _akunService.Register(akun);
 
-            if (result == "Sukses")
+            if (result.IsSuccess)
             {
                 MessageBox.Show("Akun anda berhasil dibuat! Silahkan login");
-                // mengarahkan ke FormLogin
+                // mengarahkan ke LoginUC
                 if (this.ParentForm is MainApp main)
                 {
                     main.ShowLogin();
@@ -49,7 +49,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
             }
             else
             {
-                MessageBox.Show(result, "Register Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.Message, "Register Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

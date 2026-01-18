@@ -11,6 +11,7 @@ namespace PBOBarberMate.App.Services
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Core.Utils;
     using PBOBarberMate.Core.Enums;
+    using PBOBarberMate.Core.Common;
 
     public class AkunService
     {
@@ -21,21 +22,23 @@ namespace PBOBarberMate.App.Services
             _akunRepo = repo;
         }
 
-        public string Login(M_Akun akun)
+        public Result<M_Akun> Login(M_Akun akun)
         {
             var user = _akunRepo.GetByUsername(akun.Username);
-            if (user == null) return "User tidak ditemukan";
-            if (user.Password != SecurityHelper.hashPassword(akun.Password)) return "Password salah";
+            if (user == null) return Result<M_Akun>.Failure("User tidak ditemukan");
+            if (user.Password != SecurityHelper.hashPassword(akun.Password)) return Result<M_Akun>.Failure("Password salah");
             // simpan di session kalau benar
             SessionService.StartSession(user);
-            return "Sukses";
+            return Result<M_Akun>.Success(user, "Login Berhasil");
         }
-        public string Register(M_Akun akun)
+        public Result<M_Akun> Register(M_Akun akun)
         {
             akun.Password = SecurityHelper.hashPassword(akun.Password);
             akun.IdRole = (int)UserRole.Customer;
             bool success = _akunRepo.Insert(akun);
-            return success ? "Sukses" : "Gagal" ;
+            return success ? 
+                Result<M_Akun>.Success(akun, "Sukses") : 
+                Result<M_Akun>.Failure("Gagal") ;
         }
     }
 }

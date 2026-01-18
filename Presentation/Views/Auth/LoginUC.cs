@@ -25,9 +25,9 @@ namespace PBOBarberMate.Presentation.Views.Auth
         private void btnLoginSubmit_Click(object sender, EventArgs e)
         {
             M_Akun akun = new M_Akun() { Username = tbxLoginEmail.Text, Password = tbxLoginPass.Text };
-            string result = _akunService.Login(akun);
+            var result = _akunService.Login(akun);
 
-            if (result == "Sukses")
+            if (result.IsSuccess)
             {
                 var user = SessionService.CurrentUser;
                 MessageBox.Show($"Selamat datang {user.Nama} ({user.NamaRole})");
@@ -40,7 +40,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
             }
             else
             {
-                MessageBox.Show(result, "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.Message, "Login Gagal", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
