@@ -41,13 +41,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BUANG\Core\Interfaces\" />
-    <Folder Include="BUANG\Core\Enums\" />
     <Folder Include="BUANG\Features\Presensi\Behaviors\" />
     <Folder Include="BUANG\Features\Presensi\Views\" />
     <Folder Include="BUANG\Infrastructures\Database\" />
     <Folder Include="BUANG\View\Auth\" />
-    <Folder Include="BUANG\View\Inventaris\" />
     <Folder Include="Presentation\Components\" />
     <Folder Include="Presentation\Utils\" />
     <Folder Include="Presentation\ViewModels\" />
