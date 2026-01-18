@@ -189,7 +189,6 @@
             Controls.Add(lblLoginWelcome);
             Name = "LoginUC";
             Size = new Size(1008, 537);
-            Load += FormLogin_Load;
             gbxLogin.ResumeLayout(false);
             gbxLogin.PerformLayout();
             ResumeLayout(false);

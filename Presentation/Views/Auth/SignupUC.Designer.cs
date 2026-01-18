@@ -31,6 +31,8 @@
             lblLoginSignupRedirect = new Label();
             lklblLoginSignupRedirect = new LinkLabel();
             gbxSignup = new GroupBox();
+            lblSignupUsername = new Label();
+            tbxSignupUsername = new TextBox();
             btnSignupSubmit = new Button();
             tbxSignupNama = new TextBox();
             lblSignupNama = new Label();
@@ -41,8 +43,6 @@
             tbxSignupPass = new TextBox();
             lblSignupAppName = new Label();
             lblSginupWelcome = new Label();
-            tbxSignupUsername = new TextBox();
-            lblSignupUsername = new Label();
             gbxSignup.SuspendLayout();
             SuspendLayout();
             // 
@@ -92,6 +92,26 @@
             gbxSignup.Size = new Size(400, 300);
             gbxSignup.TabIndex = 11;
             gbxSignup.TabStop = false;
+            // 
+            // lblSignupUsername
+            // 
+            lblSignupUsername.Anchor = AnchorStyles.Top;
+            lblSignupUsername.AutoSize = true;
+            lblSignupUsername.BackColor = Color.Transparent;
+            lblSignupUsername.Location = new Point(18, 128);
+            lblSignupUsername.Name = "lblSignupUsername";
+            lblSignupUsername.Size = new Size(60, 15);
+            lblSignupUsername.TabIndex = 18;
+            lblSignupUsername.Text = "Username";
+            // 
+            // tbxSignupUsername
+            // 
+            tbxSignupUsername.Anchor = AnchorStyles.Top;
+            tbxSignupUsername.Location = new Point(18, 143);
+            tbxSignupUsername.Name = "tbxSignupUsername";
+            tbxSignupUsername.Size = new Size(365, 23);
+            tbxSignupUsername.TabIndex = 17;
+            tbxSignupUsername.TextChanged += tbxSignupUsername_TextChanged;
             // 
             // btnSignupSubmit
             // 
@@ -206,25 +226,6 @@
             lblSginupWelcome.Size = new Size(286, 61);
             lblSginupWelcome.TabIndex = 12;
             lblSginupWelcome.Text = "Selamat datang di";
-            // 
-            // tbxSignupUsername
-            // 
-            tbxSignupUsername.Anchor = AnchorStyles.Top;
-            tbxSignupUsername.Location = new Point(18, 143);
-            tbxSignupUsername.Name = "tbxSignupUsername";
-            tbxSignupUsername.Size = new Size(365, 23);
-            tbxSignupUsername.TabIndex = 17;
-            // 
-            // lblSignupUsername
-            // 
-            lblSignupUsername.Anchor = AnchorStyles.Top;
-            lblSignupUsername.AutoSize = true;
-            lblSignupUsername.BackColor = Color.Transparent;
-            lblSignupUsername.Location = new Point(18, 128);
-            lblSignupUsername.Name = "lblSignupUsername";
-            lblSignupUsername.Size = new Size(60, 15);
-            lblSignupUsername.TabIndex = 18;
-            lblSignupUsername.Text = "Username";
             // 
             // SignupUC
             // 

@@ -19,23 +19,7 @@ namespace PBOBarberMate.Presentation.Views.Auth
             _akunService = akunService;
 
             tbxLoginPass.PasswordChar = '*';
-            UpdateLoginButtonState();
-            this.Resize += new EventHandler(FormLogin_Resize);
-        }
-
-        private void UpdateLoginButtonState()
-        {
-            btnLoginSubmit.Enabled = !(string.IsNullOrWhiteSpace(tbxLoginEmail.Text) || string.IsNullOrWhiteSpace(tbxLoginPass.Text));
-        }
-
-        private void tbxLoginEmail_TextChanged(object sender, EventArgs e)
-        {
-            UpdateLoginButtonState();
-        }
-
-        private void tbxLoginPass_TextChanged(object sender, EventArgs e)
-        {
-            UpdateLoginButtonState();
+            UpdateSubmitButtonState();
         }
 
         private void btnLoginSubmit_Click(object sender, EventArgs e)
@@ -77,7 +61,6 @@ namespace PBOBarberMate.Presentation.Views.Auth
                 btnLoginSubmit.ForeColor = Color.FromArgb(44, 62, 80);
             }
         }
-
         private void btnLoginSubmit_MouseLeave(object sender, EventArgs e)
         {
             if (btnLoginSubmit.Enabled)
@@ -86,49 +69,17 @@ namespace PBOBarberMate.Presentation.Views.Auth
                 btnLoginSubmit.ForeColor = Color.White;
             }
         }
-
-        private void FormLogin_Load(object sender, EventArgs e)
+        private void UpdateSubmitButtonState()
         {
-            CenterComponentVertically(this.gbxLogin);
-            CenterLabelsVertically(this.lblLoginWelcome, this.lblLoginAppName);
+            btnLoginSubmit.Enabled = !(string.IsNullOrWhiteSpace(tbxLoginEmail.Text) || string.IsNullOrWhiteSpace(tbxLoginPass.Text));
         }
-
-        private void FormLogin_Resize(object sender, EventArgs e)
+        private void tbxLoginEmail_TextChanged(object sender, EventArgs e)
         {
-            CenterComponentVertically(this.gbxLogin);
-            CenterLabelsVertically(this.lblLoginWelcome, this.lblLoginAppName);
+            UpdateSubmitButtonState();
         }
-
-        private void CenterComponentVertically(Control component)
+        private void tbxLoginPass_TextChanged(object sender, EventArgs e)
         {
-            if (component == null) return;
-            // Hitung posisi Y untuk memusatkan komponen di dalam parent-nya (yaitu FormLogin)
-            int y = (this.ClientSize.Height - component.Height) / 2;
-            // Atur lokasi komponen, posisi X tetap seperti semula
-            component.Location = new Point(component.Location.X, y);
-        }
-
-        // Memusatkan grup label hanya secara vertikal (posisi horizontal diatur terpisah)
-        private void CenterLabelsVertically(Label lblWelcome, Label lblAppName)
-        {
-            if (lblWelcome == null || lblAppName == null) return;
-
-            // Memposisikan lblWelcome di atas lblAppName, lalu memusatkan keduanya sebagai grup vertikal
-            // Hitung total tinggi kedua label dan spasi antar mereka jika ada
-            int spacing = 5;
-            int totalHeight = lblWelcome.Height + spacing + lblAppName.Height;
-            // Hitung posisi Y untuk bagian atas lblWelcome agar grup terpusat secara vertikal
-            int groupY = (this.ClientSize.Height - totalHeight) / 2;
-            // Hanya atur posisi Y
-            lblWelcome.Location = new Point(
-                lblWelcome.Location.X, // Posisi X tetap
-                groupY
-            );
-
-            lblAppName.Location = new Point(
-                lblAppName.Location.X, // Posisi X tetap
-                groupY + lblWelcome.Height + spacing
-            );
+            UpdateSubmitButtonState();
         }
     }
 }
