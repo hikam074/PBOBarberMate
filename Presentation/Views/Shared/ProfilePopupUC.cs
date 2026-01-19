@@ -15,11 +15,15 @@ namespace PBOBarberMate.Presentation.Views.Shared
 
     public partial class ProfilePopupUC : UserControl
     {
+        public Action OnActionExecuted { get; set; }
+
         public ProfilePopupUC()
         {
             InitializeComponent();
             LoadUserData();
+            SetupUI();
         }
+
         private void LoadUserData()
         {
             if (SessionService.IsLoggedIn())
@@ -30,18 +34,39 @@ namespace PBOBarberMate.Presentation.Views.Shared
                 lblProfilEmail.Text = SessionService.CurrentUser.Username;
             }
         }
+        private void SetupUI()
+        {
+            btnUbahProfil.MouseEnter += (s, e) => { btnUbahProfil.BackColor = SystemColors.Highlight; btnUbahProfil.ForeColor = Color.White; };
+            btnUbahProfil.MouseLeave += (s, e) => { btnUbahProfil.BackColor = Color.White; btnUbahProfil.ForeColor = Color.Black; };
+            btnHomepageLogout.MouseEnter += (s, e) => { btnHomepageLogout.BackColor = Color.Red; btnHomepageLogout.ForeColor = Color.White; };
+            btnHomepageLogout.MouseLeave += (s, e) => { btnHomepageLogout.BackColor = Color.White; btnHomepageLogout.ForeColor = Color.Black; };
+        }
 
         private void btnHomepageLogout_Click(object sender, EventArgs e)
         {
-            SessionService.EndSession();
-            if (this.TopLevelControl is MainApp main)
+            DialogResult confirm = MessageBox.Show(
+                $"Apakah Anda yakin?",
+                "Konfirmasi",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+            if (confirm == DialogResult.Yes)
             {
-                main.ShowLogin();
-            }
-        }
+                var parentForm = this.FindForm() as MainApp;
+                
 
+                SessionService.EndSession();
+                if (parentForm != null)
+                {
+                    parentForm.ShowLogin();
+                }
+
+            }
+            OnActionExecuted?.Invoke();
+        }
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
+            OnActionExecuted?.Invoke();
             //
         }
     }

@@ -41,7 +41,6 @@
             headerPanel.Name = "headerPanel";
             headerPanel.Size = new Size(944, 50);
             headerPanel.TabIndex = 7;
-            headerPanel.Resize += headerPanel_Resize;
             // 
             // sidebarPanel
             // 
