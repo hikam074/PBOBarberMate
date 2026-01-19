@@ -4,10 +4,12 @@ using System.Windows.Forms;
 
 namespace PBOBarberMate.Presentation.Forms
 {
-    using PBOBarberMate.Presentation.Views.Auth;
     using PBOBarberMate.App.Services;
+    using PBOBarberMate.Core.Enums;
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Infrastructure.Repositories;
+    using PBOBarberMate.Presentation.Views.Auth;
+    using PBOBarberMate.Presentation.Views.Shared;
 
     public partial class MainApp : Form
     {
@@ -47,13 +49,13 @@ namespace PBOBarberMate.Presentation.Forms
 
             // pemilihan homepage
             UserControl homepage;
-            switch (user.NamaRole)
+            switch (user.IdRole)
             {
-                case "Admin":
-                    homepage = new HomepageAdminUC();
+                case (int)UserRole.Admin:
+                    homepage = new HomepageUC();
                     break;
                 default:
-                    homepage = new HomepageAdminUC();
+                    homepage = new HomepageUC();
                     break;
             }
 

@@ -2,7 +2,13 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Presentation\Views\Auth\HomepageAdminUC.cs">
+    <Compile Update="BUANG\View\Homepages\HomepageCustomerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="BUANG\View\Homepages\HomepageKaryawanUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Shared\HomepageUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Presentation\Views\Auth\LoginUC.cs">
@@ -41,7 +47,19 @@
     <Compile Update="Presentation\Views\Layanan\LayananUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Presentation\Views\Shared\NavbarUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Presentation\Views\Shared\ProfilePopupUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Shared\Sidebars\SidebarAdminUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Shared\Sidebars\SidebarCustomerUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Presentation\Views\Shared\Sidebars\SidebarKaryawanUC.cs">
       <SubType>UserControl</SubType>
     </Compile>
   </ItemGroup>
