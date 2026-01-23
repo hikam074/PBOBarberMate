@@ -15,6 +15,7 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
     using PBOBarberMate.Infrastructure.Repositories;
     using PBOBarberMate.Presentation.Views.Inventory;
     using PBOBarberMate.Presentation.Views.Layanan;
+    using PBOBarberMate.Presentation.Views.Jadwal;
 
     public partial class SidebarAdminUC : UserControl
     {
@@ -41,6 +42,13 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
             InventoryUC inventoryUC = new InventoryUC(service, _nav);
             _nav.LoadFitur(inventoryUC);
         }
+        private void btnJadwal_Click(object sender, EventArgs e)
+        {
+            IJadwalRepository repo = new JadwalRepository();
+            JadwalService service = new JadwalService(repo);
+            JadwalUC inventoryUC = new JadwalUC(service, _nav);
+            _nav.LoadFitur(inventoryUC);
+        }
 
         private void SetButtonHoverEvents()
         {
@@ -48,7 +56,7 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
             SetSidebarHoverEvents(btnPembayaran, pictbxPembayaran);
             SetSidebarHoverEvents(btnKunjungan, pictbxKunjungan);
             SetSidebarHoverEvents(btnKaryawan, pictbxKaryawan);
-            SetSidebarHoverEvents(btnShift, pictbxShift);
+            SetSidebarHoverEvents(btnJadwal, pictbxShift);
             SetSidebarHoverEvents(btnLayanan, pictbxLayanan);
             SetSidebarHoverEvents(btnInventory, pictbxInventory);
             SetSidebarHoverEvents(btnCustomer, pictbxCustomer);
@@ -58,5 +66,7 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
             button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
         }
+
+
     }
 }

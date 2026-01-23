@@ -45,6 +45,7 @@
             // 
             btnTambah.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTambah.BackColor = SystemColors.Control;
+            btnTambah.Cursor = Cursors.Hand;
             btnTambah.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnTambah.ForeColor = Color.Black;
             btnTambah.Location = new Point(569, 40);
@@ -71,18 +72,21 @@
             // 
             // dgvInventory
             // 
+            dgvInventory.AllowUserToAddRows = false;
+            dgvInventory.AllowUserToDeleteRows = false;
             dgvInventory.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvInventory.BackgroundColor = SystemColors.Control;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.ForeColor = Color.White;
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgvInventory.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvInventory.EnableHeadersVisualStyles = false;
             dgvInventory.Location = new Point(100, 100);
             dgvInventory.Margin = new Padding(2);
             dgvInventory.Name = "dgvInventory";

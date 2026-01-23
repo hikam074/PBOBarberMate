@@ -12,14 +12,20 @@ namespace PBOBarberMate.Presentation.Views.Shared
 {
     using PBOBarberMate.App.Services;
     using PBOBarberMate.Presentation.Forms;
+    using PBOBarberMate.Core.Interfaces;
+    using PBOBarberMate.App.Services;
+    using PBOBarberMate.Infrastructure.Repositories;
+    using PBOBarberMate.Presentation.Views.Auth;
 
     public partial class ProfilePopupUC : UserControl
     {
         public Action OnActionExecuted { get; set; }
+        private readonly INavigationService _nav;
 
-        public ProfilePopupUC()
+        public ProfilePopupUC(INavigationService nav)
         {
             InitializeComponent();
+            _nav = nav;
             LoadUserData();
             SetupUI();
         }
@@ -31,7 +37,8 @@ namespace PBOBarberMate.Presentation.Views.Shared
                 var user = SessionService.CurrentUser;
                 lblProfilRole.Text = SessionService.CurrentUser.NamaRole;
                 lblProfilNama.Text = SessionService.CurrentUser.Nama;
-                lblProfilEmail.Text = SessionService.CurrentUser.Username;
+                lblProfilUsername.Text = SessionService.CurrentUser.Username;
+                lblProfilEmail.Text = SessionService.CurrentUser.Email;
             }
         }
         private void SetupUI()
@@ -67,7 +74,11 @@ namespace PBOBarberMate.Presentation.Views.Shared
         private void btnUbahProfil_Click(object sender, EventArgs e)
         {
             OnActionExecuted?.Invoke();
-            //
+
+            IAkunRepository repo = new AkunRepository();
+            AkunService service = new AkunService(repo);
+            UbahProfilUC ubahProfilUC = new UbahProfilUC(service, _nav);
+            _nav.LoadFitur(ubahProfilUC);
         }
     }
 }

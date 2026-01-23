@@ -63,6 +63,7 @@
             lklblLoginSignupRedirect.Anchor = AnchorStyles.Top;
             lklblLoginSignupRedirect.AutoSize = true;
             lklblLoginSignupRedirect.BackColor = Color.Transparent;
+            lklblLoginSignupRedirect.Cursor = Cursors.Hand;
             lklblLoginSignupRedirect.Location = new Point(241, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
             lklblLoginSignupRedirect.Size = new Size(37, 15);
@@ -107,6 +108,7 @@
             // tbxSignupUsername
             // 
             tbxSignupUsername.Anchor = AnchorStyles.Top;
+            tbxSignupUsername.Cursor = Cursors.IBeam;
             tbxSignupUsername.Location = new Point(18, 143);
             tbxSignupUsername.Name = "tbxSignupUsername";
             tbxSignupUsername.Size = new Size(365, 23);
@@ -118,6 +120,7 @@
             btnSignupSubmit.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             btnSignupSubmit.BackColor = Color.FromArgb(44, 62, 80);
             btnSignupSubmit.CausesValidation = false;
+            btnSignupSubmit.Cursor = Cursors.Hand;
             btnSignupSubmit.Enabled = false;
             btnSignupSubmit.Font = new Font("Bahnschrift Condensed", 12F);
             btnSignupSubmit.ForeColor = Color.White;
@@ -134,6 +137,7 @@
             // tbxSignupNama
             // 
             tbxSignupNama.Anchor = AnchorStyles.Top;
+            tbxSignupNama.Cursor = Cursors.IBeam;
             tbxSignupNama.Location = new Point(18, 102);
             tbxSignupNama.Name = "tbxSignupNama";
             tbxSignupNama.Size = new Size(365, 23);
@@ -154,6 +158,7 @@
             // tbxSignupEmail
             // 
             tbxSignupEmail.Anchor = AnchorStyles.Top;
+            tbxSignupEmail.Cursor = Cursors.IBeam;
             tbxSignupEmail.Location = new Point(18, 62);
             tbxSignupEmail.Name = "tbxSignupEmail";
             tbxSignupEmail.Size = new Size(365, 23);
@@ -197,6 +202,7 @@
             // tbxSignupPass
             // 
             tbxSignupPass.Anchor = AnchorStyles.Top;
+            tbxSignupPass.Cursor = Cursors.IBeam;
             tbxSignupPass.Location = new Point(18, 183);
             tbxSignupPass.Name = "tbxSignupPass";
             tbxSignupPass.Size = new Size(365, 23);

@@ -27,19 +27,23 @@ namespace PBOBarberMate.Presentation.Views.Shared
             SetupUI();
 
             lblHeaderMenu.TextChanged += (s, e) => AdjustHeaderPosition();
-            this.Resize += (s, e) => {
+            this.Resize += (s, e) =>
+            {
                 AdjustHeaderPosition();
                 CloseProfilePopup();
                 RepositionPopup();
             };
             Application.AddMessageFilter(this);
+
+            SessionService.OnProfileUpdated += HandleProfileUpdated;
+            this.Disposed += (s, e) => SessionService.OnProfileUpdated -= HandleProfileUpdated;
         }
 
         private void btnProfil_Click(object sender, EventArgs e)
         {
             if (_profilePopup == null || _profilePopup.IsDisposed)
             {
-                _profilePopup = new ProfilePopupUC();
+                _profilePopup = new ProfilePopupUC(_nav);
                 _profilePopup.OnActionExecuted = () => CloseProfilePopup();
                 // hitung posisi yang lebih akurat relatif terhadap Form
                 Point screenPos = btnProfil.PointToScreen(new Point(0, btnProfil.Height));
@@ -127,6 +131,22 @@ namespace PBOBarberMate.Presentation.Views.Shared
                 _profilePopup.Dispose();
                 _profilePopup = null;
             }
+        }
+        private void HandleProfileUpdated()
+        {
+            // Refresh data nama di tombol profil Navbar
+            LoadUserData();
+            RepositionPopup();
+        }
+
+        private void pictboxHome_Click(object sender, EventArgs e)
+        {
+            _nav.NavigateToDashboard();
+        }
+
+        private void lblHomepageGreet_Click(object sender, EventArgs e)
+        {
+            _nav.NavigateToDashboard();
         }
     }
 }

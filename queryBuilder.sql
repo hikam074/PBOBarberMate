@@ -36,3 +36,14 @@ CREATE TABLE layanan (
     harga DECIMAL(10, 2) NOT NULL,
     deskripsi TEXT
 );
+
+-- Tabel jadwal_karyawan
+CREATE TABLE jadwal_karyawan (
+    id_jadwal VARCHAR(16) PRIMARY KEY, -- Natural UID (id_akun x id_hari, ex : id_akun=12 id_hari=2(selasa) id_shift = 12_2)
+    id_akun INTEGER NOT NULL REFERENCES akun(id_akun) ON DELETE CASCADE, -- FK akn(id_akun)
+    hari INTEGER NOT NULL CHECK (hari BETWEEN 0 AND 6), -- sesuai DayOfWeek C# : 0=minggu 1=senin dst
+    is_active BOOLEAN NOT NULL DEFAULT true,
+    is_tersedia BOOLEAN NOT NULL DEFAULT true,
+    CONSTRAINT unique_akun_hari UNIQUE (id_akun, hari) -- make sure tambahan kombinasi id_akunxhari unique
+);
+

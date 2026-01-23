@@ -53,6 +53,7 @@
             // 
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancel.BackColor = SystemColors.Control;
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnCancel.ForeColor = Color.Black;
             btnCancel.Location = new Point(9, 125);
@@ -69,6 +70,7 @@
             btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdd.AutoSize = true;
             btnAdd.BackColor = SystemColors.Control;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnAdd.ForeColor = Color.Black;
@@ -83,6 +85,7 @@
             // tbxNama
             // 
             tbxNama.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxNama.Cursor = Cursors.IBeam;
             tbxNama.Location = new Point(90, 19);
             tbxNama.Name = "tbxNama";
             tbxNama.Size = new Size(448, 23);
@@ -144,6 +147,7 @@
             // numStok
             // 
             numStok.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numStok.Cursor = Cursors.IBeam;
             numStok.Location = new Point(90, 48);
             numStok.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
             numStok.Name = "numStok";
@@ -164,6 +168,7 @@
             // tbxSatuan
             // 
             tbxSatuan.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxSatuan.Cursor = Cursors.IBeam;
             tbxSatuan.Location = new Point(90, 77);
             tbxSatuan.Name = "tbxSatuan";
             tbxSatuan.Size = new Size(448, 23);

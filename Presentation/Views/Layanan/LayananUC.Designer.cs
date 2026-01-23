@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LayananUC));
             dgvLayanan = new DataGridView();
             lblLayanan = new Label();
@@ -41,10 +42,21 @@
             // 
             // dgvLayanan
             // 
+            dgvLayanan.AllowUserToAddRows = false;
+            dgvLayanan.AllowUserToDeleteRows = false;
             dgvLayanan.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             dgvLayanan.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvLayanan.BackgroundColor = SystemColors.Control;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 48);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvLayanan.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvLayanan.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvLayanan.EnableHeadersVisualStyles = false;
             dgvLayanan.Location = new Point(100, 100);
             dgvLayanan.Margin = new Padding(2);
             dgvLayanan.Name = "dgvLayanan";
@@ -68,6 +80,7 @@
             // 
             btnTambah.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnTambah.BackColor = SystemColors.Control;
+            btnTambah.Cursor = Cursors.Hand;
             btnTambah.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnTambah.ForeColor = Color.Black;
             btnTambah.Location = new Point(569, 40);

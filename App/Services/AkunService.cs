@@ -45,5 +45,25 @@ namespace PBOBarberMate.App.Services
                 return Result<bool>.Failure(e.Message);
             }
         }
+        public Result<bool> UbahProfil(M_Akun dataBaru)
+        {
+            try
+            {
+                M_Akun dataAsli = _akunRepo.GetById(dataBaru.IdAkun);
+                if (dataAsli == null) return Result<bool>.Failure("User tidak ditemukan");
+                if (!string.IsNullOrEmpty(dataBaru.Nama)) dataAsli.Nama = dataBaru.Nama;
+                if (!string.IsNullOrEmpty(dataBaru.Username)) dataAsli.Username = dataBaru.Username;
+                if (!string.IsNullOrEmpty(dataBaru.Password)) dataAsli.Email = dataBaru.Email;
+                if (!string.IsNullOrEmpty(dataBaru.Password)) dataAsli.Password = SecurityHelper.hashPassword(dataBaru.Password);
+
+                bool success = _akunRepo.Update(dataAsli);
+                if (success) SessionService.UpdateSession(dataAsli);
+                return success ? Result<bool>.Success(true, "Data user berhasil diperbarui") : Result<bool>.Failure("Update gagal");
+            }
+            catch (Exception e)
+            {
+                return Result<bool>.Failure(e.Message);
+            }
+        }
     }
 }

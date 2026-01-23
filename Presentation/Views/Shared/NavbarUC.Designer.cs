@@ -68,11 +68,13 @@
             pictboxHome.SizeMode = PictureBoxSizeMode.CenterImage;
             pictboxHome.TabIndex = 9;
             pictboxHome.TabStop = false;
+            pictboxHome.Click += pictboxHome_Click;
             // 
             // lblHomepageGreet
             // 
             lblHomepageGreet.AutoSize = true;
             lblHomepageGreet.BackColor = Color.Transparent;
+            lblHomepageGreet.Cursor = Cursors.Hand;
             lblHomepageGreet.Font = new Font("Bahnschrift Condensed", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblHomepageGreet.ForeColor = Color.White;
             lblHomepageGreet.Location = new Point(53, 13);
@@ -81,6 +83,7 @@
             lblHomepageGreet.TabIndex = 8;
             lblHomepageGreet.Text = "BarberMate";
             lblHomepageGreet.TextAlign = ContentAlignment.MiddleRight;
+            lblHomepageGreet.Click += lblHomepageGreet_Click;
             // 
             // btnProfil
             // 

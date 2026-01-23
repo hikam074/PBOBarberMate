@@ -40,7 +40,7 @@
             pictbxShift = new PictureBox();
             btnKunjungan = new Button();
             btnKaryawan = new Button();
-            btnShift = new Button();
+            btnJadwal = new Button();
             btnInventory = new Button();
             btnCustomer = new Button();
             pictbxLayanan = new PictureBox();
@@ -197,21 +197,22 @@
             btnKaryawan.TextAlign = ContentAlignment.MiddleLeft;
             btnKaryawan.UseVisualStyleBackColor = false;
             // 
-            // btnShift
+            // btnJadwal
             // 
-            btnShift.BackColor = Color.Transparent;
-            btnShift.Cursor = Cursors.Hand;
-            btnShift.FlatAppearance.BorderSize = 0;
-            btnShift.FlatStyle = FlatStyle.Flat;
-            btnShift.Font = new Font("Bahnschrift Condensed", 15.75F);
-            btnShift.ForeColor = Color.Black;
-            btnShift.Location = new Point(3, 207);
-            btnShift.Name = "btnShift";
-            btnShift.Size = new Size(191, 40);
-            btnShift.TabIndex = 28;
-            btnShift.Text = "          Kelola Shift";
-            btnShift.TextAlign = ContentAlignment.MiddleLeft;
-            btnShift.UseVisualStyleBackColor = false;
+            btnJadwal.BackColor = Color.Transparent;
+            btnJadwal.Cursor = Cursors.Hand;
+            btnJadwal.FlatAppearance.BorderSize = 0;
+            btnJadwal.FlatStyle = FlatStyle.Flat;
+            btnJadwal.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnJadwal.ForeColor = Color.Black;
+            btnJadwal.Location = new Point(3, 207);
+            btnJadwal.Name = "btnJadwal";
+            btnJadwal.Size = new Size(191, 40);
+            btnJadwal.TabIndex = 28;
+            btnJadwal.Text = "          Kelola Jadwal";
+            btnJadwal.TextAlign = ContentAlignment.MiddleLeft;
+            btnJadwal.UseVisualStyleBackColor = false;
+            btnJadwal.Click += btnJadwal_Click;
             // 
             // btnInventory
             // 
@@ -291,7 +292,7 @@
             Controls.Add(pictbxShift);
             Controls.Add(btnKunjungan);
             Controls.Add(btnKaryawan);
-            Controls.Add(btnShift);
+            Controls.Add(btnJadwal);
             Controls.Add(btnInventory);
             Controls.Add(btnCustomer);
             Controls.Add(pictbxLayanan);
@@ -322,7 +323,7 @@
         private PictureBox pictbxShift;
         private Button btnKunjungan;
         private Button btnKaryawan;
-        private Button btnShift;
+        private Button btnJadwal;
         private Button btnInventory;
         private Button btnCustomer;
         private PictureBox pictbxLayanan;

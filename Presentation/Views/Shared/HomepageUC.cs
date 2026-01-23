@@ -9,6 +9,7 @@ namespace PBOBarberMate.Presentation.Views.Shared
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Core.Enums;
     using PBOBarberMate.Presentation.Views.Shared.Sidebars;
+    using PBOBarberMate.Presentation.Views.Dashboard;
 
     public partial class HomepageUC : UserControl, INavigationService
     {
@@ -28,8 +29,9 @@ namespace PBOBarberMate.Presentation.Views.Shared
         {
             LoadSidebarByRole();
             LoadNavbar();
+            NavigateToDashboard();
         }
-        private void LoadNavbar()
+        public void LoadNavbar()
         {
             _navbar = new NavbarUC(this);
             _navbar.Dock = DockStyle.Fill;
@@ -56,8 +58,26 @@ namespace PBOBarberMate.Presentation.Views.Shared
             sidebarPanel.Controls.Clear();
             sidebarPanel.Controls.Add(selectedSidebar);
         }
+        public void NavigateToDashboard()
+        {
+            var akun = SessionService.CurrentUser;
+            if (akun == null) return;
+            switch (akun.IdRole)
+            {
+                case (int)UserRole.Admin:
+                    LoadFitur(new AdminDashboardUC(this));
+                    break;
+                case (int)UserRole.Karyawan:
+                    LoadFitur(new KaryawanDashboardUC(this));
+                    break;
+                default:
+                    LoadFitur(new CustomerDashboardUC(this));
+                    break;
+            }
+        }
         public void LoadFitur(UserControl uc)
         {
+            if (uc == null) { NavigateToDashboard(); return; }
             if (uc is IPageFeature feature)
             {
                 _navbar.SetPageTitle(feature.PageTitle);

@@ -65,6 +65,7 @@
             btnCancel.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             btnCancel.AutoSize = true;
             btnCancel.BackColor = SystemColors.Control;
+            btnCancel.Cursor = Cursors.Hand;
             btnCancel.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnCancel.ForeColor = Color.Black;
             btnCancel.Location = new Point(9, 130);
@@ -81,6 +82,7 @@
             btnAdd.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnAdd.AutoSize = true;
             btnAdd.BackColor = Color.WhiteSmoke;
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.Enabled = false;
             btnAdd.Font = new Font("Bahnschrift Condensed", 11.25F);
             btnAdd.ForeColor = Color.Black;
@@ -95,6 +97,7 @@
             // tbxNama
             // 
             tbxNama.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxNama.Cursor = Cursors.IBeam;
             tbxNama.Location = new Point(90, 19);
             tbxNama.Name = "tbxNama";
             tbxNama.Size = new Size(448, 23);
@@ -144,6 +147,7 @@
             // numHarga
             // 
             numHarga.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            numHarga.Cursor = Cursors.IBeam;
             numHarga.Location = new Point(90, 54);
             numHarga.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
             numHarga.Name = "numHarga";
@@ -164,6 +168,7 @@
             // tbxDeskripsi
             // 
             tbxDeskripsi.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxDeskripsi.Cursor = Cursors.IBeam;
             tbxDeskripsi.Location = new Point(90, 86);
             tbxDeskripsi.Name = "tbxDeskripsi";
             tbxDeskripsi.Size = new Size(448, 23);

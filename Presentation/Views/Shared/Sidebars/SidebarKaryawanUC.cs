@@ -14,6 +14,7 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
     using PBOBarberMate.Core.Interfaces;
     using PBOBarberMate.Infrastructure.Repositories;
     using PBOBarberMate.Presentation.Views.Inventory;
+    using PBOBarberMate.Presentation.Views.Jadwal;
     using PBOBarberMate.Presentation.Views.Layanan;
 
     public partial class SidebarKaryawanUC : UserControl
@@ -49,12 +50,20 @@ namespace PBOBarberMate.Presentation.Views.Shared.Sidebars
             SetSidebarHoverEvents(btnPerforma, pictbxPerforma);
             SetSidebarHoverEvents(btnInventory, pictbxInventory);
             SetSidebarHoverEvents(btnLayanan, pictbxLayanan);
-            SetSidebarHoverEvents(btnShift, pictbxShift);
+            SetSidebarHoverEvents(btnJadwal, pictbxShift);
         }
         private void SetSidebarHoverEvents(Control button, Control relatedControl)
         {
             button.MouseEnter += (s, e) => { button.BackColor = Color.White; relatedControl.BackColor = Color.Gainsboro; };
             button.MouseLeave += (s, e) => { button.BackColor = Color.Transparent; relatedControl.BackColor = Color.Transparent; };
+        }
+
+        private void btnJadwal_Click(object sender, EventArgs e)
+        {
+            IJadwalRepository repo = new JadwalRepository();
+            JadwalService service = new JadwalService(repo);
+            JadwalUC inventoryUC = new JadwalUC(service, _nav);
+            _nav.LoadFitur(inventoryUC);
         }
     }
 }

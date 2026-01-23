@@ -9,5 +9,6 @@ namespace PBOBarberMate.Core.Interfaces
     public interface INavigationService
     {
         void LoadFitur(UserControl uc);
+        void NavigateToDashboard();
     }
 }

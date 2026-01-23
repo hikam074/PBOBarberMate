@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace PBOBarberMate.Core.Interfaces
 {
     using PBOBarberMate.Core.Entities;
-    public interface IAkunRepository
+
+    public interface IJadwalRepository
     {
-        M_Akun GetByUsername(string username);
-        M_Akun GetById(int idAkun);
-        bool Insert(M_Akun akun);
-        bool Update(M_Akun akun);
+        List<M_Jadwal> GetAllJadwal();
+        bool UpsertJadwal(M_Jadwal jadwal);
+        bool UpdateKetersediaan(string idJadwal, bool tersedia);
     }
 }

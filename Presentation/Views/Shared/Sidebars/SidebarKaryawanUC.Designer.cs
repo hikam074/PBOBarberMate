@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SidebarKaryawanUC));
             pictbxShift = new PictureBox();
-            btnShift = new Button();
+            btnJadwal = new Button();
             pictboxReservasi = new PictureBox();
             btnReservasi = new Button();
             pictbxPresensi = new PictureBox();
@@ -60,21 +60,22 @@
             pictbxShift.TabIndex = 27;
             pictbxShift.TabStop = false;
             // 
-            // btnShift
+            // btnJadwal
             // 
-            btnShift.BackColor = Color.Transparent;
-            btnShift.Cursor = Cursors.Hand;
-            btnShift.FlatAppearance.BorderSize = 0;
-            btnShift.FlatStyle = FlatStyle.Flat;
-            btnShift.Font = new Font("Bahnschrift Condensed", 15.75F);
-            btnShift.ForeColor = Color.Black;
-            btnShift.Location = new Point(3, 246);
-            btnShift.Name = "btnShift";
-            btnShift.Size = new Size(191, 40);
-            btnShift.TabIndex = 26;
-            btnShift.Text = "          Shift Karyawan";
-            btnShift.TextAlign = ContentAlignment.MiddleLeft;
-            btnShift.UseVisualStyleBackColor = false;
+            btnJadwal.BackColor = Color.Transparent;
+            btnJadwal.Cursor = Cursors.Hand;
+            btnJadwal.FlatAppearance.BorderSize = 0;
+            btnJadwal.FlatStyle = FlatStyle.Flat;
+            btnJadwal.Font = new Font("Bahnschrift Condensed", 15.75F);
+            btnJadwal.ForeColor = Color.Black;
+            btnJadwal.Location = new Point(3, 246);
+            btnJadwal.Name = "btnJadwal";
+            btnJadwal.Size = new Size(191, 40);
+            btnJadwal.TabIndex = 26;
+            btnJadwal.Text = "          Jadwal Karyawan";
+            btnJadwal.TextAlign = ContentAlignment.MiddleLeft;
+            btnJadwal.UseVisualStyleBackColor = false;
+            btnJadwal.Click += btnJadwal_Click;
             // 
             // pictboxReservasi
             // 
@@ -214,13 +215,13 @@
             btnInventory.UseVisualStyleBackColor = false;
             btnInventory.Click += btnInventory_Click;
             // 
-            // SidebarKaryawan
+            // SidebarKaryawanUC
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(145, 197, 249);
             Controls.Add(pictbxShift);
-            Controls.Add(btnShift);
+            Controls.Add(btnJadwal);
             Controls.Add(pictboxReservasi);
             Controls.Add(btnReservasi);
             Controls.Add(pictbxPresensi);
@@ -231,7 +232,7 @@
             Controls.Add(btnLayanan);
             Controls.Add(pictbxInventory);
             Controls.Add(btnInventory);
-            Name = "SidebarKaryawan";
+            Name = "SidebarKaryawanUC";
             Size = new Size(200, 451);
             ((System.ComponentModel.ISupportInitialize)pictbxShift).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictboxReservasi).EndInit();
@@ -245,7 +246,7 @@
         #endregion
 
         private PictureBox pictbxShift;
-        private Button btnShift;
+        private Button btnJadwal;
         private PictureBox pictboxReservasi;
         private Button btnReservasi;
         private PictureBox pictbxPresensi;

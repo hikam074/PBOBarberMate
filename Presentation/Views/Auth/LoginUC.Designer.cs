@@ -57,6 +57,7 @@
             // tbxLoginEmail
             // 
             tbxLoginEmail.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxLoginEmail.Cursor = Cursors.IBeam;
             tbxLoginEmail.Location = new Point(18, 110);
             tbxLoginEmail.Name = "tbxLoginEmail";
             tbxLoginEmail.Size = new Size(365, 23);
@@ -66,6 +67,7 @@
             // tbxLoginPass
             // 
             tbxLoginPass.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            tbxLoginPass.Cursor = Cursors.IBeam;
             tbxLoginPass.Location = new Point(18, 174);
             tbxLoginPass.Name = "tbxLoginPass";
             tbxLoginPass.Size = new Size(365, 23);
@@ -140,6 +142,7 @@
             // 
             btnLoginSubmit.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             btnLoginSubmit.BackColor = Color.FromArgb(44, 62, 80);
+            btnLoginSubmit.Cursor = Cursors.Hand;
             btnLoginSubmit.Enabled = false;
             btnLoginSubmit.Font = new Font("Bahnschrift Condensed", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnLoginSubmit.ForeColor = Color.White;
@@ -158,6 +161,7 @@
             lklblLoginSignupRedirect.Anchor = AnchorStyles.Bottom;
             lklblLoginSignupRedirect.AutoSize = true;
             lklblLoginSignupRedirect.BackColor = Color.Transparent;
+            lklblLoginSignupRedirect.Cursor = Cursors.Hand;
             lklblLoginSignupRedirect.ForeColor = SystemColors.ControlDarkDark;
             lklblLoginSignupRedirect.Location = new Point(274, 265);
             lklblLoginSignupRedirect.Name = "lklblLoginSignupRedirect";
