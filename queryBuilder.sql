@@ -47,3 +47,12 @@ CREATE TABLE jadwal_karyawan (
     CONSTRAINT unique_akun_hari UNIQUE (id_akun, hari) -- make sure tambahan kombinasi id_akunxhari unique
 );
 
+-- Tabel presensi
+CREATE TABLE presensi (
+    id_presensi SERIAL PRIMARY KEY,
+    id_akun INTEGER NOT NULL REFERENCES akun(id_akun), -- FK akun(id_akun)
+    tanggal DATE NOT NULL,
+    jam_masuk TIME,
+    jam_pulang TIME,
+    status_presensi 
+);
